@@ -8,7 +8,9 @@
    4. Testimonials slider
    5. Trades tabbed content
    6. Animated stat counters
-   
+   7. Magnetic + glow buttons
+   8. 3D card tilt
+
    Dependencies: Three.js (CDN), GSAP + ScrollTrigger (CDN)
    Ready for WordPress integration — all DOM queries use class selectors.
    ========================================================================== */
@@ -180,8 +182,11 @@
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
-  // Gather all scroll-reactive elements
-  const scrollElements = hero.querySelectorAll('[data-scroll-speed]');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Gather all scroll-reactive elements (not just the hero orbs — any
+  // element on the page can opt in via data-scroll-speed)
+  const scrollElements = document.querySelectorAll('[data-scroll-speed]');
   const threeCanvas = document.getElementById('three-canvas');
 
   // --- Lerp utility (linear interpolation for smooth motion) ---
@@ -225,20 +230,25 @@
     scrollElements.forEach((el) => {
       const speed = parseFloat(el.getAttribute('data-scroll-speed')) || 0;
       const rotateSpeed = parseFloat(el.getAttribute('data-scroll-rotate')) || 0;
+      const scale = parseFloat(el.getAttribute('data-scroll-scale')) || 1;
 
       const elState = elementStates.get(el);
       if (!elState) return;
 
-      // Calculate targets
-      elState.targetY = state.currentScroll * speed * -1;
+      // Calculate targets relative to the element's own position in the
+      // viewport (not absolute page scroll) so the effect stays bounded
+      // no matter where on the page the element sits.
+      const rect = el.getBoundingClientRect();
+      const distanceFromCenter = (rect.top + rect.height / 2) - (window.innerHeight / 2);
+      elState.targetY = distanceFromCenter * speed * -1;
       elState.targetRotation = state.currentScroll * rotateSpeed;
 
       // Lerp to smooth values
       elState.currentY = lerp(elState.currentY, elState.targetY, state.lerpFactor);
       elState.currentRotation = lerp(elState.currentRotation, elState.targetRotation, state.lerpFactor);
 
-      // Apply transform (translate + rotate)
-      el.style.transform = `translateY(${elState.currentY}px) rotate(${elState.currentRotation}deg)`;
+      // Apply transform (translate + rotate + optional static scale buffer)
+      el.style.transform = `translateY(${elState.currentY}px) rotate(${elState.currentRotation}deg) scale(${scale})`;
     });
 
     // --- Fade the entire decor layer as user scrolls past hero ---
@@ -268,6 +278,8 @@
 
   // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- Default reveal animation for all .reveal elements ---
   const revealElements = document.querySelectorAll('.reveal');
@@ -326,6 +338,14 @@
       { y: 40, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.9 },
       '-=0.4'
+    )
+    // Kinetic wipe, same node/timing as the fade above but a disjoint
+    // property (clipPath vs. y/opacity) so the two tweens don't fight.
+    // Collapses to a no-op when reduced motion is requested.
+    .fromTo('.hero__title',
+      { clipPath: prefersReducedMotion ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' },
+      { clipPath: 'inset(0 0% 0 0)', duration: prefersReducedMotion ? 0 : 0.9, ease: 'power4.out' },
+      '<'
     )
     .fromTo('.hero__description',
       { y: 30, opacity: 0 },
@@ -452,6 +472,192 @@
       }
     );
   }
+
+  // --- Section heading kinetic wipes (same clipPath pattern as the CTA
+  // heading above, extended to the major section headers) ---
+  const headingWipes = [
+    { heading: '.services-section__header h2', trigger: '.services-section__header' },
+    { heading: '.process-section__header h2', trigger: '.process-section__header' },
+    { heading: '.risk-section__header h2', trigger: '.risk-section__header' },
+    { heading: '.founder-section__content h2', trigger: '.founder-section__content' },
+    { heading: '.testimonials-section__header h2', trigger: '.testimonials-section__header' }
+  ];
+  headingWipes.forEach(({ heading, trigger }) => {
+    const el = document.querySelector(heading);
+    if (!el) return;
+
+    if (prefersReducedMotion) {
+      gsap.set(el, { clipPath: 'inset(0 0% 0 0)' });
+      return;
+    }
+
+    gsap.fromTo(el,
+      { clipPath: 'inset(0 100% 0 0)' },
+      {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 1.2,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // --- Founder photo reveal ---
+  // Only clipPath is animated here (never transform) — the scroll-parallax
+  // engine (initScrollReactiveDecorations) already owns this element's
+  // transform via its data-scroll-speed attribute, and the two must not
+  // write to the same property.
+  const founderImage = document.querySelector('.founder-section__image');
+  if (founderImage) {
+    if (prefersReducedMotion) {
+      gsap.set(founderImage, { clipPath: 'inset(0 0 0% 0)' });
+    } else {
+      gsap.fromTo(founderImage,
+        { clipPath: 'inset(0 0 100% 0)' },
+        {
+          clipPath: 'inset(0 0 0% 0)',
+          duration: 1.1,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: '.founder-section__image-wrap',
+            start: 'top 75%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+  }
+
+})();
+
+
+/* ==========================================================================
+   2b. MAGNETIC + GLOW BUTTONS
+   ==========================================================================
+   Desktop/mouse only. Buttons pull slightly toward the cursor and show a
+   cursor-tracked glow (via --mx/--my custom properties consumed in CSS).
+   No JS-side lerp loop — the button's own CSS transition (--transition-snap)
+   smooths between mousemove-driven writes, since nothing else touches
+   .btn's transform.
+   ========================================================================== */
+(function initMagneticButtons() {
+  'use strict';
+
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const buttons = document.querySelectorAll('.btn--primary, .btn--outline');
+  const MAGNETIC_STRENGTH = 0.22;
+
+  buttons.forEach((btn) => {
+    let pending = false;
+    let lastEvent = null;
+
+    function applyMagnetic() {
+      pending = false;
+      if (!lastEvent) return;
+
+      const rect = btn.getBoundingClientRect();
+      const relX = lastEvent.clientX - rect.left;
+      const relY = lastEvent.clientY - rect.top;
+
+      btn.style.setProperty('--mx', `${(relX / rect.width) * 100}%`);
+      btn.style.setProperty('--my', `${(relY / rect.height) * 100}%`);
+
+      const offsetX = (relX - rect.width / 2) * MAGNETIC_STRENGTH;
+      const offsetY = (relY - rect.height / 2) * MAGNETIC_STRENGTH;
+      // Written as custom properties (not the `transform` shorthand) so
+      // this never clobbers the CSS :hover/:active lift+press feedback,
+      // which contribute to the same composed transform via --lift/--scale.
+      btn.style.setProperty('--tx', `${offsetX}px`);
+      btn.style.setProperty('--ty', `${offsetY}px`);
+    }
+
+    btn.addEventListener('mousemove', (e) => {
+      lastEvent = e;
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(applyMagnetic);
+      }
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      lastEvent = null;
+      btn.style.setProperty('--tx', '0px');
+      btn.style.setProperty('--ty', '0px');
+      btn.style.setProperty('--mx', '50%');
+      btn.style.setProperty('--my', '50%');
+    });
+  });
+
+})();
+
+
+/* ==========================================================================
+   2c. 3D CARD TILT
+   ==========================================================================
+   Desktop/mouse only, fully skipped under reduced motion (purely
+   decorative). Tilts the inner [data-tilt-target] wrapper inside each
+   [data-tilt-card] — never the card itself, which GSAP's scroll-reveal
+   writes `transform` to for its entrance. One shared rAF loop lerps every
+   hovered card's rotation, mirroring the architecture already used by
+   initScrollReactiveDecorations above.
+   ========================================================================== */
+(function initCardTilt() {
+  'use strict';
+
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const cards = document.querySelectorAll('[data-tilt-card]');
+  if (!cards.length) return;
+
+  const MAX_TILT = 6; // degrees
+  const LERP_FACTOR = 0.12;
+
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  const cardStates = new Map();
+
+  cards.forEach((card) => {
+    const inner = card.querySelector('[data-tilt-target]');
+    if (!inner) return;
+
+    const state = { currentRX: 0, currentRY: 0, targetRX: 0, targetRY: 0, inner };
+    cardStates.set(card, state);
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width;   // 0..1
+      const relY = (e.clientY - rect.top) / rect.height;   // 0..1
+
+      // rotateX follows vertical position (inverted), rotateY follows horizontal
+      state.targetRX = (0.5 - relY) * MAX_TILT * 2;
+      state.targetRY = (relX - 0.5) * MAX_TILT * 2;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      state.targetRX = 0;
+      state.targetRY = 0;
+    });
+  });
+
+  function updateTilt() {
+    cardStates.forEach((state) => {
+      state.currentRX = lerp(state.currentRX, state.targetRX, LERP_FACTOR);
+      state.currentRY = lerp(state.currentRY, state.targetRY, LERP_FACTOR);
+      state.inner.style.transform = `perspective(800px) rotateX(${state.currentRX}deg) rotateY(${state.currentRY}deg)`;
+    });
+    requestAnimationFrame(updateTilt);
+  }
+
+  requestAnimationFrame(updateTilt);
 
 })();
 
