@@ -1455,24 +1455,16 @@ p {
   position: relative;
 }
 
-/* Connecting line between steps — static track */
-.process-grid::before {
-  content: '';
-  position: absolute;
-  top: 52px;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-charcoal-light), var(--color-orange), var(--color-charcoal-light));
-}
-
-/* Scroll-scrubbed progress fill drawn over the static track above */
+/* Scroll-scrubbed progress line — the only connecting line shown;
+   sits at the vertical center of the gate circles (32px = half of their
+   64px height) and behind them (z-index 1 vs. the circle's z-index 2) so
+   each circle appears to sit on top of it, reading as one connected path. */
 .process-grid__progress {
   position: absolute;
-  top: 52px;
+  top: 30.5px;
   left: 10%;
   right: 10%;
-  height: 1px;
+  height: 3px;
   background: var(--color-orange);
   box-shadow: 0 0 8px rgba(232, 83, 14, 0.6);
   transform-origin: left center;
@@ -1483,6 +1475,11 @@ p {
 .process-step {
   text-align: center;
   position: relative;
+  /* Explicit stacking above the progress line — the GSAP scroll-reveal
+     tween below leaves an inline transform on this element, which opens
+     its own stacking context and would otherwise trap the circle's
+     z-index below the line's z-index: 1. */
+  z-index: 2;
 }
 
 .process-step__number {
@@ -1497,23 +1494,8 @@ p {
   margin-bottom: var(--space-6);
   position: relative;
   z-index: 2;
-}
-
-.process-step:nth-child(1) .process-step__number {
   background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
   color: var(--color-white);
-}
-
-.process-step:nth-child(2) .process-step__number {
-  background-color: var(--color-charcoal);
-  color: var(--color-orange);
-  border: 2px solid var(--color-orange);
-}
-
-.process-step:nth-child(3) .process-step__number {
-  background-color: var(--color-charcoal);
-  color: var(--color-white);
-  border: 2px solid var(--color-charcoal-light);
 }
 
 .process-step__gate {
@@ -1992,7 +1974,6 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .process-grid::before,
   .process-grid__progress {
     display: none;
   }
