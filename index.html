@@ -36,6 +36,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -104,6 +107,15 @@
          WordPress: Template part or ACF Flexible Content block
          ====================================================================== -->
     <section class="hero" id="hero">
+
+      <!-- ====== GRADIENT BLUSH LAYER ====== -->
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+      <!-- ====== END GRADIENT BLUSH ====== -->
+
       <div class="hero__inner">
 
         <!-- Left column: Text & CTA + trust strip -->
@@ -193,6 +205,12 @@
          WordPress: ACF Repeater or Custom Post Type
          ====================================================================== -->
     <section class="section section--dark stats-section" id="services">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
       <div class="container">
 
         <div class="services-section__header reveal">
@@ -205,7 +223,7 @@
 
           <!-- Service Card 1: Business Valuation -->
           <div class="value-card">
-            <div class="value-card__icon">📊</div>
+            <div class="value-card__icon"><i class="fa-solid fa-chart-column"></i></div>
             <h3 class="value-card__title">Business Valuation</h3>
             <p class="value-card__text">Know what your home services business is worth and what's driving the multiple.</p>
             <a href="#" class="value-card__link">Learn more <span aria-hidden="true">→</span></a>
@@ -213,7 +231,7 @@
 
           <!-- Service Card 2: Exit Planning -->
           <div class="value-card">
-            <div class="value-card__icon">🎯</div>
+            <div class="value-card__icon"><i class="fa-solid fa-bullseye"></i></div>
             <h3 class="value-card__title">Exit Planning</h3>
             <p class="value-card__text">Build the plan for a successful transition long before you need one.</p>
             <a href="#" class="value-card__link">Learn more <span aria-hidden="true">→</span></a>
@@ -221,7 +239,7 @@
 
           <!-- Service Card 3: Operational Scaling -->
           <div class="value-card">
-            <div class="value-card__icon">⚙️</div>
+            <div class="value-card__icon"><i class="fa-solid fa-gears"></i></div>
             <h3 class="value-card__title">Operational Scaling</h3>
             <p class="value-card__text">Build the systems, dispatch processes, and training infrastructure that let the business grow without the owner on every job.</p>
             <a href="#" class="value-card__link">Learn more <span aria-hidden="true">→</span></a>
@@ -229,7 +247,7 @@
 
           <!-- Service Card 4: Executive Coaching -->
           <div class="value-card">
-            <div class="value-card__icon">👥</div>
+            <div class="value-card__icon"><i class="fa-solid fa-users"></i></div>
             <h3 class="value-card__title">Executive Coaching</h3>
             <p class="value-card__text">Develop the management team that can run the operation without constant owner involvement.</p>
             <a href="#" class="value-card__link">Learn more <span aria-hidden="true">→</span></a>
@@ -242,7 +260,7 @@
 
         <!-- Standalone Value Acceleration card -->
         <div class="value-card reveal" style="margin-top: var(--space-6); max-width: 600px;">
-          <div class="value-card__icon">🚀</div>
+          <div class="value-card__icon"><i class="fa-solid fa-rocket"></i></div>
           <h3 class="value-card__title">Value Acceleration</h3>
           <p class="value-card__text">Systematically improve the eight drivers of transferable value specific to home services businesses.</p>
           <a href="#" class="value-card__link">Learn more <span aria-hidden="true">→</span></a>
@@ -271,6 +289,7 @@
           <!-- Right column: "Not for" + Reputation -->
           <div class="about-section__content reveal">
             <div class="pull-quote">
+              <span class="pull-quote__bar" aria-hidden="true"></span>
               <p>It is not for the home services operator who is still in the startup phase or who is looking for sales tactics and marketing tips.</p>
             </div>
             <p>Business coaching for home service companies at Spearpoint is focused on one thing: building a business that is operationally sound, leadership-deep, and financially strong enough to grow, transfer, or sell on the owner's terms.</p>
@@ -290,6 +309,12 @@
          Grid of challenge cards.
          ====================================================================== -->
     <section class="section section--charcoal challenges-section" id="challenges">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
       <div class="container">
 
         <div class="challenges-section__header reveal">
@@ -300,37 +325,37 @@
         <div class="challenges-grid reveal-stagger">
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">🔧</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-wrench"></i></div>
             <h3 class="challenge-card__title">The Owner Is the Dispatcher, Technician, and&nbsp;Closer</h3>
             <p class="challenge-card__text">In many home services businesses, the owner is the most reliable field resource, the best salesperson, and the one customers ask for by name. Great for customer satisfaction. A growth ceiling and a valuation problem.</p>
           </div>
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">📋</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-clipboard-list"></i></div>
             <h3 class="challenge-card__title">Inconsistent Service Quality</h3>
             <p class="challenge-card__text">As home services businesses grow, maintaining the consistent quality that built the reputation becomes harder. Without documented processes and quality systems, service quality varies by technician — and the brand takes the hit.</p>
           </div>
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">📅</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-calendar-days"></i></div>
             <h3 class="challenge-card__title">Scheduling and Dispatch Chaos</h3>
             <p class="challenge-card__text">Field service operations are operationally complex — multiple crews, variable job lengths, last-minute changes, and customer time windows. Businesses that solve the scheduling problem create a significant operational advantage.</p>
           </div>
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">👷</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-helmet-safety"></i></div>
             <h3 class="challenge-card__title">High Technician Turnover</h3>
             <p class="challenge-card__text">Finding and keeping good technicians is one of the defining challenges of home services. The businesses that solve it build a competitive moat. The ones that don't are constantly recruiting and training — at significant cost.</p>
           </div>
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">📉</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
             <h3 class="challenge-card__title">Seasonal Revenue and Cash Flow Volatility</h3>
             <p class="challenge-card__text">Many home services businesses have significant seasonal variation in revenue — which creates cash flow volatility, staffing challenges, and makes the business harder to value and finance.</p>
           </div>
 
           <div class="challenge-card">
-            <div class="challenge-card__icon">📝</div>
+            <div class="challenge-card__icon"><i class="fa-solid fa-file-lines"></i></div>
             <h3 class="challenge-card__title">No Documented Processes or Training Systems</h3>
             <p class="challenge-card__text">Most home services businesses train new technicians informally and handle most situations through owner judgment rather than documented process. Fine until you need to scale — or sell.</p>
           </div>
@@ -464,6 +489,12 @@
          Dramatic, centered layout highlighting urgency.
          ====================================================================== -->
     <section class="section risk-section" id="risk">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
       <div class="container">
 
         <div class="risk-section__header reveal">
@@ -475,23 +506,23 @@
         <!-- 5 D's visual grid -->
         <div class="risk-grid reveal-stagger">
           <div class="risk-item">
-            <div class="risk-item__icon">💀</div>
+            <div class="risk-item__icon"><i class="fa-solid fa-skull"></i></div>
             <p class="risk-item__title">Death</p>
           </div>
           <div class="risk-item">
-            <div class="risk-item__icon">💔</div>
+            <div class="risk-item__icon"><i class="fa-solid fa-heart-crack"></i></div>
             <p class="risk-item__title">Divorce</p>
           </div>
           <div class="risk-item">
-            <div class="risk-item__icon">🩼</div>
+            <div class="risk-item__icon"><i class="fa-solid fa-crutch"></i></div>
             <p class="risk-item__title">Disability</p>
           </div>
           <div class="risk-item">
-            <div class="risk-item__icon">⚡</div>
+            <div class="risk-item__icon"><i class="fa-solid fa-bolt"></i></div>
             <p class="risk-item__title">Disagreement</p>
           </div>
           <div class="risk-item">
-            <div class="risk-item__icon">🌊</div>
+            <div class="risk-item__icon"><i class="fa-solid fa-water"></i></div>
             <p class="risk-item__title">Disruption</p>
           </div>
         </div>
@@ -499,6 +530,7 @@
         <!-- Pull quote -->
         <div class="risk-quote reveal">
           <blockquote>
+            <span class="risk-quote__bar" aria-hidden="true"></span>
             "The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."
           </blockquote>
         </div>
@@ -525,6 +557,8 @@
         </div>
 
         <div class="process-grid">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
 
           <!-- Gate 01 — Discover -->
           <div class="process-step">
@@ -573,6 +607,12 @@
          Two-column layout with image placeholder and credentials.
          ====================================================================== -->
     <section class="section section--charcoal founder-section" id="founder">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
       <div class="container">
 
         <div class="founder-section__grid">
@@ -581,7 +621,7 @@
           <div class="founder-section__image-wrap reveal">
             <div class="founder-section__image">
               <!-- WordPress: Use ACF image field or featured image -->
-              <span>Mike Wolfgang — Photo Placeholder</span>
+              <img src="assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573">
             </div>
           </div>
 
@@ -634,13 +674,15 @@
         </div>
 
         <!-- Testimonials Slider -->
-        <div class="testimonials-slider reveal">
-          <div class="testimonials-track">
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
 
             <!-- Testimonial 1 -->
             <!-- WordPress: <?php while (have_posts()): the_post(); ?> -->
             <div class="testimonial-card">
-              <div class="testimonial-card__stars" aria-label="5 star rating">★★★★★</div>
+              <div class="testimonial-card__stars" aria-label="5 star rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
               <p class="testimonial-card__quote">"We went from me being on every single job site to having three crew leaders who run operations independently. Our valuation doubled in 18 months. Mike didn't just coach us — he rebuilt how we think about the business."</p>
               <div class="testimonial-card__author">
                 <div class="testimonial-card__avatar" aria-hidden="true">JR</div>
@@ -653,7 +695,9 @@
 
             <!-- Testimonial 2 -->
             <div class="testimonial-card">
-              <div class="testimonial-card__stars" aria-label="5 star rating">★★★★★</div>
+              <div class="testimonial-card__stars" aria-label="5 star rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
               <p class="testimonial-card__quote">"I'd been thinking about selling for three years but had no idea what the business was worth or what a buyer would need to see. Spearpoint gave us clarity, a plan, and the confidence to make the right move at the right time."</p>
               <div class="testimonial-card__author">
                 <div class="testimonial-card__avatar" aria-hidden="true">TM</div>
@@ -666,7 +710,9 @@
 
             <!-- Testimonial 3 -->
             <div class="testimonial-card">
-              <div class="testimonial-card__stars" aria-label="5 star rating">★★★★★</div>
+              <div class="testimonial-card__stars" aria-label="5 star rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
               <p class="testimonial-card__quote">"Our technician retention went from 60% to over 90% in one year. The career path framework Mike helped us build is the single biggest competitive advantage we have now. Our best people stay because they see a future here."</p>
               <div class="testimonial-card__author">
                 <div class="testimonial-card__avatar" aria-hidden="true">KL</div>
@@ -679,7 +725,9 @@
 
             <!-- Testimonial 4 -->
             <div class="testimonial-card">
-              <div class="testimonial-card__stars" aria-label="5 star rating">★★★★★</div>
+              <div class="testimonial-card__stars" aria-label="5 star rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
               <p class="testimonial-card__quote">"We solved our seasonality problem by adding maintenance contracts and commercial accounts. Revenue is up 40% and, more importantly, it's predictable now. That's what changed our business from a job into an asset."</p>
               <div class="testimonial-card__author">
                 <div class="testimonial-card__avatar" aria-hidden="true">DS</div>
@@ -692,7 +740,9 @@
 
             <!-- Testimonial 5 -->
             <div class="testimonial-card">
-              <div class="testimonial-card__stars" aria-label="5 star rating">★★★★★</div>
+              <div class="testimonial-card__stars" aria-label="5 star rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
               <p class="testimonial-card__quote">"Mike understands what it's like to build a business with your hands and then realize you've built something that can't run without you. He helped us fix that — systematically, not theoretically. The business runs without me now."</p>
               <div class="testimonial-card__author">
                 <div class="testimonial-card__avatar" aria-hidden="true">RW</div>
@@ -723,6 +773,12 @@
          Centered, high-impact call to action.
          ====================================================================== -->
     <section class="section cta-section" id="contact">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
       <div class="container">
         <div class="reveal">
           <span class="eyebrow">Get Started</span>
@@ -803,9 +859,9 @@
       <div class="footer__bottom">
         <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
         <div class="footer__socials">
-          <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
-          <a href="#" class="footer__social-link" aria-label="Twitter / X">𝕏</a>
-          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
 

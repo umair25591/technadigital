@@ -269,6 +269,7 @@ p {
 .section {
   padding: var(--space-24) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .section--dark {
@@ -550,18 +551,23 @@ p {
   padding-top: var(--nav-height);
   overflow: hidden;
   z-index: 1;
+  background-color: var(--color-black);
+  background-image: url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Subtle dark gradient overlay for text readability */
+/* Dark gradient scrim over the photo for text readability */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(10, 10, 10, 0.88) 0%,
-    rgba(10, 10, 10, 0.7) 50%,
-    rgba(10, 10, 10, 0.5) 100%
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.8) 50%,
+    rgba(10, 10, 10, 0.62) 100%
   );
   z-index: 1;
 }
@@ -700,11 +706,16 @@ p {
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base);
 }
 
+/* `transform` only enters the transition list on :hover — the hero entrance
+   timeline in app.js also animates `transform` on this element via inline
+   styles, and a permanent CSS transition on the same property fights it,
+   causing the stutter/"stuck" look on scroll/load. */
 .stat-card:hover {
   transform: translateY(-3px);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 /* Feature card spans both columns */
@@ -798,6 +809,140 @@ p {
 
 
 /* ==========================================================================
+   6b. HERO AMBIENT BLUSH
+   ==========================================================================
+   Soft orange/blue glow orbs over the hero photo. Deliberately no
+   geometric/wireframe shapes — kept understated for a corporate audience.
+   ========================================================================== */
+
+/* --- Container --- */
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Glow breathing */
+@keyframes glowBreathe {
+  0%, 100% { filter: blur(60px) brightness(1); }
+  50%      { filter: blur(80px) brightness(1.3); }
+}
+
+/* ===== GRADIENT ORBS — soft glowing blush ===== */
+
+.hero-decor__orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  animation: glowBreathe 5s ease-in-out infinite;
+}
+
+/* Orange orb — strong warm glow, top-right */
+.hero-decor__orb--orange {
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(232, 83, 14, 0.35) 0%, rgba(232, 83, 14, 0.08) 50%, transparent 70%);
+  filter: blur(60px);
+}
+
+/* Blue orb — cool accent, bottom-left */
+.hero-decor__orb--blue {
+  width: 450px;
+  height: 450px;
+  bottom: -15%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(45, 123, 246, 0.25) 0%, rgba(45, 123, 246, 0.06) 50%, transparent 70%);
+  filter: blur(60px);
+  animation-delay: 2s;
+}
+
+/* Dim warm orb — center ambiance */
+.hero-decor__orb--dim {
+  width: 600px;
+  height: 600px;
+  top: 25%;
+  left: 30%;
+  background: radial-gradient(circle, rgba(232, 83, 14, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 70%);
+  filter: blur(80px);
+  animation-delay: 3.5s;
+}
+
+@media (max-width: 768px) {
+  .hero-decor__orb--orange {
+    width: 250px;
+    height: 250px;
+  }
+
+  .hero-decor__orb--blue {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-decor__orb--dim {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   6c. SHARED SECTION BLUSH
+   ==========================================================================
+   The same orange/blue accent carried through every section below the
+   hero. Each glow's gradient goes fully transparent well inside its own
+   radius (62% stop) and is heavily blurred, so by the time a section's
+   overflow clips it there is nothing left to clip — no hard-edged or
+   "cut off" circle at the seam where one section ends and the next begins.
+   ========================================================================== */
+
+.section-decor {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.section-decor__glow {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.section-decor__glow--orange {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(232, 83, 14, 0.16) 0%, rgba(232, 83, 14, 0.05) 38%, transparent 62%);
+  filter: blur(90px);
+}
+
+.section-decor__glow--blue {
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(45, 123, 246, 0.14) 0%, rgba(45, 123, 246, 0.04) 38%, transparent 62%);
+  filter: blur(90px);
+}
+
+/* Orange upper corner, blue lower corner */
+.section-decor--a .section-decor__glow--orange { top: -12%; right: -8%; }
+.section-decor--a .section-decor__glow--blue   { bottom: -14%; left: -6%; }
+
+/* Mirrored — blue upper corner, orange lower corner */
+.section-decor--b .section-decor__glow--orange { bottom: -14%; right: -6%; }
+.section-decor--b .section-decor__glow--blue   { top: -12%; left: -8%; }
+
+@media (max-width: 768px) {
+  .section-decor__glow--orange,
+  .section-decor__glow--blue {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+
+/* ==========================================================================
    7. STATS / VALUE PROPS SECTION
    ========================================================================== 
    Grid of value proposition stat cards.
@@ -819,15 +964,20 @@ p {
   border: 1px solid var(--color-charcoal-light);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
-  transition: border-color var(--transition-base), 
-              transform var(--transition-base),
+  transition: border-color var(--transition-base),
               box-shadow var(--transition-base);
 }
 
+/* `transform` only enters the transition list on :hover — keeping it out of
+   the base rule stops it from fighting the GSAP scroll-reveal tween, which
+   also animates `transform` on this element (see app.js reveal-stagger). */
 .value-card:hover {
   border-color: var(--color-orange);
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(232, 83, 14, 0.1);
+  transition: border-color var(--transition-base),
+              transform var(--transition-base),
+              box-shadow var(--transition-base);
 }
 
 .value-card__icon {
@@ -840,6 +990,7 @@ p {
   border-radius: var(--radius-md);
   margin-bottom: var(--space-6);
   font-size: var(--fs-xl);
+  color: var(--color-orange);
 }
 
 .value-card__title {
@@ -992,9 +1143,21 @@ p {
 
 /* --- Pull quote style --- */
 .pull-quote {
-  border-left: 3px solid var(--color-orange);
+  position: relative;
   padding-left: var(--space-6);
   margin: var(--space-8) 0;
+}
+
+/* Accent bar draws downward on scroll (see app.js) instead of a static border */
+.pull-quote__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-orange);
+  transform-origin: top;
+  transform: scaleY(0);
 }
 
 .pull-quote p {
@@ -1034,17 +1197,21 @@ p {
   border: 1px solid var(--color-charcoal-light);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
-  transition: all var(--transition-base);
+  transition: border-color var(--transition-base);
 }
 
+/* `transform` only enters the transition list on :hover — see the note on
+   .value-card above; avoids fighting the GSAP reveal-stagger tween. */
 .challenge-card:hover {
   border-color: rgba(45, 123, 246, 0.3);
   transform: translateY(-2px);
+  transition: border-color var(--transition-base), transform var(--transition-base);
 }
 
 .challenge-card__icon {
   font-size: var(--fs-2xl);
   margin-bottom: var(--space-4);
+  color: var(--color-blue);
 }
 
 .challenge-card__title {
@@ -1204,17 +1371,21 @@ p {
   border: 1px solid var(--color-charcoal-light);
   border-radius: var(--radius-lg);
   min-width: 160px;
-  transition: all var(--transition-base);
+  transition: border-color var(--transition-base);
 }
 
+/* `transform` only enters the transition list on :hover — see the note on
+   .value-card above; avoids fighting the GSAP reveal-stagger tween. */
 .risk-item:hover {
   border-color: var(--color-orange);
   transform: translateY(-3px);
+  transition: border-color var(--transition-base), transform var(--transition-base);
 }
 
 .risk-item__icon {
   font-size: var(--fs-3xl);
   margin-bottom: var(--space-3);
+  color: var(--color-orange);
 }
 
 .risk-item__title {
@@ -1230,14 +1401,26 @@ p {
 }
 
 .risk-quote blockquote {
+  position: relative;
   font-size: var(--fs-xl);
   font-weight: var(--fw-medium);
   color: var(--color-gray-200);
   font-style: italic;
   line-height: var(--lh-relaxed);
-  border-left: 3px solid var(--color-orange);
   padding-left: var(--space-6);
   text-align: left;
+}
+
+/* Accent bar draws downward on scroll (see app.js) instead of a static border */
+.risk-quote__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-orange);
+  transform-origin: top;
+  transform: scaleY(0);
 }
 
 .risk-quote p {
@@ -1272,7 +1455,7 @@ p {
   position: relative;
 }
 
-/* Connecting line between steps */
+/* Connecting line between steps — static track */
 .process-grid::before {
   content: '';
   position: absolute;
@@ -1281,6 +1464,20 @@ p {
   right: 10%;
   height: 1px;
   background: linear-gradient(90deg, var(--color-charcoal-light), var(--color-orange), var(--color-charcoal-light));
+}
+
+/* Scroll-scrubbed progress fill drawn over the static track above */
+.process-grid__progress {
+  position: absolute;
+  top: 52px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--color-orange);
+  box-shadow: 0 0 8px rgba(232, 83, 14, 0.6);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 1;
 }
 
 .process-step {
@@ -1365,18 +1562,21 @@ p {
   overflow: hidden;
 }
 
-/* Image placeholder with gradient */
+/* Founder photo */
 .founder-section__image {
   width: 100%;
   aspect-ratio: 4 / 5;
   background: linear-gradient(135deg, var(--color-charcoal), var(--color-black));
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-charcoal-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--fs-sm);
-  color: var(--color-gray-500);
+  overflow: hidden;
+}
+
+.founder-section__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .founder-section__content h2 {
@@ -1607,7 +1807,7 @@ p {
 }
 
 .cta-section__email {
-  margin-top: var(--space-6);
+  margin-top: 20px;
   font-size: var(--fs-sm);
   color: var(--color-gray-400);
 }
@@ -1715,46 +1915,14 @@ p {
    18. ANIMATIONS & TRANSITIONS
    ========================================================================== */
 
-/* Reveal animations (triggered by GSAP / IntersectionObserver) */
+/* Reveal animations — initial pre-JS state only.
+   GSAP drives the actual opacity/transform tween on scroll (see app.js);
+   no CSS `transition` here on purpose — a transition on the same
+   properties GSAP animates every frame fights it and causes stutter. */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-
-.reveal-left.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-}
-
-.reveal-right.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Stagger delays for grid children */
-.reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
-.reveal-stagger > *:nth-child(2) { transition-delay: 0.1s; }
-.reveal-stagger > *:nth-child(3) { transition-delay: 0.2s; }
-.reveal-stagger > *:nth-child(4) { transition-delay: 0.3s; }
-.reveal-stagger > *:nth-child(5) { transition-delay: 0.4s; }
-.reveal-stagger > *:nth-child(6) { transition-delay: 0.5s; }
 
 /* Fade-in keyframe for tab panels */
 @keyframes fadeIn {
@@ -1824,7 +1992,8 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .process-grid::before {
+  .process-grid::before,
+  .process-grid__progress {
     display: none;
   }
 

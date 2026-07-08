@@ -163,6 +163,101 @@
 
 
 /* ==========================================================================
+   1b. SCROLL-REACTIVE HERO DECORATIONS ENGINE
+   ==========================================================================
+   Drives all elements with data-scroll-speed / data-scroll-rotate attributes.
+   Uses requestAnimationFrame + lerp for silky-smooth motion.
+
+   How it works:
+   - Each element's data-scroll-speed controls vertical parallax magnitude
+   - data-scroll-rotate controls rotation magnitude per scroll pixel
+   - Gradient orbs shift position based on scroll
+   - Three.js scene (if present) adjusts camera Z and rotation speed
+   ========================================================================== */
+(function initScrollReactiveDecorations() {
+  'use strict';
+
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  // Gather all scroll-reactive elements
+  const scrollElements = hero.querySelectorAll('[data-scroll-speed]');
+  const threeCanvas = document.getElementById('three-canvas');
+
+  // --- Lerp utility (linear interpolation for smooth motion) ---
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  // --- State tracking for smooth interpolation ---
+  const state = {
+    currentScroll: 0,
+    targetScroll: 0,
+    lerpFactor: 0.08  // Lower = smoother but more lag; 0.08 is silky
+  };
+
+  // Store per-element transform state
+  const elementStates = new Map();
+  scrollElements.forEach((el) => {
+    elementStates.set(el, {
+      currentY: 0,
+      targetY: 0,
+      currentRotation: 0,
+      targetRotation: 0
+    });
+  });
+
+  // --- Update target scroll on scroll events ---
+  window.addEventListener('scroll', () => {
+    state.targetScroll = window.pageYOffset;
+  }, { passive: true });
+
+  // --- Animation loop using rAF ---
+  function updateDecorations() {
+    // Smooth the scroll value
+    state.currentScroll = lerp(state.currentScroll, state.targetScroll, state.lerpFactor);
+
+    // Normalized scroll (0 to 1) within the hero viewport
+    const heroHeight = hero.offsetHeight || window.innerHeight;
+    const scrollProgress = Math.min(state.currentScroll / heroHeight, 1.5);
+
+    // --- Transform each scroll-reactive element ---
+    scrollElements.forEach((el) => {
+      const speed = parseFloat(el.getAttribute('data-scroll-speed')) || 0;
+      const rotateSpeed = parseFloat(el.getAttribute('data-scroll-rotate')) || 0;
+
+      const elState = elementStates.get(el);
+      if (!elState) return;
+
+      // Calculate targets
+      elState.targetY = state.currentScroll * speed * -1;
+      elState.targetRotation = state.currentScroll * rotateSpeed;
+
+      // Lerp to smooth values
+      elState.currentY = lerp(elState.currentY, elState.targetY, state.lerpFactor);
+      elState.currentRotation = lerp(elState.currentRotation, elState.targetRotation, state.lerpFactor);
+
+      // Apply transform (translate + rotate)
+      el.style.transform = `translateY(${elState.currentY}px) rotate(${elState.currentRotation}deg)`;
+    });
+
+    // --- Fade the entire decor layer as user scrolls past hero ---
+    const decorLayer = hero.querySelector('.hero-decor');
+    if (decorLayer) {
+      const fadeOpacity = Math.max(0, 1 - scrollProgress * 0.8);
+      decorLayer.style.opacity = fadeOpacity;
+    }
+
+    requestAnimationFrame(updateDecorations);
+  }
+
+  // Kick off the animation loop
+  requestAnimationFrame(updateDecorations);
+
+})();
+
+
+/* ==========================================================================
    2. GSAP SCROLL-TRIGGERED ANIMATIONS
    ========================================================================== 
    Reveals content on scroll with stagger and parallax effects.
@@ -195,17 +290,19 @@
   });
 
   // --- Staggered grid reveals (stat cards, service cards, etc.) ---
+  // Pops in with a slight scale on top of the fade/slide for more presence.
   const staggerGrids = document.querySelectorAll('.reveal-stagger');
   staggerGrids.forEach((grid) => {
     const children = grid.children;
     gsap.fromTo(children,
-      { y: 60, opacity: 0 },
+      { y: 60, opacity: 0, scale: 0.92 },
       {
         y: 0,
         opacity: 1,
+        scale: 1,
         duration: 0.8,
         stagger: 0.12,
-        ease: 'power3.out',
+        ease: 'back.out(1.6)',
         scrollTrigger: {
           trigger: grid,
           start: 'top 80%',
@@ -256,29 +353,10 @@
       '-=0.5'
     );
 
-  // --- Section header animations ---
-  const sectionHeaders = document.querySelectorAll(
-    '.services-section__header, .challenges-section__header, .trades-section__header, .process-section__header, .testimonials-section__header, .risk-section__header'
-  );
-  sectionHeaders.forEach((header) => {
-    gsap.fromTo(header,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: header,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-  });
-
-
-
+  // Section headers (.services-section__header etc.) already carry the
+  // `.reveal` class, so the generic handler above animates them — a second,
+  // near-identical ScrollTrigger tween here fought it and caused the
+  // headers' entrance to stutter/restart mid-animation.
 
   // --- Process step reveal ---
   const processSteps = document.querySelectorAll('.process-step');
@@ -299,6 +377,81 @@
       }
     );
   });
+
+  // --- Process timeline line-draw ---
+  // Fills the orange progress bar over the static track as the three
+  // Discover/Prepare/Decide gates scroll through view.
+  const processProgress = document.querySelector('.process-grid__progress');
+  if (processProgress) {
+    gsap.to(processProgress, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.process-grid',
+        start: 'top 75%',
+        end: 'bottom 60%',
+        scrub: 0.5
+      }
+    });
+  }
+
+  // --- Section blush parallax drift ---
+  // Extends the hero's orb parallax to the ambient glows on other sections —
+  // orange and blue drift in opposite directions as their section scrolls.
+  document.querySelectorAll('.section-decor').forEach((decor) => {
+    const glows = decor.querySelectorAll('.section-decor__glow');
+    if (!glows.length) return;
+    gsap.to(glows, {
+      yPercent: (i) => (i % 2 === 0 ? 16 : -16),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: decor.parentElement,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
+  });
+
+  // --- Quote line-draw ---
+  // Draws the orange accent bar downward as each pull-quote scrolls into
+  // view, mirroring the process timeline fill above.
+  const quoteBars = [
+    { bar: '.pull-quote__bar', trigger: '.pull-quote' },
+    { bar: '.risk-quote__bar', trigger: '.risk-quote blockquote' }
+  ];
+  quoteBars.forEach(({ bar, trigger }) => {
+    const el = document.querySelector(bar);
+    if (!el) return;
+    gsap.to(el, {
+      scaleY: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger,
+        start: 'top 85%',
+        end: 'bottom 65%',
+        scrub: 0.6
+      }
+    });
+  });
+
+  // --- CTA finale: heading wipe reveal ---
+  const ctaHeading = document.querySelector('.cta-section h2');
+  if (ctaHeading) {
+    gsap.fromTo(ctaHeading,
+      { clipPath: 'inset(0 100% 0 0)' },
+      {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 1.2,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: '.cta-section',
+          start: 'top 70%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }
 
 })();
 
