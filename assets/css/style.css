@@ -366,8 +366,15 @@ p {
 }
 
 .site-logo img {
-  height: 36px;
+  height: 60px;
   width: auto;
+}
+
+/* Footer brand mark isn't height-constrained by the nav bar, so it can
+   run larger — the logo's wordmark is small relative to the icon above
+   it and needs the extra size to stay legible. */
+.footer__brand .site-logo img {
+  height: 76px;
 }
 
 /* --- Desktop Navigation --- */
@@ -2021,6 +2028,10 @@ p {
 
   :root {
     --nav-height: 64px;
+  }
+
+  .site-logo img {
+    height: 46px;
   }
 
   .section {
