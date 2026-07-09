@@ -8,7 +8,7 @@
    4. Testimonials slider
    5. Trades tabbed content
    6. Animated stat counters
-   7. Magnetic + glow buttons
+   7. Glow buttons
    8. Risk (5 D's) accordion
 
    Dependencies: Three.js (CDN), GSAP + ScrollTrigger (CDN)
@@ -535,28 +535,28 @@
 
 
 /* ==========================================================================
-   2b. MAGNETIC + GLOW BUTTONS
+   2b. GLOW BUTTONS
    ==========================================================================
-   Desktop/mouse only. Buttons pull slightly toward the cursor and show a
-   cursor-tracked glow (via --mx/--my custom properties consumed in CSS).
-   No JS-side lerp loop — the button's own CSS transition (--transition-snap)
-   smooths between mousemove-driven writes, since nothing else touches
-   .btn's transform.
+   Desktop/mouse only. Buttons show a cursor-tracked glow highlight (via
+   --mx/--my custom properties consumed in CSS). No JS-side lerp loop — the
+   button's own CSS transition (--transition-snap) smooths between
+   mousemove-driven writes, since nothing else touches .btn's transform.
    ========================================================================== */
-(function initMagneticButtons() {
+(function initButtonGlow() {
   'use strict';
 
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const buttons = document.querySelectorAll('.btn--primary, .btn--outline');
-  const MAGNETIC_STRENGTH = 0.22;
 
   buttons.forEach((btn) => {
     let pending = false;
     let lastEvent = null;
 
-    function applyMagnetic() {
+    // Cursor-tracked glow only — the button itself no longer shifts
+    // toward the cursor (--tx/--ty magnetic pull removed).
+    function applyGlow() {
       pending = false;
       if (!lastEvent) return;
 
@@ -566,28 +566,18 @@
 
       btn.style.setProperty('--mx', `${(relX / rect.width) * 100}%`);
       btn.style.setProperty('--my', `${(relY / rect.height) * 100}%`);
-
-      const offsetX = (relX - rect.width / 2) * MAGNETIC_STRENGTH;
-      const offsetY = (relY - rect.height / 2) * MAGNETIC_STRENGTH;
-      // Written as custom properties (not the `transform` shorthand) so
-      // this never clobbers the CSS :hover/:active lift+press feedback,
-      // which contribute to the same composed transform via --lift/--scale.
-      btn.style.setProperty('--tx', `${offsetX}px`);
-      btn.style.setProperty('--ty', `${offsetY}px`);
     }
 
     btn.addEventListener('mousemove', (e) => {
       lastEvent = e;
       if (!pending) {
         pending = true;
-        requestAnimationFrame(applyMagnetic);
+        requestAnimationFrame(applyGlow);
       }
     });
 
     btn.addEventListener('mouseleave', () => {
       lastEvent = null;
-      btn.style.setProperty('--tx', '0px');
-      btn.style.setProperty('--ty', '0px');
       btn.style.setProperty('--mx', '50%');
       btn.style.setProperty('--my', '50%');
     });
