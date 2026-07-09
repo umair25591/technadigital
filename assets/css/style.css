@@ -1486,21 +1486,29 @@ p {
   font-size: var(--fs-md);
 }
 
-/* --- 5 Ds items — click-to-expand accordion cards --- */
+/* --- 5 Ds items — click-to-expand accordion cards ---
+   On desktop (.can-morph, set by app.js when the viewport is wide enough),
+   clicking a card grows it via GSAP-animated `flex-grow` with an elastic
+   ease — an overshoot-then-settle "stretch" — while its siblings shrink
+   and the header switches to a horizontal (icon-beside-title) layout to
+   use the extra width. On narrower viewports .can-morph is never added,
+   so cards stay equal width and only the description expands vertically. */
 .risk-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: nowrap;
   gap: var(--space-4);
   margin-bottom: var(--space-12);
-  align-items: start;
+  align-items: flex-start;
 }
 
 .risk-item {
+  flex: 1 1 0%;
+  min-width: 0;
   text-align: center;
   background-color: rgba(10, 10, 10, 0.6);
   border: 1px solid var(--color-charcoal-light);
   border-radius: var(--radius-lg);
-  transition: border-color var(--transition-base);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
   overflow: hidden;
 }
 
@@ -1509,11 +1517,16 @@ p {
 .risk-item:hover {
   border-color: var(--color-orange);
   transform: translateY(-3px);
-  transition: border-color var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .risk-item.is-open {
   border-color: var(--color-orange);
+  box-shadow: 0 8px 30px rgba(232, 83, 14, 0.15);
+}
+
+.risk-item.is-open:hover {
+  transform: none;
 }
 
 .risk-item__toggle {
@@ -1527,30 +1540,63 @@ p {
   cursor: pointer;
   font: inherit;
   color: inherit;
+  transition: padding var(--transition-base);
+}
+
+.risk-grid.can-morph .risk-item.is-open .risk-item__toggle {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-4);
+  text-align: left;
+  padding: var(--space-6);
 }
 
 .risk-item__icon {
   font-size: var(--fs-3xl);
   margin-bottom: var(--space-3);
   color: var(--color-orange);
+  transition: margin var(--transition-base), font-size var(--transition-base);
+}
+
+.risk-grid.can-morph .risk-item.is-open .risk-item__icon {
+  margin-bottom: 0;
+}
+
+.risk-grid.has-open .risk-item:not(.is-open) .risk-item__icon {
+  font-size: var(--fs-xl);
 }
 
 .risk-item__title {
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
   color: var(--color-white);
+  transition: font-size var(--transition-base);
+}
+
+.risk-grid.has-open .risk-item:not(.is-open) .risk-item__title {
+  font-size: var(--fs-xs);
 }
 
 .risk-item__chevron {
   margin-top: var(--space-3);
   font-size: var(--fs-xs);
   color: var(--color-gray-400);
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-base), margin var(--transition-base), opacity var(--transition-base);
+}
+
+.risk-grid.can-morph .risk-item.is-open .risk-item__chevron {
+  margin-top: 0;
+  margin-left: auto;
 }
 
 .risk-item.is-open .risk-item__chevron {
   transform: rotate(180deg);
   color: var(--color-orange);
+}
+
+.risk-grid.has-open .risk-item:not(.is-open) .risk-item__chevron {
+  opacity: 0;
 }
 
 .risk-item__desc-wrap {
@@ -1568,7 +1614,7 @@ p {
 }
 
 .risk-item__desc p {
-  padding: 0 var(--space-5) var(--space-6);
+  padding: 0 var(--space-6) var(--space-6);
   font-size: var(--fs-sm);
   color: var(--color-gray-400);
   line-height: var(--lh-relaxed);
@@ -2166,7 +2212,11 @@ p {
   }
 
   .risk-grid {
-    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+  }
+
+  .risk-item {
+    flex: 1 1 calc(33.333% - var(--space-4));
   }
 
   .challenges-grid {
@@ -2283,8 +2333,12 @@ p {
   }
 
   .risk-grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
     gap: var(--space-3);
+  }
+
+  .risk-item {
+    flex: 1 1 calc(50% - var(--space-3));
   }
 
   .risk-item__toggle {
