@@ -51,15 +51,14 @@
   --color-gray-500:     #555555;
 
   /* --- Light theme surfaces & text ---
-     The palette above (black/charcoal/white/gray-100..500) stays exactly
-     as-is and is still used, unchanged, by the two areas that intentionally
-     remain dark: the hero (its background photo needs a dark scrim for
-     legibility) and the hero's stat cards (--dark/--glass variants). Every
-     other section now uses the tokens below instead. */
+     The palette above (black/charcoal/white/gray-100..500) is still used,
+     unchanged, for anything that needs to read as "dark" regardless of
+     surface (e.g. the .stat-card--dark accent card). Everything else uses
+     the tokens below. */
   --color-bg:           #FAF9F6;         /* Page / section background */
   --color-surface:      #FFFFFF;         /* Card background */
   --color-surface-2:    #F4F2EE;         /* Slightly recessed surface (dividers, subtle fills) */
-  --color-border:       #E6E3DC;         /* Hairline borders on light surfaces */
+  --color-border:       #8F8B80;         /* Hairline borders on light surfaces */
   --color-text:         var(--color-black); /* Headings / primary text on light bg (reuses the near-black value) */
   --color-text-2:       #43464C;         /* Secondary body text on light bg */
   --color-text-3:       #63666D;         /* Muted / tertiary text on light bg */
@@ -359,10 +358,8 @@ p {
               backdrop-filter var(--transition-base);
 }
 
-/* Scrolled state — adds glass effect. The header sits over the (still
-   dark) hero photo by default, then switches to a light glass bar once
-   scrolled into the light body sections below — see the logo/nav-link/
-   mobile-toggle overrides further down for the matching text-color swap. */
+/* Scrolled state — adds a light glass bar with a hairline shadow for
+   definition once scrolled; transparent over the hero at the top. */
 .site-header.is-scrolled {
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
@@ -380,40 +377,16 @@ p {
   padding: 0 var(--space-6);
 }
 
-/* --- Logo ---
-   The header logo swaps between the white wordmark (legible over the dark
-   hero photo) and the dark wordmark (legible once the header goes light on
-   scroll) by cross-fading two stacked <img>s — see .site-logo__img below.
-   The footer's single logo image is unaffected by this. */
+/* --- Logo --- */
 .site-logo {
   display: flex;
   align-items: center;
   z-index: 1001;
-  position: relative;
 }
 
 .site-logo img {
   height: 60px;
   width: auto;
-}
-
-.site-header .site-logo__img {
-  transition: opacity var(--transition-base);
-}
-
-.site-header .site-logo__img--on-light {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-}
-
-.site-header.is-scrolled .site-logo__img--on-dark {
-  opacity: 0;
-}
-
-.site-header.is-scrolled .site-logo__img--on-light {
-  opacity: 1;
 }
 
 /* Footer brand mark isn't height-constrained by the nav bar, so it can
@@ -433,7 +406,7 @@ p {
 .nav-menu__link {
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
-  color: var(--color-gray-200);
+  color: var(--color-text-2);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   transition: color var(--transition-fast);
@@ -452,7 +425,7 @@ p {
 }
 
 .nav-menu__link:hover {
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 .nav-menu__link:hover::after {
@@ -460,19 +433,6 @@ p {
 }
 
 .nav-menu__link.is-active {
-  color: var(--color-orange);
-}
-
-/* Once the header goes light (scrolled past the hero), flip nav text dark */
-.site-header.is-scrolled .nav-menu__link {
-  color: var(--color-text-2);
-}
-
-.site-header.is-scrolled .nav-menu__link:hover {
-  color: var(--color-text);
-}
-
-.site-header.is-scrolled .nav-menu__link.is-active {
   color: var(--color-orange);
 }
 
@@ -546,9 +506,6 @@ p {
   --scale: 0.97;
 }
 
-/* Default styling serves this button's light-section usages (process,
-   founder). The hero also uses .btn--outline but stays dark, so it gets
-   its own override back to the light/white treatment below. */
 .btn--outline {
   background-color: transparent;
   color: var(--color-text);
@@ -559,17 +516,6 @@ p {
   border-color: var(--color-text-3);
   color: var(--color-text);
   background-color: rgba(0, 0, 0, 0.03);
-}
-
-.hero .btn--outline {
-  color: var(--color-white);
-  border-color: var(--color-charcoal-light);
-}
-
-.hero .btn--outline:hover {
-  border-color: var(--color-gray-400);
-  color: var(--color-white);
-  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .btn--outline:active {
@@ -602,16 +548,9 @@ p {
 .mobile-toggle__bar {
   width: 24px;
   height: 2px;
-  background-color: var(--color-white);
+  background-color: var(--color-text);
   transition: all var(--transition-base);
   border-radius: 2px;
-}
-
-/* Once the header goes light, or the (now light) mobile-nav overlay is
-   open, the bars need to be dark to stay visible. */
-.site-header.is-scrolled .mobile-toggle__bar,
-.mobile-toggle.is-active .mobile-toggle__bar {
-  background-color: var(--color-text);
 }
 
 /* Mobile toggle active state */
@@ -680,23 +619,25 @@ p {
   padding-top: var(--nav-height);
   overflow: hidden;
   z-index: 1;
-  background-color: var(--color-black);
-  background-image: url('../images/hero-bg.jpg');
+  background-color: var(--color-bg);
+  background-image: url('../images/hero-image.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Dark gradient scrim over the photo for text readability */
+/* Light wash over the photo for text readability — heaviest behind the
+   text column, fading out toward the stat cards so the photo still reads
+   through on that side. */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(10, 10, 10, 0.8) 50%,
-    rgba(10, 10, 10, 0.62) 100%
+    rgba(250, 249, 246, 0.94) 0%,
+    rgba(250, 249, 246, 0.82) 50%,
+    rgba(250, 249, 246, 0.62) 100%
   );
   z-index: 1;
 }
@@ -736,7 +677,7 @@ p {
   font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
-  color: var(--color-gray-300);
+  color: var(--color-text-2);
   margin-bottom: var(--space-4);
   padding-left: var(--space-4);
   border-left: 2px solid var(--color-orange);
@@ -747,7 +688,7 @@ p {
   font-weight: var(--fw-black);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
-  color: var(--color-white);
+  color: var(--color-text);
   margin-bottom: var(--space-4);
   text-transform: uppercase;
 }
@@ -772,7 +713,7 @@ p {
 
 .hero__description {
   font-size: var(--fs-base);
-  color: var(--color-gray-300);
+  color: var(--color-text-2);
   line-height: var(--lh-relaxed);
   margin-bottom: var(--space-8);
   max-width: 540px;
@@ -788,7 +729,7 @@ p {
 
 /* --- Trust strip — industry badges below CTA --- */
 .hero__trust {
-  border-top: 1px solid var(--color-charcoal-light);
+  border-top: 1px solid var(--color-border);
   padding-top: var(--space-6);
 }
 
@@ -797,7 +738,7 @@ p {
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-gray-500);
+  color: var(--color-text-3);
   margin-bottom: var(--space-3);
 }
 
@@ -810,16 +751,16 @@ p {
 .hero__trust-tag {
   font-size: var(--fs-xs);
   font-weight: var(--fw-medium);
-  color: var(--color-gray-300);
+  color: var(--color-text-2);
   padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-charcoal-light);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .hero__trust-tag:hover {
   border-color: var(--color-orange);
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 /* --- Hero Stats Cards (right column) --- */
@@ -856,15 +797,16 @@ p {
   background-color: var(--color-white);
 }
 
+/* Bold accent card — solid orange, distinguishes this stat from the plain
+   white cards rather than reading as a leftover dark-theme panel. */
 .stat-card--dark {
-  background-color: var(--color-charcoal);
-  border: 1px solid var(--color-charcoal-light);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
 }
 
-/* Glass-style card variant */
+/* Frosted glass over the (now light) hero photo */
 .stat-card--glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(10px);
 }
 
@@ -881,7 +823,7 @@ p {
 }
 
 .stat-card--dark .stat-card__label {
-  color: var(--color-gray-300);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .stat-card--glass .stat-card__label {
@@ -904,7 +846,7 @@ p {
 }
 
 .stat-card--glass .stat-card__value {
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 .stat-card__description {
@@ -917,11 +859,11 @@ p {
 }
 
 .stat-card--dark .stat-card__description {
-  color: var(--color-gray-400);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .stat-card--glass .stat-card__description {
-  color: var(--color-gray-400);
+  color: var(--color-text-3);
 }
 
 /* Subtle decorative accent on light card */
