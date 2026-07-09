@@ -406,7 +406,7 @@ p {
 .nav-menu__link {
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
-  color: var(--color-text-2);
+  color: var(--color-text);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   transition: color var(--transition-fast);
@@ -425,7 +425,7 @@ p {
 }
 
 .nav-menu__link:hover {
-  color: var(--color-text);
+  color: var(--color-orange);
 }
 
 .nav-menu__link:hover::after {
@@ -635,9 +635,9 @@ p {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(250, 249, 246, 0.94) 0%,
-    rgba(250, 249, 246, 0.82) 50%,
-    rgba(250, 249, 246, 0.62) 100%
+    rgba(250, 249, 246, 0.75) 0%,
+    rgba(250, 249, 246, 0.55) 50%,
+    rgba(250, 249, 246, 0.35) 100%
   );
   z-index: 1;
 }
@@ -738,7 +738,7 @@ p {
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-text-3);
+  color: var(--color-text);
   margin-bottom: var(--space-3);
 }
 
@@ -1024,13 +1024,17 @@ p {
   background-color: var(--color-bg);
 }
 
+/* Flexbox (not grid) so an incomplete last row — e.g. 7 cards over 4
+   columns leaves 3 — centers itself instead of hugging the left edge. */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-6);
 }
 
 .value-card {
+  flex: 0 1 calc(25% - var(--space-6));
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -1106,7 +1110,8 @@ p {
 
 .services-section__header {
   max-width: 700px;
-  margin-bottom: var(--space-16);
+  margin: 0 auto var(--space-16);
+  text-align: center;
 }
 
 .services-section__header h2 {
@@ -1209,113 +1214,54 @@ p {
   font-size: var(--fs-md);
 }
 
-/* --- Fit comparison grid: "Built For" vs "Not Built For" --- */
-.fit-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  margin-bottom: var(--space-16);
+/* --- Fit criteria — a points list rather than another card grid, since
+   the rest of the page is already card-heavy. --- */
+.fit-list {
+  max-width: 760px;
+  margin: 0 auto var(--space-12);
 }
 
-.fit-card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition-base),
-              box-shadow var(--transition-base);
+.fit-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.fit-card--yes:hover {
-  border-color: var(--color-orange);
-  box-shadow: 0 8px 30px rgba(232, 83, 14, 0.1);
+.fit-list__item:first-child {
+  padding-top: 0;
 }
 
-.fit-card__icon {
-  width: 48px;
-  height: 48px;
+.fit-list__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.fit-list__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  margin-bottom: var(--space-6);
-  font-size: var(--fs-lg);
-}
-
-.fit-card--yes .fit-card__icon {
   background: linear-gradient(135deg, rgba(232, 83, 14, 0.15), rgba(232, 83, 14, 0.05));
   color: var(--color-orange);
+  font-size: var(--fs-lg);
 }
 
-.fit-card--no .fit-card__icon {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.02));
-  color: var(--color-text-3);
-}
-
-.fit-card__title {
+.fit-list__label {
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
   color: var(--color-text);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-2);
 }
 
-.fit-card__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.fit-card__list li {
-  position: relative;
-  padding-left: var(--space-6);
-  font-size: var(--fs-sm);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-}
-
-.fit-card__list li::before {
-  content: '\2713';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-orange);
-  font-weight: var(--fw-bold);
-}
-
-.fit-card__quote {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-medium);
-  color: var(--color-text);
-  font-style: italic;
-  line-height: var(--lh-relaxed);
-  padding-bottom: var(--space-5);
-  margin-bottom: var(--space-5);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.fit-card__note {
+.fit-list__text {
   font-size: var(--fs-sm);
   color: var(--color-text-3);
   line-height: var(--lh-relaxed);
-}
-
-/* --- Reputation narrative --- */
-.about-section__reputation {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-section__reputation h3 {
-  margin-bottom: var(--space-6);
-}
-
-.about-section__reputation p {
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin-bottom: var(--space-5);
 }
 
 
@@ -1329,7 +1275,8 @@ p {
 
 .challenges-section__header {
   max-width: 700px;
-  margin-bottom: var(--space-16);
+  margin: 0 auto var(--space-16);
+  text-align: center;
 }
 
 .challenges-section__header h2 {
@@ -1503,8 +1450,18 @@ p {
 }
 
 .risk-section__header p {
-  margin: 0 auto;
+  margin: 0 auto var(--space-4);
   font-size: var(--fs-md);
+}
+
+.risk-section__header p:last-of-type {
+  margin-bottom: 0;
+}
+
+.risk-section__header p.risk-section__lede {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
 }
 
 /* --- 5 Ds items — each card is a link out to more detail --- */
@@ -1584,6 +1541,109 @@ p {
   margin-top: var(--space-6);
   font-size: var(--fs-md);
   color: var(--color-text-2);
+}
+
+/* --- Supporting stats — flat number + label pairs, no card chrome, since
+   the page is already card-heavy elsewhere. --- */
+.risk-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+  max-width: 960px;
+  margin: var(--space-12) auto 0;
+  text-align: center;
+}
+
+.risk-stats__item {
+  padding-left: var(--space-6);
+  border-left: 1px solid var(--color-border);
+}
+
+.risk-stats__item:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.risk-stats__value {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-black);
+  color: var(--color-orange);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.risk-stats__label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+}
+
+
+/* ==========================================================================
+   12b. EIGHT DRIVERS OF VALUE SECTION
+   ==========================================================================
+   Numbered points list — deliberately not another card grid, since the
+   page is already card-heavy elsewhere.
+   ========================================================================== */
+.drivers-section {
+  position: relative;
+  z-index: 1;
+}
+
+.drivers-section__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-16);
+}
+
+.drivers-section__header h2 {
+  margin-bottom: var(--space-6);
+}
+
+.drivers-section__header p {
+  margin: 0 auto;
+  font-size: var(--fs-md);
+}
+
+.drivers-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8) var(--space-10);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.drivers-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.drivers-list__number {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-black);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+}
+
+.drivers-list__label {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.drivers-list__text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
 }
 
 
@@ -1675,8 +1735,44 @@ p {
   font-size: var(--fs-sm);
   color: var(--color-text-3);
   line-height: var(--lh-relaxed);
-  max-width: 320px;
+  max-width: 340px;
+  margin: 0 auto var(--space-5);
+  text-align: left;
+}
+
+.process-step__outcomes {
+  max-width: 340px;
+  margin: 0 auto var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.process-step__outcomes-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: var(--space-2);
+}
+
+.process-step__outcomes-text {
+  font-size: var(--fs-xs);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+}
+
+.process-step__quote {
+  max-width: 340px;
   margin: 0 auto;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text-2);
+  text-align: left;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-orange);
 }
 
 
@@ -1958,7 +2054,7 @@ p {
 }
 
 .cta-section__email {
-  margin-top: 20px;
+  margin-top: var(--space-8);
   font-size: var(--fs-sm);
   color: var(--color-text-3);
 }
@@ -2127,8 +2223,8 @@ p {
     font-size: var(--fs-3xl);
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .value-card {
+    flex-basis: calc(50% - var(--space-6));
   }
 
   .services-grid {
@@ -2137,11 +2233,6 @@ p {
 
   .service-card--featured {
     grid-template-columns: 1fr;
-  }
-
-  .fit-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
   }
 
   .challenges-grid {
@@ -2174,8 +2265,29 @@ p {
     margin-bottom: 0;
   }
 
-  .process-step__text {
-    margin: 0;
+  .process-step__text,
+  .process-step__outcomes,
+  .process-step__quote {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+
+  .risk-stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: left;
+  }
+
+  .risk-stats__item {
+    padding: var(--space-5) 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .risk-stats__item:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 
   .founder-section__grid {
@@ -2249,8 +2361,8 @@ p {
     gap: var(--space-1);
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .value-card {
+    flex-basis: 100%;
   }
 
   .challenges-grid {
@@ -2264,6 +2376,11 @@ p {
   .risk-item {
     min-width: 130px;
     padding: var(--space-4) var(--space-5);
+  }
+
+  .drivers-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
   }
 
   .footer__grid {
