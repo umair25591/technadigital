@@ -9,7 +9,7 @@
    5. Trades tabbed content
    6. Animated stat counters
    7. Magnetic + glow buttons
-   8. 3D card tilt
+   8. Risk (5 D's) accordion
 
    Dependencies: Three.js (CDN), GSAP + ScrollTrigger (CDN)
    Ready for WordPress integration — all DOM queries use class selectors.
@@ -434,10 +434,9 @@
   });
 
   // --- Quote line-draw ---
-  // Draws the orange accent bar downward as each pull-quote scrolls into
+  // Draws the orange accent bar downward as the risk-quote scrolls into
   // view, mirroring the process timeline fill above.
   const quoteBars = [
-    { bar: '.pull-quote__bar', trigger: '.pull-quote' },
     { bar: '.risk-quote__bar', trigger: '.risk-quote blockquote' }
   ];
   quoteBars.forEach(({ bar, trigger }) => {
@@ -598,71 +597,6 @@
 
 
 /* ==========================================================================
-   2c. 3D CARD TILT
-   ==========================================================================
-   Desktop/mouse only, fully skipped under reduced motion (purely
-   decorative). Tilts the inner [data-tilt-target] wrapper inside each
-   [data-tilt-card] — never the card itself, which GSAP's scroll-reveal
-   writes `transform` to for its entrance. One shared rAF loop lerps every
-   hovered card's rotation, mirroring the architecture already used by
-   initScrollReactiveDecorations above.
-   ========================================================================== */
-(function initCardTilt() {
-  'use strict';
-
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const cards = document.querySelectorAll('[data-tilt-card]');
-  if (!cards.length) return;
-
-  const MAX_TILT = 6; // degrees
-  const LERP_FACTOR = 0.12;
-
-  function lerp(start, end, factor) {
-    return start + (end - start) * factor;
-  }
-
-  const cardStates = new Map();
-
-  cards.forEach((card) => {
-    const inner = card.querySelector('[data-tilt-target]');
-    if (!inner) return;
-
-    const state = { currentRX: 0, currentRY: 0, targetRX: 0, targetRY: 0, inner };
-    cardStates.set(card, state);
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width;   // 0..1
-      const relY = (e.clientY - rect.top) / rect.height;   // 0..1
-
-      // rotateX follows vertical position (inverted), rotateY follows horizontal
-      state.targetRX = (0.5 - relY) * MAX_TILT * 2;
-      state.targetRY = (relX - 0.5) * MAX_TILT * 2;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      state.targetRX = 0;
-      state.targetRY = 0;
-    });
-  });
-
-  function updateTilt() {
-    cardStates.forEach((state) => {
-      state.currentRX = lerp(state.currentRX, state.targetRX, LERP_FACTOR);
-      state.currentRY = lerp(state.currentRY, state.targetRY, LERP_FACTOR);
-      state.inner.style.transform = `perspective(800px) rotateX(${state.currentRX}deg) rotateY(${state.currentRY}deg)`;
-    });
-    requestAnimationFrame(updateTilt);
-  }
-
-  requestAnimationFrame(updateTilt);
-
-})();
-
-
-/* ==========================================================================
    3. NAVIGATION — Scroll State & Mobile Menu
    ========================================================================== */
 (function initNavigation() {
@@ -763,19 +697,11 @@
   if (!track || cards.length === 0) return;
 
   let currentIndex = 0;
-  let cardsPerView = 3;
+  const cardsPerView = 1;
   let maxIndex = 0;
 
-  // --- Calculate cards per view based on viewport ---
+  // --- Calculate slide bounds (one card per view at all viewport sizes) ---
   function calculateLayout() {
-    const viewportWidth = window.innerWidth;
-    if (viewportWidth <= 768) {
-      cardsPerView = 1;
-    } else if (viewportWidth <= 1024) {
-      cardsPerView = 2;
-    } else {
-      cardsPerView = 3;
-    }
     maxIndex = Math.max(0, cards.length - cardsPerView);
 
     // Rebuild dots
@@ -842,6 +768,31 @@
   window.addEventListener('resize', () => {
     calculateLayout();
     goToSlide(Math.min(currentIndex, maxIndex));
+  });
+
+})();
+
+
+/* ==========================================================================
+   4b. RISK (5 D'S) ACCORDION
+   ==========================================================================
+   Each card toggles independently — clicking one expands its description
+   without collapsing the others.
+   ========================================================================== */
+(function initRiskAccordion() {
+  'use strict';
+
+  const items = document.querySelectorAll('[data-risk-item]');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const toggle = item.querySelector('.risk-item__toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
   });
 
 })();

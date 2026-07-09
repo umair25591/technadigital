@@ -474,18 +474,6 @@ p {
   }
 }
 
-/* 3D card tilt — the tilt transform lands on this inner wrapper, never the
-   card element itself, since the card's own transform is owned by the GSAP
-   scroll-reveal tween (see .value-card/.challenge-card/.testimonial-card
-   comments). Desktop/mouse only — inert on touch. */
-@media (hover: hover) and (pointer: fine) {
-  [data-tilt-target] {
-    transform-style: preserve-3d;
-    transition: transform var(--transition-snap);
-    will-change: transform;
-  }
-}
-
 .btn--primary {
   background-color: var(--color-orange);
   color: var(--color-white);
@@ -1188,51 +1176,126 @@ p {
   z-index: 1;
 }
 
-.about-section__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
-  align-items: start;
+.about-section__header {
+  max-width: 700px;
+  margin: 0 auto var(--space-16);
+  text-align: center;
 }
 
-.about-section__content h2 {
+.about-section__header h2 {
   margin-bottom: var(--space-6);
 }
 
-.about-section__content p {
-  margin-bottom: var(--space-6);
+.about-section__header p {
   font-size: var(--fs-md);
 }
 
-.about-section__content p:last-of-type {
-  margin-bottom: var(--space-8);
+/* --- Fit comparison grid: "Built For" vs "Not Built For" --- */
+.fit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-16);
 }
 
-/* --- Pull quote style --- */
-.pull-quote {
+.fit-card {
+  background-color: var(--color-charcoal);
+  border: 1px solid var(--color-charcoal-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.fit-card--yes:hover {
+  border-color: var(--color-orange);
+  box-shadow: 0 8px 30px rgba(232, 83, 14, 0.1);
+}
+
+.fit-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-size: var(--fs-lg);
+}
+
+.fit-card--yes .fit-card__icon {
+  background: linear-gradient(135deg, rgba(232, 83, 14, 0.15), rgba(232, 83, 14, 0.05));
+  color: var(--color-orange);
+}
+
+.fit-card--no .fit-card__icon {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  color: var(--color-gray-400);
+}
+
+.fit-card__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-5);
+}
+
+.fit-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.fit-card__list li {
   position: relative;
   padding-left: var(--space-6);
-  margin: var(--space-8) 0;
+  font-size: var(--fs-sm);
+  color: var(--color-gray-300);
+  line-height: var(--lh-relaxed);
 }
 
-/* Accent bar draws downward on scroll (see app.js) instead of a static border */
-.pull-quote__bar {
+.fit-card__list li::before {
+  content: '\2713';
   position: absolute;
-  top: 0;
   left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--color-orange);
-  transform-origin: top;
-  transform: scaleY(0);
+  top: 0;
+  color: var(--color-orange);
+  font-weight: var(--fw-bold);
 }
 
-.pull-quote p {
-  font-size: var(--fs-lg);
+.fit-card__quote {
+  font-size: var(--fs-md);
   font-weight: var(--fw-medium);
   color: var(--color-gray-200);
   font-style: italic;
   line-height: var(--lh-relaxed);
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-charcoal-light);
+}
+
+.fit-card__note {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-400);
+  line-height: var(--lh-relaxed);
+}
+
+/* --- Reputation narrative --- */
+.about-section__reputation {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section__reputation h3 {
+  margin-bottom: var(--space-6);
+}
+
+.about-section__reputation p {
+  font-size: var(--fs-md);
+  color: var(--color-gray-300);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-5);
 }
 
 
@@ -1423,23 +1486,22 @@ p {
   font-size: var(--fs-md);
 }
 
-/* --- 5 Ds items --- */
+/* --- 5 Ds items — click-to-expand accordion cards --- */
 .risk-grid {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
   margin-bottom: var(--space-12);
-  flex-wrap: wrap;
+  align-items: start;
 }
 
 .risk-item {
   text-align: center;
-  padding: var(--space-6) var(--space-8);
   background-color: rgba(10, 10, 10, 0.6);
   border: 1px solid var(--color-charcoal-light);
   border-radius: var(--radius-lg);
-  min-width: 160px;
   transition: border-color var(--transition-base);
+  overflow: hidden;
 }
 
 /* `transform` only enters the transition list on :hover — see the note on
@@ -1448,6 +1510,23 @@ p {
   border-color: var(--color-orange);
   transform: translateY(-3px);
   transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.risk-item.is-open {
+  border-color: var(--color-orange);
+}
+
+.risk-item__toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-6) var(--space-5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
 }
 
 .risk-item__icon {
@@ -1460,6 +1539,40 @@ p {
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
   color: var(--color-white);
+}
+
+.risk-item__chevron {
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--color-gray-400);
+  transition: transform var(--transition-base);
+}
+
+.risk-item.is-open .risk-item__chevron {
+  transform: rotate(180deg);
+  color: var(--color-orange);
+}
+
+.risk-item__desc-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-base);
+}
+
+.risk-item.is-open .risk-item__desc-wrap {
+  grid-template-rows: 1fr;
+}
+
+.risk-item__desc {
+  overflow: hidden;
+}
+
+.risk-item__desc p {
+  padding: 0 var(--space-5) var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--color-gray-400);
+  line-height: var(--lh-relaxed);
+  text-align: left;
 }
 
 .risk-quote {
@@ -1714,7 +1827,7 @@ p {
 }
 
 .testimonial-card {
-  flex: 0 0 calc(33.333% - var(--space-6));
+  flex: 0 0 100%;
   margin-right: var(--space-6);
   background-color: var(--color-charcoal);
   border: 1px solid var(--color-charcoal-light);
@@ -1722,6 +1835,9 @@ p {
   padding: var(--space-8);
   position: relative;
   perspective: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Large quotation mark decoration */
@@ -1998,12 +2114,8 @@ p {
 
 /* Reduced motion — neutralizes the CSS-side transitions for the new
    interactive effects. The JS-side guards (app.js) do the heavier lifting
-   of skipping the actual parallax/tilt/kinetic-wipe animations. */
+   of skipping the actual parallax/kinetic-wipe animations. */
 @media (prefers-reduced-motion: reduce) {
-  [data-tilt-target] {
-    transition: none;
-  }
-
   .founder-section__image img {
     transition: none;
   }
@@ -2048,9 +2160,13 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .about-section__grid {
+  .fit-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-6);
+  }
+
+  .risk-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .challenges-grid {
@@ -2090,10 +2206,6 @@ p {
   .founder-section__grid {
     grid-template-columns: 1fr;
     gap: var(--space-8);
-  }
-
-  .testimonial-card {
-    flex: 0 0 calc(50% - var(--space-6));
   }
 
   .footer__grid {
@@ -2171,16 +2283,12 @@ p {
   }
 
   .risk-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3);
   }
 
-  .risk-item {
-    min-width: 130px;
-    padding: var(--space-4) var(--space-5);
-  }
-
-  .testimonial-card {
-    flex: 0 0 calc(100% - var(--space-6));
+  .risk-item__toggle {
+    padding: var(--space-4) var(--space-4);
   }
 
   .footer__grid {

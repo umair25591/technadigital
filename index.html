@@ -285,31 +285,50 @@
          Asymmetric two-column layout.
          ====================================================================== -->
     <section class="section section--dark about-section" id="about">
-      <div class="container">
-        <div class="about-section__grid">
 
-          <!-- Left column: "Who" content -->
-          <div class="about-section__content reveal">
-            <span class="eyebrow">Who We Work With</span>
-            <h2>Who This Home Service Business Coach Works With</h2>
-            <p>This work is designed for owners of home service businesses doing $2M–$150M — the owners who built their companies on reputation and personal involvement, and who are ready to build something that works beyond their own daily presence.</p>
-            <p>It's for the HVAC owner whose technicians are solid but whose scheduling still runs through him. The plumbing contractor whose best customers call her cell directly. The landscaping company owner who is still on job sites five days a week because nobody else can be trusted to represent the brand. The electrical contractor who has been thinking about selling for three years but doesn't know what the business is actually worth or what a buyer would require.</p>
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <span class="eyebrow">Who We Work With</span>
+          <h2>Who This Home Service Business Coach Works With</h2>
+          <p>This work is designed for owners of home service businesses doing $2M–$150M — the owners who built their companies on reputation and personal involvement, and who are ready to build something that works beyond their own daily presence.</p>
+        </div>
+
+        <!-- Fit comparison: who this is built for vs. not built for -->
+        <div class="fit-grid reveal-stagger">
+
+          <div class="fit-card fit-card--yes">
+            <div class="fit-card__icon"><i class="fa-solid fa-check"></i></div>
+            <h3 class="fit-card__title">Built For</h3>
+            <ul class="fit-card__list">
+              <li>It's for the HVAC owner whose technicians are solid but whose scheduling still runs through him.</li>
+              <li>The plumbing contractor whose best customers call her cell directly.</li>
+              <li>The landscaping company owner who is still on job sites five days a week because nobody else can be trusted to represent the brand.</li>
+              <li>The electrical contractor who has been thinking about selling for three years but doesn't know what the business is actually worth or what a buyer would require.</li>
+            </ul>
           </div>
 
-          <!-- Right column: "Not for" + Reputation -->
-          <div class="about-section__content reveal">
-            <div class="pull-quote">
-              <span class="pull-quote__bar" aria-hidden="true"></span>
-              <p>It is not for the home services operator who is still in the startup phase or who is looking for sales tactics and marketing tips.</p>
-            </div>
-            <p>Business coaching for home service companies at Spearpoint is focused on one thing: building a business that is operationally sound, leadership-deep, and financially strong enough to grow, transfer, or sell on the owner's terms.</p>
-
-            <h3 style="margin-top: var(--space-10);">You Built a Reputation. Now It's Time to Build a Business.</h3>
-            <p>Home service business owners built their companies on something real: they showed up, they did the work better than anyone else, and their customers noticed. Word of mouth, referrals, and a reputation for reliability got the business to where it is today.</p>
-            <p>But at some point — usually somewhere between 15 and 40 employees — the business stops being scalable. The owner can't be on every job. And the thing that made the business work — the owner's personal involvement — becomes the thing that's limiting it.</p>
+          <div class="fit-card fit-card--no">
+            <div class="fit-card__icon"><i class="fa-solid fa-xmark"></i></div>
+            <h3 class="fit-card__title">Not Built For</h3>
+            <p class="fit-card__quote">It is not for the home services operator who is still in the startup phase or who is looking for sales tactics and marketing tips.</p>
+            <p class="fit-card__note">Business coaching for home service companies at Spearpoint is focused on one thing: building a business that is operationally sound, leadership-deep, and financially strong enough to grow, transfer, or sell on the owner's terms.</p>
           </div>
 
         </div>
+
+        <!-- Reputation narrative -->
+        <div class="about-section__reputation reveal">
+          <h3>You Built a Reputation. Now It's Time to Build a Business.</h3>
+          <p>Home service business owners built their companies on something real: they showed up, they did the work better than anyone else, and their customers noticed. Word of mouth, referrals, and a reputation for reliability got the business to where it is today.</p>
+          <p>But at some point — usually somewhere between 15 and 40 employees — the business stops being scalable. The owner can't be on every job. And the thing that made the business work — the owner's personal involvement — becomes the thing that's limiting it.</p>
+        </div>
+
       </div>
     </section>
 
@@ -525,28 +544,74 @@
           <p>Death. Divorce. Disability. Disagreement. Disruption. These are the 5 Ds — and they account for half of all business exits. Not planned. Not on the owner's terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in the business they just lost control of.</p>
         </div>
 
-        <!-- 5 D's visual grid -->
+        <!-- 5 D's visual grid — click a card to expand its description -->
         <div class="risk-grid reveal-stagger">
-          <div class="risk-item">
-            <div class="risk-item__icon"><i class="fa-solid fa-skull"></i></div>
-            <p class="risk-item__title">Death</p>
+
+          <div class="risk-item" data-risk-item>
+            <button class="risk-item__toggle" type="button" aria-expanded="false" aria-controls="risk-desc-death">
+              <span class="risk-item__icon"><i class="fa-solid fa-skull"></i></span>
+              <span class="risk-item__title">Death</span>
+              <span class="risk-item__chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="risk-item__desc-wrap">
+              <div class="risk-item__desc" id="risk-desc-death">
+                <p>When a home services owner dies unexpectedly, the business often loses its license holder, its most experienced technician, and the person who held every vendor and customer relationship — sometimes all at once. Without a succession plan, families are left trying to sell a business that stops generating revenue the moment the doors don't open.</p>
+              </div>
+            </div>
           </div>
-          <div class="risk-item">
-            <div class="risk-item__icon"><i class="fa-solid fa-heart-crack"></i></div>
-            <p class="risk-item__title">Divorce</p>
+
+          <div class="risk-item" data-risk-item>
+            <button class="risk-item__toggle" type="button" aria-expanded="false" aria-controls="risk-desc-divorce">
+              <span class="risk-item__icon"><i class="fa-solid fa-heart-crack"></i></span>
+              <span class="risk-item__title">Divorce</span>
+              <span class="risk-item__chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="risk-item__desc-wrap">
+              <div class="risk-item__desc" id="risk-desc-divorce">
+                <p>Divorce proceedings can force a court-ordered valuation and division of business assets on a timeline the owner doesn't control — often at a steep discount. For a home services business built on the owner's reputation, that number is rarely favorable.</p>
+              </div>
+            </div>
           </div>
-          <div class="risk-item">
-            <div class="risk-item__icon"><i class="fa-solid fa-crutch"></i></div>
-            <p class="risk-item__title">Disability</p>
+
+          <div class="risk-item" data-risk-item>
+            <button class="risk-item__toggle" type="button" aria-expanded="false" aria-controls="risk-desc-disability">
+              <span class="risk-item__icon"><i class="fa-solid fa-crutch"></i></span>
+              <span class="risk-item__title">Disability</span>
+              <span class="risk-item__chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="risk-item__desc-wrap">
+              <div class="risk-item__desc" id="risk-desc-disability">
+                <p>A sudden injury or illness can sideline the person dispatching crews, closing estimates, and fielding the calls only they handle. In an owner-dependent home services business, that alone can stall operations within days, not months.</p>
+              </div>
+            </div>
           </div>
-          <div class="risk-item">
-            <div class="risk-item__icon"><i class="fa-solid fa-bolt"></i></div>
-            <p class="risk-item__title">Disagreement</p>
+
+          <div class="risk-item" data-risk-item>
+            <button class="risk-item__toggle" type="button" aria-expanded="false" aria-controls="risk-desc-disagreement">
+              <span class="risk-item__icon"><i class="fa-solid fa-bolt"></i></span>
+              <span class="risk-item__title">Disagreement</span>
+              <span class="risk-item__chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="risk-item__desc-wrap">
+              <div class="risk-item__desc" id="risk-desc-disagreement">
+                <p>Partner and shareholder disputes can freeze decision-making, drain cash in legal fees, and force a rushed sale under pressure. The businesses most exposed are the ones without a buy-sell agreement or a documented plan for resolving disagreements.</p>
+              </div>
+            </div>
           </div>
-          <div class="risk-item">
-            <div class="risk-item__icon"><i class="fa-solid fa-water"></i></div>
-            <p class="risk-item__title">Disruption</p>
+
+          <div class="risk-item" data-risk-item>
+            <button class="risk-item__toggle" type="button" aria-expanded="false" aria-controls="risk-desc-disruption">
+              <span class="risk-item__icon"><i class="fa-solid fa-water"></i></span>
+              <span class="risk-item__title">Disruption</span>
+              <span class="risk-item__chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="risk-item__desc-wrap">
+              <div class="risk-item__desc" id="risk-desc-disruption">
+                <p>New competitors, labor shortages, or a shift in how customers book service can erode a business's value fast. Home services businesses with strong systems and recurring revenue absorb disruption; the ones still running through the owner's daily involvement often don't.</p>
+              </div>
+            </div>
           </div>
+
         </div>
 
         <!-- Pull quote -->
@@ -706,12 +771,12 @@
                 <div class="testimonial-card__stars" aria-label="5 star rating">
                   <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <p class="testimonial-card__quote">"We went from me being on every single job site to having three crew leaders who run operations independently. Our valuation doubled in 18 months. Mike didn't just coach us — he rebuilt how we think about the business."</p>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
                 <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">JR</div>
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
                   <div>
-                    <p class="testimonial-card__name">— Client Name</p>
-                    <p class="testimonial-card__role">HVAC Company Owner · $8M Revenue</p>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
                   </div>
                 </div>
               </div>
@@ -723,63 +788,12 @@
                 <div class="testimonial-card__stars" aria-label="5 star rating">
                   <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <p class="testimonial-card__quote">"I'd been thinking about selling for three years but had no idea what the business was worth or what a buyer would need to see. Spearpoint gave us clarity, a plan, and the confidence to make the right move at the right time."</p>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
                 <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">TM</div>
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
                   <div>
-                    <p class="testimonial-card__name">— Client Name</p>
-                    <p class="testimonial-card__role">Plumbing Contractor · $12M Revenue</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card" data-tilt-card>
-              <div class="testimonial-card__tilt" data-tilt-target>
-                <div class="testimonial-card__stars" aria-label="5 star rating">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-card__quote">"Our technician retention went from 60% to over 90% in one year. The career path framework Mike helped us build is the single biggest competitive advantage we have now. Our best people stay because they see a future here."</p>
-                <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">KL</div>
-                  <div>
-                    <p class="testimonial-card__name">— Client Name</p>
-                    <p class="testimonial-card__role">Electrical Contractor · $6M Revenue</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 4 -->
-            <div class="testimonial-card" data-tilt-card>
-              <div class="testimonial-card__tilt" data-tilt-target>
-                <div class="testimonial-card__stars" aria-label="5 star rating">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-card__quote">"We solved our seasonality problem by adding maintenance contracts and commercial accounts. Revenue is up 40% and, more importantly, it's predictable now. That's what changed our business from a job into an asset."</p>
-                <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">DS</div>
-                  <div>
-                    <p class="testimonial-card__name">— Client Name</p>
-                    <p class="testimonial-card__role">Landscaping Company Owner · $5M Revenue</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 5 -->
-            <div class="testimonial-card" data-tilt-card>
-              <div class="testimonial-card__tilt" data-tilt-target>
-                <div class="testimonial-card__stars" aria-label="5 star rating">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-card__quote">"Mike understands what it's like to build a business with your hands and then realize you've built something that can't run without you. He helped us fix that — systematically, not theoretically. The business runs without me now."</p>
-                <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">RW</div>
-                  <div>
-                    <p class="testimonial-card__name">— Client Name</p>
-                    <p class="testimonial-card__role">Pest Control Owner · $15M Revenue</p>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
                   </div>
                 </div>
               </div>
