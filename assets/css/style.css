@@ -60,8 +60,8 @@
   --color-surface-2:    #F4F2EE;         /* Slightly recessed surface (dividers, subtle fills) */
   --color-border:       #8F8B80;         /* Hairline borders on light surfaces */
   --color-text:         var(--color-black); /* Headings / primary text on light bg (reuses the near-black value) */
-  --color-text-2:       #43464C;         /* Secondary body text on light bg */
-  --color-text-3:       #63666D;         /* Muted / tertiary text on light bg */
+  --color-text-2:       var(--color-black); /* Secondary body text on light bg */
+  --color-text-3:       var(--color-black); /* Muted / tertiary text on light bg */
   --color-text-4:       #85888E;         /* Faint text on light bg (copyright, timestamps) */
 
   /* --- Typography --- */
@@ -658,9 +658,7 @@ p {
 .hero__inner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--space-8);
+  display: flex;
   align-items: center;
   width: 100%;
   max-width: var(--max-width);
@@ -876,6 +874,36 @@ p {
   height: 80px;
   border-radius: var(--radius-full);
   background-color: rgba(232, 83, 14, 0.08);
+}
+
+/* --- Stats strip — horizontal row of stat cards below the hero --- */
+.stats-strip {
+  padding: var(--space-12) 0;
+  background-color: var(--color-bg);
+}
+
+.stats-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.stats-strip__grid .stat-card {
+  margin: 0;
+}
+
+/* The light and glass card variants are near-white and were designed to
+   sit on the hero photo — on this section's flat background they need an
+   explicit border/shadow so they still read as distinct cards. */
+.stats-strip__grid .stat-card--light {
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.stats-strip__grid .stat-card--glass {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  backdrop-filter: none;
 }
 
 
@@ -1214,51 +1242,57 @@ p {
   font-size: var(--fs-md);
 }
 
-/* --- Fit criteria — a points list rather than another card grid, since
-   the rest of the page is already card-heavy. --- */
-.fit-list {
-  max-width: 760px;
-  margin: 0 auto var(--space-12);
-}
-
-.fit-list__item {
+/* --- Fit criteria — horizontal card row (flexbox, not grid, so an
+   incomplete last row centers itself — same pattern as .stats-grid). --- */
+.fit-grid {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-5);
-  padding: var(--space-6) 0;
-  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
 }
 
-.fit-list__item:first-child {
-  padding-top: 0;
+.fit-card {
+  flex: 0 1 calc(25% - var(--space-6));
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base);
 }
 
-.fit-list__item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.fit-card:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(232, 83, 14, 0.1);
+  transition: border-color var(--transition-base),
+              transform var(--transition-base),
+              box-shadow var(--transition-base);
 }
 
-.fit-list__icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+.fit-card__icon {
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
   background: linear-gradient(135deg, rgba(232, 83, 14, 0.15), rgba(232, 83, 14, 0.05));
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-size: var(--fs-xl);
   color: var(--color-orange);
-  font-size: var(--fs-lg);
 }
 
-.fit-list__label {
+.fit-card__label {
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
   color: var(--color-text);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
-.fit-list__text {
+.fit-card__text {
   font-size: var(--fs-sm);
   color: var(--color-text-3);
   line-height: var(--lh-relaxed);
@@ -2205,12 +2239,10 @@ p {
 @media (max-width: 1024px) {
 
   .hero__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
     padding: var(--space-20) var(--space-6) var(--space-12);
   }
 
-  .hero__stats {
+  .stats-strip__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3);
   }
@@ -2224,6 +2256,10 @@ p {
   }
 
   .value-card {
+    flex-basis: calc(50% - var(--space-6));
+  }
+
+  .fit-card {
     flex-basis: calc(50% - var(--space-6));
   }
 
@@ -2344,7 +2380,7 @@ p {
     font-size: clamp(1.6rem, 5vw + 0.3rem, 2.5rem);
   }
 
-  .hero__stats {
+  .stats-strip__grid {
     grid-template-columns: 1fr;
   }
 
@@ -2362,6 +2398,10 @@ p {
   }
 
   .value-card {
+    flex-basis: 100%;
+  }
+
+  .fit-card {
     flex-basis: 100%;
   }
 

@@ -366,11 +366,6 @@
       { y: 10, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.4, stagger: 0.06 },
       '-=0.3'
-    )
-    .fromTo('.hero__stats .stat-card',
-      { x: 40, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.7, stagger: 0.12 },
-      '-=0.5'
     );
 
   // Section headers (.services-section__header etc.) already carry the
