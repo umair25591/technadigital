@@ -440,6 +440,118 @@ p {
   width: 100%;
 }
 
+/* --- Desktop dropdown menus (About / Services / Audience / Industries) --- */
+.nav-menu__item {
+  position: relative;
+}
+
+.nav-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nav-menu__caret {
+  font-size: 0.65em;
+  transition: transform var(--transition-fast);
+}
+
+.nav-menu__dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-4));
+  left: 50%;
+  transform: translate(-50%, -6px) scale(0.98);
+  transform-origin: top center;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(143, 139, 128, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(20, 20, 20, 0.06), 0 16px 40px rgba(20, 20, 20, 0.12);
+  padding: var(--space-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+}
+
+/* Wider two-column layout for longer lists (e.g. Services' 7 items). */
+.nav-menu__dropdown--grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 12px;
+  min-width: 520px;
+}
+
+/* Invisible hover bridge — fills the visual gap between the trigger and the
+   dropdown panel so moving the cursor down into that gap doesn't fall out
+   of `.nav-menu__item:hover` and cause the panel to flicker shut. */
+.nav-menu__dropdown::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--space-4));
+  left: 0;
+  right: 0;
+  height: var(--space-4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-menu__item:hover .nav-menu__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  .nav-menu__item:hover .nav-menu__caret {
+    transform: rotate(180deg);
+  }
+}
+
+.nav-menu__dropdown-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-4) + 14px);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+/* Dot indicator that grows and shifts orange on hover — the same
+   "nudge forward" language as .btn__arrow and .value-card__link. */
+.nav-menu__dropdown-link::before {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+  transform: translateY(-50%) scale(1);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-menu__dropdown-link:hover {
+  background-color: var(--color-surface-2);
+  color: var(--color-orange);
+  padding-left: calc(var(--space-4) + 18px);
+}
+
+.nav-menu__dropdown-link:hover::before {
+  background-color: var(--color-orange);
+  transform: translateY(-50%) scale(1.5);
+}
+
 /* --- CTA Button (used in nav and elsewhere) --- */
 .btn {
   display: inline-flex;
@@ -579,8 +691,10 @@ p {
   z-index: 999;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
+  justify-content: flex-start;
+  gap: var(--space-6);
+  padding: calc(var(--nav-height) + var(--space-8)) var(--space-6) var(--space-8);
+  overflow-y: auto;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-base), visibility var(--transition-base);
@@ -592,7 +706,7 @@ p {
 }
 
 .mobile-nav__link {
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
   color: var(--color-text);
   letter-spacing: var(--ls-tight);
@@ -600,6 +714,60 @@ p {
 }
 
 .mobile-nav__link:hover {
+  color: var(--color-orange);
+}
+
+/* --- Mobile dropdown accordion (About / Services / Audience / Industries) --- */
+.mobile-nav__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.mobile-nav__caret {
+  font-size: 0.6em;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-nav__item.is-open .mobile-nav__caret {
+  transform: rotate(180deg);
+}
+
+.mobile-nav__submenu {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  transition: max-height var(--transition-base), margin-top var(--transition-base);
+}
+
+.mobile-nav__item.is-open .mobile-nav__submenu {
+  margin-top: var(--space-5);
+}
+
+.mobile-nav__sublink {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-3);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav__sublink:hover {
   color: var(--color-orange);
 }
 
@@ -2087,7 +2255,9 @@ p {
   flex-wrap: wrap;
 }
 
-.cta-section__email {
+/* Scoped to .cta-section to out-specificity .cta-section p above — that
+   rule's `margin` shorthand would otherwise zero out this margin-top. */
+.cta-section .cta-section__email {
   margin-top: var(--space-8);
   font-size: var(--fs-sm);
   color: var(--color-text-3);

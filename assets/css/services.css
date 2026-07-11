@@ -1,0 +1,214 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Services Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor (ambient glow orbs),
+   .hero__cta-group, .services-section__header, .risk-section__header/
+   .risk-quote/.risk-section__lede, .about-section__header, .credentials/
+   .credential-tag, .value-card, .stats-grid, .cta-section, .btn.
+   ========================================================================== */
+
+/* --- Hero — deliberately NOT the About page's photo+bio two-column
+   layout (that pattern is reserved for person-centric content — see the
+   Trust section below, which reuses it with the real founder photo).
+   Centered instead, with the homepage's ambient glow orbs plus a row of
+   small icon badges previewing the seven services covered further down
+   the page — a distinct visual signature for this hero. --- */
+.services-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.services-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.services-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.services-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+.services-hero__icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-10);
+}
+
+.services-hero__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+}
+
+/* --- Two-column media grid (image + content) — used for the Trust section
+   (real founder photo), consistent with the About page's photo layout. --- */
+.services-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.services-col-content {
+  position: relative;
+  z-index: 2;
+}
+
+.services-col-content h1,
+.services-col-content h2 {
+  margin-bottom: var(--space-6);
+}
+
+.services-col-content p {
+  margin-bottom: var(--space-6);
+}
+
+.services-col-content p:last-of-type {
+  margin-bottom: var(--space-8);
+}
+
+/* .drivers-list__number is normally a plain digit (see the homepage's Six
+   Drivers section) — sized up here since the Solution section reuses it
+   with an icon instead, so the icon reads clearly inside the 44px circle. */
+.drivers-list__number i {
+  font-size: var(--fs-md);
+}
+
+/* --- Large faint corner icon — same visual idea as the About page's
+   .story-chapter__mark: a decorative anchor so text-heavy sections don't
+   read as flat. z-index: -1 (not 0) so it always renders behind normal
+   in-flow content regardless of that content's own stacking. --- */
+.services-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Bulleted lists — global CSS resets <ul> to no markers, so both list
+   moments on this page (qualifying criteria, cost-of-no-plan consequences)
+   get a real icon-bullet treatment instead of a flat unstyled block. --- */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 640px;
+  margin: 0 auto var(--space-10);
+}
+
+.services-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-base);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  text-align: left;
+}
+
+.services-list li i {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.12);
+  color: var(--color-orange);
+  font-size: 0.65rem;
+}
+
+/* Muted variant — for the "cost of no plan" consequences list, so it reads
+   as a distinct, less affirmative tone than the qualifying-criteria list. */
+.services-list--muted li i {
+  background: var(--color-surface-2);
+  color: var(--color-text-4);
+}
+
+/* --- Small helpers for content blocks reusing .about-section__header. --- */
+.services-closing-line {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+}
+
+.services-followup {
+  margin-top: var(--space-10);
+}
+
+/* .about-section__header p (style.css) has no margin-bottom, so a .btn
+   placed right after a paragraph — as in the Solution section's closing
+   block — sits flush against it with no gap. Scoped here rather than in
+   the shared stylesheet since that's the only place this exact pattern
+   (paragraph immediately followed by a button) occurs. */
+.about-section__header .btn {
+  margin-top: var(--space-6);
+}
+
+/* Highlighted takeaway box — reuses .trade-panel__highlight's existing
+   orange-tinted callout styling as-is, just centered/width-constrained
+   here. Used to break up runs of consecutive plain centered text blocks
+   with a visually distinct moment instead of "another paragraph." */
+.services-highlight-wrap {
+  max-width: 600px;
+  margin: var(--space-10) auto var(--space-10);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .services-media-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .services-mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-mark {
+    top: var(--space-6);
+    right: var(--space-6);
+    font-size: 4.5rem;
+  }
+}

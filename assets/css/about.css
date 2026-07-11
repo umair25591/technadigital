@@ -1,0 +1,173 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — About Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .founder-section__image-wrap/__image,
+   .credentials/.credential-tag, .hero__cta-group, .about-section__header,
+   .services-section__header, .risk-section__header/.risk-quote,
+   .achievement, .value-card, .btn — only the pieces below are new.
+   ========================================================================== */
+
+/* --- Interior-page hero — lighter than the homepage's full-viewport photo
+   hero: sits directly under the fixed nav with its own top padding since
+   it's the first element on the page. --- */
+.about-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.about-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.about-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.about-hero__content p {
+  margin-bottom: var(--space-8);
+  max-width: 560px;
+}
+
+/* --- Story chapters — long-form narrative sections (About page bio). ---
+   Each chapter section carries a large faint decorative mark in the corner
+   (a numeral for the four numbered chapters, an icon for the non-chapter
+   sections that reuse this same component — Mission, Credentials) so the
+   long text columns have a visual anchor instead of reading as flat text. */
+.story-chapter {
+  position: relative;
+}
+
+.story-chapter__mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+.story-chapter__mark--number {
+  font-size: 10rem;
+  font-weight: var(--fw-black);
+}
+
+.story-chapter__mark--icon {
+  font-size: 9rem;
+}
+
+.story-chapter__content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto var(--space-10);
+}
+
+.story-chapter__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  margin-bottom: var(--space-5);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+}
+
+.story-chapter__content h2 {
+  margin: var(--space-2) 0 var(--space-6);
+}
+
+.story-chapter__content p {
+  margin-bottom: var(--space-5);
+}
+
+.story-chapter__content p:last-child {
+  margin-bottom: 0;
+}
+
+.story-chapter__substory {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.story-chapter__substory h3 {
+  margin-bottom: var(--space-3);
+}
+
+.story-chapter__substory .achievement {
+  margin-bottom: 0;
+}
+
+/* --- Credential detail list — flat, run-in-bold paragraphs (no card
+   chrome), same "no card chrome" spirit as .risk-stats. --- */
+.credential-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 760px;
+  margin: 0 auto var(--space-12);
+}
+
+.credential-detail {
+  max-width: none;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.credential-detail:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.credential-detail strong {
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .about-hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .story-chapter__mark--number {
+    font-size: 7rem;
+  }
+
+  .story-chapter__mark--icon {
+    font-size: 6.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .story-chapter__mark {
+    top: var(--space-6);
+    right: var(--space-6);
+  }
+
+  .story-chapter__mark--number {
+    font-size: 5rem;
+  }
+
+  .story-chapter__mark--icon {
+    font-size: 4.5rem;
+  }
+}

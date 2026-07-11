@@ -429,15 +429,15 @@
   });
 
   // --- Quote line-draw ---
-  // Draws the orange accent bar downward as the risk-quote scrolls into
-  // view, mirroring the process timeline fill above.
-  const quoteBars = [
-    { bar: '.risk-quote__bar', trigger: '.risk-quote blockquote' }
-  ];
-  quoteBars.forEach(({ bar, trigger }) => {
-    const el = document.querySelector(bar);
-    if (!el) return;
-    gsap.to(el, {
+  // Draws the orange accent bar downward as each risk-quote scrolls into
+  // view, mirroring the process timeline fill above. Scoped per-instance
+  // (not global querySelector) so pages with more than one quote — e.g.
+  // the About page — animate every bar, not just the first.
+  document.querySelectorAll('.risk-quote').forEach((quote) => {
+    const bar = quote.querySelector('.risk-quote__bar');
+    const trigger = quote.querySelector('blockquote');
+    if (!bar || !trigger) return;
+    gsap.to(bar, {
       scaleY: 1,
       ease: 'none',
       scrollTrigger: {
@@ -468,18 +468,11 @@
   }
 
   // --- Section heading kinetic wipes (same clipPath pattern as the CTA
-  // heading above, extended to the major section headers) ---
-  const headingWipes = [
-    { heading: '.services-section__header h2', trigger: '.services-section__header' },
-    { heading: '.process-section__header h2', trigger: '.process-section__header' },
-    { heading: '.risk-section__header h2', trigger: '.risk-section__header' },
-    { heading: '.founder-section__content h2', trigger: '.founder-section__content' },
-    { heading: '.testimonials-section__header h2', trigger: '.testimonials-section__header' }
-  ];
-  headingWipes.forEach(({ heading, trigger }) => {
-    const el = document.querySelector(heading);
-    if (!el) return;
-
+  // heading above, extended to any heading opting in via [data-heading-wipe]
+  // — attribute-based so new pages can use the effect without editing this
+  // file. The trigger is the heading's own parent, since every current
+  // usage is a "header" wrapper (.eyebrow + h2 + p) around the heading. ---
+  document.querySelectorAll('[data-heading-wipe]').forEach((el) => {
     if (prefersReducedMotion) {
       gsap.set(el, { clipPath: 'inset(0 0% 0 0)' });
       return;
@@ -492,7 +485,7 @@
         duration: 1.2,
         ease: 'power4.out',
         scrollTrigger: {
-          trigger,
+          trigger: el.parentElement,
           start: 'top 80%',
           toggleActions: 'play none none none'
         }
@@ -590,7 +583,12 @@
   const header = document.querySelector('.site-header');
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileNav = document.querySelector('.mobile-nav');
-  const mobileLinks = document.querySelectorAll('.mobile-nav__link');
+  // Real navigational links only — excludes the About/Services/Audience/
+  // Industries accordion triggers, which toggle a submenu rather than
+  // closing the whole mobile nav.
+  const mobileLinks = mobileNav
+    ? mobileNav.querySelectorAll('.mobile-nav__link:not(.mobile-nav__trigger), .mobile-nav__sublink')
+    : [];
 
   // --- Add scrolled state to nav ---
   let lastScroll = 0;
@@ -612,6 +610,16 @@
   handleScroll(); // Run on load
 
   // --- Mobile menu toggle ---
+  function resetMobileAccordions() {
+    document.querySelectorAll('.mobile-nav__item').forEach((item) => {
+      item.classList.remove('is-open');
+      const trigger = item.querySelector('.mobile-nav__trigger');
+      const submenu = item.querySelector('.mobile-nav__submenu');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (submenu) submenu.style.maxHeight = '';
+    });
+  }
+
   if (mobileToggle && mobileNav) {
     mobileToggle.addEventListener('click', () => {
       const isOpen = mobileNav.classList.contains('is-open');
@@ -620,6 +628,7 @@
         mobileNav.classList.remove('is-open');
         mobileToggle.classList.remove('is-active');
         document.body.style.overflow = '';
+        resetMobileAccordions();
       } else {
         mobileNav.classList.add('is-open');
         mobileToggle.classList.add('is-active');
@@ -633,6 +642,7 @@
         mobileNav.classList.remove('is-open');
         mobileToggle.classList.remove('is-active');
         document.body.style.overflow = '';
+        resetMobileAccordions();
       });
     });
   }
@@ -660,6 +670,37 @@
   }, observerOptions);
 
   sections.forEach((section) => sectionObserver.observe(section));
+
+  // --- Mobile dropdown accordion ---
+  const mobileNavItems = document.querySelectorAll('.mobile-nav__item');
+
+  mobileNavItems.forEach((item) => {
+    const trigger = item.querySelector('.mobile-nav__trigger');
+    const submenu = item.querySelector('.mobile-nav__submenu');
+    if (!trigger || !submenu) return;
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      mobileNavItems.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('is-open');
+          other.querySelector('.mobile-nav__trigger').setAttribute('aria-expanded', 'false');
+          other.querySelector('.mobile-nav__submenu').style.maxHeight = '';
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        submenu.style.maxHeight = '';
+      } else {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        submenu.style.maxHeight = `${submenu.scrollHeight}px`;
+      }
+    });
+  });
 
 })();
 
