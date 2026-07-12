@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — How It Works Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/How it works.md
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Our Business Coaching Process & Methodology | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors uses a structured three-gate business coaching process — Discover, Prepare, Decide — to help $2M–$150M founder-led businesses build value, reduce owner dependency, and prepare for a successful exit. Learn how it works.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Our Business Coaching Process & Methodology | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors uses a structured three-gate business coaching process — Discover, Prepare, Decide — to help $2M–$150M founder-led businesses build value, reduce owner dependency, and prepare for a successful exit. Learn how it works.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="assets/css/how-it-works.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="services.html" class="nav-menu__link nav-menu__trigger">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="services/executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="services/business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="services/exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="services/business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="services/succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="services/operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="services/peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="industries.html" class="nav-menu__link nav-menu__trigger">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="industries/professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="industries/construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="industries/home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="industries/manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="industries/marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="how-it-works.html" class="nav-menu__link is-active">How it Works</a>
+
+        <a href="index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="services/executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="services/business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="services/exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="services/business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="services/succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="services/operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="services/peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="industries/professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="industries/construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="industries/home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="industries/manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="industries/marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="how-it-works.html" class="mobile-nav__link is-active">How it Works</a>
+
+      <a href="index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO — "Executive Coaching Process & Coaching Methodology Built for
+         Owners"
+         ====================================================================== -->
+    <section class="section how-hero" id="how-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="how-hero__content reveal">
+          <h1>Executive Coaching Process & Coaching Methodology Built for Owners</h1>
+
+          <p>Most business coaching is vague. Most consulting is reactive. Spearpoint Advisors takes a different approach — a structured, gate-based coaching and advisory process built specifically for founder-led businesses that need clarity, accountability, and forward momentum. No generic advice. No open-ended engagements. Just a proven methodology, measurable outcomes, and direct guidance from an advisor who has built, led, and scaled businesses himself.</p>
+
+          <div class="hero__cta-group">
+            <a href="index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="index.html#contact" class="btn btn--outline btn--large">
+              Start with a Free Assessment
+            </a>
+          </div>
+
+          <div class="how-hero__gates" aria-hidden="true">
+            <div class="how-hero__gate">
+              <span class="how-hero__gate-num">01</span>
+              <span class="how-hero__gate-label">Discover</span>
+            </div>
+            <span class="how-hero__gate-connector"></span>
+            <div class="how-hero__gate">
+              <span class="how-hero__gate-num">02</span>
+              <span class="how-hero__gate-label">Prepare</span>
+            </div>
+            <span class="how-hero__gate-connector"></span>
+            <div class="how-hero__gate">
+              <span class="how-hero__gate-num">03</span>
+              <span class="how-hero__gate-label">Decide</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder (testimonials/client logos to
+         be supplied later) — reusing the homepage's existing testimonials
+         verbatim as a stand-in, same resolution used on the About and
+         Services pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Home Services Owners Say</h2>
+          <p>Real outcomes from real home services business owners — HVAC, plumbing, electrical, landscaping, pest control.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         DISCOVER. PREPARE. DECIDE. THREE GATES. ONE DESTINATION.
+         ====================================================================== -->
+    <section class="section section--dark" id="framework">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="process-section__header reveal">
+          <span class="eyebrow">The Methodology</span>
+          <h2 data-heading-wipe>Discover. Prepare. Decide. Three Gates. One Destination.</h2>
+          <p>The Spearpoint business coaching methodology is built around three sequential gates. Each gate has a defined purpose, a clear set of outcomes, and a specific question it answers for the business owner. You don't move to the next gate until the current one is complete — because the work at each stage depends on what was built before it.</p>
+          <p>This isn't a program with a fixed timeline. It's a progression that moves at the pace your business needs — and stops when you have what you came for: a business that is worth more, runs better, and gives you real options for what comes next.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <p class="process-step__gate">Gate 01</p>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__text">Know exactly where you stand.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <p class="process-step__gate">Gate 02</p>
+              <h3 class="process-step__title">Prepare</h3>
+              <p class="process-step__text">Build the business buyers want to buy.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <p class="process-step__gate">Gate 03</p>
+              <h3 class="process-step__title">Decide</h3>
+              <p class="process-step__text">Choose your path from a position of strength.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-16);">
+          <h3 data-heading-wipe>Who This Business Coaching Process Is Built For</h3>
+          <p>The Spearpoint business coaching process is not for everyone. It's designed for founder-led business owners doing $2M–$150M in revenue who are serious about building something that works without them at the center of it — and who are willing to commit to the work that takes.</p>
+        </div>
+
+        <div class="owner-profile-grid reveal-stagger">
+          <div class="owner-profile-card">
+            <span class="owner-profile-card__icon" aria-hidden="true"><i class="fa-solid fa-hourglass-half"></i></span>
+            <p>It's for the owner who is tired of being the bottleneck but hasn't had the structure or outside perspective to change it.</p>
+          </div>
+          <div class="owner-profile-card">
+            <span class="owner-profile-card__icon" aria-hidden="true"><i class="fa-solid fa-scale-balanced"></i></span>
+            <p>The owner who knows their business is valuable but isn't sure what it's actually worth or what a buyer would see.</p>
+          </div>
+          <div class="owner-profile-card">
+            <span class="owner-profile-card__icon" aria-hidden="true"><i class="fa-solid fa-signs-post"></i></span>
+            <p>The owner who has thought about what comes next but hasn't had a serious conversation about how to get there.</p>
+          </div>
+          <div class="owner-profile-card">
+            <span class="owner-profile-card__icon" aria-hidden="true"><i class="fa-solid fa-rocket"></i></span>
+            <p>The owner who is smart, capable, and ready to build intentionally for the first time.</p>
+          </div>
+        </div>
+
+        <div class="not-for-callout reveal">
+          <span class="not-for-callout__icon" aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+          <p>It is not for the owner who is looking for a quick fix, a motivational program, or someone to validate decisions they've already made. The executive coaching process and business advisory work at Spearpoint is honest, direct, and results-oriented. If that's what you're looking for, we'd like to talk.</p>
+        </div>
+
+        <div class="narrative-block reveal" style="margin-top: var(--space-16);">
+          <div class="narrative-block__rail" aria-hidden="true">
+            <i class="fa-solid fa-route"></i>
+          </div>
+          <div class="narrative-block__content">
+            <h3 data-heading-wipe>Most Business Owners Have Had an Advisor. Few Have Had a Process.</h3>
+            <p>There's no shortage of business coaches, consultants, and advisors willing to tell you what to work on. What's rare is someone who can show you a structured path — one that starts with a clear picture of where you are, maps out what needs to change, and moves you through each stage with defined outcomes rather than open-ended guidance that drags on without results.</p>
+            <p>The difference matters enormously for business owners in the $2M–$150M range. At this stage, the problems aren't abstract. Owner dependency is real. Customer concentration is real. Leadership gaps are real. The risk of a forced exit — through health, a market shift, a partner dispute, or any of the other forces that end businesses prematurely — is real. What these owners need isn't more conversations about their goals. They need a methodology that connects those goals to a plan, and a plan to action.</p>
+          </div>
+        </div>
+
+        <div class="quote-card reveal">
+          <i class="fa-solid fa-quote-left quote-card__mark" aria-hidden="true"></i>
+          <blockquote>"Most owners come to us having worked with advisors before. What they tell us is missing isn't expertise — it's structure. A clear starting point. A defined path. And someone who can hold them accountable to moving through it."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE BUSINESS COACHING PROCESS EXISTS BECAUSE THE 5 DS ARE REAL
+         ====================================================================== -->
+    <section class="section risk-section" id="five-ds-real">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="risk-section__header reveal">
+          <span class="eyebrow">The Reality</span>
+          <h2 data-heading-wipe>The Business Coaching Process Exists Because the 5 Ds Are Real</h2>
+          <p>50% of business owners are forced to exit their business due to the 5 Ds — <strong>Death · Divorce · Disability · Disagreement · Disruption</strong> — not planned, not on their terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in that business.</p>
+          <p>The Spearpoint business coaching process was built with this reality in mind. Every gate — Discover, Prepare, Decide — is designed to close the gap between where a business owner is today and where they need to be to have real options when the unexpected happens. The Discover gate identifies your exposure. The Prepare gate eliminates it. The Decide gate ensures that when the moment comes, you're choosing — not reacting.</p>
+        </div>
+
+        <div class="risk-grid reveal-stagger">
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-skull"></i></span>
+            <span class="risk-item__title">Death</span>
+          </a>
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-heart-crack"></i></span>
+            <span class="risk-item__title">Divorce</span>
+          </a>
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-crutch"></i></span>
+            <span class="risk-item__title">Disability</span>
+          </a>
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-bolt"></i></span>
+            <span class="risk-item__title">Disagreement</span>
+          </a>
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-water"></i></span>
+            <span class="risk-item__title">Disruption</span>
+          </a>
+        </div>
+
+        <div class="quote-card reveal">
+          <i class="fa-solid fa-quote-left quote-card__mark" aria-hidden="true"></i>
+          <blockquote>"The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."</blockquote>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE THREE GATES IN DETAIL — tabbed instead of three long stacked
+         sections. Reuses the homepage's existing tabs engine as-is
+         (.trades-tabs/.trades-tab/.trade-panel, driven generically by
+         initTradesTabs() in app.js — no JS changes needed).
+         ====================================================================== -->
+    <section class="section section--charcoal gate-tabs-section" id="gates">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <span class="eyebrow">The Three Gates, In Detail</span>
+          <h2 data-heading-wipe>Walk Through Each Gate</h2>
+        </div>
+
+        <div class="trades-tabs reveal" role="tablist">
+          <button class="trades-tab is-active" data-tab="tab-gate-discover" role="tab" aria-selected="true">01 · Discover</button>
+          <button class="trades-tab" data-tab="tab-gate-prepare" role="tab">02 · Prepare</button>
+          <button class="trades-tab" data-tab="tab-gate-decide" role="tab">03 · Decide</button>
+        </div>
+
+        <!-- Gate 01 — Discover -->
+        <div class="trade-panel is-active" id="tab-gate-discover" role="tabpanel">
+          <div class="gate-section">
+            <span class="gate-section__mark gate-section__mark--number" aria-hidden="true">01</span>
+
+            <div class="gate-section__header">
+              <span class="eyebrow">Gate 01</span>
+              <h2>Discover: Know Exactly Where You Stand</h2>
+              <p class="gate-section__subheading">The Assessment & Awareness Phase</p>
+            </div>
+
+            <div class="gate-section__content">
+              <p>Most business owners have a general sense of how their company is doing. Very few have a precise picture — what it's actually worth on the open market, where the risks are concentrated, what a buyer or partner would flag in the first hour of due diligence, and how ready they personally are to step back from the business they've spent years building.</p>
+              <p>The Discover gate closes that gap. It's a thorough assessment of your business across every dimension that affects value, transferability, and exit readiness — combined with an honest evaluation of you as the owner. Where your goals are. Where your gaps are. And what the distance is between the two.</p>
+              <p>There's no guessing in this phase. No assumptions. We look at the numbers, the operations, the leadership structure, the customer base, the financial performance, and the owner's personal readiness. What comes out of it is a baseline — a clear, documented picture of where your business stands today and what it would take to get it where it needs to be.</p>
+
+              <div class="gate-outcomes">
+                <p class="gate-outcomes__label">Key Outcomes from the Discover Gate</p>
+                <p class="gate-outcomes__text">Baseline business valuation · Identification of value drivers and value gaps · Owner readiness assessment · Risk analysis across leadership, systems, customer concentration, recurring revenue, and owner dependency · A clear understanding of the gap between current state and exit readiness</p>
+              </div>
+
+              <blockquote class="gate-quote">"What do I actually have, what is it worth today, and what could prevent me from exiting on my terms?"</blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gate 02 — Prepare -->
+        <div class="trade-panel" id="tab-gate-prepare" role="tabpanel">
+          <div class="gate-section">
+            <span class="gate-section__mark gate-section__mark--number" aria-hidden="true">02</span>
+
+            <div class="gate-section__header">
+              <span class="eyebrow">Gate 02</span>
+              <h2>Prepare: Build the Business Buyers Want to Buy</h2>
+              <p class="gate-section__subheading">The Value-Building & De-Risking Phase</p>
+            </div>
+
+            <div class="gate-section__content">
+              <p>The Prepare gate is where the real work happens. Once we know where the business stands, we get to work changing it. This is the longest phase of the Spearpoint business coaching methodology — because building enterprise value, reducing owner dependency, and strengthening a business at its foundations takes time and sustained effort. There are no shortcuts here, and we don't pretend otherwise.</p>
+              <p>What this phase looks like in practice depends entirely on what the Discover gate revealed. For some businesses, the priority is building a leadership team that can run operations without the owner. For others, it's documenting processes, diversifying the customer base, or improving the financial performance metrics that drive valuation. Most engagements involve all of these things in some combination — sequenced and prioritized around what will move the needle most.</p>
+              <p>The goal of the Prepare gate isn't just to make the business more sellable. It's to make it a better business — one that's more valuable, more resilient, less dependent on any one person, and more capable of running at a high level whether or not the owner is in the room. Owners who go through this phase consistently tell us the business became easier and more enjoyable to run — before they ever got to the exit conversation.</p>
+
+              <div class="gate-outcomes">
+                <p class="gate-outcomes__label">Key Outcomes from the Prepare Gate</p>
+                <p class="gate-outcomes__text">Reduced owner dependency · Stronger executive leadership team · KPI systems and accountability structures installed · Processes documented and transferable · Customer base diversified · Revenue made more predictable · EBITDA improved · A healthier, more transferable business commanding a higher valuation</p>
+              </div>
+
+              <blockquote class="gate-quote">"How do we build a company buyers want to buy — and that the owner is proud to keep running in the meantime?"</blockquote>
+
+              <p class="gate-section__pills-label">Services Most Active During This Gate</p>
+              <div class="credentials">
+                <span class="credential-tag">Executive Coaching</span>
+                <span class="credential-tag">Operational Scaling</span>
+                <span class="credential-tag">Value Acceleration</span>
+                <span class="credential-tag">Leadership Development</span>
+                <span class="credential-tag">Succession Planning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gate 03 — Decide -->
+        <div class="trade-panel" id="tab-gate-decide" role="tabpanel">
+          <div class="gate-section">
+            <span class="gate-section__mark gate-section__mark--number" aria-hidden="true">03</span>
+
+            <div class="gate-section__header">
+              <span class="eyebrow">Gate 03</span>
+              <h2>Decide: Choose Your Path from a Position of Strength</h2>
+              <p class="gate-section__subheading">The Transition Strategy & Execution Phase</p>
+            </div>
+
+            <div class="gate-section__content">
+              <p>The Decide gate is where preparation becomes action. By this stage, the business is healthier, more valuable, and less dependent on the owner than it was when the engagement started. The owner has a clear picture of what the business is worth, who the likely buyers or successors are, and what each path forward would look like financially and personally.</p>
+              <p>What makes this phase different from a typical exit is the leverage the owner has coming into it. Most business exits happen reactively — driven by burnout, health events, a partner dispute, or financial pressure. Owners in that position are negotiating from weakness. They take what's offered because they don't have time or energy to hold out for better. The Decide gate is designed to be the opposite of that. You're choosing, not reacting. And the options available to a prepared owner are genuinely different from those available to someone who waited too long.</p>
+              <p>The paths available at this stage include a strategic sale to a third-party buyer, a management buyout, a family transition or succession, an employee stock ownership plan (ESOP), a recapitalization with a private equity partner, or a decision to continue growing with the infrastructure now in place. There is no right answer — only the answer that aligns with what the owner actually wants for their business, their family, and their next chapter.</p>
+
+              <div class="gate-outcomes">
+                <p class="gate-outcomes__label">Key Outcomes from the Decide Gate</p>
+                <p class="gate-outcomes__text">A proactive, intentional transition strategy · Clear understanding of tax and timing implications · Legacy goals identified and protected · Buyer or successor fit evaluated · Deal structure clarity · Confidence in the path forward</p>
+              </div>
+
+              <blockquote class="gate-quote">"Now that I'm prepared, what is the best path forward for my future, my family, and my business?"</blockquote>
+
+              <p class="gate-section__pills-label">Services Most Active During This Gate</p>
+              <div class="credentials">
+                <span class="credential-tag">Exit Planning</span>
+                <span class="credential-tag">Succession Planning</span>
+                <span class="credential-tag">Business Valuation</span>
+                <span class="credential-tag">Transaction Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT MAKES THIS BUSINESS COACHING METHODOLOGY DIFFERENT
+         ====================================================================== -->
+    <section class="section" id="difference">
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What Makes This Business Coaching Methodology Different</h2>
+        </div>
+
+        <div class="comparison-grid reveal-stagger">
+
+          <div class="comparison-col comparison-col--before">
+            <h3>Most Coaching Looks Like This</h3>
+            <p>Open-ended engagements with no defined endpoint. Weekly sessions focused on goals and accountability without a clear methodology behind them. Generic frameworks applied to every client regardless of their situation. Advice that sounds good in the room but doesn't translate to measurable business outcomes. No connection between the coaching work and the owner's long-term exit or financial goals.</p>
+          </div>
+
+          <div class="comparison-col comparison-col--after">
+            <h3>Spearpoint Looks Like This</h3>
+            <p>A structured three-gate business coaching process with defined outcomes at each stage. Every engagement starts with a clear assessment of where the business is and where it needs to go. The methodology is connected directly to business valuation, exit readiness, and the owner's personal financial goals. Progress is measurable. The engagement has a direction — and an end state worth working toward.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT A TYPICAL EXECUTIVE COACHING PROCESS LOOKS LIKE OVER TIME
+         ====================================================================== -->
+    <section class="section section--charcoal" id="timeline">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What a Typical Executive Coaching Process Looks Like Over Time</h2>
+          <p>Every engagement is different, because every business is different. But here is a general sense of what the Spearpoint business coaching process looks like in practice for a founder-led business in the $5M–$30M range:</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">01</div>
+            <div>
+              <h3 class="drivers-list__label">Months 1–2 — Discovery</h3>
+              <p class="drivers-list__text">Initial assessment of the business, valuation baseline, gap analysis, owner readiness review. Deliverable: a clear picture of where the business stands and a prioritized roadmap for the Prepare phase.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">02</div>
+            <div>
+              <h3 class="drivers-list__label">Months 3–18 — Prepare</h3>
+              <p class="drivers-list__text">Ongoing advisory and coaching work across the eight value drivers. Leadership development, operational systems, process documentation, customer diversification, EBITDA improvement. The pace and focus depend on what the business needs most. Some owners move quickly. Others take longer — and that's fine. The goal is durable change, not a rushed checklist.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">03</div>
+            <div>
+              <h3 class="drivers-list__label">Months 18+ — Decide</h3>
+              <p class="drivers-list__text">When the business and the owner are ready, we move into transition planning. This phase can take anywhere from several months to a year or more depending on the path chosen and the complexity of the transaction or succession involved.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <blockquote class="gate-quote reveal">"The best exits we've seen weren't the fastest ones. They were the ones where the owner had time to prepare, time to choose, and time to make sure the outcome was actually what they wanted."</blockquote>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         A PROCESS IS ONLY AS GOOD AS THE PERSON RUNNING IT
+         ====================================================================== -->
+    <section class="section" id="founder">
+
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>A Process Is Only as Good as the Person Running It</h2>
+            <p>Mike Wolfgang developed the Spearpoint business coaching methodology from decades of direct experience building, turning around, and transitioning businesses — not from a textbook. As a certified EOS Implementer, he spent four years working directly inside founder-led businesses helping owners install the operating systems, leadership structures, and accountability cultures that let companies run without their founders at the center. As a CEPA-certified exit planning advisor, he brings a structured financial and strategic framework to the transition side of the equation.</p>
+            <p>What makes his coaching process different is that it's grounded in real experience on both sides of the equation — he knows what it takes to build a business worth selling, and he knows what buyers look for when they evaluate one. He rebuilt his own business twice, under genuinely difficult circumstances, which gives him a perspective on resilience and preparation that most advisors simply don't have.</p>
+
+            <div class="achievement">
+              <p><em>Led Western Graphics to 8% growth while the industry contracted 20% post-recession — then executed a successful exit.</em></p>
+            </div>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE SERVICES THAT POWER THE PROCESS
+         ====================================================================== -->
+    <section class="section section--charcoal" id="services-power">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>The Services That Power the Process</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">The strategic foundation of the Decide gate — and one of the most important investments a founder-led business can make.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">The starting point of the Discover gate. Know what you have before you decide what to do with it.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Executive Coaching</h3>
+              <p class="drivers-list__text">The leadership development work that runs through the Prepare gate and closes the gap between where the owner is and where the business needs them to be.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">The deliberate, systematic development of the eight drivers of transferable value that define what a business is worth.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">Building the systems and structure that let the business grow and run without everything flowing through the owner.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Succession Planning</h3>
+              <p class="drivers-list__text">Designing what comes after — whether that's a family transition, a management handover, or a sale to an outside buyer.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Start the Process?</h2>
+          <p>The first step is a conversation — not a pitch. We'll talk about where your business is, what you're working toward, and whether the Spearpoint business coaching process is the right fit for where you are right now. If it is, we'll tell you exactly how we'd approach it. If it isn't, we'll tell you that too.</p>
+          <div class="cta-section__buttons">
+            <a href="index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="index.html#contact" class="btn btn--outline btn--large">
+              Start with a Free Business Assessment
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="services/business-valuation.html">Business Valuation</a>
+            <a href="services/exit-planning.html">Exit Planning</a>
+            <a href="services/operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="services/executive-coaching.html">Executive Coaching</a>
+            <a href="services/value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="assets/js/how-it-works.js"></script>
+
+</body>
+</html>

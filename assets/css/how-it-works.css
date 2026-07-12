@@ -1,0 +1,521 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — How It Works Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .process-section__header/.process-grid/.process-step,
+   .about-section__header, .risk-section__header/.risk-grid/.risk-item,
+   .drivers-list/.drivers-list__item, .founder-section__grid/__image-wrap/
+   __image/__content, .achievement, .credentials/.credential-tag,
+   .trades-tabs/.trades-tab/.trade-panel (the three detailed Gate sections
+   are tabbed using the homepage's existing tabs engine, driven generically
+   by initTradesTabs() in app.js — no JS changes needed), .cta-section,
+   .btn — only the pieces below are new.
+   ========================================================================== */
+
+/* --- Hero — centered like the Services hero, with a row of three "gate
+   preview" badges instead of Services' icon row or About's photo, so it
+   reads as its own distinct moment while still previewing the framework
+   the rest of the page walks through. --- */
+.how-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.how-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.how-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.how-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+.how-hero__gates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-12);
+}
+
+.how-hero__gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.how-hero__gate-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-black);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  box-shadow: 0 6px 18px rgba(232, 83, 14, 0.25);
+}
+
+.how-hero__gate-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-3);
+}
+
+.how-hero__gate-connector {
+  width: 56px;
+  height: 2px;
+  margin-bottom: var(--space-6);
+  background: linear-gradient(90deg, var(--color-orange), var(--color-border));
+  flex-shrink: 0;
+}
+
+/* .process-section__header is left-aligned by default (style.css) — this
+   page centers everything else in this section (the gate-preview grid,
+   the owner-profile cards, the quote cards), so a left-flush heading and
+   intro paragraphs read as misaligned against it. Centered here only. */
+.process-section__header {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .process-step__text is left-aligned by default (style.css) since the
+   homepage's version pairs it with outcomes/quote blocks below it. This
+   page's gate-preview teasers only show the one-line tagline, so a ragged
+   left edge under a centered number/title reads oddly — center it here. */
+.process-grid .process-step__text {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .trades-tabs (style.css) is a left-hugging flex row sized for the
+   homepage's 6 scrollable trade tabs. This page only has 3 gate tabs, so
+   left-hugging leaves a lot of empty space — make each tab flex-grow to
+   fill the row evenly instead. Scoped to this page only; the homepage's
+   6-tab scrollable row is unaffected. */
+.gate-tabs-section .trades-tabs {
+  overflow-x: visible;
+  /* style.css's own padding-bottom + border-bottom on the container sits
+     below each tab's border-bottom, so the active tab's orange underline
+     reads as detached from the gray baseline under it. Drop both here and
+     let every tab draw its own full-width border-bottom instead — active
+     and inactive segments then form one continuous line. */
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.gate-tabs-section .trades-tab {
+  flex: 1;
+  text-align: center;
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* .trades-tab.is-active (style.css) only sets border-bottom-color, but it
+   has the same specificity (two classes) as the rule above and loads
+   earlier, so the cascade let this file's gray border-bottom win even on
+   the active tab. Re-assert the color here with one more class to break
+   the tie. */
+.gate-tabs-section .trades-tab.is-active {
+  border-bottom-color: var(--color-orange);
+}
+
+/* --- "Who This Is For" owner profiles — the MD's four "The owner who..."
+   sentences, one per card, instead of run-on prose. Breaks up what was
+   reading as a wall of centered paragraphs. --- */
+.owner-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto var(--space-8);
+}
+
+.owner-profile-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.owner-profile-card:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-3px);
+}
+
+.owner-profile-card__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.1);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+}
+
+.owner-profile-card p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+  text-align: left;
+}
+
+/* --- "Not for" callout — a single muted, boxed statement so the
+   disqualifying sentence reads as a deliberate line in the sand rather
+   than more of the same paragraph flow. --- */
+.not-for-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8);
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-text-4);
+  border-radius: var(--radius-lg);
+}
+
+.not-for-callout__icon {
+  flex-shrink: 0;
+  font-size: var(--fs-lg);
+  color: var(--color-text-4);
+  margin-top: 2px;
+}
+
+.not-for-callout p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+  text-align: left;
+}
+
+/* --- Narrative block — a side icon rail instead of another centered
+   heading-plus-paragraph column, so this section reads differently from
+   the ones around it. --- */
+.narrative-block {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.narrative-block__rail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-xl);
+  box-shadow: 0 8px 24px rgba(232, 83, 14, 0.25);
+}
+
+.narrative-block__content h3 {
+  margin-bottom: var(--space-5);
+}
+
+.narrative-block__content p {
+  margin-bottom: var(--space-5);
+  text-align: left;
+}
+
+.narrative-block__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Quote card — a heavier, more deliberate pull-quote treatment than
+   the plain .risk-quote border-bar, used for the two narrative quotes on
+   this page so they land as a distinct visual beat, not another paragraph. --- */
+.quote-card {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-10) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-card__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-card blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+/* --- Gate detail sections (the three full "Discover / Prepare / Decide"
+   write-ups). Each carries a large faint gate-number mark in the corner,
+   same visual idea as the About/Services corner-mark pattern, reimplemented
+   locally here per the per-page-CSS convention. --- */
+.gate-section {
+  position: relative;
+  z-index: 1;
+}
+
+.gate-section__mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+.gate-section__mark--number {
+  font-size: 11rem;
+  font-weight: var(--fw-black);
+}
+
+.gate-section__header {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto var(--space-10);
+  text-align: center;
+}
+
+.gate-section__header h2 {
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.gate-section__subheading {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-3);
+  font-style: italic;
+}
+
+.gate-section__content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.gate-section__content p {
+  margin-bottom: var(--space-5);
+}
+
+/* --- Key Outcomes line — label + the MD's own inline "·"-separated text
+   run, not converted into a bulleted list (matches the source formatting). --- */
+.gate-outcomes {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.gate-outcomes__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: var(--space-3);
+}
+
+.gate-outcomes__text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+}
+
+/* --- Pull quotes outside the narrow homepage teaser card — same visual
+   language as .process-step__quote (italic, orange border-left) sized for
+   full-width prose instead of a 340px card column. --- */
+.gate-quote {
+  max-width: 700px;
+  margin: var(--space-8) auto;
+  padding-left: var(--space-6);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  border-left: 3px solid var(--color-orange);
+}
+
+.gate-section__pills-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-text-3);
+  margin-bottom: var(--space-3);
+}
+
+/* --- Coaching-methodology comparison — the only genuinely new layout
+   component on this page. Two contrasting columns instead of another pair
+   of paragraphs, so "what makes this different" reads as a visible
+   before/after rather than more flat text. --- */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.comparison-col {
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.comparison-col h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-4);
+}
+
+.comparison-col p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+}
+
+.comparison-col--before {
+  background-color: var(--color-surface);
+}
+
+.comparison-col--before h3 {
+  color: var(--color-text-3);
+}
+
+.comparison-col--after {
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.06), transparent);
+  border-color: rgba(232, 83, 14, 0.25);
+}
+
+.comparison-col--after h3 {
+  color: var(--color-orange);
+}
+
+/* Icon-badge variant of .drivers-list__number, reused for "The Services
+   That Power the Process" (icons instead of digits) — same override as
+   services.css uses for its own icon-badge drivers-list instance. */
+.drivers-list__number i {
+  font-size: var(--fs-md);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gate-section__mark--number {
+    font-size: 8rem;
+  }
+
+  .owner-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .gate-section__mark {
+    top: var(--space-6);
+    right: var(--space-6);
+  }
+
+  .gate-section__mark--number {
+    font-size: 5.5rem;
+  }
+
+  .how-hero__gates {
+    gap: var(--space-2);
+  }
+
+  .how-hero__gate-connector {
+    width: 24px;
+  }
+
+  .how-hero__gate-num {
+    width: 40px;
+    height: 40px;
+  }
+
+  .narrative-block {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .narrative-block__content p {
+    text-align: left;
+  }
+
+  .not-for-callout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .not-for-callout p {
+    text-align: center;
+  }
+
+  .quote-card {
+    padding: var(--space-6);
+  }
+}

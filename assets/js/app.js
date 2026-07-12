@@ -329,12 +329,19 @@
     defaults: { ease: 'power4.out' }
   });
 
+  // Scoped to `.hero` (the homepage hero's own section class) — interior
+  // pages reuse the bare `.hero__cta-group` class for their own hero CTAs,
+  // and an unscoped selector here would sweep those into this timeline too.
+  // Since `.hero__eyebrow`/`.hero__title`/`.hero__description` don't exist
+  // on interior pages, each still reserves its duration in the timeline,
+  // so their `.hero__cta-group` wouldn't start fading in until ~1.6s in —
+  // it belongs solely to the generic, much faster `.reveal` handler above.
   heroTimeline
-    .fromTo('.hero__eyebrow',
+    .fromTo('.hero .hero__eyebrow',
       { x: -30, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.8, delay: 0.3 }
     )
-    .fromTo('.hero__title',
+    .fromTo('.hero .hero__title',
       { y: 40, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.9 },
       '-=0.4'
@@ -342,27 +349,27 @@
     // Kinetic wipe, same node/timing as the fade above but a disjoint
     // property (clipPath vs. y/opacity) so the two tweens don't fight.
     // Collapses to a no-op when reduced motion is requested.
-    .fromTo('.hero__title',
+    .fromTo('.hero .hero__title',
       { clipPath: prefersReducedMotion ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' },
       { clipPath: 'inset(0 0% 0 0)', duration: prefersReducedMotion ? 0 : 0.9, ease: 'power4.out' },
       '<'
     )
-    .fromTo('.hero__description',
+    .fromTo('.hero .hero__description',
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.7 },
       '-=0.4'
     )
-    .fromTo('.hero__cta-group',
+    .fromTo('.hero .hero__cta-group',
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.7 },
       '-=0.3'
     )
-    .fromTo('.hero__trust',
+    .fromTo('.hero .hero__trust',
       { y: 15, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.6 },
       '-=0.2'
     )
-    .fromTo('.hero__trust-tag',
+    .fromTo('.hero .hero__trust-tag',
       { y: 10, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.4, stagger: 0.06 },
       '-=0.3'

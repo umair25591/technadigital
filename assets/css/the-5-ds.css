@@ -1,0 +1,233 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — The 5 D's Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .risk-stats/.risk-stats__item,
+   .process-section__header/.process-grid/.process-step,
+   .drivers-list/.drivers-list__item, .founder-section__grid/__image-wrap/
+   __image/__content, .credentials/.credential-tag, .cta-section, .btn —
+   only the pieces below are new.
+
+   The 5 Ds are five always-visible stacked sections (not tabs — real
+   ids so a link from anywhere, e.g. #d-divorce, lands directly on that D
+   via the browser's native anchor scroll, which display:none tab panels
+   can't support). No nav bar of any kind — just the sections themselves.
+   ========================================================================== */
+
+/* --- Hero — centered like Services/How-It-Works, with a preview row of
+   the 5 risk icons (same icon set the homepage's .risk-item uses) instead
+   of Services' service icons or How-It-Works' gate badges, foreshadowing
+   the 5 D sections further down the page. --- */
+.d5-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.d5-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.d5-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.d5-hero__content p {
+  margin: 0 auto var(--space-4);
+}
+
+.d5-hero__ds {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-8);
+}
+
+.d5-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+.d5-hero__icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-10);
+}
+
+.d5-hero__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+}
+
+/* --- Quote block — this page's pull-quote treatment (used 6×): tinted
+   background, large faint quote-mark icon, same visual idea as
+   how-it-works.css's .quote-card, rebuilt locally per the per-page-CSS
+   convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+/* --- D panel — each D's own stacked section. Carries a large faint
+   corner mark (that D's own risk icon) behind the heading, same
+   corner-mark language established on About/Services/How-It-Works,
+   reimplemented locally. Panels after the first get a divider so five
+   stacked sections don't visually run together. scroll-margin-top is
+   already set globally for every [id] (style.css) to clear the fixed
+   nav — no extra offset needed here since there's no sticky bar. --- */
+.d-panel {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.d-panel + .d-panel {
+  margin-top: var(--space-16);
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--color-border);
+}
+
+.d-panel__mark {
+  position: absolute;
+  top: 0;
+  right: var(--space-4);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+.d-panel h2 {
+  margin-bottom: var(--space-8);
+}
+
+/* --- 2x2 subsection grid — the four "What It Is / What It Looks Like in
+   Practice / Why It's a Business Risk / What Preparation Looks Like"
+   labeled blocks, one consistent icon per category across all 5 tabs so
+   the pattern teaches itself instead of four more stacked headings. --- */
+.d-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.d-detail-card {
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.d-detail-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.1);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-4);
+}
+
+.d-detail-card h3 {
+  font-size: var(--fs-base);
+  margin-bottom: var(--space-3);
+}
+
+.d-detail-card p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+}
+
+/* --- Small inline link under each Discover/Prepare/Decide teaser step —
+   .process-step doesn't carry a link slot in style.css since the
+   homepage's own teaser doesn't need one; this page's version does. --- */
+.process-step__link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .d-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .d-panel__mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .d5-hero__icons {
+    gap: var(--space-2);
+  }
+
+  .d-panel__mark {
+    font-size: 4.5rem;
+  }
+
+  .quote-block {
+    padding: var(--space-6);
+  }
+}
