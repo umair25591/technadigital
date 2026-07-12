@@ -2166,6 +2166,114 @@ p {
 
 
 /* ==========================================================================
+   14b. SPLIT PANEL (TEXT + IMAGE-PLACEHOLDER) SECTION
+   ==========================================================================
+   Reusable text/placeholder-image two-column pattern for plain-text
+   sections that don't have real photography yet. Distinct from
+   .founder-section__* (real photo, singular per page, wired to its own
+   scroll-clip-path JS via a `document.querySelector` singular lookup) —
+   this is a pure-CSS placeholder graphic, safe to repeat many times per
+   page. Reveal-in reuses the sitewide .reveal class (querySelectorAll-
+   based, safe for many instances).
+   ========================================================================== */
+.split-panel__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* Alternate-side modifier. Flipping grid-template-columns AND setting
+   `order` together is required — `order` alone only relocates which
+   element sits in track 1, it doesn't resize that track, so the visual
+   would silently inherit the wide 1.2fr column and invert the ratio. */
+.split-panel__grid--reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.split-panel__grid--reverse .split-panel__visual {
+  order: -1;
+}
+
+.split-panel__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Several sections being wrapped reuse centered header components built
+   for full-width use elsewhere — force them to read as a normal
+   editorial column here instead of a centered block in a narrow space. */
+.split-panel__content .about-section__header,
+.split-panel__content .risk-section__header,
+.split-panel__content .drivers-section__header {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
+/* --- Placeholder visual ---
+   Soft brand-gradient tile + masked dot-grid texture + one outlined ring
+   accent, echoing the homepage hero's .hero-decor__grid / .hero-decor__ring
+   decor, plus a large centered icon in its own soft chip — reads as an
+   intentional graphic, not a missing image. Same framing as
+   .founder-section__image so it belongs to the same "photo slot" family. */
+.split-panel__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(232, 83, 14, 0.16), transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(45, 123, 246, 0.14), transparent 55%),
+    linear-gradient(135deg, var(--color-surface-2), var(--color-border));
+}
+
+.split-panel__visual::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-image: radial-gradient(rgba(143, 139, 128, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 50%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 60% at 50% 50%, #000 0%, transparent 75%);
+  opacity: 0.6;
+}
+
+.split-panel__visual::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  border: 1px solid rgba(45, 123, 246, 0.25);
+  border-radius: var(--radius-full);
+}
+
+.split-panel__visual-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 132px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(232, 83, 14, 0.18);
+  box-shadow: 0 12px 32px rgba(232, 83, 14, 0.12);
+  font-size: 3.25rem;
+  color: var(--color-orange);
+}
+
+
+/* ==========================================================================
    15. TESTIMONIALS SECTION
    ========================================================================== */
 .testimonials-section {
@@ -2598,6 +2706,18 @@ p {
     gap: var(--space-8);
   }
 
+  .split-panel__grid,
+  .split-panel__grid--reverse {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /* Reset the desktop zig-zag reorder — text always reads before the
+     placeholder image on mobile, regardless of desktop side. */
+  .split-panel__grid--reverse .split-panel__visual {
+    order: 0;
+  }
+
   .footer__grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
@@ -2688,6 +2808,18 @@ p {
   .drivers-list {
     grid-template-columns: 1fr;
     gap: var(--space-8);
+  }
+
+  .split-panel__visual {
+    aspect-ratio: 16 / 10;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .split-panel__visual-icon {
+    width: 96px;
+    height: 96px;
+    font-size: 2.5rem;
   }
 
   .footer__grid {
