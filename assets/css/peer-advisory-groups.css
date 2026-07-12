@@ -1,0 +1,306 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Peer Advisory Groups (CFO Circles) Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (confirmed present in style.css itself, not a page-local
+   file — grep-verified across the last three page builds this session):
+   .hero-decor, .hero__cta-group, .about-section__header, .section-decor,
+   .founder-section__grid/__image-wrap/__image/__content, .trade-panel__highlight,
+   .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
+   .testimonial-card, .cta-section, .btn.
+
+   Two components below (.mastermind-flow, .dynamics-accordion) are built
+   new for this page rather than reused — see each block's own comment for
+   why the existing card/list components didn't fit this content.
+   ========================================================================== */
+
+/* --- Hero — centered like the other three service pages, two CTAs. --- */
+.peer-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.peer-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.peer-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.peer-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.peer-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Quote block — this page's pull-quote treatment (used twice), same
+   visual idea as the other service pages' .quote-block, rebuilt locally
+   per the per-page-CSS convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+/* --- Mastermind flow — "How the CFO Circles Business Owner Mastermind
+   Works." A vertical connected timeline: numbered circles linked by a
+   single continuous rail, content full-width beside each one. Built new
+   for this page rather than reused: a 4-up card grid squeezed these
+   paragraphs into cramped, uneven-height boxes, and the plain full-width
+   .drivers-list is already spoken for by "The Six Dynamics" section
+   right below — this needed to read as neither a card nor that same list,
+   while still giving the text room to breathe. --- */
+.mastermind-flow {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.mastermind-flow__item {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.mastermind-flow__item:not(:last-child) {
+  padding-bottom: var(--space-10);
+}
+
+.mastermind-flow__marker {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+/* Rail — spans from the bottom of this item's circle to the top of the
+   next one. Skipped on the last item since there's nothing to connect to. */
+.mastermind-flow__item:not(:last-child) .mastermind-flow__marker::after {
+  content: '';
+  position: absolute;
+  top: 52px;
+  bottom: calc(var(--space-10) * -1);
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--color-border);
+}
+
+.mastermind-flow__number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-black);
+}
+
+.mastermind-flow__content {
+  flex: 1;
+  padding-top: var(--space-2);
+}
+
+.mastermind-flow__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.mastermind-flow__text {
+  max-width: none;
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+}
+
+/* --- Dynamics accordion — "The Six Dynamics That Make CFO Circles
+   Different." Each item carries two full paragraphs, the richest content
+   on the page, so showing all six open at once (as a card grid or the
+   plain .drivers-list) buries the section in a wall of text. An accordion
+   lets a visitor scan six short titles at a glance and open one at a time —
+   genuinely interactive, not just a different static shape. Panels expand
+   via a grid-template-rows 0fr/1fr transition (toggled by a class from
+   peer-advisory-groups.js), which animates smoothly without JS ever
+   measuring pixel heights. --- */
+.dynamics-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dynamics-accordion__item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.dynamics-accordion__item.is-active {
+  border-color: rgba(232, 83, 14, 0.3);
+}
+
+.dynamics-accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.dynamics-accordion__number {
+  flex-shrink: 0;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-black);
+  color: rgba(232, 83, 14, 0.35);
+  font-family: var(--font-display);
+}
+
+.dynamics-accordion__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.1);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+}
+
+.dynamics-accordion__title {
+  flex: 1;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.dynamics-accordion__caret {
+  flex-shrink: 0;
+  color: var(--color-text-3);
+  transition: transform var(--transition-base);
+}
+
+.dynamics-accordion__item.is-active .dynamics-accordion__caret {
+  transform: rotate(180deg);
+  color: var(--color-orange);
+}
+
+.dynamics-accordion__panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-smooth);
+}
+
+.dynamics-accordion__item.is-active .dynamics-accordion__panel {
+  grid-template-rows: 1fr;
+}
+
+.dynamics-accordion__panel-inner {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.dynamics-accordion__panel-inner p {
+  max-width: none;
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+}
+
+.dynamics-accordion__panel-inner p:first-child {
+  padding-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamics-accordion__panel,
+  .dynamics-accordion__caret {
+    transition: none;
+  }
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .quote-block {
+    padding: var(--space-6);
+  }
+
+  .mastermind-flow__item,
+  .mastermind-flow__item:not(:last-child) {
+    padding-bottom: var(--space-8);
+  }
+
+  .mastermind-flow__item:not(:last-child) .mastermind-flow__marker::after {
+    bottom: calc(var(--space-8) * -1);
+  }
+
+  .dynamics-accordion__trigger {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .dynamics-accordion__number {
+    display: none;
+  }
+
+  .dynamics-accordion__panel-inner p {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

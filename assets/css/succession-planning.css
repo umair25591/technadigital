@@ -1,0 +1,110 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Succession Planning Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (confirmed present in style.css itself, not a page-local
+   file — grep-verified during the Exit Planning build this same session):
+   .hero-decor, .hero__cta-group, .about-section__header, .section-decor,
+   .services-grid/.service-card, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text,
+   .process-grid/.process-step (used unmodified — 3 gates, matches the
+   grid's built-in column count), .founder-section__grid/__image-wrap/
+   __image/__content, .trade-panel__highlight, .credentials/.credential-tag,
+   .testimonials-section/.testimonials-slider/.testimonial-card,
+   .cta-section, .btn.
+   ========================================================================== */
+
+/* --- Hero — centered like the other three service pages, two CTAs
+   (primary + outline, same shape as Exit Planning's hero). --- */
+.succession-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.succession-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.succession-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.succession-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.succession-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Quote block — this page's pull-quote treatment (used twice), same
+   visual idea as the other service pages' .quote-block, rebuilt locally
+   per the per-page-CSS convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+/* --- "Death · Divorce · Disability · Disagreement · Disruption" accent
+   line — same idea as Exit Planning's .exit-ds-line, rebuilt locally for
+   this page's own "50% of Owners Are Forced Out" section. --- */
+.succession-ds-line {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+/* --- Space below the 3-gate process grid for the standalone "See the
+   Full Process" button — same idea as Exit Planning's .exit-process-cta. --- */
+.succession-process-cta {
+  margin-top: var(--space-12);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .quote-block {
+    padding: var(--space-6);
+  }
+}
