@@ -1,0 +1,263 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Executive Coaching Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .risk-stats/.risk-stats__item,
+   .drivers-list/.drivers-list__item/.drivers-list__number/.drivers-list__label/
+   .drivers-list__text, .process-grid/.process-step (base 3-col layout —
+   see the 5-step override below), .founder-section__grid/__image-wrap/
+   __image/__content, .credentials/.credential-tag, .testimonials-section/
+   .testimonials-slider/.testimonial-card, .section-decor, .cta-section,
+   .btn. NOTE: .services-list is NOT in style.css — it's page-local to
+   services.css (confirmed by grep), so it's rebuilt below rather than
+   assumed shared.
+   ========================================================================== */
+
+/* --- Hero — centered like Services/The 5 Ds, with a single primary CTA
+   (this page's md copy calls for one button, not a primary+outline pair). --- */
+.exec-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.exec-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.exec-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.exec-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.exec-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Two-stat variant — style.css's .risk-stats is a 4-column grid (built
+   for the homepage's 4-stat row); with only 2 items here it would sit
+   flush left instead of centered. Narrower max-width + a 2-col track
+   centers the pair the same way the site centers other short stat rows. --- */
+.risk-stats--two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 560px;
+}
+
+/* --- Check-bullet list — global CSS resets <ul> to no markers, so the
+   "Who This Executive Coaching Is Built For" qualifying-criteria list
+   needs a real icon-bullet treatment instead of a flat unstyled block.
+   Same component as services.css's .services-list, rebuilt locally per
+   the per-page-CSS convention (that stylesheet isn't loaded here). --- */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.services-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-base);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  text-align: left;
+}
+
+.services-list li i {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.12);
+  color: var(--color-orange);
+  font-size: 0.65rem;
+}
+
+/* --- Large faint corner icon — same visual idea as Services'/The 5 Ds'
+   own corner-mark component (.services-mark / .d-panel__mark), reimplemented
+   locally per the per-page-CSS convention so a text-heavy section (Who
+   This Is Built For) doesn't read as a flat block. --- */
+.exec-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Quote block — this page's pull-quote treatment, same visual idea as
+   the-5-ds.css's .quote-block, rebuilt locally per the per-page-CSS
+   convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+/* --- Five-step process — style.css's .process-grid is built for the
+   homepage's 3-gate Discover/Prepare/Decide layout. This page's coaching
+   process has 5 steps, so the column count is overridden here while still
+   falling through to style.css's existing 768px single-column rule
+   untouched (that media query targets .process-grid directly, so it wins
+   regardless of this modifier's specificity at that breakpoint). --- */
+.process-grid--five {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* --- Inline arrow link — each cross-sell item's own link in "Executive
+   Coaching Works Best Alongside." .drivers-list doesn't carry a link slot
+   in style.css since its other uses (site-wide "what we offer" lists)
+   don't need one — this page's cross-sell version does. --- */
+.drivers-list__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+  transition: gap var(--transition-fast);
+}
+
+.drivers-list__link:hover {
+  gap: var(--space-2);
+}
+
+/* --- Next-step link cards — the "Learn about our Exit Planning services /
+   See the Discover–Prepare–Decide process" pair. Deliberately not .btn:
+   that component is built for short 2–4 word CTA labels (uppercase, wide
+   letter-spacing) and jamming a full sentence into that shape reads badly.
+   This is a bordered, clickable row instead — sentence case, an icon for
+   quick scanning, and the same arrow-slide-on-hover motion .btn uses. --- */
+.exec-next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.exec-next-links__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1 1 300px;
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-base),
+              background-color var(--transition-base),
+              transform var(--transition-base);
+}
+
+.exec-next-links__item:hover {
+  border-color: var(--color-orange);
+  background-color: rgba(232, 83, 14, 0.04);
+  transform: translateY(-2px);
+}
+
+.exec-next-links__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.1);
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+}
+
+.exec-next-links__text {
+  flex: 1;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+}
+
+.exec-next-links__arrow {
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+.exec-next-links__item:hover .exec-next-links__arrow {
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .process-grid--five {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: var(--space-12);
+  }
+
+  .process-grid--five .process-grid__progress {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .quote-block {
+    padding: var(--space-6);
+  }
+
+  /* Match style.css's own .process-grid 768px rule (single-column stack) —
+     needed here too since .process-grid--five otherwise outranks it on
+     specificity (two classes vs. one). */
+  .process-grid--five {
+    grid-template-columns: 1fr;
+  }
+}

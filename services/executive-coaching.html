@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Executive Coaching Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Executive Coaching.md
+  - Nested one directory below the site root (services/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Executive Coaching for Business Owners & Leaders | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors offers executive coaching and leadership coaching for founders and business leaders doing $2M–$150M. Schedule a Conversation.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Executive Coaching for Business Owners & Leaders | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors offers executive coaching and leadership coaching for founders and business leaders doing $2M–$150M. Schedule a Conversation.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/executive-coaching.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger is-active">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="executive-coaching.html" class="nav-menu__dropdown-link is-active">Executive Coaching</a>
+            <a href="business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../industries/professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="../industries/construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="../industries/home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="../industries/manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="../industries/marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="executive-coaching.html" class="mobile-nav__sublink is-active">Executive Coaching</a>
+          <a href="business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../industries/professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="../industries/construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="../industries/home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="../industries/manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="../industries/marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section exec-hero" id="exec-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="exec-hero__content reveal">
+          <h1>Executive Coaching for Business Owners Who Are Ready to Lead Differently</h1>
+
+          <p>Most founders are exceptional at running their business but running a business and leading one are two different skills. Our business executive coaching work helps founders and their teams close that gap so the company can grow beyond what one person can carry.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Coaching Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... founder-led businesses in the
+         $2M–$150M range referencing specific outcomes") — reusing the
+         homepage's existing testimonials verbatim as a stand-in, the same
+         resolution used on the Services and About pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Business Owners Say</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         OUR BUSINESS EXECUTIVE COACHING SERVICES
+         ====================================================================== -->
+    <section class="section" id="our-services">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Our Business Executive Coaching Services</h2>
+          <p>Executive coaching at Spearpoint Advisors is practical, structured, and built around your specific situation as a business owner. It's not about talking through your feelings — it's about identifying the leadership gaps that are costing you growth, burning out your team, and keeping you trapped in the day-to-day.</p>
+          <p>We work with founders and their leadership teams on:</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Delegation and decision-making</h3>
+              <p class="drivers-list__text">Learning to push decisions to the lowest practical level — and trust the people you've built around you to make them.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Accountability structures</h3>
+              <p class="drivers-list__text">Building a leadership culture where people own outcomes, not just tasks. Clear roles, clear expectations, clear consequences.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Communication and influence</h3>
+              <p class="drivers-list__text">How you show up in the room determines how your team performs. We work on the habits, patterns, and blind spots that leaders often can't see in themselves.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chess" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Strategic thinking vs. operational thinking</h3>
+              <p class="drivers-list__text">Most founders are stuck in the weeds. Leadership coaching helps you develop the discipline to work on the business — not just in it.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Building an executive team</h3>
+              <p class="drivers-list__text">For many founder-led businesses, the leadership gap isn't just the founder. It's the absence of a real leadership team. We help you identify, develop, and align the people around you.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-door-open" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Transition readiness</h3>
+              <p class="drivers-list__text">Whether you're preparing to step back, bring on a partner, or build toward an exit — leadership coaching is often the first and most important step.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHO THIS EXECUTIVE COACHING IS BUILT FOR
+         ====================================================================== -->
+    <section class="section section--charcoal" id="who-this-is-for">
+
+      <i class="fa-solid fa-crosshairs exec-mark" aria-hidden="true"></i>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Who This Executive Coaching Is Built For</h2>
+          <p>This work is for you if:</p>
+        </div>
+
+        <ul class="services-list reveal-stagger">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i> You're the owner of a $2M–$150M founder-led business and you're still the person every major decision runs through.</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i> You have a team but they're not performing at the level the business needs — and you're not sure if it's them or how you're leading them.</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i> You're planning to grow, transition, or exit — and you know the business needs stronger leadership than it has today to get there.</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i> You've never had a coach, a mentor, or an outside perspective telling you the truth about how you're showing up as a leader.</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i> You're smart, capable, and exhausted — and you're ready to build something that doesn't require you to be the engine every single day.</li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE SKILLS THAT GOT YOU HERE WON'T GET YOU THERE
+         ====================================================================== -->
+    <section class="section" id="skills-that-got-you-here">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>The Skills That Got You Here Won't Get You There</h2>
+          <p>You built this business through hustle, instinct, and sheer will. Those things matter. But at some point — usually somewhere between $2M and $10M in revenue — the business stops growing because the leader hasn't.</p>
+          <p>It's not a business problem. It's a leadership problem.</p>
+          <p>You're making decisions that should be made three levels below you. Your team waits for your approval before acting. You're the first one in and the last one out — and the business still feels like it can't move without you.</p>
+          <p>Sound familiar? That's not a character flaw. It's what happens when a founder outgrows their original operating system and nobody has helped them install a new one.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         A BUSINESS THAT RUNS THROUGH YOU IS A BUSINESS ONE EVENT AWAY
+         FROM CRISIS
+         ====================================================================== -->
+    <section class="section section--charcoal" id="owner-dependency-risk">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>A Business That Runs Through You Is a Business One Event Away from Crisis</h2>
+          <p>Owner dependency isn't just a growth problem. It's a risk problem.</p>
+        </div>
+
+        <div class="risk-stats risk-stats--two reveal-stagger">
+          <div class="risk-stats__item">
+            <p class="risk-stats__value">50%</p>
+            <p class="risk-stats__label">of business owners are forced to exit due to the 5 Ds: Death · Divorce · Disability · Disagreement · Disruption — not by choice, not on their timeline</p>
+          </div>
+          <div class="risk-stats__item">
+            <p class="risk-stats__value">80%</p>
+            <p class="risk-stats__label">of the 50% of owners forced to exit by the 5 Ds had no plan in place</p>
+          </div>
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-10); margin-bottom: 0;">
+          <p>The businesses that survive and transfer well are the ones that didn't depend on a single person to hold them together.</p>
+          <p>A business where every key decision, relationship, and process runs through the owner is one health event, one partnership dispute, or one market disruption away from losing most of its value overnight.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"Of the 50% of owners forced to exit by the 5 Ds, 80% had no plan in place. A strong leadership team and a business that can run without you is the plan."</blockquote>
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-10); margin-bottom: 0;">
+          <p>Executive coaching and leadership development isn't just about making you a better leader. It's about making your business less fragile.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         BUSINESS EXECUTIVE COACHING THAT'S STRUCTURED, HONEST, AND BUILT
+         AROUND YOUR BUSINESS
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Business Executive Coaching That's Structured, Honest, and Built Around Your Business</h2>
+          <p>Our coaching work isn't a generic curriculum you sit through. It's a tailored engagement built around where you are, where you're going, and what's standing in the way.</p>
+        </div>
+
+        <div class="process-grid process-grid--five reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <h3 class="process-step__title">Discovery</h3>
+              <p class="process-step__text">We start by understanding your business, your leadership style, your team, and your goals. We identify the patterns, blind spots, and gaps that are limiting your growth as a leader and as an owner.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <h3 class="process-step__title">Focus Areas and Plan</h3>
+              <p class="process-step__text">Based on discovery, we agree on the specific leadership skills and behaviors we're developing. Everything is tied back to a business outcome — not abstract concepts.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <h3 class="process-step__title">Ongoing Coaching Sessions</h3>
+              <p class="process-step__text">Regular 1:1 sessions structured around real situations you're dealing with in your business. We work through decisions, communication challenges, team dynamics, and the habits that drive long-term leadership performance.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">04</div>
+            <div>
+              <h3 class="process-step__title">Team and Organizational Work</h3>
+              <p class="process-step__text">Where needed, we extend the work into your leadership team — alignment sessions, accountability structures, and the cultural shifts that allow your business to run without you at the center of everything.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">05</div>
+            <div>
+              <h3 class="process-step__title">Integration with Your Exit or Growth Plan</h3>
+              <p class="process-step__text">Leadership development is always connected to the bigger picture — building a business that's valuable, transferable, and ready for whatever comes next.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         COACHED BY SOMEONE WHO HAS DONE IT — NOT JUST STUDIED IT
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>Coached by Someone Who Has Done It — Not Just Studied It</h2>
+            <p>Mike Wolfgang isn't a career coach. He's a former Marine One crew chief, a two-time business turnaround leader, and a certified EOS Implementer who spent four years in the room with founders and their leadership teams — doing the hard work of building businesses that run themselves.</p>
+            <p>He knows what it looks like when a founder is the ceiling of their own company. He's helped owners break through it. He's also been through his own crucible — rebuilding his business twice, once during Covid and once while battling cancer — and come out the other side with a clearer sense of what leadership under pressure actually requires.</p>
+            <p>His executive coaching and leadership coaching work is grounded in real experience, not theory. And it's always connected to the outcome that matters most: a business that is worth more, runs better, and gives you your life back.</p>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         LEADERSHIP COACHING ISN'T JUST A GROWTH STRATEGY. IT'S AN EXIT
+         STRATEGY.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="exit-strategy">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Leadership Coaching Isn't Just a Growth Strategy. It's an Exit Strategy.</h2>
+          <p>Here's something most business owners don't realize: the quality of your leadership team is one of the biggest drivers of your business's valuation.</p>
+          <p>Buyers and acquirers don't just buy revenue. They buy a company that can run without its founder. That means a leadership team that can own outcomes, make decisions, and hold the business together when the owner steps back.</p>
+          <p>Executive coaching is where that work begins. It's not separate from your exit plan — it's foundational to it.</p>
+          <p>Whether you're three years from a transition or ten, the leadership development work you do now will determine how transferable, how valuable, and how sellable your business is when the time comes.</p>
+          <div class="exec-next-links">
+            <a href="exit-planning.html" class="exec-next-links__item">
+              <span class="exec-next-links__icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
+              <span class="exec-next-links__text">Learn about our Exit Planning services</span>
+              <span class="btn__arrow exec-next-links__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="exec-next-links__item">
+              <span class="exec-next-links__icon"><i class="fa-solid fa-route" aria-hidden="true"></i></span>
+              <span class="exec-next-links__text">See the Discover–Prepare–Decide process</span>
+              <span class="btn__arrow exec-next-links__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         EXECUTIVE COACHING WORKS BEST ALONGSIDE
+         ====================================================================== -->
+    <section class="section" id="works-best-alongside">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Executive Coaching Works Best Alongside</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">Prepare your business for a successful transition — on your terms, on your timeline.</p>
+              <a href="exit-planning.html" class="drivers-list__link">Exit Planning <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">Build the enterprise value that makes your business worth what it should be.</p>
+              <a href="value-acceleration.html" class="drivers-list__link">Value Acceleration <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling Consulting</h3>
+              <p class="drivers-list__text">Build the systems and structure that let you grow without breaking.</p>
+              <a href="operational-scaling-consulting.html" class="drivers-list__link">Operational Scaling <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Succession Planning</h3>
+              <p class="drivers-list__text">Design what happens when you're ready to step back — before you have to.</p>
+              <a href="succession-planning.html" class="drivers-list__link">Succession Planning <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Lead the Business Instead of Just Running It?</h2>
+          <p>Executive coaching is one of the highest-leverage investments a founder can make. Not because it feels good — but because it changes how everything else works.</p>
+          <p>Let's find out if we're a fit.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="business-valuation.html">Business Valuation</a>
+            <a href="exit-planning.html">Exit Planning</a>
+            <a href="operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="executive-coaching.html">Executive Coaching</a>
+            <a href="value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/executive-coaching.js"></script>
+
+</body>
+</html>
