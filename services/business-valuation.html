@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Business Valuation Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Business Valuation Advisor &
+    Consulting.md
+  - Nested one directory below the site root (services/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Business Valuation Advisor & Consultant | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors provides business valuation advisory for founder-led businesses doing $2M–$150M. Know what your business is actually worth, what's driving the number, and what it would take to increase it.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Business Valuation Advisor & Consultant | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors provides business valuation advisory for founder-led businesses doing $2M–$150M. Know what your business is actually worth, what's driving the number, and what it would take to increase it.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/business-valuation.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger is-active">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="business-valuation.html" class="nav-menu__dropdown-link is-active">Business Valuation</a>
+            <a href="succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../industries/professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="../industries/construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="../industries/home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="../industries/manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="../industries/marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="business-valuation.html" class="mobile-nav__sublink is-active">Business Valuation</a>
+          <a href="succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../industries/professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="../industries/construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="../industries/home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="../industries/manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="../industries/marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section valuation-hero" id="valuation-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="valuation-hero__content reveal">
+          <h1>Business Valuation Advisor & Consulting</h1>
+
+          <p>Most business owners have a rough idea of what their company is worth. Very few have an accurate one. We help founders get a clear, honest picture of what their business is worth today, what's driving the number, and what it would take to move it significantly higher.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Business Valuation Consultation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="btn btn--outline btn--large">
+              See How It Works
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... valuation surprises, gap analysis
+         outcomes, or how the process informed an exit or growth decision")
+         — reusing the homepage's existing testimonials verbatim as a
+         stand-in, the same resolution used on every other service page
+         built so far.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Owners Say</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT OUR BUSINESS VALUATION PROCESS COVERS
+         ====================================================================== -->
+    <section class="section" id="what-it-covers">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What Our Business Valuation Process Covers</h2>
+          <p>A business valuation from Spearpoint Advisors isn't just a dollar figure. It's a comprehensive analysis of your business across every dimension that affects what a buyer, lender, or successor would pay.</p>
+        </div>
+
+        <div class="stats-grid reveal-stagger">
+
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <h3 class="value-card__title">Current Market Value</h3>
+            <p class="value-card__text">What is your business worth today, based on your financial performance, industry multiples, and the specific characteristics of your company?</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-arrows-up-down" aria-hidden="true"></i></div>
+            <h3 class="value-card__title">Value Drivers and Detractors</h3>
+            <p class="value-card__text">What is making your business more valuable — and what is quietly reducing what a buyer would pay? Owner dependency, customer concentration, inconsistent margins, leadership gaps.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+            <h3 class="value-card__title">Value Gap Analysis</h3>
+            <p class="value-card__text">What is the distance between where your business is valued today and where it could be with deliberate improvement? We map the gap and show you which changes would have the highest impact.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-industry" aria-hidden="true"></i></div>
+            <h3 class="value-card__title">Industry Multiple Context</h3>
+            <p class="value-card__text">How does your business compare to industry benchmarks? What multiples are buyers paying for businesses like yours — and what separates top-quartile exits from median ones in your sector?</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div>
+            <h3 class="value-card__title">Value Acceleration Roadmap</h3>
+            <p class="value-card__text">Based on the valuation findings, we develop a prioritized roadmap for closing the value gap — connecting the business valuation work directly to the Prepare gate of our process.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         MOST OWNERS DON'T KNOW WHAT THEIR BUSINESS IS ACTUALLY WORTH
+         ====================================================================== -->
+    <section class="section section--charcoal" id="dont-know-worth">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Most Owners Don't Know What Their Business Is Actually Worth</h2>
+          <p>That's not a criticism. Business owners spend their time running their companies — not analyzing them through the lens of a buyer, a lender, or a successor. The result is a significant gap between what owners believe their business is worth and what the market will actually pay.</p>
+          <p>That gap has real consequences. It affects how you think about growth investments, how you structure your personal finances, how you approach succession or sale conversations, and whether you're protected if one of the 5 Ds forces an exit you didn't plan for.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"The owners who get the best outcomes at exit aren't the ones who got lucky. They're the ones who understood what their business was worth — and spent years closing the gap."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         50% OF OWNERS ARE FORCED OUT. MOST NEVER SAW IT COMING.
+         ====================================================================== -->
+    <section class="section" id="forced-out">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>50% of Owners Are Forced Out. Most Never Saw It Coming.</h2>
+          <p>Death. Divorce. Disability. Disagreement. Disruption. These are the 5 Ds — and they account for half of all business exits. Not planned. Not on the owner's terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in the business they just lost control of.</p>
+        </div>
+
+        <p class="valuation-ds-line reveal">Death · Divorce · Disability · Disagreement · Disruption</p>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-8);">
+          <p>Every service we offer, every industry we work in, every type of owner we advise — the work always comes back to the same question: if one of the 5 Ds showed up tomorrow, what would happen to your business, your family, and your financial future? The goal of everything we do is to make sure you have a real answer to that question.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         BUSINESS VALUATION IS WHERE THE PROCESS BEGINS
+         ====================================================================== -->
+    <section class="section section--charcoal" id="process">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Business Valuation Is Where the Process Begins</h2>
+          <p>Business valuation is the foundation of the Discover gate in our Discover–Prepare–Decide framework. You can't build a plan to improve your business without knowing where it stands today.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <h3 class="process-step__title">Gate 01 — Discover</h3>
+              <p class="process-step__text">Business valuation, risk identification, owner readiness assessment, and value gap analysis. The foundation of everything that follows.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <h3 class="process-step__title">Gate 02 — Prepare</h3>
+              <p class="process-step__text">Close the value gaps identified in the Discover gate. Build enterprise value systematically across the eight drivers.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <h3 class="process-step__title">Gate 03 — Decide</h3>
+              <p class="process-step__text">With a prepared business and an accurate picture of its value, you choose your path from a position of knowledge and strength.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="valuation-process-cta reveal">
+          <a href="../how-it-works.html" class="btn btn--outline btn--large">
+            See the Full Process <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         YOUR BUSINESS VALUATION CONSULTANT HAS DONE THIS FROM BOTH SIDES
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>Your Business Valuation Consultant Has Done This from Both Sides</h2>
+            <p>Mike Wolfgang isn't a business valuation consultant who has only ever seen businesses through a spreadsheet. Before founding Spearpoint Advisors, he led two successful business turnarounds, spent four years as a certified EOS Implementer working inside founder-led businesses, and flew President Clinton around the world as a Marine One crew chief.</p>
+            <p>He rebuilt his own business twice — once during Covid, once while caring for his father and battling cancer. He knows what it feels like when the value you've spent years building is suddenly at risk. And he knows what separates the businesses that hold their value in those moments from the ones that don't.</p>
+
+            <div class="trade-panel__highlight">
+              <p><em>Led Western Graphics to 8% growth while the printing industry contracted 20% post-recession — then executed a successful exit.</em></p>
+            </div>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Find Out What Your Business Is Actually Worth?</h2>
+          <p>Most owners are surprised by what they find — in both directions. Let's get you a clear picture.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="business-valuation.html">Business Valuation</a>
+            <a href="exit-planning.html">Exit Planning</a>
+            <a href="operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="executive-coaching.html">Executive Coaching</a>
+            <a href="value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/business-valuation.js"></script>
+
+</body>
+</html>
