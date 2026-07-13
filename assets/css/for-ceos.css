@@ -1,0 +1,168 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — For CEOs Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text,
+   .split-panel__grid/__content/__visual/__visual-icon, .process-grid/
+   .process-step (base 3-col layout — this page uses it as-is, no override
+   needed), .founder-section__grid/__image-wrap/__image/__content,
+   .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
+   .testimonial-card, .section-decor, .cta-section, .btn. NOTE:
+   .services-list is NOT in style.css — it's page-local to services.css
+   (confirmed by grep), so it's rebuilt below rather than assumed shared.
+   ========================================================================== */
+
+/* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
+   pair this page's md copy actually calls for. --- */
+.ceo-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.ceo-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ceo-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.ceo-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.ceo-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Three-pillar variant — style.css's .drivers-list is a 2-column grid
+   (built for the site's other 6/7-item lists); with only 3 pillars here,
+   the 3rd item would drop to a new row flush left instead of sitting
+   alongside the other two. A 3-col track keeps all three in one centered
+   row without touching the shared 2-col layout used elsewhere. --- */
+.drivers-list--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* --- Large faint corner icon — same visual idea as Executive Coaching's
+   .exec-mark / The 5 Ds' .d-panel__mark, reimplemented locally per the
+   per-page-CSS convention so "Who This Is For" doesn't read as a flat
+   block of bullets. --- */
+.ceo-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Check-bullet list — global CSS resets <ul> to no markers, so the
+   "Who This Is For" / "The Problem" qualifying-criteria lists need a real
+   icon-bullet treatment instead of a flat unstyled block. Same component
+   as services.css's .services-list, rebuilt locally per the per-page-CSS
+   convention (that stylesheet isn't loaded here). --- */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.services-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-base);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  text-align: left;
+}
+
+.services-list li i {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.12);
+  color: var(--color-orange);
+  font-size: 0.65rem;
+}
+
+/* --- Quote block — this page's pull-quote treatment (used twice: the
+   problem section and the 5 Ds section), same visual idea as
+   the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt locally
+   per the per-page-CSS convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .ceo-mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ceo-mark {
+    font-size: 4.5rem;
+  }
+
+  .drivers-list--three {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-block {
+    padding: var(--space-6);
+  }
+}

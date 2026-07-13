@@ -1,0 +1,145 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — For Small Business Owners Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text,
+   .split-panel__grid/__content/__visual/__visual-icon, .process-grid/
+   .process-step (base 3-col layout — this page uses it as-is, no override
+   needed), .founder-section__grid/__image-wrap/__image/__content,
+   .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
+   .testimonial-card, .section-decor, .cta-section, .btn.
+   ========================================================================== */
+
+/* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
+   pair this page's md copy actually calls for. --- */
+.sb-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.sb-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sb-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.sb-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.sb-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Wide two-up variant — "What Makes Small Business Coaching Different
+   at This Stage" has 5 long paragraph-length items, the longest content
+   of any .drivers-list on the site. style.css's default 2-column grid
+   cramps that much text into a narrow ~430px column (hard to read) and
+   leaves the odd 5th item stranded alone, flush left, in a mostly empty
+   row. This keeps the site's plain icon+text look (no card chrome —
+   boxing these felt inconsistent with how every other .drivers-list on
+   the site reads) but widens each column and, via flexbox +
+   justify-content: center instead of grid, centers the lone trailing
+   5th item on its own row instead of leaving it stuck flush left. --- */
+.drivers-list--wide-two {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-10) var(--space-10);
+  max-width: 860px;
+}
+
+.drivers-list--wide-two .drivers-list__item {
+  /* flex-grow: 0 — a lone item on a short last row must not stretch to
+     fill the leftover row width; every item stays a fixed, equal width. */
+  flex: 0 1 calc((100% - var(--space-10)) / 2);
+}
+
+/* --- Large faint corner icon — same visual idea as Executive Coaching's
+   .exec-mark / The 5 Ds' .d-panel__mark, reimplemented locally per the
+   per-page-CSS convention so "Who This Small Business Coach Works With"
+   doesn't read as a flat block of paragraphs. --- */
+.sb-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Quote block — this page's pull-quote treatment (used twice: the
+   "successful on paper" section and the 5 Ds section), same visual idea
+   as the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt
+   locally per the per-page-CSS convention rather than shared across
+   pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .sb-mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sb-mark {
+    font-size: 4.5rem;
+  }
+
+  .drivers-list--wide-two .drivers-list__item {
+    flex-basis: 100%;
+  }
+
+  .quote-block {
+    padding: var(--space-6);
+  }
+}
