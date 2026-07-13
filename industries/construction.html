@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Construction Industry Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Construction.md
+  - Nested one directory below the site root (industries/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Construction Business Coach & Consultant | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors provides construction business coaching and consulting for founder-led construction and trades businesses doing $2M–$150M. Build value, reduce owner dependency, and prepare for a successful exit.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Construction Business Coach & Consultant | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors provides construction business coaching and consulting for founder-led construction and trades businesses doing $2M–$150M. Build value, reduce owner dependency, and prepare for a successful exit.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/construction.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="../services/executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="../services/business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="../services/exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="../services/business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="../services/succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="../services/operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="../services/peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger is-active">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="construction.html" class="nav-menu__dropdown-link is-active">Construction</a>
+            <a href="home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../services/executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="../services/business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="../services/exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="../services/business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="../services/succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="../services/operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="../services/peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="construction.html" class="mobile-nav__sublink is-active">Construction</a>
+          <a href="home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section cn-hero" id="cn-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="cn-hero__content reveal">
+          <h1>Construction Business Coach & Consultant</h1>
+
+          <p>Construction and trades businesses are hard to build and harder to exit. Most are deeply owner-dependent, often project-concentrated, and undervalued relative to the work that went into them. Our construction business coaching and consulting helps owner-operators build the systems, leadership, and transferable value that changes that.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Talk to a Construction Business Consultant <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="btn btn--outline btn--large">
+              See How It Works <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... construction and trades owners
+         referencing specific outcomes") — reusing the homepage's existing
+         testimonials verbatim as a stand-in, the same resolution used on
+         the Services and Executive Coaching pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Construction Business Owners Are Saying</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         CONSTRUCTION BUSINESS CONSULTING BUILT AROUND YOUR OPERATION
+         ====================================================================== -->
+    <section class="section" id="consulting-built-around">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Construction Business Consulting Built Around Your Operation</h2>
+          <p>Every construction and trades business is different. Our construction business coaching and consulting starts with a thorough look at your specific operation, your numbers, and your goals.</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">Know what your construction business is worth and what's driving the multiple.</p>
+              <a href="../services/business-valuation.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">Build the plan for a successful transition long before you need one.</p>
+              <a href="../services/exit-planning.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">Build the systems that let your operation grow without you on every job.</p>
+              <a href="../services/operational-scaling-consulting.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Executive Coaching</h3>
+              <p class="drivers-list__text">Develop the leadership depth that allows the business to operate and grow beyond the owner.</p>
+              <a href="../services/executive-coaching.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Succession Planning</h3>
+              <p class="drivers-list__text">Navigate the bonding, licensing, and ownership transition questions specific to construction.</p>
+              <a href="../services/succession-planning.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         BUILT BY GRIT. RUN BY INSTINCT. READY FOR SOMETHING MORE
+         INTENTIONAL.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="built-by-grit">
+      <div class="container">
+
+        <div class="split-panel__grid">
+          <div class="split-panel__content">
+            <div class="about-section__header reveal">
+              <h2 data-heading-wipe>Built by Grit. Run by Instinct. Ready for Something More Intentional.</h2>
+              <p>Construction and trades business owners are among the most capable operators in the business world. They manage complex projects, coordinate large crews, navigate regulatory environments, and deliver physical results under constant pressure. They built their companies the hard way — relationship by relationship, project by project, reputation by reputation.</p>
+              <p>What most construction and trades owners haven't built is the infrastructure behind the operation. The documented processes, the leadership team, the systems that let the business run and win work without the owner on every job site. And without that infrastructure, the business is difficult to scale and very difficult to sell at the value it deserves.</p>
+              <p>Construction business coaching at Spearpoint Advisors is designed to bridge that gap — bringing the operational discipline and strategic thinking that allows construction and trades businesses to grow, protect their value, and eventually exit on their owner's terms.</p>
+            </div>
+          </div>
+          <div class="split-panel__visual reveal" aria-hidden="true">
+            <span class="split-panel__visual-icon"><i class="fa-solid fa-hard-hat"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT WE SEE INSIDE MOST CONSTRUCTION BUSINESSES
+         ====================================================================== -->
+    <section class="section" id="what-we-see">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What We See Inside Most Construction Businesses</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Owner Is on Every Job</h3>
+              <p class="drivers-list__text">In most construction businesses, the owner is the most reliable foreman, the best estimator, and the only one clients fully trust. That's a reputation asset — and an operational liability that limits growth and destroys transferable value.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Revenue Concentration in a Few Clients or Project Types</h3>
+              <p class="drivers-list__text">Many construction businesses win a large share of revenue from a handful of relationships or project categories. That concentration is a risk that buyers and lenders flag immediately.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-file-contract" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Bonding, Licensing, and Succession Complexity</h3>
+              <p class="drivers-list__text">Construction businesses often have bonding capacity, licenses, and certifications tied to the owner personally. Transferring those — or building the team capability that makes them transferable — is a critical piece of succession planning most owners haven't thought through.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Estimating and Bid Management Dependency</h3>
+              <p class="drivers-list__text">Estimating is often the highest-value and most owner-dependent function in a construction business. Building the team, systems, and process that allows the business to estimate and win work without the owner is one of the most impactful things construction consulting can address.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Workforce and Subcontractor Management</h3>
+              <p class="drivers-list__text">Finding, retaining, and managing skilled labor is one of the defining challenges of construction and trades today. The businesses that solve it build a competitive advantage.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Thin Margins and Cash Flow Volatility</h3>
+              <p class="drivers-list__text">Construction businesses often run on thinner margins than owners realize, with significant cash flow volatility tied to project timing and client payment schedules. Financial performance and predictability are key valuation drivers.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT MAKES CONSTRUCTION BUSINESSES HARD TO VALUE — AND HARDER TO
+         SELL
+         ====================================================================== -->
+    <section class="section section--charcoal" id="hard-to-value">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What Makes Construction Businesses Hard to Value — and Harder to Sell</h2>
+          <p>Most construction business owners assume their company is worth more than the market will pay. The gap between expectation and offer is almost always explained by the same handful of issues — and almost all of them are fixable with enough lead time.</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-file-signature" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Bonding Problem</h3>
+              <p class="drivers-list__text">Bonding capacity is often tied directly to the owner's personal financials, relationships, and credit history. When ownership changes, bonding doesn't automatically transfer — and a buyer who can't maintain your bonding capacity can't maintain your revenue. A construction business consultant who understands this dynamic will help you build a structure that survives the transition.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Estimating Problem</h3>
+              <p class="drivers-list__text">In most construction businesses, the owner is the estimating department. They know how to price work, where to be aggressive, and where to protect margin — and that knowledge lives entirely in their head. Buyers see this clearly. Businesses that have documented estimating processes, trained estimators, and a track record of winning work without the owner command significantly better terms.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Key-Man Problem</h3>
+              <p class="drivers-list__text">Whether it's the owner, a lead superintendent, or a project manager who holds the client relationships — key-man risk is one of the most common deal-killers in construction M&amp;A. Construction business coaching directly addresses this by building depth in the roles that matter most to a buyer.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Financial Clarity Problem</h3>
+              <p class="drivers-list__text">Many construction businesses have financials that are technically accurate but difficult to underwrite. Job costing that isn't clean, revenue recognition that's inconsistent, and EBITDA that varies wildly year to year all make a buyer nervous and a lender cautious. Getting your financials buyer-ready is one of the highest-return investments a construction owner can make in the years before a sale.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         50% OF OWNERS ARE FORCED OUT. MOST NEVER SAW IT COMING.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="the-5-ds">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>50% of Owners Are Forced Out. Most Never Saw It Coming.</h2>
+          <p>Death. Divorce. Disability. Disagreement. Disruption. These are the 5 Ds — and they account for half of all business exits. Not planned. Not on the owner's terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in the business they just lost control of.</p>
+          <p><strong>Death · Divorce · Disability · Disagreement · Disruption</strong></p>
+          <p>In construction, the stakes are especially high. When an owner is suddenly unavailable — through illness, a dispute, or an unexpected life event — the jobs still need to run, the crews still need to be managed, and the clients still need to be served. The businesses that survive those moments are the ones that were built to run without one person at the center of everything.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         A STRUCTURED PATH FOR CONSTRUCTION & TRADES OWNERS
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>A Structured Path for Construction & Trades Owners</h2>
+          <p>Our Discover–Prepare–Decide framework gives construction owners a clear progression from assessment to a successful transition.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <p class="process-step__gate">Gate 01</p>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__text">Assess the business: valuation, operational gaps, owner dependency, customer concentration, bonding and licensing considerations, and exit readiness.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <p class="process-step__gate">Gate 02</p>
+              <h3 class="process-step__title">Prepare</h3>
+              <p class="process-step__text">Build transferable value: reduce owner dependency on the job site and in the office, develop estimating and operations leadership, document processes, diversify revenue.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <p class="process-step__gate">Gate 03</p>
+              <h3 class="process-step__title">Decide</h3>
+              <p class="process-step__text">Choose your path from strength. With a prepared construction business, the options — strategic sale, management buyout, family succession — are better and so are the terms.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-8); margin-bottom: 0;">
+          <a href="../how-it-works.html" class="btn btn--outline btn--large">
+            See the Full Process <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         YOUR CONSTRUCTION BUSINESS CONSULTANT HAS LED OPERATIONS UNDER
+         PRESSURE
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>Your Construction Business Consultant Has Led Operations Under Pressure</h2>
+            <p>Mike Wolfgang's background isn't theoretical. Before founding Spearpoint Advisors, he served as a Marine Corps crew chief — an environment where operational discipline, crew coordination, and zero-failure execution are the baseline. He then led two business turnarounds in competitive, operationally complex industries, and spent four years as a certified EOS Implementer working directly with founder-led businesses to build the systems and leadership structures that let them scale.</p>
+            <p>He rebuilt his own business twice — once during Covid, once while caring for his father and battling cancer. He knows what it feels like when external forces arrive without warning and what separates the businesses that hold together from the ones that don't.</p>
+            <p><strong>What Mike Brings to Every Construction Engagement:</strong></p>
+            <p><em>Led Western Graphics to 8% growth while the industry contracted 20% post-recession — then executed a successful exit.</em></p>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Find Out What Your Construction Business Is Really Worth?</h2>
+          <p>Most construction owners are surprised by what they find. Let's start with a clear picture of where your business stands and what your options actually are.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="../services/business-valuation.html">Business Valuation</a>
+            <a href="../services/exit-planning.html">Exit Planning</a>
+            <a href="../services/operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="../services/executive-coaching.html">Executive Coaching</a>
+            <a href="../services/value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/construction.js"></script>
+
+</body>
+</html>

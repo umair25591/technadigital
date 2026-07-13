@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Manufacturing Industry Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Manufacturing.md
+  - Nested one directory below the site root (industries/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Manufacturing Business Consultant | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Manufacturing business owners face unique challenges when it comes to growth, leadership, and exit planning. Spearpoint Advisors provides manufacturing consulting and business.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Manufacturing Business Consultant | Spearpoint Advisors">
+  <meta property="og:description" content="Manufacturing business owners face unique challenges when it comes to growth, leadership, and exit planning. Spearpoint Advisors provides manufacturing consulting and business.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/manufacturing.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="../services/executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="../services/business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="../services/exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="../services/business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="../services/succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="../services/operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="../services/peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger is-active">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="manufacturing.html" class="nav-menu__dropdown-link is-active">Manufacturing</a>
+            <a href="marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../services/executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="../services/business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="../services/exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="../services/business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="../services/succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="../services/operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="../services/peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="manufacturing.html" class="mobile-nav__sublink is-active">Manufacturing</a>
+          <a href="marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section mf-hero" id="mf-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="mf-hero__content reveal">
+          <h1>Manufacturing Business Consultant & Coaching for Owner-Operators Who Want to Exit on Their Terms</h1>
+
+          <p>Manufacturing business owners carry more complexity than almost any other sector — workforce, equipment, inventory, margins, and customers all competing for attention at once. We provide manufacturing consulting and business coaching that helps owner-operators cut through that complexity, build real enterprise value, and position their company for whatever comes next.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Talk to a Manufacturing Business Consultant <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="btn btn--outline btn--large">
+              See How It Works <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... manufacturing owners referencing
+         specific outcomes") — reusing the homepage's existing testimonials
+         verbatim as a stand-in, the same resolution used on the Services
+         and Executive Coaching pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Manufacturing Business Owners Are Saying</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         MANUFACTURING CONSULTING THAT STARTS WITH YOUR OPERATION, NOT A
+         TEMPLATE
+         ====================================================================== -->
+    <section class="section" id="consulting-not-template">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Manufacturing Consulting That Starts with Your Operation, Not a Template</h2>
+          <p>Every manufacturing business is different. Different products, different customers, different workforce dynamics, different ownership structures. Our manufacturing consulting and business coaching doesn't start with a program — it starts with a thorough look at your specific business, your numbers, your goals, and the gaps between where you are and where you want to be.</p>
+          <p>Depending on what we find, our work with manufacturing clients typically spans some combination of the following:</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">Most manufacturing owners don't know what their business is actually worth on the open market — or what's driving the gap between their expectation and a buyer's offer. We establish a clear baseline and show you exactly what levers move the number.</p>
+              <a href="../services/business-valuation.html" class="drivers-list__link">Learn about Business Valuation <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">A planned exit in manufacturing takes years of preparation. We help you build that plan early — identifying the risks, closing the gaps, and positioning your business so you're choosing from strength when the time comes.</p>
+              <a href="../services/exit-planning.html" class="drivers-list__link">Learn about Exit Planning <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">We work systematically through the eight drivers of transferable value — leadership, operations, financials, customer diversification, and more — to increase what your business is worth and make it easier to sell, scale, or transition.</p>
+              <a href="../services/value-acceleration.html" class="drivers-list__link">Learn about Value Acceleration <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">We help manufacturing owners build the systems, documentation, and organizational structure that let the business grow and operate without everything running through one person.</p>
+              <a href="../services/operational-scaling-consulting.html" class="drivers-list__link">Learn about Operational Scaling <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Executive & Leadership Coaching</h3>
+              <p class="drivers-list__text">We work directly with manufacturing owners and their leadership teams to build the decision-making depth, accountability culture, and management capability the business needs at this stage of growth.</p>
+              <a href="../services/executive-coaching.html" class="drivers-list__link">Learn about Executive Coaching <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT WE SEE INSIDE MOST MANUFACTURING BUSINESSES
+         ====================================================================== -->
+    <section class="section section--charcoal" id="what-we-see">
+
+      <i class="fa-solid fa-industry mf-mark" aria-hidden="true"></i>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What We See Inside Most Manufacturing Businesses</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-link" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The owner holds everything together</h3>
+              <p class="drivers-list__text">In most manufacturing businesses, the owner is the connective tissue. They know the floor, the vendors, the customer relationships, and the workarounds that keep the operation running. When that knowledge lives only in one person's head, the business is fragile — and buyers know it.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Revenue sits in too few accounts</h3>
+              <p class="drivers-list__text">Customer concentration is one of the defining financial risks in manufacturing. When one or two accounts represent a large share of revenue, the entire business is exposed. It's one of the first things a buyer or lender flags — and one of the hardest issues to fix quickly.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-scale-unbalanced" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Margins are under permanent pressure</h3>
+              <p class="drivers-list__text">Raw material costs, labor, freight, energy, and competition don't let up. Many manufacturing businesses are doing solid revenue with thinner EBITDA than the owner realizes — and inconsistent margins are a significant drag on valuation when it comes time to sell or recapitalize.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The workforce challenge never stops</h3>
+              <p class="drivers-list__text">Attracting, retaining, and developing skilled workers is one of the defining operational challenges of manufacturing today. When key people leave, they often take institutional knowledge with them — because processes were never documented and training was never formalized.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Leadership doesn't run deep enough</h3>
+              <p class="drivers-list__text">Many manufacturing businesses have a strong owner and a capable floor team — and not much in between. The absence of a real leadership layer means every significant decision escalates to the owner, and the business can't grow, scale, or survive a transition without them.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Growth creates new problems</h3>
+              <p class="drivers-list__text">What worked at $3M doesn't work at $15M. Systems that were informal get stretched. Communication breaks downs. Quality becomes harder to control. The manufacturing businesses that scale successfully are the ones that build infrastructure ahead of growth — not behind it.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         MANUFACTURING IS ONE OF THE HARDEST BUSINESSES TO RUN. WE HELP YOU
+         MAKE IT ONE OF THE EASIEST TO EXIT.
+         ====================================================================== -->
+    <section class="section" id="hardest-to-run">
+      <div class="container">
+
+        <div class="split-panel__grid">
+          <div class="split-panel__content">
+            <div class="about-section__header reveal">
+              <h2 data-heading-wipe>Manufacturing Is One of the Hardest Businesses to Run. We Help You Make It One of the Easiest to Exit.</h2>
+              <p>Manufacturing owners are a different breed. You started with a process, a product, or a trade — something you could make, build, or produce better than anyone else. You figured out the sales. You figured out the workforce. You figured out how to survive recessions, supply chain disruptions, margin compression, and the thousand other things that push manufacturing businesses to the edge.</p>
+              <p>What you probably haven't figured out yet — and what almost no one in manufacturing does until they have to — is what happens next. What the business is actually worth. Who buys it, and why. What a buyer or partner sees when they look at your operation. Whether the value you've spent years building is actually protected, or whether it's concentrated in your hands, your relationships, and your institutional knowledge in a way that could quietly cost you millions when the time comes.</p>
+              <p>That's the conversation most manufacturing owners have never had. That's where we start.</p>
+            </div>
+          </div>
+          <div class="split-panel__visual reveal" aria-hidden="true">
+            <span class="split-panel__visual-icon"><i class="fa-solid fa-industry"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE MANUFACTURING SECTOR HAS MORE EXIT RISK THAN MOST OWNERS
+         REALIZE
+         ====================================================================== -->
+    <section class="section section--charcoal" id="the-5-ds">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>The Manufacturing Sector Has More Exit Risk Than Most Owners Realize</h2>
+          <p>In manufacturing, the stakes are especially high. Equipment, facilities, and workforce make the business capital-intensive. Revenue is often concentrated in a handful of key accounts. Operations typically run through the owner in ways that are hard to see from the inside but obvious to any outside buyer. And because manufacturing businesses take longer to sell and require more preparation than service businesses, the gap between a reactive exit and a planned one is measured in years — not months.</p>
+        </div>
+
+        <div class="risk-stats risk-stats--three reveal-stagger">
+          <div class="risk-stats__item">
+            <p class="risk-stats__value">50%</p>
+            <p class="risk-stats__label">of business owners are forced to exit due to the 5 Ds — Death · Divorce · Disability · Disagreement · Disruption — not by choice, not on their timeline.</p>
+          </div>
+          <div class="risk-stats__item">
+            <p class="risk-stats__value">80%</p>
+            <p class="risk-stats__label">of those owners had no plan in place when it happened.</p>
+          </div>
+          <div class="risk-stats__item">
+            <p class="risk-stats__value">80%</p>
+            <p class="risk-stats__label">of the average owner's net worth is tied up in their business.</p>
+          </div>
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-10); margin-bottom: 0;">
+          <p>Most manufacturing owners spend their careers building a business and very little time thinking about how to protect it. Spearpoint's manufacturing consulting work exists to close that gap — while there's still time to do something about it.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         HOW WE WORK WITH MANUFACTURING CLIENTS
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>How We Work with Manufacturing Clients</h2>
+          <p>We use the same structured, gate-based framework with every client. It gives manufacturing owners a clear progression from assessment to action — with defined outcomes at each stage, not open-ended consulting that drags on without results.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <p class="process-step__gate">Gate 01</p>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__text">We assess the full picture: business valuation, operational risks, leadership gaps, customer concentration, financial performance, and owner readiness. Manufacturing owners typically come out of this gate knowing more about their business — and its vulnerabilities — than they ever have before.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <p class="process-step__gate">Gate 02</p>
+              <h3 class="process-step__title">Prepare</h3>
+              <p class="process-step__text">We get to work. Reducing owner dependency. Diversifying the customer base. Documenting operations. Strengthening leadership. Improving EBITDA. Building the version of the business that a buyer, a partner, or a successor would actually want to take over. This is where manufacturing consulting turns into real, measurable change.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <p class="process-step__gate">Gate 03</p>
+              <h3 class="process-step__title">Decide</h3>
+              <p class="process-step__text">When the business is ready and the owner is ready, we evaluate the options: strategic sale, management buyout, family transition, ESOP, recapitalization, or continued growth. The difference between this stage and most exits is that you're choosing — not reacting. That's what preparation buys you.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-8); margin-bottom: 0;">
+          <a href="../how-it-works.html" class="btn btn--outline btn--large">
+            See the Full Process <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         HE'S RUN OPERATIONS UNDER REAL PRESSURE
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>He's Run Operations Under Real Pressure</h2>
+            <p>Mike Wolfgang's background isn't theoretical. Before founding Spearpoint Advisors, he served as a Marine Corps crew chief responsible for the maintenance and operation of complex aircraft systems — environments where process discipline, attention to detail, and operational accountability are non-negotiable. He then led two business turnarounds in competitive industries, serving as President of both Vivid Print Solutions and Western Graphics, and spent four years as a certified EOS Implementer working directly with founder-led businesses to build the systems and leadership structures that let them scale.</p>
+            <p>He rebuilt his own business twice — once during Covid, once while caring for his father and battling cancer. He brings that experience into every manufacturing consulting and coaching engagement: an understanding of what it feels like when external forces arrive without warning, and a clear conviction that preparation is the only thing that gives a business owner real options.</p>
+            <p><em>Led Western Graphics to 8% growth while the industry contracted 20% post-recession — then executed a successful exit.</em></p>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Most Manufacturing Owners Wait Too Long to Have This Conversation.</h2>
+          <p>The earlier you understand what your business is worth, what's at risk, and what it would take to protect it — the more options you have. We start with a straightforward conversation about your operation, your goals, and whether Spearpoint is the right fit to help you get there. No pitch. No pressure.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="../services/business-valuation.html">Business Valuation</a>
+            <a href="../services/exit-planning.html">Exit Planning</a>
+            <a href="../services/operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="../services/executive-coaching.html">Executive Coaching</a>
+            <a href="../services/value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/manufacturing.js"></script>
+
+</body>
+</html>

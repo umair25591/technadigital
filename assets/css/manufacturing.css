@@ -1,0 +1,120 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Manufacturing Industry Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text (both
+   drivers-lists on this page have an even item count — 5 with links, 6
+   plain — so the shared 2-column layout works as-is), .risk-stats/
+   .risk-stats__item, .split-panel__grid/__content/__visual/__visual-icon,
+   .process-grid/.process-step (base 3-col layout, used as-is),
+   .founder-section__grid/__image-wrap/__image/__content,
+   .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
+   .testimonial-card, .section-decor, .cta-section, .btn. NOTE: unlike
+   most other pages, this md has no italic pull-quote in its 5 Ds section,
+   so there's no .quote-block on this page.
+   ========================================================================== */
+
+/* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
+   pair this page's md copy actually calls for. --- */
+.mf-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.mf-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mf-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.mf-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.mf-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Inline arrow link — each service item's own "Learn about X" link in
+   "Manufacturing Consulting That Starts with Your Operation, Not a
+   Template". .drivers-list doesn't carry a link slot in style.css since
+   its other uses (site-wide "what we offer" lists) don't need one — this
+   page's version does. Same component as professional-services.css's/
+   construction.css's/home-services.css's .drivers-list__link, rebuilt
+   locally per the per-page-CSS convention. --- */
+.drivers-list__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+  transition: gap var(--transition-fast);
+}
+
+.drivers-list__link:hover {
+  gap: var(--space-2);
+}
+
+/* --- Large faint corner icon — same visual idea as Executive Coaching's
+   .exec-mark / The 5 Ds' .d-panel__mark, reimplemented locally per the
+   per-page-CSS convention so "What We See Inside Most Manufacturing
+   Businesses" doesn't read as a flat block. --- */
+.mf-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Three-stat variant — style.css's .risk-stats is a 4-column grid
+   (built for a 4-item stat row); "The Manufacturing Sector Has More Exit
+   Risk" only has 3 (50/80/80), so it would sit flush left instead of
+   centered under its heading. Same fix as the-5-ds.css's/for-ceos.css's
+   .risk-stats--three, rebuilt locally per the per-page-CSS convention. --- */
+.risk-stats--three {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .mf-mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mf-mark {
+    font-size: 4.5rem;
+  }
+
+  .risk-stats--three {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+}

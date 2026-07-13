@@ -1,0 +1,115 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Construction Industry Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text (both
+   the 5-item linked list and the plain 6-item / 4-item lists below use
+   the shared 2-column layout as-is — no column-count override needed,
+   unlike some other pages, since every drivers-list on this page already
+   has an even item count), .split-panel__grid/__content/__visual/
+   __visual-icon, .process-grid/.process-step (base 3-col layout — this
+   page uses it as-is, no override needed), .founder-section__grid/
+   __image-wrap/__image/__content, .credentials/.credential-tag,
+   .testimonials-section/.testimonials-slider/.testimonial-card,
+   .section-decor, .cta-section, .btn.
+   ========================================================================== */
+
+/* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
+   pair this page's md copy actually calls for. --- */
+.cn-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.cn-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cn-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.cn-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.cn-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Inline arrow link — each service item's own "Learn more" link in
+   "Construction Business Consulting Built Around Your Operation".
+   .drivers-list doesn't carry a link slot in style.css since its other
+   uses (site-wide "what we offer" lists) don't need one — this page's
+   version does. Same component as executive-coaching.css's/
+   professional-services.css's .drivers-list__link, rebuilt locally per
+   the per-page-CSS convention. --- */
+.drivers-list__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+  transition: gap var(--transition-fast);
+}
+
+.drivers-list__link:hover {
+  gap: var(--space-2);
+}
+
+/* --- Quote block — this page's pull-quote treatment, same visual idea as
+   the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt locally
+   per the per-page-CSS convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .quote-block {
+    padding: var(--space-6);
+  }
+}

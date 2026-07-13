@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Marketing Agency Industry Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Marketing.md
+  - Nested one directory below the site root (industries/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Business Coach & Advisor for Marketing Agency Owners | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors provides business coaching for digital marketing agency owners doing $2M–$150M. Leadership coaching, exit planning, and value acceleration for founder-led marketing agencies.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Business Coach & Advisor for Marketing Agency Owners | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors provides business coaching for digital marketing agency owners doing $2M–$150M. Leadership coaching, exit planning, and value acceleration for founder-led marketing agencies.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/marketing.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="../services/executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="../services/business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="../services/exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="../services/business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="../services/succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="../services/operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="../services/peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger is-active">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="professional-services.html" class="nav-menu__dropdown-link">Professional Services</a>
+            <a href="construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="marketing.html" class="nav-menu__dropdown-link is-active">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../services/executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="../services/business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="../services/exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="../services/business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="../services/succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="../services/operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="../services/peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="professional-services.html" class="mobile-nav__sublink">Professional Services</a>
+          <a href="construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="marketing.html" class="mobile-nav__sublink is-active">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section mk-hero" id="mk-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="mk-hero__content reveal">
+          <h1>Digital Marketing Agency Coaching for Founders</h1>
+
+          <p>Marketing agency owners are expert at building their clients' businesses. They're often significantly less intentional about building their own. Our digital marketing agency coaching and leadership advisory helps agency founders build the systems, leadership, and transferable value that turns a founder-dependent agency into a business worth owning — and worth selling.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Talk to a Marketing Agency Advisor <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="btn btn--outline btn--large">
+              See How It Works <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... agency founders referencing
+         specific outcomes") — reusing the homepage's existing testimonials
+         verbatim as a stand-in, the same resolution used on the Services
+         and Executive Coaching pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Marketing Agency Founders Are Saying</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         AGENCY COACHING & ADVISORY BUILT AROUND YOUR SPECIFIC BUSINESS
+         ====================================================================== -->
+    <section class="section" id="agency-coaching-services">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Agency Coaching & Advisory Built Around Your Specific Business</h2>
+          <p>Our digital marketing agency coaching and leadership advisory starts with understanding your specific agency — your clients, your team, your revenue model, and your goals.</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">Know what your agency is worth on the open market and what a buyer would actually pay.</p>
+              <a href="../services/business-valuation.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">Build the plan for a successful agency transition long before you need it.</p>
+              <a href="../services/exit-planning.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Leadership Coaching</h3>
+              <p class="drivers-list__text">Develop the agency leadership team that can run the business and manage client relationships without the founder.</p>
+              <a href="../services/executive-coaching.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">Build the playbooks, processes, and systems that make your agency replicable, scalable, and transferable.</p>
+              <a href="../services/operational-scaling-consulting.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">Build the eight drivers of transferable value specific to marketing agencies.</p>
+              <a href="../services/value-acceleration.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHO THIS DIGITAL MARKETING AGENCY COACH WORKS WITH
+         ====================================================================== -->
+    <section class="section section--charcoal" id="who-this-is-for">
+
+      <i class="fa-solid fa-crosshairs mk-mark" aria-hidden="true"></i>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Who This Digital Marketing Agency Coach Works With</h2>
+          <p>This work is designed for marketing agency founders doing $2M–$150M in revenue — the owners who have built a real client base, a real team, and real revenue, but who are still the person the entire agency depends on to function at its highest level.</p>
+          <p>It's for the agency founder whose best clients call their cell directly. The one whose team is talented but whose organizational structure is informal enough that nobody is quite sure who owns what. The one who has been thinking about stepping back, bringing on a partner, or eventually selling — but hasn't yet had a serious conversation about what the agency is actually worth or what a buyer would require.</p>
+          <p>It is not for the freelancer or solopreneur who is still building their first client base. Digital marketing agency coaching at Spearpoint is focused on founders who have already proven the model and are ready to build the infrastructure that makes it scalable and transferable.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         SMART ENOUGH TO HELP EVERYONE ELSE GROW. TOO BUSY TO DO IT FOR
+         THEMSELVES.
+         ====================================================================== -->
+    <section class="section" id="smart-enough">
+      <div class="container">
+
+        <div class="split-panel__grid">
+          <div class="split-panel__content">
+            <div class="about-section__header reveal">
+              <h2 data-heading-wipe>Smart Enough to Help Everyone Else Grow. Too Busy to Do It for Themselves.</h2>
+              <p>Marketing agency owners are among the most commercially sophisticated founders we work with. They understand positioning, they understand value proposition, they understand customer acquisition. They spend their days helping clients build brands and generate revenue — and they're typically very good at it.</p>
+              <p>The irony is that most marketing agencies are among the most difficult businesses to exit successfully. Clients are often loyal to specific team members or the founder personally. Revenue can be volatile. Talent is expensive and mobile. And the creative, fast-moving culture of most agencies makes documentation and operational infrastructure feel like they don't belong.</p>
+              <p>Leadership coaching for marketing agencies at Spearpoint Advisors helps agency founders bring the same strategic clarity to their own business that they bring to their clients'.</p>
+            </div>
+          </div>
+          <div class="split-panel__visual reveal" aria-hidden="true">
+            <span class="split-panel__visual-icon"><i class="fa-solid fa-bullhorn"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT WE SEE INSIDE MOST MARKETING AGENCIES
+         ====================================================================== -->
+    <section class="section section--charcoal" id="what-we-see">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What We See Inside Most Marketing Agencies</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Founder-Dependent Client Relationships</h3>
+              <p class="drivers-list__text">In most agencies, the founder is the primary point of contact for the most important clients. When those relationships are personal rather than institutional, they don't transfer — and the agency's value walks out the door with the founder.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Revenue Volatility and Client Concentration</h3>
+              <p class="drivers-list__text">Agency revenue is notoriously lumpy. One large client leaving can significantly affect the business. Building recurring revenue, diversifying the client base, and smoothing revenue volatility are among the most important things a digital marketing agency coach can help with.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Talent Retention and Team Building</h3>
+              <p class="drivers-list__text">Marketing agencies run on people — creative, technical, and strategic talent that is in high demand. Building a culture and leadership team that retains and develops that talent is a persistent challenge that affects everything from client service quality to valuation.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">No Documented Processes or Playbooks</h3>
+              <p class="drivers-list__text">Most agencies operate on instinct, tribal knowledge, and the founder's judgment. Work gets done but it's hard to replicate consistently, hard to train people on, and hard to quality-control at scale.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-tags" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Pricing and Profitability</h3>
+              <p class="drivers-list__text">Agencies often undercharge for their expertise. Service line profitability, pricing strategy, and margin management are areas where most agencies have significant room to improve — and significant valuation upside when they do.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-crown" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The Founder as the Brand</h3>
+              <p class="drivers-list__text">Many agency founders have built significant personal brands — great for new business but a liability when it comes to valuation. If the agency is the founder, the agency doesn't transfer without them.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         THE METRICS THAT ACTUALLY DRIVE MARKETING AGENCY VALUE
+         Accordion — click to expand each metric, same technique as
+         professional-services.js's practice-type accordion.
+         ====================================================================== -->
+    <section class="section" id="metrics-that-drive-value">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>The Metrics That Actually Drive Marketing Agency Value</h2>
+          <p>Most agency founders track revenue and headcount. Buyers track something different. Understanding the metrics that determine what your agency is actually worth — and managing toward them deliberately — is one of the most important things digital marketing agency coaching can accomplish.</p>
+        </div>
+
+        <div class="accordion-blocks">
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="metric-utilization">
+              <span class="accordion-block__icon"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Utilization Rates</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="metric-utilization">
+              <div class="accordion-block__content-inner">
+                <p>Utilization rate — the percentage of billable hours your team actually bills relative to their available capacity — is one of the most direct indicators of agency operational health. Most agencies are underutilizing their teams in ways the founder doesn't fully see, because time tracking is informal and project scoping is imprecise. A well-run agency targets 70–80% billable utilization across its team. Every percentage point of improvement goes directly to the bottom line.</p>
+                <p>Leadership coaching for marketing agencies addresses utilization at the structural level — building the project management systems, scoping disciplines, and capacity planning processes that allow the agency to understand and manage its most important resource: its people's time.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="metric-cpa">
+              <span class="accordion-block__icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Cost Per Acquisition (CPA)</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="metric-cpa">
+              <div class="accordion-block__content-inner">
+                <p>Most marketing agencies are expert at optimizing CPA for their clients. Very few have calculated their own. What does it actually cost your agency to win a new client — in time, marketing spend, proposal effort, and leadership bandwidth? For most agencies, the answer is significantly higher than the founder estimates, because the cost of the founder's time is rarely included in the calculation.</p>
+                <p>Understanding your agency's CPA creates the foundation for smarter business development decisions — which channels are worth investing in, which client types are worth pursuing, and what minimum contract value justifies the cost of acquisition. It's also a metric that sophisticated buyers will ask about, because it tells them whether the agency's growth is efficient or expensive.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="metric-clv">
+              <span class="accordion-block__icon"><i class="fa-solid fa-infinity" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Customer Lifetime Value (CLV)</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="metric-clv">
+              <div class="accordion-block__content-inner">
+                <p>CLV is the single most important metric for understanding the quality of an agency's client base. A client who stays for five years and expands their engagement over time is worth dramatically more than one who runs a single campaign and leaves — even if the initial contract values are similar.</p>
+                <p>Most marketing agencies don't calculate CLV systematically — which means they don't know which client types, service lines, or acquisition channels are producing their most valuable long-term relationships. Digital marketing agency coaching helps founders build the reporting infrastructure to understand CLV by segment and make business development and service design decisions that maximize it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="metric-revenue-per-employee">
+              <span class="accordion-block__icon"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Revenue Per Employee</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="metric-revenue-per-employee">
+              <div class="accordion-block__content-inner">
+                <p>Revenue per employee is a useful proxy for agency efficiency and pricing power. High-performing agencies in the $2M–$150M range typically generate $150,000–$250,000 or more in revenue per employee. Agencies below that range are usually either underpricing their services, underutilizing their team, or carrying overhead that isn't generating revenue. Improving this metric — through better pricing, stronger utilization, or leaner operations — has a direct and significant impact on EBITDA and, by extension, valuation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="metric-recurring-revenue">
+              <span class="accordion-block__icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Recurring Revenue as a Percentage of Total Revenue</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="metric-recurring-revenue">
+              <div class="accordion-block__content-inner">
+                <p>This is the metric buyers care about most. An agency where 60–70% of revenue comes from ongoing retainers and long-term contracts is worth significantly more than one of the same size where most revenue comes from project work. Recurring revenue is predictable, transferable, and reduces the risk profile that drives valuation multiples. Leadership coaching for marketing agencies consistently prioritizes the shift from project revenue to retainer revenue — not just because it improves valuation, but because it makes the business easier and more predictable to run.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         BUILDING THE ORGANIZATIONAL INFRASTRUCTURE THAT SETS AGENCY
+         FOUNDERS FREE
+         Accordion — independent from the metrics accordion above.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="building-infrastructure">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Building the Organizational Infrastructure That Sets Agency Founders Free</h2>
+          <p>The most common pattern we see in marketing agencies at the growth stage is a founder who is simultaneously the best strategist, the primary business developer, the key client relationship manager, and the final decision-maker on creative direction. That combination of roles isn't sustainable — and it's not valuable to a buyer.</p>
+        </div>
+
+        <div class="accordion-blocks">
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="infra-org-chart">
+              <span class="accordion-block__icon"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Building an Organizational Chart That Actually Works</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="infra-org-chart">
+              <div class="accordion-block__content-inner">
+                <p>Most marketing agencies have an informal organizational structure that exists in the founder's head rather than on paper. Everyone knows roughly who does what, but reporting lines are unclear, decision rights are undefined, and the structure shifts depending on what the founder decides to get involved in on any given day.</p>
+                <p>Digital marketing agency coaching starts with building a real organizational chart — one that defines roles clearly, establishes reporting relationships explicitly, and creates the accountability structure that allows the agency to function without the founder in the middle of every decision. This isn't bureaucracy. It's the infrastructure that allows talented people to do their best work without constantly waiting for direction.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="infra-account-managers">
+              <span class="accordion-block__icon"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Developing Account Managers Who Own Client Relationships</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="infra-account-managers">
+              <div class="accordion-block__content-inner">
+                <p>The single highest-leverage structural change most marketing agencies can make is developing a layer of account managers who can own client relationships independently — who clients call instead of the founder, who run the quarterly business reviews, who identify expansion opportunities, and who hold the relationship together even when the founder isn't involved.</p>
+                <p>This transition doesn't happen by accident. It requires deliberate hiring, structured onboarding, ongoing leadership development, and a gradual and intentional transfer of client relationships from founder to account manager. Leadership coaching for marketing agencies builds the process for making that transfer without losing clients in the process.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="infra-sops">
+              <span class="accordion-block__icon"><i class="fa-solid fa-list-check" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Creating Standard Operating Procedures (SOPs) That Make Quality Replicable</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="infra-sops">
+              <div class="accordion-block__content-inner">
+                <p>Most marketing agencies deliver excellent work when the founder is involved and inconsistent work when they're not — because the standards, processes, and quality controls that produce excellent work exist in the founder's judgment rather than in documented systems.</p>
+                <p>SOPs aren't about removing creativity from agency work. They're about making the non-creative parts of agency delivery — client onboarding, reporting, communication cadence, revision processes, project management — consistent and replicable across every engagement. Agencies with strong SOPs train new team members faster, deliver more consistently, and scale more cleanly. They're also significantly more attractive to buyers, because a buyer can see that the quality of the agency's work doesn't depend on the founder being present.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-block reveal">
+            <button class="accordion-block__trigger" aria-expanded="false" aria-controls="infra-churn">
+              <span class="accordion-block__icon"><i class="fa-solid fa-heart-circle-check" aria-hidden="true"></i></span>
+              <h3 class="accordion-block__title">Reducing Client Churn by Converting Projects into Partnerships</h3>
+              <i class="fa-solid fa-chevron-down accordion-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="accordion-block__content" id="infra-churn">
+              <div class="accordion-block__content-inner">
+                <p>One of the most impactful things digital marketing agency coaching addresses is the shift from transactional client relationships to long-term partnerships. Most agency client churn isn't caused by poor work — it's caused by poor relationship management. Clients who don't understand the value being delivered, don't feel connected to the agency's strategic thinking, or don't have a clear roadmap for what comes next are clients who are always one budget review away from leaving.</p>
+                <p>Building the account management cadence, reporting infrastructure, and strategic review processes that make clients feel genuinely partnered with the agency — rather than just served by it — is one of the most direct paths to improving CLV, reducing churn, and building the recurring revenue base that drives valuation. An agency that can demonstrate low churn and high CLV is an agency that commands a meaningfully higher multiple when the time comes to sell.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT STRONG AGENCY ROI ACTUALLY LOOKS LIKE
+         ====================================================================== -->
+    <section class="section" id="agency-roi">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What Strong Agency ROI Actually Looks Like</h2>
+          <p>Most agency founders think about ROI in terms of what they deliver to clients. A digital marketing agency coach helps founders apply that same rigor to their own business — measuring the return on every investment of time, money, and leadership bandwidth against the outcomes that matter most.</p>
+        </div>
+
+        <div class="drivers-list drivers-list--three reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-user-minus" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The ROI of Reducing Owner Dependency</h3>
+              <p class="drivers-list__text">Every hour the founder spends on work that an account manager or senior team member could own is an hour not spent on business development, strategic leadership, or the high-value activities that only the founder can do. Quantifying that cost — and building the organizational structure that eliminates it — is one of the clearest ROI calculations in agency leadership coaching.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The ROI of Moving from Project to Retainer Revenue</h3>
+              <p class="drivers-list__text">The financial impact of shifting even 20% of project revenue to retainer revenue is significant — in cash flow predictability, in team utilization, in the founder's ability to plan, and in the multiple a buyer will pay. Leadership coaching for marketing agencies helps founders build the service structure and client conversation framework that makes this shift possible without disrupting existing client relationships.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">The ROI of Improving Utilization by 10 Points</h3>
+              <p class="drivers-list__text">A 10-percentage-point improvement in team utilization — from 60% to 70%, for example — across a 10-person agency generating $150,000 per employee in revenue represents roughly $150,000 in additional billable capacity without adding a single hire. That kind of improvement goes directly to EBITDA — and EBITDA is the number that drives valuation. Digital marketing agency coaching that improves utilization pays for itself many times over.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         50% OF OWNERS ARE FORCED OUT. MOST NEVER SAW IT COMING.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="the-5-ds">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>50% of Owners Are Forced Out. Most Never Saw It Coming.</h2>
+          <p>Death. Divorce. Disability. Disagreement. Disruption. These are the 5 Ds — and they account for half of all business exits. Not planned. Not on the owner's terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in the business they just lost control of.</p>
+          <p><strong>Death · Divorce · Disability · Disagreement · Disruption</strong></p>
+          <p>For marketing agency founders, the 5 Ds risk is compounded by the nature of the business. When an agency's client relationships, creative direction, and business development all run through the founder, a single unexpected event doesn't just slow the business — it can trigger client departures, team instability, and a rapid erosion of the value that took years to build. Leadership coaching for marketing agencies that is connected to owner protection and exit readiness isn't optional. It's the most important structural investment an agency founder can make.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         A STRUCTURED PATH FOR MARKETING AGENCY OWNERS
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>A Structured Path for Marketing Agency Owners</h2>
+          <p>Our Discover–Prepare–Decide framework gives marketing agency owners a clear progression from assessment to a successful transition.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <p class="process-step__gate">Gate 01</p>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__text">Assess the agency: valuation, client concentration, founder dependency, team capability, revenue quality, utilization rates, CLV by segment, and exit readiness. Know exactly where your agency stands.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <p class="process-step__gate">Gate 02</p>
+              <h3 class="process-step__title">Prepare</h3>
+              <p class="process-step__text">Build institutional client relationships, document SOPs, develop account management leadership, improve pricing and margins, shift project revenue to retainer revenue, optimize utilization rates and CPA.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <p class="process-step__gate">Gate 03</p>
+              <h3 class="process-step__title">Decide</h3>
+              <p class="process-step__text">A prepared agency — with institutional client relationships, documented processes, strong recurring revenue, and a leadership team that doesn't depend on the founder — is dramatically more valuable than a founder-dependent one. When you're prepared, the terms reflect that.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-8); margin-bottom: 0;">
+          <a href="../how-it-works.html" class="btn btn--outline btn--large">
+            See the Full Process <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         YOUR MARKETING AGENCY ADVISOR HAS BUILT AND EXITED UNDER REAL
+         PRESSURE
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>Your Marketing Agency Advisor Has Built and Exited Under Real Pressure</h2>
+            <p>Mike Wolfgang isn't a digital marketing agency coach who has only ever observed agency dynamics from the outside. Before founding Spearpoint Advisors, he led two business turnarounds in competitive industries — building operational systems, leadership teams, and financial discipline under genuine pressure — and spent four years as a certified EOS Implementer working directly inside founder-led businesses to build the organizational infrastructure that allows them to scale.</p>
+            <p>He rebuilt his own business twice — once during Covid, once while caring for his father and battling cancer. He knows what it feels like when the business depends too heavily on one person and that person is suddenly unavailable. And he knows what separates the businesses that survived those moments from the ones that didn't.</p>
+            <p><strong>What Mike Brings to Every Agency Engagement:</strong></p>
+            <p><em>Led Western Graphics to 8% growth while the industry contracted 20% post-recession — then executed a successful exit.</em></p>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Apply the Same Strategic Thinking to Your Agency That You Apply to Your Clients?</h2>
+          <p>One conversation is enough to figure out where your agency stands and what it would take to build something worth owning for years — and worth selling when you're ready.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="../services/business-valuation.html">Business Valuation</a>
+            <a href="../services/exit-planning.html">Exit Planning</a>
+            <a href="../services/operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="../services/executive-coaching.html">Executive Coaching</a>
+            <a href="../services/value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/marketing.js"></script>
+
+</body>
+</html>

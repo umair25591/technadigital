@@ -1,0 +1,239 @@
+/* ==========================================================================
+   SPEARPOINT ADVISORS — Home Services Industry Page Stylesheet
+   ==========================================================================
+   Page-specific rules only. Loaded after style.css, so it can rely on all
+   design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
+   --transition-*) and shared components already defined there.
+
+   Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
+   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
+   .drivers-list__number/.drivers-list__label/.drivers-list__text (every
+   drivers-list on this page has an even item count — 5 with links, 6
+   plain — so the shared 2-column layout works as-is, no column-count
+   override needed), .split-panel__grid/__content/__visual/__visual-icon,
+   .process-grid/.process-step (base 3-col layout, used as-is),
+   .founder-section__grid/__image-wrap/__image/__content,
+   .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
+   .testimonial-card, .section-decor, .cta-section, .btn.
+   ========================================================================== */
+
+/* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
+   pair this page's md copy actually calls for. --- */
+.hs-hero {
+  padding-top: calc(var(--nav-height) + var(--space-12));
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.hs-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hs-hero__content h1 {
+  margin-bottom: var(--space-6);
+}
+
+.hs-hero__content p {
+  margin: 0 auto var(--space-8);
+}
+
+.hs-hero__content .hero__cta-group {
+  justify-content: center;
+}
+
+/* --- Large faint corner icon — same visual idea as Executive Coaching's
+   .exec-mark / The 5 Ds' .d-panel__mark, reimplemented locally per the
+   per-page-CSS convention so "Who This Home Service Business Coach Works
+   With" doesn't read as a flat block of paragraphs. --- */
+.hs-mark {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(232, 83, 14, 0.07);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+/* --- Inline arrow link — each service item's own "Learn more" link in
+   "Home Services Consulting Built Around Your Operation". .drivers-list
+   doesn't carry a link slot in style.css since its other uses (site-wide
+   "what we offer" lists) don't need one — this page's version does. Same
+   component as professional-services.css's/construction.css's
+   .drivers-list__link, rebuilt locally per the per-page-CSS convention. --- */
+.drivers-list__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+  transition: gap var(--transition-fast);
+}
+
+.drivers-list__link:hover {
+  gap: var(--space-2);
+}
+
+/* --- Accordion blocks — "What Home Services Business Coaching Looks Like
+   by Trade" has 6 sub-sections, each 2 full paragraphs — the same
+   essay-length, click-to-expand shape as professional-services.css's
+   .practice-blocks--accordion (built after user feedback that a dense
+   always-visible column of that much text read poorly). Reimplemented
+   locally under a more generic name (this isn't "practice types", it's
+   "trades") per the per-page-CSS convention rather than shared across
+   pages. Same click-toggle + max-height-from-scrollHeight technique,
+   driven by home-services.js. --- */
+.accordion-blocks {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.accordion-block + .accordion-block {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.accordion-block__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.accordion-block__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-md);
+}
+
+.accordion-block__title {
+  flex: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.accordion-block__trigger:hover .accordion-block__title {
+  color: var(--color-orange);
+}
+
+.accordion-block__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-4);
+  font-size: var(--fs-sm);
+  transition: transform var(--transition-base);
+}
+
+.accordion-block.is-open .accordion-block__chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-block__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.accordion-block__content-inner {
+  padding-top: var(--space-5);
+}
+
+.accordion-block__content p {
+  max-width: none; /* style.css's global p { max-width: 65ch } would cap
+    this well short of the accordion's own 820px width — override it */
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.accordion-block__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Quote block — this page's pull-quote treatment, same visual idea as
+   the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt locally
+   per the per-page-CSS convention rather than shared across pages. --- */
+.quote-block {
+  position: relative;
+  max-width: 760px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hs-mark {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hs-mark {
+    font-size: 4.5rem;
+  }
+
+  .accordion-block__trigger {
+    gap: var(--space-3);
+  }
+
+  .accordion-block__title {
+    font-size: var(--fs-base);
+  }
+
+  .quote-block {
+    padding: var(--space-6);
+  }
+}
