@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SPEARPOINT ADVISORS — Professional Services Industry Page
+  ============================================================================
+  WordPress Integration Notes:
+  - Replace <header> with: <?php get_header(); ?>
+  - Replace <footer> with: <?php get_footer(); ?>
+  - Content sourced verbatim from md-files/Professional Services.md
+  - Nested one directory below the site root (industries/) — every internal
+    link and asset reference in this file is prefixed with ../
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title Tag -->
+  <title>Business Coaching & Consulting for Professional Services Firms | Spearpoint Advisors</title>
+
+  <!-- SEO: Meta Description -->
+  <meta name="description" content="Spearpoint Advisors provides professional services consulting and business coaching for founder-led professional services firms doing $2M–$150M.">
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:title" content="Business Coaching & Consulting for Professional Services Firms | Spearpoint Advisors">
+  <meta property="og:description" content="Spearpoint Advisors provides professional services consulting and business coaching for founder-led professional services firms doing $2M–$150M.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/images/favicon.png" type="image/png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome — Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/professional-services.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       THREE.JS CANVAS — Background particle effect
+       ========================================================================== -->
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ==========================================================================
+       NAVIGATION — Fixed/Sticky Header
+       WordPress: Replace with get_header() and wp_nav_menu()
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+        <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-menu__link">Home</a>
+
+        <div class="nav-menu__item">
+          <a href="../about.html" class="nav-menu__link nav-menu__trigger">
+            About <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../about/the-5-ds.html" class="nav-menu__dropdown-link">The 5 D's</a>
+            <a href="../about/testimonials.html" class="nav-menu__dropdown-link">Testimonial</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../services.html" class="nav-menu__link nav-menu__trigger">
+            Services <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown nav-menu__dropdown--grid">
+            <a href="../services/executive-coaching.html" class="nav-menu__dropdown-link">Executive Coaching</a>
+            <a href="../services/business-growth-consulting.html" class="nav-menu__dropdown-link">Business Growth Consulting</a>
+            <a href="../services/exit-planning.html" class="nav-menu__dropdown-link">Exit Planning</a>
+            <a href="../services/business-valuation.html" class="nav-menu__dropdown-link">Business Valuation</a>
+            <a href="../services/succession-planning.html" class="nav-menu__dropdown-link">Succession Planning</a>
+            <a href="../services/operational-scaling-consulting.html" class="nav-menu__dropdown-link">Operational Scaling Consulting</a>
+            <a href="../services/peer-advisory-groups.html" class="nav-menu__dropdown-link">Peer Advisory Groups</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../audience.html" class="nav-menu__link nav-menu__trigger">
+            Audience <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="../audience/for-founders.html" class="nav-menu__dropdown-link">For Founders</a>
+            <a href="../audience/for-ceos.html" class="nav-menu__dropdown-link">For CEOs</a>
+            <a href="../audience/for-small-business-owners.html" class="nav-menu__dropdown-link">For Small Business Owners</a>
+          </div>
+        </div>
+
+        <div class="nav-menu__item">
+          <a href="../industries.html" class="nav-menu__link nav-menu__trigger is-active">
+            Industries <i class="fa-solid fa-chevron-down nav-menu__caret" aria-hidden="true"></i>
+          </a>
+          <div class="nav-menu__dropdown">
+            <a href="professional-services.html" class="nav-menu__dropdown-link is-active">Professional Services</a>
+            <a href="construction.html" class="nav-menu__dropdown-link">Construction</a>
+            <a href="home-services.html" class="nav-menu__dropdown-link">Home Services</a>
+            <a href="manufacturing.html" class="nav-menu__dropdown-link">Manufacturing</a>
+            <a href="marketing.html" class="nav-menu__dropdown-link">Marketing</a>
+          </div>
+        </div>
+
+        <a href="../how-it-works.html" class="nav-menu__link">How it Works</a>
+
+        <a href="../index.html#contact" class="btn btn--primary">
+          Schedule a Call <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="../index.html" class="mobile-nav__link">Home</a>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          About <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../about/the-5-ds.html" class="mobile-nav__sublink">The 5 D's</a>
+          <a href="../about/testimonials.html" class="mobile-nav__sublink">Testimonial</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Services <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../services/executive-coaching.html" class="mobile-nav__sublink">Executive Coaching</a>
+          <a href="../services/business-growth-consulting.html" class="mobile-nav__sublink">Business Growth Consulting</a>
+          <a href="../services/exit-planning.html" class="mobile-nav__sublink">Exit Planning</a>
+          <a href="../services/business-valuation.html" class="mobile-nav__sublink">Business Valuation</a>
+          <a href="../services/succession-planning.html" class="mobile-nav__sublink">Succession Planning</a>
+          <a href="../services/operational-scaling-consulting.html" class="mobile-nav__sublink">Operational Scaling Consulting</a>
+          <a href="../services/peer-advisory-groups.html" class="mobile-nav__sublink">Peer Advisory Groups</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Audience <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="../audience/for-founders.html" class="mobile-nav__sublink">For Founders</a>
+          <a href="../audience/for-ceos.html" class="mobile-nav__sublink">For CEOs</a>
+          <a href="../audience/for-small-business-owners.html" class="mobile-nav__sublink">For Small Business Owners</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav__item">
+        <button class="mobile-nav__link mobile-nav__trigger" aria-expanded="false">
+          Industries <i class="fa-solid fa-chevron-down mobile-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-nav__submenu">
+          <a href="professional-services.html" class="mobile-nav__sublink is-active">Professional Services</a>
+          <a href="construction.html" class="mobile-nav__sublink">Construction</a>
+          <a href="home-services.html" class="mobile-nav__sublink">Home Services</a>
+          <a href="manufacturing.html" class="mobile-nav__sublink">Manufacturing</a>
+          <a href="marketing.html" class="mobile-nav__sublink">Marketing</a>
+        </div>
+      </div>
+
+      <a href="../how-it-works.html" class="mobile-nav__link">How it Works</a>
+
+      <a href="../index.html#contact" class="btn btn--primary btn--large">Schedule a Call</a>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content" role="main">
+
+
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="section ps-hero" id="ps-hero">
+
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
+        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
+        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
+      </div>
+
+      <div class="container">
+        <div class="ps-hero__content reveal">
+          <h1>Business Coaching for Professional Services Firms</h1>
+
+          <p>Professional services firms are uniquely vulnerable to owner dependency. The expertise, the relationships, the reputation — all of it is often concentrated in the founder. Our professional services consulting helps expertise-based businesses build the leadership, systems, and transferable value that makes the firm worth owning — and worth selling.</p>
+
+          <div class="hero__cta-group">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Talk to a Professional Services Consultant <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="../how-it-works.html" class="btn btn--outline btn--large">
+              See How It Works <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         [CLIENTS / TESTIMONIALS]
+         MD marks this as a content placeholder ("insert 3–5 client
+         testimonials or logos here... professional services founders —
+         attorneys, accountants, engineers, financial advisors") — reusing
+         the homepage's existing testimonials verbatim as a stand-in, the
+         same resolution used on the Services and Executive Coaching pages.
+         ====================================================================== -->
+    <section class="section section--charcoal testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Professional Services Firms Are Saying</h2>
+          <p>Real outcomes from real founder-led businesses working with Mike on leadership and growth.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         PROFESSIONAL SERVICES CONSULTING BUILT AROUND YOUR SPECIFIC FIRM
+         ====================================================================== -->
+    <section class="section" id="consulting-built-around">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Professional Services Consulting Built Around Your Specific Firm</h2>
+          <p>Our professional services consulting and business coaching starts with a thorough assessment of your firm — its value, its vulnerabilities, its leadership, and its growth potential.</p>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">Establish what your firm is actually worth and what's driving the multiple.</p>
+              <a href="../services/business-valuation.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">Build the plan for a successful transition long before you need one.</p>
+              <a href="../services/exit-planning.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">Systematically build the drivers of transferable value specific to professional services.</p>
+              <a href="../services/value-acceleration.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Executive Coaching</h3>
+              <p class="drivers-list__text">Develop the leadership depth that allows the firm to grow and operate beyond the founder.</p>
+              <a href="../services/executive-coaching.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">Build the systems, processes, and infrastructure that create leverage and scalability.</p>
+              <a href="../services/operational-scaling-consulting.html" class="drivers-list__link">Learn more <span class="btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHO THIS PROFESSIONAL SERVICES BUSINESS CONSULTING IS FOR
+         ====================================================================== -->
+    <section class="section section--charcoal" id="who-this-is-for">
+
+      <i class="fa-solid fa-crosshairs ps-mark" aria-hidden="true"></i>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Who This Professional Services Business Consulting Is For</h2>
+          <p>This work is designed for founders of professional services firms doing $2M–$150M in revenue — the attorneys, accountants, engineers, financial advisors, consultants, and other expertise-based business owners who have built something real and are ready to make it transferable.</p>
+          <p>It's for the founding partner whose client relationships are entirely personal — and who has never had a serious conversation about what happens to those relationships when they step back. The accounting firm owner who knows the business is valuable but has never had an independent valuation. The engineering firm principal whose institutional knowledge lives entirely in their head and has never been codified into a system anyone else can follow. The financial advisor whose book of business is tied to their CRD number and their personal relationships — and who hasn't yet built the team structure that would allow a buyer to acquire it with confidence.</p>
+          <p>It is not for the solo practitioner who is still building their first client base. Professional services business consulting at Spearpoint is for firms that have proven the model and are ready to build the infrastructure that makes it scalable, sustainable, and eventually transferable at the value the founder deserves.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         BUILT ON EXPERTISE. BOUND BY IT TOO.
+         ====================================================================== -->
+    <section class="section" id="built-on-expertise">
+      <div class="container">
+
+        <div class="split-panel__grid">
+          <div class="split-panel__content">
+            <div class="about-section__header reveal">
+              <h2 data-heading-wipe>Built on Expertise. Bound by It Too.</h2>
+              <p>Professional services firms — accounting practices, law firms, consulting firms, engineering firms, financial advisory practices, wealth management firms, and other expertise-based businesses — are some of the most profitable businesses in the $2M–$150M range. They're also some of the hardest to exit.</p>
+              <p>The reason is almost always the same: the value of the firm is inseparable from the founder. Clients chose the firm because of the founder's expertise, network, or reputation. Key employees stay because of the founder's leadership. The firm's systems and institutional knowledge live largely in the founder's head. When a buyer looks at that, they see risk — and they price it accordingly.</p>
+              <p>Professional services consulting at Spearpoint Advisors is built around breaking that dependency while preserving what makes the firm valuable in the first place.</p>
+            </div>
+          </div>
+          <div class="split-panel__visual reveal" aria-hidden="true">
+            <span class="split-panel__visual-icon"><i class="fa-solid fa-briefcase"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT WE SEE INSIDE MOST PROFESSIONAL SERVICES FIRMS
+         ====================================================================== -->
+    <section class="section section--charcoal" id="what-we-see">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What We See Inside Most Professional Services Firms</h2>
+        </div>
+
+        <div class="drivers-list reveal-stagger">
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Client Relationships Tied to the Founder</h3>
+              <p class="drivers-list__text">In most professional services firms, the most important client relationships belong personally to the founder — not to the firm. When those relationships don't transfer, the value doesn't either.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Expertise That Hasn't Been Codified</h3>
+              <p class="drivers-list__text">The founder's knowledge, judgment, and methodology is the core product of the firm. But if that expertise lives only in their head, it can't be leveraged, taught, or transferred.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-clock" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Revenue That Depends on Billable Hours</h3>
+              <p class="drivers-list__text">Many professional services firms are essentially trading time for money. Creating leverage, recurring revenue, and service offerings that don't require the founder's direct involvement is one of the highest-value things a professional services firm can do.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Talent Retention and Leadership Development</h3>
+              <p class="drivers-list__text">Professional services businesses run on people. Attracting, retaining, and developing the talent that can carry the firm forward — and eventually take it over — is a persistent challenge that affects both operational performance and valuation.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-tags" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Pricing and Margin Compression</h3>
+              <p class="drivers-list__text">Many professional services firms undercharge for their expertise. Pricing strategy, service line development, and margin management are often underdeveloped in founder-led firms — leaving significant value on the table.</p>
+            </div>
+          </div>
+
+          <div class="drivers-list__item">
+            <div class="drivers-list__number"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="drivers-list__label">Partnership and Succession Complexity</h3>
+              <p class="drivers-list__text">Multi-partner professional services firms face unique succession challenges around equity, governance, and transition. Single-founder firms face the challenge of building the leadership and systems that allow the firm to survive the founder's exit.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         PROFESSIONAL SERVICES BUSINESS COACHING BY PRACTICE TYPE
+         ====================================================================== -->
+    <section class="section" id="by-practice-type">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>Professional Services Business Coaching by Practice Type</h2>
+          <p>Every professional services firm has its own valuation characteristics, regulatory context, client relationship dynamics, and succession challenges. Here is an honest look at what professional services consulting addresses in the practice types we work with most.</p>
+        </div>
+
+        <div class="practice-blocks practice-blocks--accordion">
+
+          <div class="practice-block reveal">
+            <button class="practice-block__trigger" aria-expanded="false" aria-controls="practice-law">
+              <span class="practice-block__icon"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span>
+              <h3 class="practice-block__title">Law Firm Business Coaching</h3>
+              <i class="fa-solid fa-chevron-down practice-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="practice-block__content" id="practice-law">
+              <div class="practice-block__content-inner">
+                <p>Law firms face a set of succession and transferability challenges that are unique in the professional services world. Client relationships are governed by professional responsibility rules that limit how they can be transferred. Rainmakers — the attorneys who bring in clients — often resist the institutional relationship-building that would make the firm less dependent on any one person. And law firm valuation is notoriously difficult because the goodwill that drives value is almost always personal rather than enterprise.</p>
+                <p>Law firm business coaching at Spearpoint addresses these challenges directly. The work focuses on building institutional client relationships — introducing junior attorneys into client matters early, creating client service teams rather than individual attorney relationships, and building the client communication cadence that makes the relationship belong to the firm rather than the partner. It also addresses the organizational structure questions that determine whether a law firm can function, retain its people, and maintain its client base through a founding partner transition.</p>
+                <p>For multi-partner firms, the succession complexity extends to equity buyout structures, partner compensation systems, and the governance framework that determines how decisions are made when the founding partner steps back. Professional services consulting that addresses these questions early — before they become urgent — gives law firm founders real options rather than forced choices.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-block reveal">
+            <button class="practice-block__trigger" aria-expanded="false" aria-controls="practice-accounting">
+              <span class="practice-block__icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
+              <h3 class="practice-block__title">Accounting Firm Business Coaching</h3>
+              <i class="fa-solid fa-chevron-down practice-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="practice-block__content" id="practice-accounting">
+              <div class="practice-block__content-inner">
+                <p>Accounting firms are among the most in-demand professional services acquisitions in the market today — because recurring revenue from annual tax and audit engagements, combined with deep client relationships built over years of compliance work, creates a predictable, transferable revenue base that buyers find highly attractive.</p>
+                <p>The challenge is that most accounting firms are still structured around the founding partner's personal client relationships and technical expertise. Clients call the partner directly. Reviews and sign-offs run through the founder. And the institutional knowledge required to serve the firm's most complex clients lives in one person's head rather than in documented processes and developed staff.</p>
+                <p>Accounting firm business coaching at Spearpoint focuses on the transition from a founder-centric practice to an institutional firm — building the staff development pipeline, the client service team structure, and the quality control systems that allow the firm to serve clients at the highest level without the founding partner in the middle of every engagement. It also addresses the specific valuation dynamics of accounting firm transactions, including the revenue multiples that drive pricing, the client retention provisions that structure deals, and the earnout arrangements that align seller and buyer incentives through the transition.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-block reveal">
+            <button class="practice-block__trigger" aria-expanded="false" aria-controls="practice-aec">
+              <span class="practice-block__icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></span>
+              <h3 class="practice-block__title">AEC Consulting Services — Architecture, Engineering, and Construction</h3>
+              <i class="fa-solid fa-chevron-down practice-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="practice-block__content" id="practice-aec">
+              <div class="practice-block__content-inner">
+                <p>Architecture, engineering, and construction consulting firms face a specific set of transferability challenges driven by the technical licensing requirements, the project-based revenue model, and the deep personal relationships that characterize how AEC firms win and retain work.</p>
+                <p>AEC consulting services at Spearpoint address the principal dependency problem that defines most architecture and engineering firms — the reality that the licensed principals who stamp drawings, lead client relationships, and carry the firm's reputation are often also the firm's founders and primary owners. When those principals exit, the firm's ability to win and execute work can be immediately affected.</p>
+                <p>Building a deep bench of licensed professionals, creating institutional client relationships that survive principal transitions, and documenting the technical methodologies and project management processes that produce consistent quality are the operational priorities of AEC business consulting. On the valuation side, the work focuses on improving the revenue quality metrics — backlog visibility, contract structure, client concentration — that determine what an AEC firm commands in a sale or merger transaction.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-block reveal">
+            <button class="practice-block__trigger" aria-expanded="false" aria-controls="practice-financial-advisor">
+              <span class="practice-block__icon"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></span>
+              <h3 class="practice-block__title">Financial Advisor Business Coaching</h3>
+              <i class="fa-solid fa-chevron-down practice-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="practice-block__content" id="practice-financial-advisor">
+              <div class="practice-block__content-inner">
+                <p>Financial advisor practices — whether independent RIAs, broker-dealer affiliates, or insurance-based advisory firms — have a valuation dynamic that is unlike almost any other professional services firm. The value of the practice is almost entirely determined by the assets under management or recurring revenue attached to client relationships, the retention rate of those clients through a transition, and the regulatory structure that governs how the book of business transfers.</p>
+                <p>Financial advisor business coaching at Spearpoint addresses the specific challenges of building a practice that is genuinely transferable — not just valuable on paper. This means building a team-based service model where clients have meaningful relationships with more than one advisor, creating the client communication and service cadence that builds institutional loyalty rather than personal loyalty, and structuring the practice in a way that a buyer can acquire with confidence that the revenue will survive the transition.</p>
+                <p>For financial advisors thinking about succession, the options are more varied than in most professional services contexts — internal succession to a junior partner, external sale to another advisor or aggregator, merger with a larger RIA, or a structured transition over time. Financial advisor business coaching helps practice owners understand each path clearly, prepare the practice for the option they prefer, and negotiate from a position of knowledge rather than urgency.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-block reveal">
+            <button class="practice-block__trigger" aria-expanded="false" aria-controls="practice-wealth-management">
+              <span class="practice-block__icon"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></span>
+              <h3 class="practice-block__title">Wealth Management Business Coach</h3>
+              <i class="fa-solid fa-chevron-down practice-block__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="practice-block__content" id="practice-wealth-management">
+              <div class="practice-block__content-inner">
+                <p>Wealth management firms occupy a specific position in the professional services landscape — serving high-net-worth clients whose relationships are deeply personal, whose expectations for continuity and discretion are high, and whose loyalty to the founding advisor can be both a tremendous asset and a significant transferability challenge.</p>
+                <p>Wealth management business coaching at Spearpoint focuses on the transition from a personality-driven practice to an institutional wealth management firm — one where the investment philosophy, the client service model, and the relationship management processes are embedded in the organization rather than in the founding advisor's personal approach.</p>
+                <p>The organizational work includes building a client service team structure that ensures every client has multiple points of contact at the firm, developing junior advisors into relationship managers who can carry client relationships independently, and creating the investment committee structure and documented investment process that demonstrates institutional quality to sophisticated clients and prospective acquirers. On the succession side, wealth management business coaching addresses the specific regulatory and compliance dimensions of RIA succession, the client consent and communication processes that govern relationship transfers, and the deal structures — including seller financing, earnouts, and equity rollovers — that are most common in wealth management transactions.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         WHAT MAKES PROFESSIONAL SERVICES FIRMS HARD TO VALUE — AND WHAT
+         FIXES IT
+         ====================================================================== -->
+    <section class="section section--charcoal" id="hard-to-value">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>What Makes Professional Services Firms Hard to Value — and What Fixes It</h2>
+        </div>
+
+        <div class="practice-blocks">
+
+          <div class="practice-block reveal">
+            <div class="practice-block__heading">
+              <span class="practice-block__icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>
+              <h3>The Personal Goodwill Problem</h3>
+            </div>
+            <p>In most professional services firms, the majority of the goodwill — the intangible value above the tangible assets of the business — is personal goodwill that belongs to the founder rather than enterprise goodwill that belongs to the firm. Personal goodwill doesn't transfer in a sale. Enterprise goodwill does.</p>
+            <p>Professional services business consulting at Spearpoint focuses systematically on converting personal goodwill to enterprise goodwill — transferring client relationships from the founder to the firm, codifying the expertise that drives value into systems and processes that can outlast any individual, and building the team and organizational identity that carries the firm's reputation independently of the founding partner's personal presence.</p>
+          </div>
+
+          <div class="practice-block reveal">
+            <div class="practice-block__heading">
+              <span class="practice-block__icon"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i></span>
+              <h3>The Billable Hours Ceiling</h3>
+            </div>
+            <p>Most professional services firms have a revenue ceiling determined by the number of billable hours the founder and their team can produce. Breaking through that ceiling requires building leverage — service offerings that don't require the founder's direct involvement, technology that multiplies the impact of the team's time, and pricing structures that capture the value the firm creates rather than the hours it spends.</p>
+            <p>Professional services consulting addresses the leverage problem by helping founders redesign their service model around outcomes rather than hours — building the productized services, subscription offerings, and team delivery structures that allow the firm to grow revenue without growing headcount proportionally.</p>
+          </div>
+
+          <div class="practice-block reveal">
+            <div class="practice-block__heading">
+              <span class="practice-block__icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
+              <h3>The Concentration Risk</h3>
+            </div>
+            <p>Most professional services firms have at least one client — and often several — who represent a disproportionate share of revenue. That concentration creates a risk that buyers price heavily and that the right professional services business consulting will address years before it becomes a deal-killer.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         50% OF OWNERS ARE FORCED OUT. MOST NEVER SAW IT COMING.
+         ====================================================================== -->
+    <section class="section section--charcoal" id="the-5-ds">
+
+      <div class="section-decor section-decor--b" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>50% of Owners Are Forced Out. Most Never Saw It Coming.</h2>
+          <p>Death. Divorce. Disability. Disagreement. Disruption. These are the 5 Ds — and they account for half of all business exits. Not planned. Not on the owner's terms. And 80% of those owners had no plan in place when it happened, despite 80% of their personal net worth being tied up in the business they just lost control of.</p>
+          <p><strong>Death · Divorce · Disability · Disagreement · Disruption</strong></p>
+          <p>For professional services founders, the 5 Ds risk is amplified by the nature of the business. When the firm's value is concentrated in the founder's expertise, relationships, and daily presence, a single unexpected event can trigger immediate client departures and a rapid erosion of the value that took decades to build. Professional services business consulting that is connected to owner protection and exit readiness is the most direct investment a firm founder can make in ensuring that value survives.</p>
+        </div>
+
+        <div class="quote-block reveal">
+          <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
+          <blockquote>"The 5 Ds don't announce themselves. The owners who are protected when they arrive are the ones who started preparing before they needed to."</blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         A STRUCTURED PATH FOR PROFESSIONAL SERVICES FIRMS
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="about-section__header reveal">
+          <h2 data-heading-wipe>A Structured Path for Professional Services Firms</h2>
+          <p>Our Discover–Prepare–Decide framework gives professional services firms a clear progression from assessment to a successful transition.</p>
+        </div>
+
+        <div class="process-grid reveal-stagger">
+
+          <div class="process-grid__progress" aria-hidden="true"></div>
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div>
+              <p class="process-step__gate">Gate 01</p>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__text">Assess the firm: value, client concentration, founder dependency, leadership gaps, and exit readiness. Know exactly where your firm stands — and what a buyer would see when they look at it.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div>
+              <p class="process-step__gate">Gate 02</p>
+              <h3 class="process-step__title">Prepare</h3>
+              <p class="process-step__text">Build transferable value: codify expertise, transfer client relationships to the firm, develop leadership depth, create service leverage, improve margins, and build the enterprise goodwill that drives valuation.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div>
+              <p class="process-step__gate">Gate 03</p>
+              <h3 class="process-step__title">Decide</h3>
+              <p class="process-step__text">Choose your path from strength: sale, merger, partnership transition, or internal succession. With a prepared firm, the options are better and so are the terms.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-section__header reveal" style="margin-top: var(--space-8); margin-bottom: 0;">
+          <a href="../how-it-works.html" class="btn btn--outline btn--large">
+            See the Full Process <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         YOUR PROFESSIONAL SERVICES CONSULTANT HAS BUILT AND EXITED UNDER
+         REAL PRESSURE
+         ====================================================================== -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-section__grid">
+
+          <div class="founder-section__image-wrap reveal">
+            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
+              <img src="../assets/images/founder.jpg" alt="Mike Wolfgang, founder of Spearpoint Advisors" width="612" height="573" loading="lazy">
+            </div>
+          </div>
+
+          <div class="founder-section__content reveal">
+            <h2 data-heading-wipe>Your Professional Services Consultant Has Built and Exited Under Real Pressure</h2>
+            <p>Mike Wolfgang isn't a professional services consultant who has only ever advised on firm transitions. He has led real businesses through turnarounds, built organizational systems that survived leadership changes, and executed a successful exit from the other side of the table.</p>
+            <p>Before founding Spearpoint Advisors, Mike spent four years as a certified EOS Implementer working directly inside founder-led businesses — building the leadership structures, accountability systems, and operational clarity that make expertise-based businesses genuinely transferable. As a CEPA-certified exit planning advisor, he brings a structured financial and strategic framework to every professional services consulting engagement, grounded in the real experience of someone who has built and transitioned businesses himself.</p>
+            <p>He rebuilt his own business twice — once during Covid, once while caring for his father and battling cancer. He knows what it feels like when a business that depends on one person is suddenly tested by external forces. And he knows what separates the firms that had real options in those moments from the ones that didn't.</p>
+            <p><strong>What Mike Brings to Every Professional Services Engagement:</strong></p>
+            <p><em>Led Western Graphics to 8% growth while the industry contracted 20% post-recession — then executed a successful exit.</em></p>
+
+            <div class="credentials">
+              <span class="credential-tag">CEPA Certified</span>
+              <span class="credential-tag">EOS Implementer (4 yrs)</span>
+              <span class="credential-tag">Cancer Survivor</span>
+              <span class="credential-tag">2× Business Rebuild</span>
+              <span class="credential-tag">USMC Veteran</span>
+              <span class="credential-tag">Marine One Crew Chief</span>
+            </div>
+
+            <a href="../about.html" class="btn btn--outline btn--large">
+              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         FINAL CTA
+         ====================================================================== -->
+    <section class="section cta-section" id="cta">
+
+      <div class="section-decor section-decor--a" aria-hidden="true">
+        <span class="section-decor__glow section-decor__glow--orange"></span>
+        <span class="section-decor__glow section-decor__glow--blue"></span>
+      </div>
+
+      <div class="container">
+        <div class="reveal">
+          <h2>Ready to Find Out What Your Professional Services Firm Is Worth?</h2>
+          <p>Most professional services founders are surprised by the gap between what they expect and what the market will pay. Let's close that gap — starting with an honest conversation about where your firm stands today.</p>
+          <div class="cta-section__buttons">
+            <a href="../index.html#contact" class="btn btn--primary btn--large">
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="cta-section__email">
+            Or reach Mike directly: <a href="mailto:mike@spearpointadvisors.com">mike@spearpointadvisors.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  </main><!-- #main-content -->
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="/" class="site-logo" aria-label="Spearpoint Advisors Home">
+            <img src="../assets/images/logo.png" alt="Spearpoint Advisors" width="180" height="160">
+          </a>
+          <p>Business coaching for home service company owners doing $2M–$150M. Build value, reduce owner dependency &amp; prepare for a successful exit.</p>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Services</h4>
+          <div class="footer__links">
+            <a href="../services/business-valuation.html">Business Valuation</a>
+            <a href="../services/exit-planning.html">Exit Planning</a>
+            <a href="../services/operational-scaling-consulting.html">Operational Scaling</a>
+            <a href="../services/executive-coaching.html">Executive Coaching</a>
+            <a href="../services/value-acceleration.html">Value Acceleration</a>
+          </div>
+        </div>
+
+        <!-- Industries Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Industries</h4>
+          <div class="footer__links">
+            <a href="#">HVAC</a>
+            <a href="#">Plumbing</a>
+            <a href="#">Electrical</a>
+            <a href="#">Landscaping</a>
+            <a href="#">General Contractor</a>
+            <a href="#">Pest Control</a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer__column">
+          <h4 class="footer__heading">Company</h4>
+          <div class="footer__links">
+            <a href="../about.html">About Mike</a>
+            <a href="#">Our Process</a>
+            <a href="#">Testimonials</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Spearpoint Advisors. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+
+  <!-- Three.js — Core 3D library (lightweight build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger — Animation engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Page Script -->
+  <script src="../assets/js/professional-services.js"></script>
+
+</body>
+</html>
