@@ -8,7 +8,11 @@
    Reuses as-is (no rules needed here): .founder-section__image-wrap/__image,
    .credentials/.credential-tag, .hero__cta-group, .about-section__header,
    .services-section__header, .risk-section__header/.risk-quote,
-   .achievement, .value-card, .btn — only the pieces below are new.
+   .achievement, .drivers-list/.drivers-list__item, .trades-tabs/.trade-panel
+   (drives the "Mike's Story" chapter tabs, same component as the
+   homepage's industries tabs), .fit-grid/.fit-card (the credentials cards —
+   same icon-card component the homepage's "Is This You" section uses),
+   .section-header--split, .btn — only the pieces below are new.
    ========================================================================== */
 
 /* --- Interior-page hero — lighter than the homepage's full-viewport photo
@@ -102,8 +106,6 @@
 
 .story-chapter__substory {
   margin-top: var(--space-8);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-border);
 }
 
 .story-chapter__substory h3 {
@@ -114,29 +116,54 @@
   margin-bottom: 0;
 }
 
-/* --- Credential detail list — flat, run-in-bold paragraphs (no card
-   chrome), same "no card chrome" spirit as .risk-stats. --- */
-.credential-detail-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 760px;
-  margin: 0 auto var(--space-12);
+/* --- Story tabs section — style.css's .about-section__header and
+   .story-chapter__content both center themselves (text-align: center /
+   margin: 0 auto); client feedback was that this section specifically
+   should read left-aligned instead, so both are overridden here, scoped
+   to #story only — the rest of the page keeps its centered headers. --- */
+#story .about-section__header {
+  text-align: left;
+  margin-left: 0;
 }
 
-.credential-detail {
+#story .story-chapter__content {
   max-width: none;
-  padding-bottom: var(--space-5);
-  border-bottom: 1px solid var(--color-border);
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.credential-detail:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+#story .risk-quote {
+  max-width: none;
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.credential-detail strong {
-  color: var(--color-text);
+/* --- Final CTA — style.css's .cta-section centers everything (text-align:
+   center, plus .cta-section h2/p carry their own max-width + margin: auto),
+   which would fight .section-header--split's left/right layout; override
+   those specifically for this page's CTA header. The buttons/email below
+   stay centered as before — only the heading/paragraph split. --- */
+.cta-section .section-header--split {
+  text-align: left;
+}
+
+.cta-section .section-header--split h2 {
+  max-width: none;
+  margin: 0;
+}
+
+.cta-section .section-header--split p {
+  max-width: none;
+  margin: 0;
+  text-align: left;
+}
+
+/* Split header's h2/p above have margin: 0 (see rules above), so the gap
+   before the button that .cta-section h2/p's own margins used to provide
+   is gone — restore it here instead. */
+.cta-section__buttons {
+  margin-top: var(--space-10);
 }
 
 

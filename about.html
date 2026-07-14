@@ -331,61 +331,61 @@
           <p>Mike's advisory practice at Spearpoint covers the full range of what founder-led businesses need to grow, protect their value, and eventually transition successfully. Every service is connected to the Discover–Prepare–Decide framework that sits at the center of Spearpoint's methodology.</p>
         </div>
 
-        <div class="stats-grid reveal-stagger">
+        <div class="drivers-list reveal-stagger">
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-bullseye"></i></div>
-              <h3 class="value-card__title">Exit Planning</h3>
-              <p class="value-card__text">Helping founders prepare for a successful exit long before they need one — on their terms, not someone else's.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">01</div>
+            <div>
+              <h3 class="drivers-list__label">Exit Planning</h3>
+              <p class="drivers-list__text">Helping founders prepare for a successful exit long before they need one — on their terms, not someone else's.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-chart-line"></i></div>
-              <h3 class="value-card__title">Value Acceleration</h3>
-              <p class="value-card__text">Systematically building enterprise value across the eight drivers that separate top-quartile exits from median ones.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">02</div>
+            <div>
+              <h3 class="drivers-list__label">Value Acceleration</h3>
+              <p class="drivers-list__text">Systematically building enterprise value across the eight drivers that separate top-quartile exits from median ones.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-chart-column"></i></div>
-              <h3 class="value-card__title">Business Valuation</h3>
-              <p class="value-card__text">Establishing a clear, honest picture of what a business is worth today and what it would take to move the number.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">03</div>
+            <div>
+              <h3 class="drivers-list__label">Business Valuation</h3>
+              <p class="drivers-list__text">Establishing a clear, honest picture of what a business is worth today and what it would take to move the number.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-users"></i></div>
-              <h3 class="value-card__title">Executive Coaching</h3>
-              <p class="value-card__text">Developing the leadership capability that allows a business to grow and operate beyond what one person can carry.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">04</div>
+            <div>
+              <h3 class="drivers-list__label">Executive Coaching</h3>
+              <p class="drivers-list__text">Developing the leadership capability that allows a business to grow and operate beyond what one person can carry.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-gears"></i></div>
-              <h3 class="value-card__title">Operational Scaling</h3>
-              <p class="value-card__text">Building the systems, processes, and accountability structures that let a business scale without breaking.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">05</div>
+            <div>
+              <h3 class="drivers-list__label">Operational Scaling</h3>
+              <p class="drivers-list__text">Building the systems, processes, and accountability structures that let a business scale without breaking.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-sitemap"></i></div>
-              <h3 class="value-card__title">Succession Planning</h3>
-              <p class="value-card__text">Designing what comes next — family transition, management buyout, or third-party sale — before the pressure is on.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">06</div>
+            <div>
+              <h3 class="drivers-list__label">Succession Planning</h3>
+              <p class="drivers-list__text">Designing what comes next — family transition, management buyout, or third-party sale — before the pressure is on.</p>
             </div>
           </div>
 
-          <div class="value-card" data-tilt-card>
-            <div class="value-card__tilt" data-tilt-target>
-              <div class="value-card__icon"><i class="fa-solid fa-people-group"></i></div>
-              <h3 class="value-card__title">CFO Circles — Peer Advisory Groups</h3>
-              <p class="value-card__text">Building communities of non-competing business owners across the Pacific Northwest for peer accountability and honest conversation.</p>
+          <div class="drivers-list__item">
+            <div class="drivers-list__number">07</div>
+            <div>
+              <h3 class="drivers-list__label">CFO Circles — Peer Advisory Groups</h3>
+              <p class="drivers-list__text">Building communities of non-competing business owners across the Pacific Northwest for peer accountability and honest conversation.</p>
             </div>
           </div>
 
@@ -411,144 +411,102 @@
 
 
     <!-- ======================================================================
-         CHAPTER 1 — WHERE IT STARTED
+         MIKE'S STORY — TABBED CHAPTERS
+         Originally four full-height stacked sections; client feedback was
+         that this made the page far too long, so all four chapters now
+         live under one set of tabs instead (same .trades-tabs/.trade-panel
+         click-to-switch component the homepage's industries section uses —
+         driven by the shared handler in app.js, no page JS needed). Each
+         panel reuses .story-chapter__content as-is for its width/type
+         rules; the per-chapter icon visual has been dropped per feedback,
+         content only.
          ====================================================================== -->
-    <section class="section section--dark story-chapter" id="chapter-1">
+    <section class="section section--dark trades-section" id="story">
 
       <div class="section-decor section-decor--a" aria-hidden="true">
         <span class="section-decor__glow section-decor__glow--orange"></span>
         <span class="section-decor__glow section-decor__glow--blue"></span>
       </div>
 
-      <span class="story-chapter__mark story-chapter__mark--number" aria-hidden="true">01</span>
-
       <div class="container">
-        <div class="split-panel__grid">
-          <div class="story-chapter__content split-panel__content reveal">
-            <div class="story-chapter__number" aria-hidden="true">01</div>
-            <span class="eyebrow">Chapter 1 — Where It Started</span>
-            <h2 data-heading-wipe>Growing Up with an Entrepreneur's Mindset</h2>
+
+        <div class="about-section__header reveal" style="margin-bottom: var(--space-10);">
+          <span class="eyebrow">Mike's Story</span>
+        </div>
+
+        <!-- Chapter Tabs Navigation -->
+        <div class="trades-tabs reveal" role="tablist">
+          <button class="trades-tab is-active" data-tab="chapter-1" role="tab" aria-selected="true">Chapter 1 — Where It Started</button>
+          <button class="trades-tab" data-tab="chapter-2" role="tab">Chapter 2 — The Marine Corps</button>
+          <button class="trades-tab" data-tab="chapter-3" role="tab">Chapter 3 — The Business Career</button>
+          <button class="trades-tab" data-tab="chapter-4" role="tab">Chapter 4 — The Experiences That Changed Everything</button>
+        </div>
+
+        <!-- Chapter 1 Panel -->
+        <div class="trade-panel is-active" id="chapter-1" role="tabpanel">
+          <div class="story-chapter__content">
+            <h2>Growing Up with an Entrepreneur's Mindset</h2>
             <p>Mike Wolfgang didn't learn about business in a classroom. He learned it on a dock. His family owned and operated a marina on the Mississippi River, and from a young age Mike understood what it meant to run a real operation — the customer relationships, the seasonal pressures, the responsibility of keeping something alive that a lot of people depended on.</p>
             <p>That early exposure to how a business actually works — not the theory of it, but the daily reality of it — shaped everything that came after. It gave him a practical, grounded understanding of what founder-led businesses look and feel like from the inside. An understanding he would spend decades deepening in ways nobody could have predicted.</p>
           </div>
-          <div class="split-panel__visual reveal" aria-hidden="true">
-            <span class="split-panel__visual-icon"><i class="fa-solid fa-anchor"></i></span>
-          </div>
         </div>
-      </div>
-    </section>
 
-
-    <!-- ======================================================================
-         CHAPTER 2 — THE MARINE CORPS
-         ====================================================================== -->
-    <section class="section section--charcoal story-chapter" id="chapter-2">
-
-      <div class="section-decor section-decor--b" aria-hidden="true">
-        <span class="section-decor__glow section-decor__glow--orange"></span>
-        <span class="section-decor__glow section-decor__glow--blue"></span>
-      </div>
-
-      <span class="story-chapter__mark story-chapter__mark--number" aria-hidden="true">02</span>
-
-      <div class="container">
-        <div class="split-panel__grid split-panel__grid--reverse">
-          <div class="story-chapter__content split-panel__content reveal">
-            <div class="story-chapter__number" aria-hidden="true">02</div>
-            <span class="eyebrow">Chapter 2 — The Marine Corps</span>
-            <h2 data-heading-wipe>Flying Marine One. Leadership at the Highest Level.</h2>
+        <!-- Chapter 2 Panel -->
+        <div class="trade-panel" id="chapter-2" role="tabpanel">
+          <div class="story-chapter__content">
+            <h2>Flying Marine One. Leadership at the Highest Level.</h2>
             <p>Mike served a decade in the United States Marine Corps as a helicopter crew chief, responsible for the maintenance and operational readiness of CH-53 and VH-3D aircraft. The standards in that environment are absolute. There is no margin for error. Every system, every procedure, every decision carries real consequences.</p>
             <p>He was selected by his peers to serve as a Marine One crew chief — flying President Clinton around the world. That selection wasn't made by rank or seniority. It was made by the trust of the people who worked alongside him every day.</p>
             <p>The Marine Corps gave Mike something that no business school curriculum teaches: the ability to operate with precision and accountability under pressure, to hold an organization to high standards without exception, and to lead people through situations where the stakes are genuinely high. Those habits didn't stay in uniform. They came with him into every business he's touched since.</p>
           </div>
-          <div class="split-panel__visual reveal" aria-hidden="true">
-            <span class="split-panel__visual-icon"><i class="fa-solid fa-helicopter"></i></span>
+        </div>
+
+        <!-- Chapter 3 Panel -->
+        <div class="trade-panel" id="chapter-3" role="tabpanel">
+          <div class="story-chapter__content">
+            <h2>Real Businesses. Real Outcomes.</h2>
+            <p>Two decades of business leadership and hands-on advisory work have put Mike in the room for outcomes like these.</p>
+
+            <div class="story-chapter__substory">
+              <h3>Digital Marketing Agency</h3>
+              <p>Grew from $75M to $1B international merger. Owner is now coaching other agency owners.</p>
+            </div>
+
+            <div class="story-chapter__substory">
+              <h3>Cannabis Kids</h3>
+              <p>Was at $15 million in the red with an activist investor on the board. In 18 months became profitable then paid and removed activist from the board. Acquired by a strategic buyer for 5X.</p>
+            </div>
+
+            <div class="story-chapter__substory">
+              <h3>Hunting Club</h3>
+              <p>Owners were anxious to sell until learning how much value growth could happen by strategically planning for exit over the next 3–4 years. They also learned that they could take care of their employees and gain tax benefits with an ESOP exit.</p>
+            </div>
+
+            <div class="story-chapter__substory">
+              <h3>Mom & Pop Shop</h3>
+              <p>One of the rare cases of undervaluing their business. When they learned the current and potential value of the business, they decided to have their daughter succeed them vs. exit.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-
-    <!-- ======================================================================
-         CHAPTER 3 — THE BUSINESS CAREER
-         ====================================================================== -->
-    <section class="section section--dark story-chapter" id="chapter-3">
-
-      <div class="section-decor section-decor--a" aria-hidden="true">
-        <span class="section-decor__glow section-decor__glow--orange"></span>
-        <span class="section-decor__glow section-decor__glow--blue"></span>
-      </div>
-
-      <span class="story-chapter__mark story-chapter__mark--number" aria-hidden="true">03</span>
-
-      <div class="container">
-        <div class="split-panel__grid">
-          <div class="story-chapter__content split-panel__content reveal">
-            <div class="story-chapter__number" aria-hidden="true">03</div>
-            <span class="eyebrow">Chapter 3 — The Business Career</span>
-            <h2 data-heading-wipe>Two Turnarounds. Four Years in the Room with Founders.</h2>
-            <p>After the Marine Corps, Mike moved into business leadership — and immediately into some of the hardest situations a leader can face.</p>
-
-            <div class="story-chapter__substory">
-              <h3>Vivid Print Solutions</h3>
-              <p>Mike became President of Vivid Print Solutions during one of the most difficult periods the printing industry had ever seen. Post-recession, the industry was contracting. Competitors were folding. Mike led a turnaround that stabilized the business and positioned it for recovery — not by cutting everything in sight, but by making the business operationally stronger and more resilient than it had been before the downturn.</p>
-            </div>
-
-            <div class="story-chapter__substory">
-              <h3>Western Graphics</h3>
-              <p>Under his leadership, Western Graphics achieved 8% revenue growth while the broader printing industry contracted by 20% — a result that required not just operational discipline but the kind of strategic clarity that most businesses in crisis can't find. The engagement ended with a successful exit — the kind of outcome Mike would go on to help many other business owners achieve.</p>
-              <div class="achievement">
-                <p>Led Western Graphics to 8% growth while the printing industry contracted 20% post-recession — then executed a successful exit.</p>
-              </div>
-            </div>
-
-            <div class="story-chapter__substory">
-              <h3>EOS Implementer — 4 Years</h3>
-              <p>After Western Graphics, Mike spent four years as a certified EOS Implementer through EOS Worldwide — working directly with founders and their leadership teams to install the Entrepreneurial Operating System into their businesses. He helped dozens of businesses work through it — and in doing so, developed a deep understanding of the common patterns that hold founder-led businesses back and the specific interventions that change them.</p>
-            </div>
-          </div>
-          <div class="split-panel__visual reveal" aria-hidden="true">
-            <span class="split-panel__visual-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ======================================================================
-         CHAPTER 4 — THE EXPERIENCES THAT CHANGED EVERYTHING
-         ====================================================================== -->
-    <section class="section section--charcoal story-chapter" id="chapter-4">
-
-      <div class="section-decor section-decor--b" aria-hidden="true">
-        <span class="section-decor__glow section-decor__glow--orange"></span>
-        <span class="section-decor__glow section-decor__glow--blue"></span>
-      </div>
-
-      <span class="story-chapter__mark story-chapter__mark--number" aria-hidden="true">04</span>
-
-      <div class="container">
-        <div class="split-panel__grid split-panel__grid--reverse">
-          <div class="story-chapter__content split-panel__content reveal">
-            <div class="story-chapter__number" aria-hidden="true">04</div>
-            <span class="eyebrow">Chapter 4 — The Experiences That Changed Everything</span>
-            <h2 data-heading-wipe>Life Intervened. Twice. And It Changed Everything About This Work.</h2>
+        <!-- Chapter 4 Panel -->
+        <div class="trade-panel" id="chapter-4" role="tabpanel">
+          <div class="story-chapter__content">
+            <h2>Life Intervened. Twice. And It Changed Everything About This Work.</h2>
             <p>In 2020, Covid arrived without warning and rewrote the rules for everyone. Mike, like many business owners, had to rebuild — rethinking his model, his market, and his approach from the ground up. He did it. Not easily, and not without cost. But he came out the other side with a business and a perspective that had both been pressure-tested in ways that most advisors' backgrounds simply haven't been.</p>
             <p>Then, in 2024, Mike left California to care for his father. And during that same period, he was diagnosed with cancer.</p>
             <p>There is no clean way to describe what it's like to face a serious health diagnosis while also being responsible for a parent's care and a business that depends on your presence. What Mike found, in that experience, was exactly what he now spends his professional life helping others prepare for: the reality of what happens when external forces arrive without warning and rewrite your plans.</p>
             <p>He came through it. His father passed. His health returned. And the experience clarified, with unusual precision, exactly what his work is for.</p>
           </div>
-          <div class="split-panel__visual reveal" aria-hidden="true">
-            <span class="split-panel__visual-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+
+          <div class="risk-quote">
+            <blockquote>
+              <span class="risk-quote__bar" aria-hidden="true"></span>
+              "The business owners who were protected when the unexpected happened were the ones who had prepared before they needed to. That's the whole point. That's why I do this."
+            </blockquote>
           </div>
         </div>
 
-        <div class="risk-quote reveal">
-          <blockquote>
-            <span class="risk-quote__bar" aria-hidden="true"></span>
-            "The business owners who were protected when the unexpected happened were the ones who had prepared before they needed to. That's the whole point. That's why I do this."
-          </blockquote>
-        </div>
       </div>
     </section>
 
@@ -626,12 +584,38 @@
           <h2 data-heading-wipe>What Mike Brings to Every Engagement</h2>
         </div>
 
-        <div class="credential-detail-list reveal-stagger">
-          <p class="credential-detail"><strong>CEPA Certified</strong> Certified Exit Planning Advisor through the Exit Planning Institute — the professional credential for advisors who specialize in helping business owners prepare for and execute successful exits.</p>
-          <p class="credential-detail"><strong>EOS Implementer — 4 Years</strong> Certified Implementer through EOS Worldwide. Four years working directly with founder-led leadership teams to install the Entrepreneurial Operating System and build businesses that run with clarity and accountability.</p>
-          <p class="credential-detail"><strong>USMC Veteran — Marine One Crew Chief</strong> A decade of service in the United States Marine Corps. Selected by peers to serve as crew chief on Marine One, flying President Clinton around the world.</p>
-          <p class="credential-detail"><strong>2× Business Turnaround Leader</strong> President of Vivid Print Solutions (successful post-recession turnaround) and Western Graphics (8% growth while the industry contracted 20%, followed by a successful exit).</p>
-          <p class="credential-detail"><strong>2× Business Rebuild</strong> Rebuilt his own business twice — once during Covid, and once while simultaneously providing care for his father and battling cancer.</p>
+        <div class="fit-grid reveal-stagger">
+
+          <div class="fit-card" data-tilt-card>
+            <div class="fit-card__icon"><i class="fa-solid fa-certificate"></i></div>
+            <h3 class="fit-card__label">CEPA Certified</h3>
+            <p class="fit-card__text">Certified Exit Planning Advisor through the Exit Planning Institute — the professional credential for advisors who specialize in helping business owners prepare for and execute successful exits.</p>
+          </div>
+
+          <div class="fit-card" data-tilt-card>
+            <div class="fit-card__icon"><i class="fa-solid fa-gears"></i></div>
+            <h3 class="fit-card__label">EOS Implementer — 4 Years</h3>
+            <p class="fit-card__text">Certified Implementer through EOS Worldwide. Four years working directly with founder-led leadership teams to install the Entrepreneurial Operating System and build businesses that run with clarity and accountability.</p>
+          </div>
+
+          <div class="fit-card" data-tilt-card>
+            <div class="fit-card__icon"><i class="fa-solid fa-helicopter"></i></div>
+            <h3 class="fit-card__label">USMC Veteran — Marine One Crew Chief</h3>
+            <p class="fit-card__text">A decade of service in the United States Marine Corps. Selected by peers to serve as crew chief on Marine One, flying President Clinton around the world.</p>
+          </div>
+
+          <div class="fit-card" data-tilt-card>
+            <div class="fit-card__icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+            <h3 class="fit-card__label">2× Business Turnaround Leader</h3>
+            <p class="fit-card__text">President of Vivid Print Solutions (successful post-recession turnaround) and Western Graphics (8% growth while the industry contracted 20%, followed by a successful exit).</p>
+          </div>
+
+          <div class="fit-card" data-tilt-card>
+            <div class="fit-card__icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3 class="fit-card__label">2× Business Rebuild</h3>
+            <p class="fit-card__text">Rebuilt his own business twice — once during Covid, and once while simultaneously providing care for his father and battling cancer.</p>
+          </div>
+
         </div>
 
         <div class="story-chapter__content reveal">
@@ -656,9 +640,14 @@
       </div>
 
       <div class="container">
-        <div class="reveal">
-          <h2>If This Sounds Like the Kind of Advisor You've Been Looking For, Let's Find Out If We're a Fit.</h2>
+        <div class="cta-section__header section-header--split reveal">
+          <div class="section-header__heading">
+            <h2>If This Sounds Like the Kind of Advisor You've Been Looking For, Let's Find Out If We're a Fit.</h2>
+          </div>
           <p>Mike works with a limited number of clients. The first step is a single, honest conversation about where your business is, where you want it to go, and whether Spearpoint is the right fit to help you get there.</p>
+        </div>
+
+        <div class="reveal">
           <div class="cta-section__buttons">
             <a href="index.html#contact" class="btn btn--primary btn--large">
               Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
