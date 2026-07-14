@@ -12,10 +12,11 @@
    __image/__content, .credentials/.credential-tag, .cta-section, .btn —
    only the pieces below are new.
 
-   The 5 Ds are five always-visible stacked sections (not tabs — real
-   ids so a link from anywhere, e.g. #d-divorce, lands directly on that D
-   via the browser's native anchor scroll, which display:none tab panels
-   can't support). No nav bar of any kind — just the sections themselves.
+   The 5 Ds were originally five always-visible stacked sections; client
+   feedback was that this made the page too tall, so they're now a
+   click-to-expand accordion (.d-accordion) — see the .d-accordion rules
+   below. Each item keeps its own real id (e.g. #d-divorce) so a link from
+   anywhere still lands on and opens the right D (see the-5-ds.js).
    ========================================================================== */
 
 /* --- Hero — centered like Services/How-It-Works, with a preview row of
@@ -34,33 +35,66 @@
   margin-right: auto;
 }
 
+/* This page's hero sits on a dark photo background, so the header's
+   default "transparent until scrolled" state (style.css) leaves the nav
+   links unreadable at the top of the page — force the scrolled-state glass
+   bar on always, just for this page. */
+.site-header {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
 .d5-hero {
   padding-top: calc(var(--nav-height) + var(--space-12));
   position: relative;
   z-index: 1;
-  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(180deg, rgba(8, 7, 6, 0.86), rgba(8, 7, 6, 0.9)),
+    url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .d5-hero__content {
   position: relative;
   z-index: 2;
-  max-width: 760px;
+  max-width: 1040px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Hero sits on a dark photo background — override the default light-bg
+   text colors so the copy stays readable against the image rather than
+   blending into it. */
 .d5-hero__content h1 {
+  color: var(--color-white);
   margin-bottom: var(--space-6);
 }
 
 .d5-hero__content p {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: none;
   margin: 0 auto var(--space-4);
+}
+
+.d5-hero__content .btn--outline {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.d5-hero__content .btn--outline:hover {
+  color: var(--color-white);
+  border-color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .d5-hero__ds {
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
-  color: var(--color-text);
+  color: var(--color-white);
   margin-bottom: var(--space-8);
 }
 
@@ -126,40 +160,80 @@
   text-align: center;
 }
 
-/* --- D panel — each D's own stacked section. Carries a large faint
-   corner mark (that D's own risk icon) behind the heading, same
-   corner-mark language established on About/Services/How-It-Works,
-   reimplemented locally. Panels after the first get a divider so five
-   stacked sections don't visually run together. scroll-margin-top is
-   already set globally for every [id] (style.css) to clear the fixed
-   nav — no extra offset needed here since there's no sticky bar. --- */
-.d-panel {
-  position: relative;
-  z-index: 1;
+/* --- D accordion — the 5 D's were originally five always-visible
+   stacked panels; client feedback was that this made the page far too
+   tall, so it's now a click-to-expand accordion (same click-toggle +
+   max-height-from-scrollHeight technique as marketing.js's/
+   home-services.js's .accordion-blocks), one D open at a time or all
+   closed. scroll-margin-top is already set globally for every [id]
+   (style.css) to clear the fixed nav if something ever links straight
+   to a #d-death style anchor. --- */
+.d-accordion {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.d-panel + .d-panel {
-  margin-top: var(--space-16);
-  padding-top: var(--space-16);
+.d-accordion__item + .d-accordion__item {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
   border-top: 1px solid var(--color-border);
 }
 
-.d-panel__mark {
-  position: absolute;
-  top: 0;
-  right: var(--space-4);
-  font-size: 8rem;
-  line-height: 1;
-  color: rgba(232, 83, 14, 0.07);
-  pointer-events: none;
-  z-index: -1;
-  user-select: none;
+.d-accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
 }
 
-.d-panel h2 {
-  margin-bottom: var(--space-8);
+.d-accordion__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-lg);
+}
+
+.d-accordion__title {
+  flex: 1;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.d-accordion__trigger:hover .d-accordion__title {
+  color: var(--color-orange);
+}
+
+.d-accordion__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-4);
+  font-size: var(--fs-md);
+  transition: transform var(--transition-base);
+}
+
+.d-accordion__item.is-open .d-accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.d-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.d-accordion__content-inner {
+  padding-top: var(--space-8);
 }
 
 /* --- 2x2 subsection grid — the four "What It Is / What It Looks Like in
@@ -216,6 +290,17 @@
   color: var(--color-orange);
 }
 
+/* --- Final CTA — style.css's .cta-section caps its heading/paragraph at
+   800px/600px (fine for shorter site-wide CTAs), but this page's copy
+   reads cramped at that width — widen both just for this page. --- */
+.cta-section h2 {
+  max-width: 1200px;
+}
+
+.cta-section p {
+  max-width: 960px;
+}
+
 
 /* ==========================================================================
    RESPONSIVE
@@ -224,19 +309,11 @@
   .d-detail-grid {
     grid-template-columns: 1fr;
   }
-
-  .d-panel__mark {
-    font-size: 6rem;
-  }
 }
 
 @media (max-width: 768px) {
   .d5-hero__icons {
     gap: var(--space-2);
-  }
-
-  .d-panel__mark {
-    font-size: 4.5rem;
   }
 
   .quote-block {
@@ -246,5 +323,11 @@
   .risk-stats--three {
     grid-template-columns: 1fr;
     max-width: none;
+  }
+
+  .d-accordion__icon {
+    width: 44px;
+    height: 44px;
+    font-size: var(--fs-base);
   }
 }
