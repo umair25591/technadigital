@@ -6,7 +6,7 @@
    --transition-*) and shared components already defined there.
 
    Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
-   .eyebrow, .process-section__header/.process-grid/.process-step,
+   .eyebrow, .process-grid/.process-step,
    .about-section__header, .risk-section__header/.risk-grid/.risk-item,
    .drivers-list/.drivers-list__item, .founder-section__grid/__image-wrap/
    __image/__content, .achievement, .credentials/.credential-tag,
@@ -90,16 +90,6 @@
   margin-bottom: var(--space-6);
   background: linear-gradient(90deg, var(--color-orange), var(--color-border));
   flex-shrink: 0;
-}
-
-/* .process-section__header is left-aligned by default (style.css) — this
-   page centers everything else in this section (the gate-preview grid,
-   the owner-profile cards, the quote cards), so a left-flush heading and
-   intro paragraphs read as misaligned against it. Centered here only. */
-.process-section__header {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* .process-step__text is left-aligned by default (style.css) since the

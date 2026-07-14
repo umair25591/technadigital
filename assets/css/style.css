@@ -1423,6 +1423,21 @@ p {
   perspective: 800px;
 }
 
+/* --- Homepage "What We Do" grid — 3-per-row layout with the same orange
+   gradient card treatment as the process-step Key Outcomes box, so this
+   section reads as a more prominent, distinct moment. Scoped to this one
+   grid instance (not the base .stats-grid/.value-card) since those classes
+   are reused as a plain 4-up card grid on other pages. --- */
+.stats-grid--outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stats-grid--outcomes .value-card {
+  background: linear-gradient(135deg, rgba(232, 83, 14, 0.08), rgba(232, 83, 14, 0.02));
+  border: 1px solid rgba(232, 83, 14, 0.15);
+}
+
 /* `transform` only enters the transition list on :hover — keeping it out of
    the base rule stops it from fighting the GSAP scroll-reveal tween, which
    also animates `transform` on this element (see app.js reveal-stagger). */
@@ -1487,7 +1502,7 @@ p {
 }
 
 .services-section__header {
-  max-width: 700px;
+  max-width: 1040px;
   margin: 0 auto var(--space-16);
   text-align: center;
 }
@@ -1498,6 +1513,7 @@ p {
 
 .services-section__header p {
   font-size: var(--fs-md);
+  max-width: none;
 }
 
 /* --- Services modular grid (2-col asymmetric) --- */
@@ -1579,7 +1595,7 @@ p {
 }
 
 .about-section__header {
-  max-width: 700px;
+  max-width: 1040px;
   margin: 0 auto var(--space-16);
   text-align: center;
 }
@@ -1590,6 +1606,7 @@ p {
 
 .about-section__header p {
   font-size: var(--fs-md);
+  max-width: none;
 }
 
 /* --- Fit criteria — horizontal card row (flexbox, not grid, so an
@@ -1658,13 +1675,17 @@ p {
 }
 
 .challenges-section__header {
-  max-width: 700px;
+  max-width: 1040px;
   margin: 0 auto var(--space-16);
   text-align: center;
 }
 
 .challenges-section__header h2 {
   margin-bottom: var(--space-6);
+}
+
+.challenges-section__header p {
+  max-width: none;
 }
 
 .challenges-grid {
@@ -1720,12 +1741,16 @@ p {
 }
 
 .trades-section__header {
-  max-width: 800px;
+  max-width: 1160px;
   margin-bottom: var(--space-12);
 }
 
 .trades-section__header h2 {
   margin-bottom: var(--space-6);
+}
+
+.trades-section__header p {
+  max-width: none;
 }
 
 /* --- Trades Tabbed Navigation --- */
@@ -1825,7 +1850,7 @@ p {
 
 .risk-section__header {
   text-align: center;
-  max-width: 800px;
+  max-width: 1160px;
   margin: 0 auto var(--space-12);
 }
 
@@ -1836,6 +1861,7 @@ p {
 .risk-section__header p {
   margin: 0 auto var(--space-4);
   font-size: var(--fs-md);
+  max-width: none;
 }
 
 .risk-section__header p:last-of-type {
@@ -1846,6 +1872,15 @@ p {
   font-size: var(--fs-lg);
   font-weight: var(--fw-semibold);
   color: var(--color-text);
+}
+
+/* Homepage-only emphasis variant — italic, heavier weight, orange, so the
+   5 Ds tagline reads as a bigger visual beat than the plain version reused
+   on other pages. */
+.risk-section__header p.risk-section__lede--emphasis {
+  font-style: italic;
+  font-weight: var(--fw-black);
+  color: var(--color-orange);
 }
 
 /* --- 5 Ds items — each card is a link out to more detail --- */
@@ -1894,7 +1929,7 @@ p {
 
 .risk-quote {
   text-align: center;
-  max-width: 700px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
@@ -1925,6 +1960,7 @@ p {
   margin-top: var(--space-6);
   font-size: var(--fs-md);
   color: var(--color-text-2);
+  max-width: none;
 }
 
 /* --- Supporting stats — flat number + label pairs, no card chrome, since
@@ -1962,6 +1998,42 @@ p {
   line-height: var(--lh-relaxed);
 }
 
+/* --- Left text / right content layout — heading + copy on the left,
+   the 5 D's grid, pull quote, and stats stacked on the right. --- */
+.risk-section__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.risk-section__text .risk-section__header {
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+.risk-section__text .risk-section__header p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.risk-section__content .risk-grid {
+  justify-content: flex-start;
+  margin-bottom: var(--space-10);
+}
+
+.risk-section__content .risk-quote {
+  max-width: none;
+  margin: 0 0 var(--space-10);
+}
+
+.risk-section__content .risk-stats {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: none;
+  margin: 0;
+}
+
 
 /* ==========================================================================
    12b. EIGHT DRIVERS OF VALUE SECTION
@@ -1976,7 +2048,7 @@ p {
 
 .drivers-section__header {
   text-align: center;
-  max-width: 800px;
+  max-width: 1160px;
   margin: 0 auto var(--space-16);
 }
 
@@ -1987,6 +2059,7 @@ p {
 .drivers-section__header p {
   margin: 0 auto;
   font-size: var(--fs-md);
+  max-width: none;
 }
 
 .drivers-list {
@@ -2028,6 +2101,27 @@ p {
   font-size: var(--fs-sm);
   color: var(--color-text-3);
   line-height: var(--lh-relaxed);
+}
+
+/* --- Points (left) + visual (right), below the full-width header/lede
+   row above. The visual is stretched to the row's height — set by the
+   points list — rather than keeping its own fixed aspect-ratio, so it
+   never grows taller than the content next to it. --- */
+.drivers-section__row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-16);
+  align-items: stretch;
+}
+
+.drivers-section__row .drivers-list {
+  max-width: none;
+  margin: 0;
+}
+
+.drivers-section__row .split-panel__visual {
+  aspect-ratio: auto;
+  height: 100%;
 }
 
 
@@ -2528,6 +2622,51 @@ p {
 
 
 /* ==========================================================================
+   15b. SHARED — SECTION-HEADER SPLIT LAYOUT MODIFIER
+   ==========================================================================
+   Additive modifier for centered eyebrow+h2+p header components
+   (.about-section__header, .testimonials-section__header,
+   .services-section__header, .trades-section__header, etc). Layer
+   `.section-header--split` onto the header's outer div, alongside its
+   existing class, to switch it from a centered stacked block into a
+   two-column layout on desktop — heading left, paragraph right — instead
+   of leaving empty space beside a short block of centered text. Requires
+   wrapping the eyebrow (if present) + heading in a `.section-header__heading`
+   div; the paragraph stays a direct sibling. Only apply to headers with
+   exactly one heading and exactly one description <p>. Below 1024px it
+   resets to a stacked column (see the responsive breakpoints section).
+
+   Declared after every base header class's own rule above so its overrides
+   always win the cascade regardless of which class it's layered onto.
+
+   Same mechanism as .process-section__header (section 13), which predates
+   this and is left as its own separate implementation.
+   ========================================================================== */
+.section-header--split {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+  text-align: left;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.section-header--split .section-header__heading h2,
+.section-header--split .section-header__heading h3 {
+  margin-bottom: 0;
+}
+
+.section-header--split p {
+  margin: 0;
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
+
+/* ==========================================================================
    16. CTA SECTION
    ========================================================================== */
 .cta-section {
@@ -2715,6 +2854,12 @@ p {
     align-items: start;
   }
 
+  .section-header--split {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
   .hero__inner {
     grid-template-columns: 1fr;
     padding: var(--space-20) var(--space-6) var(--space-12);
@@ -2744,6 +2889,10 @@ p {
 
   .value-card {
     flex-basis: calc(50% - var(--space-6));
+  }
+
+  .stats-grid--outcomes {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .fit-card {
@@ -2822,6 +2971,38 @@ p {
   .split-panel__grid--reverse {
     grid-template-columns: 1fr;
     gap: var(--space-8);
+  }
+
+  .risk-section__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .drivers-section__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .drivers-section__row .split-panel__visual {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .risk-section__content .risk-stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: left;
+  }
+
+  .risk-section__content .risk-stats .risk-stats__item {
+    padding: var(--space-5) 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .risk-section__content .risk-stats .risk-stats__item:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 
   /* Reset the desktop zig-zag reorder — text always reads before the
@@ -2912,6 +3093,10 @@ p {
     flex-basis: 100%;
   }
 
+  .stats-grid--outcomes {
+    grid-template-columns: 1fr;
+  }
+
   .fit-card {
     flex-basis: 100%;
   }
@@ -2938,6 +3123,13 @@ p {
     aspect-ratio: 16 / 10;
     max-width: 420px;
     margin: 0 auto;
+  }
+
+  .drivers-section__row .split-panel__visual {
+    aspect-ratio: 16 / 10;
+    max-width: 420px;
+    margin: 0 auto;
+    height: auto;
   }
 
   .split-panel__visual-icon {
