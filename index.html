@@ -239,6 +239,21 @@
           </div>
         </div>
 
+        <!-- Right column: Founder photo -->
+        <div class="hero__visual reveal">
+          <div class="hero__visual-frame" data-scroll-speed="0.06" data-scroll-scale="1.04">
+            <!-- WordPress: Use ACF image field or featured image -->
+            <img src="assets/images/founder.jpg" alt="Mike Wolfgang, founder and lead advisor at Spearpoint Advisors" width="600" height="750" loading="eager" fetchpriority="high">
+          </div>
+          <div class="hero__visual-badge">
+            <div class="hero__visual-badge-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></div>
+            <div>
+              <p class="hero__visual-badge-name">Mike Wolfgang</p>
+              <p class="hero__visual-badge-role">Founder &amp; Lead Advisor · CEPA Certified</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -251,43 +266,106 @@
       <div class="container">
         <div class="stats-strip__grid reveal-stagger">
 
-          <!-- Light stat card — Value Protected -->
+          <!-- Light stat card -->
           <div class="stat-card stat-card--light">
-            <p class="stat-card__label">Value Protected</p>
             <p class="stat-card__value">
-              <span data-count="0" data-prefix="$" data-suffix="B+">$0B+</span>
+              <span data-count="50" data-suffix="%" data-prefix="">0%</span>
             </p>
-            <p class="stat-card__description">Across our client portfolio</p>
+            <p class="stat-card__description">Of business owners are forced to exit — not by choice</p>
           </div>
 
-          <!-- Dark stat card — Successful Exits -->
+          <!-- Dark stat card -->
           <div class="stat-card stat-card--dark">
-            <p class="stat-card__label">Successful Exits</p>
-            <p class="stat-card__value">
-              <span data-count="99" data-prefix="+" data-suffix="">+0</span>
-            </p>
-            <p class="stat-card__description">On the founder's terms</p>
-          </div>
-
-          <!-- Glass card — Owner Independence -->
-          <div class="stat-card stat-card--glass">
-            <p class="stat-card__label">Owner Independence</p>
             <p class="stat-card__value">
               <span data-count="80" data-suffix="%" data-prefix="">0%</span>
             </p>
-            <p class="stat-card__description">Reduction in owner dependency across engagements</p>
+            <p class="stat-card__description">Of those owners had no exit plan in place</p>
           </div>
 
-          <!-- Dark stat card — Businesses Coached -->
-          <div class="stat-card stat-card--dark">
-            <p class="stat-card__label">Businesses Coached</p>
+          <!-- Glass card -->
+          <div class="stat-card stat-card--glass">
             <p class="stat-card__value">
-              <span data-count="15" data-suffix="+" data-prefix="">0+</span>
+              <span data-count="80" data-suffix="%" data-prefix="">0%</span>
             </p>
-            <p class="stat-card__description">Years of hands-on operational leadership</p>
+            <p class="stat-card__description">Of the average owner's net worth is tied up in their business</p>
+          </div>
+
+          <!-- Dark stat card -->
+          <div class="stat-card stat-card--dark">
+            <p class="stat-card__value">
+              <span data-count="10" data-suffix="×" data-prefix="">0×</span>
+            </p>
+            <p class="stat-card__description">Gap between top-quartile and median sale multiples</p>
           </div>
 
         </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         TESTIMONIALS SECTION — Slider with dummy content
+         WordPress: Custom Post Type "testimonials" with ACF fields
+         ====================================================================== -->
+    <section class="section section--dark testimonials-section" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials-section__header reveal">
+          <span class="eyebrow">Client Results</span>
+          <h2 data-heading-wipe>What Home Services Owners Say</h2>
+          <p>Real outcomes from real home services business owners — HVAC, plumbing, electrical, landscaping, pest control.</p>
+        </div>
+
+        <!-- Testimonials Slider -->
+        <div class="testimonials-slider">
+          <div class="testimonials-track reveal-stagger">
+
+            <!-- Testimonial 1 -->
+            <!-- WordPress: <?php while (have_posts()): the_post(); ?> -->
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Jeremy Lopez</p>
+                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card" data-tilt-card>
+              <div class="testimonial-card__tilt" data-tilt-target>
+                <div class="testimonial-card__stars" aria-label="5 star rating">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
+                <div class="testimonial-card__author">
+                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
+                  <div>
+                    <p class="testimonial-card__name">— Gina Lemon</p>
+                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="slider-controls">
+            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
+            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -300,8 +378,10 @@
       <div class="container">
 
         <div class="process-section__header reveal">
-          <span class="eyebrow">Our Framework</span>
-          <h2 data-heading-wipe>A Proven Three-Gate Path from Uncertainty to Readiness</h2>
+          <div class="process-section__heading">
+            <span class="eyebrow">Our Framework</span>
+            <h2 data-heading-wipe>A Proven Three-Gate Path from Uncertainty to Readiness</h2>
+          </div>
           <p>We don't believe in vague advice or one-size-fits-all coaching. Our Discover–Prepare–Decide framework is a structured, gate-based progression that moves you from where you are today to where you need to be — with a clear outcome at every stage.</p>
         </div>
 
@@ -821,73 +901,6 @@
             <a href="about.html" class="btn btn--outline btn--large">
               Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
             </a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ======================================================================
-         TESTIMONIALS SECTION — Slider with dummy content
-         WordPress: Custom Post Type "testimonials" with ACF fields
-         ====================================================================== -->
-    <section class="section section--dark testimonials-section" id="testimonials">
-      <div class="container">
-
-        <div class="testimonials-section__header reveal">
-          <span class="eyebrow">Client Results</span>
-          <h2 data-heading-wipe>What Home Services Owners Say</h2>
-          <p>Real outcomes from real home services business owners — HVAC, plumbing, electrical, landscaping, pest control.</p>
-        </div>
-
-        <!-- Testimonials Slider -->
-        <div class="testimonials-slider">
-          <div class="testimonials-track reveal-stagger">
-
-            <!-- Testimonial 1 -->
-            <!-- WordPress: <?php while (have_posts()): the_post(); ?> -->
-            <div class="testimonial-card" data-tilt-card>
-              <div class="testimonial-card__tilt" data-tilt-target>
-                <div class="testimonial-card__stars" aria-label="5 star rating">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-card__quote">"I am pleased to endorse Mike for his exceptional leadership, networking skills, and strategic thinking. Mike has been an instrumental force in bringing together local businesses and creating a thriving social network for our community. Through his leadership, Mike made it possible for us to engage closely with city officials, business leaders, and the local chamber of commerce. His ability to develop strategic pathways and connect people with the right expertise has been invaluable in fostering collaboration and growth within our community. On a personal level, working with Mike on a weekly basis not only improved my business but also strengthened my relationships with local community leaders. His dedication and vision have left a lasting impact on both my professional development and the broader business network in our area. I wholeheartedly recommend Mike for any future opportunities that require strong leadership, innovative thinking, and a talent for building meaningful connections. He is truly a remarkable individual who consistently goes above and beyond to support those around him."</p>
-                <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
-                  <div>
-                    <p class="testimonial-card__name">— Jeremy Lopez</p>
-                    <p class="testimonial-card__role">Founder, LabTech Supply</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card" data-tilt-card>
-              <div class="testimonial-card__tilt" data-tilt-target>
-                <div class="testimonial-card__stars" aria-label="5 star rating">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-card__quote">"Mike's expertise in helping small and mid-size businesses scale is truly exceptional. His ability to quickly clarify business demands, paired with his "seek-to-understand" approach, sets him apart. Mike is deeply committed to empowering business owners and founders to create the life they want by building a business that works for them—not the other way around. If you're looking for a strategic and innovative partner, I highly recommend Mike!"</p>
-                <div class="testimonial-card__author">
-                  <div class="testimonial-card__avatar" aria-hidden="true">GL</div>
-                  <div>
-                    <p class="testimonial-card__name">— Gina Lemon</p>
-                    <p class="testimonial-card__role">Founder, Vivid Joy HR</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Slider Controls -->
-          <div class="slider-controls">
-            <button class="slider-btn slider-btn--prev" aria-label="Previous testimonial">←</button>
-            <div class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
-            <button class="slider-btn slider-btn--next" aria-label="Next testimonial">→</button>
           </div>
 
         </div>

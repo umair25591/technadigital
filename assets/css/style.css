@@ -821,8 +821,10 @@ p {
 .hero__inner {
   position: relative;
   z-index: 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
+  gap: var(--space-12);
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -831,6 +833,89 @@ p {
 
 .hero__content {
   max-width: 640px;
+}
+
+/* --- Hero visual — founder photo, right column --- */
+.hero__visual {
+  position: relative;
+}
+
+.hero__visual-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Soft brand-color glow behind the frame — painted first via ::before's
+   generated-content ordering, so it sits behind the frame without needing
+   z-index. */
+.hero__visual::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(232, 83, 14, 0.20), transparent 60%),
+    radial-gradient(circle at 82% 84%, rgba(37, 99, 235, 0.16), transparent 60%);
+  filter: blur(20px);
+  border-radius: var(--radius-lg);
+}
+
+.hero__visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--transition-smooth);
+}
+
+.hero__visual:hover .hero__visual-frame img {
+  transform: scale(1.04);
+}
+
+/* Frosted credential badge, overlapping the bottom of the photo */
+.hero__visual-badge {
+  position: absolute;
+  left: var(--space-6);
+  right: var(--space-6);
+  bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero__visual-badge-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-sm);
+}
+
+.hero__visual-badge-name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-black);
+  line-height: var(--lh-snug);
+}
+
+.hero__visual-badge-role {
+  font-size: var(--fs-xs);
+  color: var(--color-gray-500);
+  line-height: var(--lh-snug);
 }
 
 .hero__eyebrow {
@@ -1955,12 +2040,21 @@ p {
 }
 
 .process-section__header {
-  max-width: 700px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
   margin-bottom: var(--space-16);
 }
 
-.process-section__header h2 {
-  margin-bottom: var(--space-6);
+.process-section__heading h2 {
+  margin-bottom: 0;
+}
+
+.process-section__header p {
+  margin: 0;
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
 }
 
 /* --- Process steps (horizontal timeline-like layout) --- */
@@ -2042,8 +2136,10 @@ p {
 .process-step__outcomes {
   max-width: 340px;
   margin: 0 auto var(--space-5);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+  padding: var(--space-5);
+  background: linear-gradient(135deg, rgba(232, 83, 14, 0.08), rgba(232, 83, 14, 0.02));
+  border: 1px solid rgba(232, 83, 14, 0.15);
+  border-radius: var(--radius-lg);
   text-align: left;
 }
 
@@ -2613,8 +2709,24 @@ p {
 /* --- Tablet (max 1024px) --- */
 @media (max-width: 1024px) {
 
+  .process-section__header {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
   .hero__inner {
+    grid-template-columns: 1fr;
     padding: var(--space-20) var(--space-6) var(--space-12);
+  }
+
+  .hero__content {
+    max-width: none;
+  }
+
+  .hero__visual {
+    max-width: 420px;
+    margin: var(--space-10) auto 0;
   }
 
   .stats-strip__grid {
@@ -2765,6 +2877,18 @@ p {
 
   .hero__title {
     font-size: clamp(1.6rem, 5vw + 0.3rem, 2.5rem);
+  }
+
+  .hero__visual {
+    max-width: 320px;
+    margin-top: var(--space-8);
+  }
+
+  .hero__visual-badge {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+    padding: var(--space-3) var(--space-4);
   }
 
   .stats-strip__grid {
