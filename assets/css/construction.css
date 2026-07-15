@@ -104,6 +104,17 @@
   text-align: center;
 }
 
+/* --- "Hard to Value" problem tabs — style.css's .trade-panel__content p
+   has no max-width of its own, so it falls back to the base `p { max-width:
+   65ch }` rule. On the homepage/other pages that's masked by
+   .trade-panel__grid's own 2-column split (each column is already
+   narrower than 65ch), but this page uses .trade-panel__content on its
+   own with no grid, so the cap was visibly cutting the paragraph off
+   well short of the panel's full width. --- */
+#hard-to-value .trade-panel__content p {
+  max-width: none;
+}
+
 
 /* ==========================================================================
    RESPONSIVE
