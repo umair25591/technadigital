@@ -190,11 +190,152 @@
   margin: var(--space-10) auto var(--space-10);
 }
 
+/* --- Left-aligned 5 D's cards on services page (3 per row on desktop) --- */
+.services-risk-grid {
+  justify-content: flex-start;
+  margin-top: var(--space-8);
+  margin-bottom: 0;
+}
+
+.services-risk-grid .risk-item {
+  flex: 0 1 calc(33.333% - (var(--space-6) * 2 / 3));
+}
+
+
+/* --- "Who This Is For" editorial list --- */
+.who-editorial-list {
+  max-width: 840px;
+  margin: 0 auto var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.who-editorial-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.who-editorial-item:hover {
+  border-color: var(--color-orange);
+  box-shadow: 0 10px 30px rgba(232, 83, 14, 0.05);
+  transform: translateX(6px);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.who-editorial-item__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.12);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.who-editorial-item__text {
+  font-size: var(--fs-lg);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+  text-align: left;
+  font-weight: var(--fw-medium);
+}
+
+.who-closing-wrap {
+  text-align: center;
+  margin-top: var(--space-10);
+}
+
+.who-closing-wrap .services-closing-line {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xl);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- "Real Cost of Having No Plan" cards --- */
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  max-width: 1040px;
+  margin: 0 auto var(--space-12);
+}
+
+.cost-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid rgba(232, 83, 14, 0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.cost-card:hover {
+  border-color: var(--color-orange);
+  border-left-color: var(--color-orange);
+  box-shadow: 0 12px 40px rgba(232, 83, 14, 0.06);
+  transform: translateY(-3px);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.cost-card__icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 83, 14, 0.1);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-md);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cost-card__text {
+  font-size: var(--fs-base);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+  text-align: left;
+}
+
+.cost-card__text strong {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
+  .services-risk-grid {
+    justify-content: center;
+  }
+
+  .services-risk-grid .risk-item {
+    flex: 1 1 160px;
+  }
+
   .services-media-grid {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -203,6 +344,11 @@
   .services-mark {
     font-size: 6rem;
   }
+
+  .cost-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
 }
 
 @media (max-width: 768px) {
@@ -210,5 +356,22 @@
     top: var(--space-6);
     right: var(--space-6);
     font-size: 4.5rem;
+  }
+
+  .who-editorial-list {
+    gap: var(--space-4);
+  }
+
+  .who-editorial-item {
+    padding: var(--space-4) var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .who-editorial-item__text {
+    font-size: var(--fs-base);
+  }
+
+  .who-closing-wrap .services-closing-line {
+    font-size: var(--fs-lg);
   }
 }

@@ -95,6 +95,11 @@
   max-width: none;
 }
 
+/* --- Make the challenge-card icons orange in the "What Makes CEO Coaching Different" section --- */
+#what-makes-it-different .challenge-card__icon {
+  color: var(--color-orange);
+}
+
 
 /* ==========================================================================
    RESPONSIVE

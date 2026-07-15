@@ -319,3 +319,32 @@
   color: var(--color-text);
   margin-bottom: var(--space-8);
 }
+
+/* --- Who This Is For Section Image --- */
+.section-header__image-wrap {
+  margin-top: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.section-header__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.section-header__image-wrap:hover .section-header__image {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .section-header__image-wrap {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+}

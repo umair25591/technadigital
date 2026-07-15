@@ -443,6 +443,20 @@
 .drivers-list__number i {
   font-size: var(--fs-md);
 }
+/* --- Adjust the split-panel visual size to match content height on desktop --- */
+@media (min-width: 769px) {
+  #framework .split-panel__visual {
+    align-self: stretch;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* Display the 3 points in a single line on desktop and match the section width */
+  #timeline .drivers-list {
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: none;
+  }
+}
 
 
 /* ==========================================================================
