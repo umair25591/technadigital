@@ -116,6 +116,45 @@
   margin-bottom: 0;
 }
 
+/* --- Advisory philosophy columns — sits right below the 5-card
+   .fit-grid credentials row, so this deliberately avoids more card
+   chrome (same reasoning as style.css's .risk-stats: flat, divider-
+   separated columns instead, since the page is already card-heavy). --- */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.philosophy-grid__item {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-6);
+}
+
+.philosophy-grid__item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.philosophy-grid__label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  color: var(--color-orange);
+  margin-bottom: var(--space-3);
+}
+
+.philosophy-grid__item p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
 /* --- Story tabs section — style.css's .about-section__header and
    .story-chapter__content both center themselves (text-align: center /
    margin: 0 auto); client feedback was that this section specifically
@@ -197,5 +236,22 @@
 
   .story-chapter__mark--icon {
     font-size: 4.5rem;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .philosophy-grid__item {
+    border-left: none;
+    padding-left: 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .philosophy-grid__item:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 }
