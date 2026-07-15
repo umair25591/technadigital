@@ -87,18 +87,6 @@
   text-align: center;
 }
 
-/* --- "Death · Divorce · Disability · Disagreement · Disruption" accent
-   line — same visual idea as the-5-ds.css's .d5-hero__ds, rebuilt locally
-   for this page's "50% of Owners Are Forced Out" section. --- */
-.exit-ds-line {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
-}
-
 /* --- Space below the 3-gate process grid for the standalone "See the
    Full Process" button — style.css's .process-grid doesn't reserve room
    for a trailing CTA since the homepage's own version doesn't have one. --- */

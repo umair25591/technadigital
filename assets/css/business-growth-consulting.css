@@ -78,19 +78,6 @@
   text-align: center;
 }
 
-/* --- "Death · Divorce · Disability · Disagreement · Disruption" accent
-   line — same idea as Exit Planning's/Succession Planning's *-ds-line,
-   rebuilt locally for this page's own "50% of Owners Are Forced Out"
-   section. This md bolds it as its own standalone line. --- */
-.ceo-ds-line {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
-}
-
 /* --- Space below the 3-gate process grid for the standalone "See the
    Full Process" button — same idea as the other pages' *-process-cta. --- */
 .ceo-process-cta {

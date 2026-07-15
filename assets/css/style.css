@@ -1607,6 +1607,11 @@ p {
 .about-section__header p {
   font-size: var(--fs-md);
   max-width: none;
+  margin-bottom: var(--space-4);
+}
+
+.about-section__header p:last-child {
+  margin-bottom: 0;
 }
 
 /* --- Fit criteria — horizontal card row (flexbox, not grid, so an
@@ -2200,15 +2205,6 @@ p {
   z-index: 2;
   background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
   color: var(--color-white);
-}
-
-.process-step__gate {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-widest);
-  text-transform: uppercase;
-  color: var(--color-orange);
-  margin-bottom: var(--space-2);
 }
 
 .process-step__title {

@@ -44,6 +44,73 @@
   justify-content: center;
 }
 
+/* --- Founder Coaching Services — style.css's .drivers-list caps at
+   max-width: 1000px and centers itself, which reads narrower than the
+   full-width .section-header--split heading directly above it (that split
+   header explicitly resets max-width: none). Match the two so the grid's
+   left/right edges line up with the heading/subhead above it. --- */
+#founder-coaching-services .drivers-list {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* --- This Is for You — left-aligned instead of style.css's centered
+   .about-section__header default, to read as a direct, personal narrative
+   rather than a centered marketing headline. --- */
+#this-is-for-you .about-section__header {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* style.css's .about-section__header p carries no margin of its own (only
+   the h2 above it does) — the closing paragraph after the quote-block
+   needs room below the quote and, since it's alone in its own header div
+   here, no bottom margin to trim against the button that follows. */
+#this-is-for-you .about-section__header p {
+  margin-top: var(--space-6);
+}
+
+/* --- Reality check — "On paper" vs. "in reality" as a two-column
+   contrast instead of two more stacked paragraphs, since that gap is
+   exactly what this content is describing. Divider-separated, no card
+   chrome, same idiom as style.css's .risk-stats / about.css's
+   .philosophy-grid elsewhere on the site. --- */
+.reality-check {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-10);
+  margin: var(--space-8) 0 var(--space-10);
+}
+
+.reality-check__item {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-6);
+}
+
+.reality-check__item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.reality-check__label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  color: var(--color-orange);
+  margin-bottom: var(--space-3);
+}
+
+.reality-check__item p {
+  font-size: var(--fs-md);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
 /* --- Quote block — this page's pull-quote treatment (used twice: the
    ceiling section and the 5 Ds section), same visual idea as
    the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt locally
@@ -86,5 +153,22 @@
 @media (max-width: 768px) {
   .quote-block {
     padding: var(--space-6);
+  }
+
+  .reality-check {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .reality-check__item {
+    border-left: none;
+    padding-left: 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .reality-check__item:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 }
