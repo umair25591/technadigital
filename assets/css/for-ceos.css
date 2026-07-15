@@ -46,13 +46,146 @@
   justify-content: center;
 }
 
-/* --- Three-pillar variant — style.css's .drivers-list is a 2-column grid
-   (built for the site's other 6/7-item lists); with only 3 pillars here,
-   the 3rd item would drop to a new row flush left instead of sitting
-   alongside the other two. A 3-col track keeps all three in one centered
-   row without touching the shared 2-col layout used elsewhere. --- */
-.drivers-list--three {
-  grid-template-columns: repeat(3, 1fr);
+/* --- CEO Coaching Services — style.css's .drivers-list caps at
+   max-width: 1000px and centers itself, which reads narrower than the
+   full-width .section-header--split heading directly above it (that split
+   header explicitly resets max-width: none). Match the two so the grid's
+   left/right edges line up with the heading/subhead above it. --- */
+#ceo-coaching-services .drivers-list {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* --- The 5 Ds — style.css's .about-section__header caps at
+   max-width: 1040px and centers itself, which reads narrower than the
+   full-width section above it (.the-problem's .split-panel__grid runs
+   edge-to-edge in the container). Match the two so this header/copy block
+   and the risk-grid below it line up with the same left/right edges. --- */
+#the-5-ds .about-section__header {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+/* Body paragraphs — style.css's .about-section__header p carries no margin
+   of its own (only the h2 above it does), so consecutive paragraphs ran
+   flush against each other with no breathing room. */
+#the-5-ds .about-section__header p {
+  margin-bottom: var(--space-6);
+}
+
+/* --- The Solution — these 3 points carry uneven amounts of copy (1
+   paragraph vs. 2), so the 2-col/3-col grid track left one item stranded
+   next to empty space or squeezed into a narrow column. A single stacked
+   column lets each one take whatever height its own content needs. Also
+   widened to match the header above it, same reasoning as #the-5-ds. --- */
+#the-solution .about-section__header {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+#the-solution .drivers-list--stacked {
+  grid-template-columns: 1fr;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  gap: var(--space-16);
+}
+
+/* style.css's base `p { max-width: 65ch }` rule (its global readability
+   measure) still applies here since .drivers-list__text doesn't set its
+   own max-width — that's what was capping these paragraphs well short of
+   the now-full-width row. */
+#the-solution .drivers-list--stacked .drivers-list__text {
+  max-width: none;
+}
+
+
+#the-5-ds .about-section__header p:last-child {
+  margin-bottom: 0;
+}
+
+/* Bold lede line gets extra room on top of the shared paragraph spacing,
+   so it reads as a distinct beat between the heading and the body copy. */
+#the-5-ds .ceo-5ds-lede {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+/* --- Pillar flow — numbered vertical timeline for the "3 Pillars" section,
+   modeled on peer-advisory-groups.css's .mastermind-flow (same idea: a
+   rail-connected numbered list reads more prominent than a plain 3-col
+   card/list grid). Rebuilt here rather than shared since that component is
+   page-local by design. --- */
+.pillar-flow {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pillar-flow__item {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.pillar-flow__item:not(:last-child) {
+  padding-bottom: var(--space-10);
+}
+
+.pillar-flow__marker {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+/* Rail — spans from the bottom of this item's circle to the top of the
+   next one. Skipped on the last item since there's nothing to connect to. */
+.pillar-flow__item:not(:last-child) .pillar-flow__marker::after {
+  content: '';
+  position: absolute;
+  top: 52px;
+  bottom: calc(var(--space-10) * -1);
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--color-border);
+}
+
+.pillar-flow__number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-black);
+}
+
+.pillar-flow__content {
+  flex: 1;
+  padding-top: var(--space-2);
+}
+
+.pillar-flow__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.pillar-flow__text {
+  max-width: none;
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
 }
 
 /* --- Large faint corner icon — same visual idea as Executive Coaching's
@@ -158,8 +291,13 @@
     font-size: 4.5rem;
   }
 
-  .drivers-list--three {
-    grid-template-columns: 1fr;
+  .pillar-flow__item,
+  .pillar-flow__item:not(:last-child) {
+    padding-bottom: var(--space-8);
+  }
+
+  .pillar-flow__item:not(:last-child) .pillar-flow__marker::after {
+    bottom: calc(var(--space-8) * -1);
   }
 
   .quote-block {
