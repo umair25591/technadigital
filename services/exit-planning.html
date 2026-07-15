@@ -311,7 +311,7 @@
           <p>Business exit planning at Spearpoint Advisors isn't a single conversation. It's a sustained advisory engagement that works through every dimension of your business and your life — financial, operational, personal, and strategic.</p>
         </div>
 
-        <div class="stats-grid reveal-stagger">
+        <div class="stats-grid stats-grid--3col reveal-stagger">
 
           <div class="value-card">
             <div class="value-card__icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
@@ -391,10 +391,45 @@
 
       <div class="container">
 
-        <div class="about-section__header reveal">
-          <h2 data-heading-wipe>Exit Planning Isn't About Selling. It's About Having a Choice.</h2>
+        <div class="about-section__header section-header--split reveal">
+          <div class="section-header__heading">
+            <h2 data-heading-wipe>Exit Planning Isn't About Selling. It's About Having a Choice.</h2>
+          </div>
           <p>The word "exit" makes most business owners think of selling. But exit planning is really about something simpler and more important: control. Control over what happens to the business you built. Control over the financial outcome. Control over the timing, the process, and the terms — rather than having those things determined for you.</p>
-          <p>50% of business owners are forced out by the 5 Ds — Death · Divorce · Disability · Disagreement · Disruption — and 80% of those owners had no plan in place. That's not a statistic about bad luck. It's a statistic about preparation. The owners who had real options when those moments arrived were the ones who started working with an exit planning advisor years before they needed one.</p>
+        </div>
+
+        <div class="exit-planning-stat-paragraph reveal">
+          <p>50% of business owners are forced out by the 5 Ds — and 80% of those owners had no plan in place. That's not a statistic about bad luck. It's a statistic about preparation. The owners who had real options when those moments arrived were the ones who started working with an exit planning advisor years before they needed one.</p>
+        </div>
+
+        <!-- 5 D's visual grid — same box design as the homepage's risk-grid -->
+        <div class="risk-grid reveal-stagger">
+
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-skull"></i></span>
+            <span class="risk-item__title">Death</span>
+          </a>
+
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-heart-crack"></i></span>
+            <span class="risk-item__title">Divorce</span>
+          </a>
+
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-crutch"></i></span>
+            <span class="risk-item__title">Disability</span>
+          </a>
+
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-bolt"></i></span>
+            <span class="risk-item__title">Disagreement</span>
+          </a>
+
+          <a href="https://spearpoint.technadigital.com/the-5-ds/" class="risk-item">
+            <span class="risk-item__icon"><i class="fa-solid fa-water"></i></span>
+            <span class="risk-item__title">Disruption</span>
+          </a>
+
         </div>
 
         <div class="quote-block reveal">
@@ -461,48 +496,53 @@
           <p>Not every exit looks the same. The right path depends on your financial goals, your legacy priorities, your timeline, and the specific characteristics of your business. Here is a clear-eyed look at the five most common exit paths for founder-led businesses — and what each one actually requires.</p>
         </div>
 
-        <div class="drivers-list reveal-stagger">
+        <!-- Exit Paths Tabs Navigation -->
+        <div class="trades-tabs reveal" role="tablist">
+          <button class="trades-tab is-active" data-tab="path-strategic" role="tab" aria-selected="true">Strategic Sale</button>
+          <button class="trades-tab" data-tab="path-mbo" role="tab">Management Buyout</button>
+          <button class="trades-tab" data-tab="path-family" role="tab">Family Succession</button>
+          <button class="trades-tab" data-tab="path-esop" role="tab">ESOP</button>
+          <button class="trades-tab" data-tab="path-recap" role="tab">Recapitalization</button>
+        </div>
 
-          <div class="drivers-list__item">
-            <div class="drivers-list__number"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
-            <div>
-              <h3 class="drivers-list__label">Strategic Sale to a Third-Party Buyer</h3>
-              <p class="drivers-list__text">The most common exit path for founder-led businesses in the $2M–$150M range. A strategic buyer — typically a larger company in the same or an adjacent industry — acquires the business because it adds revenue, capability, customers, or market position to their existing operation. Strategic buyers often pay the highest multiples, but they also scrutinize owner dependency, customer concentration, and leadership depth more carefully than any other buyer type. The businesses that command top-quartile multiples from strategic buyers are the ones that have done the preparation work.</p>
-            </div>
+        <!-- Panel 1: Strategic Sale -->
+        <div class="trade-panel is-active" id="path-strategic" role="tabpanel">
+          <div class="trade-panel__content">
+            <h3>Strategic Sale to a Third-Party Buyer</h3>
+            <p>The most common exit path for founder-led businesses in the $2M–$150M range. A strategic buyer — typically a larger company in the same or an adjacent industry — acquires the business because it adds revenue, capability, customers, or market position to their existing operation. Strategic buyers often pay the highest multiples, but they also scrutinize owner dependency, customer concentration, and leadership depth more carefully than any other buyer type. The businesses that command top-quartile multiples from strategic buyers are the ones that have done the preparation work.</p>
           </div>
+        </div>
 
-          <div class="drivers-list__item">
-            <div class="drivers-list__number"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></div>
-            <div>
-              <h3 class="drivers-list__label">Management Buyout</h3>
-              <p class="drivers-list__text">The existing leadership team acquires the business from the founder. This path works well when there is a capable, motivated leadership team in place and when the founder wants to ensure continuity of culture and operations. It typically requires financing — either through an SBA loan, seller financing, or a private equity partner — and it demands that the leadership team is genuinely ready to run the business without the founder. Building that team is one of the most important things an exit planning engagement can accomplish.</p>
-            </div>
+        <!-- Panel 2: Management Buyout -->
+        <div class="trade-panel" id="path-mbo" role="tabpanel">
+          <div class="trade-panel__content">
+            <h3>Management Buyout</h3>
+            <p>The existing leadership team acquires the business from the founder. This path works well when there is a capable, motivated leadership team in place and when the founder wants to ensure continuity of culture and operations. It typically requires financing — either through an SBA loan, seller financing, or a private equity partner — and it demands that the leadership team is genuinely ready to run the business without the founder. Building that team is one of the most important things an exit planning engagement can accomplish.</p>
           </div>
+        </div>
 
-          <div class="drivers-list__item">
-            <div class="drivers-list__number"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></div>
-            <div>
-              <h3 class="drivers-list__label">Family Succession</h3>
-              <p class="drivers-list__text">Transferring the business to the next generation is one of the most emotionally complex exit paths — and one of the least financially straightforward. It requires careful planning around valuation, gifting, estate and tax structure, and the readiness of the successor. Many family transitions fail not because the next generation isn't capable, but because the planning wasn't done early enough or honestly enough. A business exit planning consultant helps families navigate this with clarity and without the conversations that should have happened years earlier happening under pressure.</p>
-            </div>
+        <!-- Panel 3: Family Succession -->
+        <div class="trade-panel" id="path-family" role="tabpanel">
+          <div class="trade-panel__content">
+            <h3>Family Succession</h3>
+            <p>Transferring the business to the next generation is one of the most emotionally complex exit paths — and one of the least financially straightforward. It requires careful planning around valuation, gifting, estate and tax structure, and the readiness of the successor. Many family transitions fail not because the next generation isn't capable, but because the planning wasn't done early enough or honestly enough. A business exit planning consultant helps families navigate this with clarity and without the conversations that should have happened years earlier happening under pressure.</p>
           </div>
+        </div>
 
-          <div class="drivers-list__item">
-            <div class="drivers-list__number"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></div>
-            <div>
-              <h3 class="drivers-list__label">ESOP — Employee Stock Ownership Plan</h3>
-              <p class="drivers-list__text">An ESOP allows the owner to sell some or all of the business to the employees through a trust structure. It can be a powerful tool for owners who want to reward their workforce, maintain cultural continuity, and achieve a tax-advantaged exit. ESOPs are complex — legally, financially, and operationally — and they require a business with stable cash flow and a management team capable of running the company independently. They are not the right path for every business, but for the right situation they can be an extraordinary outcome.</p>
-            </div>
+        <!-- Panel 4: ESOP -->
+        <div class="trade-panel" id="path-esop" role="tabpanel">
+          <div class="trade-panel__content">
+            <h3>ESOP — Employee Stock Ownership Plan</h3>
+            <p>An ESOP allows the owner to sell some or all of the business to the employees through a trust structure. It can be a powerful tool for owners who want to reward their workforce, maintain cultural continuity, and achieve a tax-advantaged exit. ESOPs are complex — legally, financially, and operationally — and they require a business with stable cash flow and a management team capable of running the company independently. They are not the right path for every business, but for the right situation they can be an extraordinary outcome.</p>
           </div>
+        </div>
 
-          <div class="drivers-list__item">
-            <div class="drivers-list__number"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
-            <div>
-              <h3 class="drivers-list__label">Recapitalization with a Private Equity Partner</h3>
-              <p class="drivers-list__text">A partial sale to a private equity firm allows the owner to take some money off the table, bring in an experienced growth partner, and retain equity for a second exit down the road — often at a higher valuation. This path works well for owners who aren't ready to fully exit but want financial diversification and operational support. It requires a business with strong EBITDA, clean financials, and a leadership team that can operate at the pace a PE partner will expect.</p>
-            </div>
+        <!-- Panel 5: Recapitalization -->
+        <div class="trade-panel" id="path-recap" role="tabpanel">
+          <div class="trade-panel__content">
+            <h3>Recapitalization with a Private Equity Partner</h3>
+            <p>A partial sale to a private equity firm allows the owner to take some money off the table, bring in an experienced growth partner, and retain equity for a second exit down the road — often at a higher valuation. This path works well for owners who aren't ready to fully exit but want financial diversification and operational support. It requires a business with strong EBITDA, clean financials, and a leadership team that can operate at the pace a PE partner will expect.</p>
           </div>
-
         </div>
 
       </div>

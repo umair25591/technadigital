@@ -1438,6 +1438,12 @@ p {
   border: 1px solid rgba(232, 83, 14, 0.15);
 }
 
+/* Clean 3-column layout variant (useful for 6 or 9 cards) */
+.stats-grid--3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 /* `transform` only enters the transition list on :hover — keeping it out of
    the base rule stops it from fighting the GSAP scroll-reveal tween, which
    also animates `transform` on this element (see app.js reveal-stagger). */
@@ -2891,6 +2897,10 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .stats-grid--3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .fit-card {
     flex-basis: calc(50% - var(--space-6));
   }
@@ -3090,6 +3100,10 @@ p {
   }
 
   .stats-grid--outcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid--3col {
     grid-template-columns: 1fr;
   }
 

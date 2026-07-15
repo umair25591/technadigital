@@ -95,6 +95,28 @@
   text-align: center;
 }
 
+/* --- Exit Planning Isn't About Selling Section Spacing & Centered Stat --- */
+#not-about-selling .about-section__header {
+  margin-bottom: var(--space-10);
+}
+
+.exit-planning-stat-paragraph {
+  max-width: 760px;
+  margin: 0 auto var(--space-10);
+  text-align: center;
+}
+
+.exit-planning-stat-paragraph p {
+  font-size: var(--fs-md);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+}
+
+/* --- Exit Paths Tab Panels — full-width paragraphs --- */
+#exit-paths .trade-panel__content p {
+  max-width: none;
+}
+
 
 /* ==========================================================================
    RESPONSIVE
