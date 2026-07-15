@@ -46,13 +46,23 @@
   justify-content: center;
 }
 
-/* --- Two-stat variant — style.css's .risk-stats is a 4-column grid (built
-   for the homepage's 4-stat row); with only 2 items here it would sit
-   flush left instead of centered. Narrower max-width + a 2-col track
-   centers the pair the same way the site centers other short stat rows. --- */
-.risk-stats--two {
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 560px;
+/* --- Executive Coaching page stat cards styling --- */
+.exec-coaching-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: none;
+  margin: var(--space-6) 0;
+}
+
+.exec-coaching-stats .stat-card__description {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.exec-coaching-stats .stat-card--light {
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 /* --- Check-bullet list — global CSS resets <ul> to no markers, so the
@@ -90,6 +100,11 @@
   background: rgba(232, 83, 14, 0.12);
   color: var(--color-orange);
   font-size: 0.65rem;
+}
+
+.section-header--split .services-list {
+  margin: 0;
+  max-width: none;
 }
 
 /* --- Large faint corner icon — same visual idea as Services'/The 5 Ds'
@@ -230,8 +245,12 @@
   color: var(--color-orange);
 }
 
-.exec-next-links__item:hover .exec-next-links__arrow {
-  transform: translateX(4px);
+/* --- Exit Strategy section paragraph left-alignment --- */
+#exit-strategy .about-section__header p {
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -260,4 +279,12 @@
   .process-grid--five {
     grid-template-columns: 1fr;
   }
+}
+
+/* --- CTA Section subheading --- */
+.cta-section__subheading {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-8);
 }
