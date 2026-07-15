@@ -94,11 +94,12 @@
    class from operational-scaling-consulting.js, so no JS height
    measurement is needed. --- */
 .ops-accordion {
-  max-width: 800px;
+  max-width: none;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  align-items: start;
 }
 
 .ops-accordion__item {
@@ -186,8 +187,8 @@
 .ops-accordion__panel-inner p {
   max-width: none;
   padding: 0 var(--space-6) var(--space-5);
-  font-size: var(--fs-sm);
-  color: var(--color-text-3);
+  font-size: var(--fs-md);
+  color: var(--color-text-2);
   line-height: var(--lh-relaxed);
 }
 
@@ -206,6 +207,12 @@
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
+@media (max-width: 900px) {
+  .ops-accordion {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .quote-block {
     padding: var(--space-6);
