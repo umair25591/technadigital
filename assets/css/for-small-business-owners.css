@@ -44,28 +44,111 @@
   justify-content: center;
 }
 
-/* --- Wide two-up variant — "What Makes Small Business Coaching Different
-   at This Stage" has 5 long paragraph-length items, the longest content
-   of any .drivers-list on the site. style.css's default 2-column grid
-   cramps that much text into a narrow ~430px column (hard to read) and
-   leaves the odd 5th item stranded alone, flush left, in a mostly empty
-   row. This keeps the site's plain icon+text look (no card chrome —
-   boxing these felt inconsistent with how every other .drivers-list on
-   the site reads) but widens each column and, via flexbox +
-   justify-content: center instead of grid, centers the lone trailing
-   5th item on its own row instead of leaving it stuck flush left. --- */
-.drivers-list--wide-two {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-10) var(--space-10);
-  max-width: 860px;
+/* --- "What Makes Small Business Coaching Different at This Stage" —
+   heading + intro paragraph fixed on the left, the 5 items as a
+   click-to-expand accordion on the right instead of a flat icon+text
+   list, all closed on load. Same accordion mechanics (click-toggle +
+   max-height-from-scrollHeight) as home-services.css's/
+   professional-services.css's accordion, rebuilt locally per the
+   per-page-CSS convention, driven by for-small-business-owners.js. --- */
+.stage-different__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-12);
+  align-items: start;
 }
 
-.drivers-list--wide-two .drivers-list__item {
-  /* flex-grow: 0 — a lone item on a short last row must not stretch to
-     fill the leftover row width; every item stays a fixed, equal width. */
-  flex: 0 1 calc((100% - var(--space-10)) / 2);
+.stage-different__intro {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-8));
+}
+
+.stage-different__intro p {
+  margin-top: var(--space-5);
+  max-width: none;
+}
+
+.accordion-block + .accordion-block {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.accordion-block__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.accordion-block__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+  font-size: var(--fs-md);
+}
+
+.accordion-block__title {
+  flex: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.accordion-block__trigger:hover .accordion-block__title {
+  color: var(--color-orange);
+}
+
+.accordion-block__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-4);
+  font-size: var(--fs-sm);
+  transition: transform var(--transition-base);
+}
+
+.accordion-block.is-open .accordion-block__chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-block__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.accordion-block__content-inner {
+  padding-top: var(--space-4);
+}
+
+.accordion-block__content p {
+  max-width: none; /* style.css's global p { max-width: 65ch } would cap
+    this short of the accordion column's own width — override it */
+  font-size: var(--fs-sm);
+  color: var(--color-text-3);
+  line-height: var(--lh-relaxed);
+  margin-bottom: 0;
+}
+
+/* --- "What the $2M–$150M Stage Actually Requires" — a second, standalone
+   use of the same .accordion-block component (centered single column
+   this time, not paired with an intro column), also closed on load. --- */
+.stage-requires__accordion {
+  max-width: 820px;
+  margin: 0 auto;
 }
 
 /* --- Large faint corner icon — same visual idea as Executive Coaching's
@@ -128,15 +211,20 @@
   .sb-mark {
     font-size: 6rem;
   }
+
+  .stage-different__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .stage-different__intro {
+    position: static;
+  }
 }
 
 @media (max-width: 768px) {
   .sb-mark {
     font-size: 4.5rem;
-  }
-
-  .drivers-list--wide-two .drivers-list__item {
-    flex-basis: 100%;
   }
 
   .quote-block {
