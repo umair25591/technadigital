@@ -23,6 +23,19 @@
    is just a left accent bar with no background fill).
    ========================================================================== */
 
+/* --- "The Solution" header's 5 Ds tagline — style.css's emphasis variant
+   is scoped under .risk-section__header (`.risk-section__header
+   p.risk-section__lede--emphasis`), but this header uses
+   .about-section__header instead, so it needs its own selector to pick
+   up the same bold/italic/orange treatment. --- */
+#solution .risk-section__lede--emphasis {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  font-style: italic;
+  color: var(--color-orange);
+  margin-bottom: var(--space-4);
+}
+
 /* --- Hero — deliberately NOT the About page's photo+bio two-column
    layout (that pattern is reserved for person-centric content — see the
    Trust section below, which reuses it with the real founder photo).
@@ -152,6 +165,44 @@
   margin-top: var(--space-10);
 }
 
+/* --- Discover/Prepare/Decide teaser links — style.css's .process-step
+   has no link slot (the homepage's own teaser doesn't need one); this
+   page's "Solution" section reuses the-5-ds.css's .process-step__link
+   treatment, rebuilt locally per the per-page-CSS convention. Also add
+   breathing room below the grid, since .about-section__header (the next
+   block here) only carries margin-bottom, not margin-top. --- */
+.process-step__link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+}
+
+#solution .process-grid {
+  margin: var(--space-4) 0 var(--space-12);
+}
+
+/* --- "Here's how it connects" cards — reuses .stats-grid--outcomes'
+   light-orange .value-card tint, but 4-per-row instead of the shared
+   3-col default, so scoped to its own modifier rather than changing
+   .stats-grid--outcomes everywhere it's used. --- */
+.solution-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .solution-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .solution-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* .about-section__header p (style.css) has no margin-bottom, so a .btn
    placed right after a paragraph — as in the Solution section's closing
    block — sits flush against it with no gap. Scoped here rather than in
@@ -159,15 +210,6 @@
    (paragraph immediately followed by a button) occurs. */
 .about-section__header .btn {
   margin-top: var(--space-6);
-}
-
-/* Highlighted takeaway box — reuses .trade-panel__highlight's existing
-   orange-tinted callout styling as-is, just centered/width-constrained
-   here. Used to break up runs of consecutive plain centered text blocks
-   with a visually distinct moment instead of "another paragraph." */
-.services-highlight-wrap {
-  max-width: 600px;
-  margin: var(--space-10) auto var(--space-10);
 }
 
 /* .risk-stats sits inside the narrow left column of the "Problem"

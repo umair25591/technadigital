@@ -2473,6 +2473,28 @@ p {
   color: var(--color-orange);
 }
 
+/* --- Real-image variant of .split-panel__visual — used once a photo/
+   graphic replaces the generic dot-grid + icon placeholder. Drops the
+   placeholder's decorative layers and lets the image set its own
+   aspect ratio instead of forcing the 4:5 portrait crop. --- */
+.split-panel__visual--photo {
+  aspect-ratio: auto;
+  background: var(--color-surface);
+}
+
+.split-panel__visual--photo::before,
+.split-panel__visual--photo::after {
+  content: none;
+}
+
+.split-panel__visual--photo img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 /* ==========================================================================
    15. TESTIMONIALS SECTION
