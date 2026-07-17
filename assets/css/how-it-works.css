@@ -6,9 +6,11 @@
    --transition-*) and shared components already defined there.
 
    Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
-   .eyebrow, .process-grid/.process-step,
+   .eyebrow,
    .about-section__header, .risk-section__header/.risk-grid/.risk-item,
-   .drivers-list/.drivers-list__item, .founder-section__grid/__image-wrap/
+   .drivers-list/.drivers-list__item, .stats-grid--outcomes/.value-card
+   (the homepage's service-card grid, reused for "The Services That Power
+   the Process"), .founder-section__grid/__image-wrap/
    __image/__content, .achievement, .credentials/.credential-tag,
    .trades-tabs/.trades-tab/.trade-panel (the three detailed Gate sections
    are tabbed using the homepage's existing tabs engine, driven generically
@@ -30,7 +32,7 @@
 .how-hero__content {
   position: relative;
   z-index: 2;
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
@@ -92,16 +94,6 @@
   flex-shrink: 0;
 }
 
-/* .process-step__text is left-aligned by default (style.css) since the
-   homepage's version pairs it with outcomes/quote blocks below it. This
-   page's gate-preview teasers only show the one-line tagline, so a ragged
-   left edge under a centered number/title reads oddly — center it here. */
-.process-grid .process-step__text {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* .trades-tabs (style.css) is a left-hugging flex row sized for the
    homepage's 6 scrollable trade tabs. This page only has 3 gate tabs, so
    left-hugging leaves a lot of empty space — make each tab flex-grow to
@@ -136,16 +128,45 @@
 /* --- "Who This Is For" owner profiles — the MD's four "The owner who..."
    sentences, one per card, instead of run-on prose. Breaks up what was
    reading as a wall of centered paragraphs. --- */
+/* This page's "Who This Is Built For" header overrides the shared
+   .section-header--split (heading left / text right) to stack centered
+   instead, matching the centered card grid below it. */
+.owner-profile-header {
+  display: block;
+  text-align: center;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.owner-profile-header .section-header__heading {
+  margin-bottom: var(--space-4);
+}
+
+.owner-profile-header p {
+  margin: 0 auto;
+  max-width: none;
+}
+
 .owner-profile-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto var(--space-8);
+}
+
+/* Reuses the homepage 5 D's .risk-quote pull-quote treatment; just fixes
+   this instance's width so it doesn't stretch full-bleed under the grid. */
+.owner-profile-quote {
+  max-width: 1100px;
+  margin-top: var(--space-20);
+  margin-bottom: var(--space-20);
 }
 
 .owner-profile-card {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
   padding: var(--space-6);
@@ -177,37 +198,6 @@
 .owner-profile-card p {
   font-size: var(--fs-sm);
   color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin-bottom: 0;
-  text-align: left;
-}
-
-/* --- "Not for" callout — a single muted, boxed statement so the
-   disqualifying sentence reads as a deliberate line in the sand rather
-   than more of the same paragraph flow. --- */
-.not-for-callout {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-  max-width: 760px;
-  margin: 0 auto;
-  padding: var(--space-6) var(--space-8);
-  background-color: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-text-4);
-  border-radius: var(--radius-lg);
-}
-
-.not-for-callout__icon {
-  flex-shrink: 0;
-  font-size: var(--fs-lg);
-  color: var(--color-text-4);
-  margin-top: 2px;
-}
-
-.not-for-callout p {
-  font-size: var(--fs-sm);
-  color: var(--color-text-3);
   line-height: var(--lh-relaxed);
   margin-bottom: 0;
   text-align: left;
@@ -313,7 +303,7 @@
 .gate-section__header {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 980px;
   margin: 0 auto var(--space-10);
   text-align: center;
 }
@@ -322,21 +312,30 @@
   margin: var(--space-2) 0 var(--space-3);
 }
 
+/* Overrides style.css's global `p { max-width: 65ch }` readability cap,
+   which otherwise shrinks this <p> to a narrower box than its centered
+   980px parent — leaving it flush left instead of centered under the h2. */
 .gate-section__subheading {
   font-size: var(--fs-md);
   font-weight: var(--fw-medium);
   color: var(--color-text-3);
   font-style: italic;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .gate-section__content {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
+/* Same global 65ch cap applies here — without this, each paragraph shrinks
+   to its own narrower box instead of filling the 980px content column. */
 .gate-section__content p {
+  max-width: none;
   margin-bottom: var(--space-5);
 }
 
@@ -363,6 +362,7 @@
   font-size: var(--fs-sm);
   color: var(--color-text-2);
   line-height: var(--lh-relaxed);
+  max-width: none;
   margin-bottom: 0;
 }
 
@@ -370,7 +370,7 @@
    language as .process-step__quote (italic, orange border-left) sized for
    full-width prose instead of a 340px card column. --- */
 .gate-quote {
-  max-width: 700px;
+  max-width: 900px;
   margin: var(--space-8) auto;
   padding-left: var(--space-6);
   font-size: var(--fs-lg);
@@ -379,6 +379,12 @@
   color: var(--color-text);
   line-height: var(--lh-relaxed);
   border-left: 3px solid var(--color-orange);
+}
+
+/* Extra breathing room above this instance — sits right under the
+   timeline's last item and otherwise reads as stuck to it. */
+#timeline .gate-quote {
+  margin-top: var(--space-16);
 }
 
 .gate-section__pills-label {
@@ -390,51 +396,111 @@
   margin-bottom: var(--space-3);
 }
 
-/* --- Coaching-methodology comparison — the only genuinely new layout
-   component on this page. Two contrasting columns instead of another pair
-   of paragraphs, so "what makes this different" reads as a visible
-   before/after rather than more flat text. --- */
-.comparison-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  max-width: 1000px;
-  margin: 0 auto;
+/* --- Coaching-methodology comparison — this page's key differentiator
+   argument, rebuilt as a single row-by-row comparison table instead of two
+   blocks of prose. Each row pairs one "old way" line against its direct
+   "Spearpoint way" counterpart with an x/check mark, so the contrast reads
+   point-for-point rather than as two paragraphs the reader has to
+   cross-reference themselves. The right column carries a continuous
+   orange tint down the whole table so the eye tracks it as one column,
+   not five separate highlighted cells. --- */
+.difference-section .about-section__header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto var(--space-16);
 }
 
-.comparison-col {
-  padding: var(--space-8);
+.comparison-table {
+  max-width: 1100px;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
-.comparison-col h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: var(--space-4);
+.comparison-table__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.comparison-col p {
-  font-size: var(--fs-sm);
-  color: var(--color-text-3);
+.comparison-table__header-label {
+  padding: var(--space-5) var(--space-8);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.comparison-table__header-label--before {
+  background-color: var(--color-surface);
+  color: var(--color-text-4);
+}
+
+.comparison-table__header-label--after {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
+  color: var(--color-white);
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--color-border);
+}
+
+.comparison-row__cell {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-8);
+  transition: background-color var(--transition-base);
+}
+
+.comparison-row__cell i {
+  flex-shrink: 0;
+  margin-top: 5px;
+  font-size: var(--fs-md);
+}
+
+.comparison-row__cell p {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
   line-height: var(--lh-relaxed);
+  max-width: none;
   margin-bottom: 0;
 }
 
-.comparison-col--before {
-  background-color: var(--color-surface);
+.comparison-row__cell--before {
+  background-color: var(--color-bg);
 }
 
-.comparison-col--before h3 {
-  color: var(--color-text-3);
+.comparison-row__cell--before i {
+  color: var(--color-text-4);
 }
 
-.comparison-col--after {
-  background: linear-gradient(160deg, rgba(232, 83, 14, 0.06), transparent);
-  border-color: rgba(232, 83, 14, 0.25);
+.comparison-row__cell--before p {
+  color: var(--color-text-2);
 }
 
-.comparison-col--after h3 {
+.comparison-row__cell--after {
+  background-color: rgba(232, 83, 14, 0.06);
+  border-left: 1px solid rgba(232, 83, 14, 0.15);
+}
+
+.comparison-row__cell--after i {
   color: var(--color-orange);
+}
+
+.comparison-row__cell--after p {
+  color: var(--color-text);
+  font-weight: var(--fw-semibold);
+}
+
+.comparison-row:hover .comparison-row__cell--after {
+  background-color: rgba(232, 83, 14, 0.11);
 }
 
 /* Icon-badge variant of .drivers-list__number, reused for "The Services
@@ -443,18 +509,71 @@
 .drivers-list__number i {
   font-size: var(--fs-md);
 }
+
+/* --- "What a Typical Process Looks Like Over Time" — a vertical timeline
+   variant of .drivers-list instead of the default 2-col icon+text grid: a
+   left-hand spine with each step's number marker sitting on the line and
+   its write-up to the right of it. Scoped to .timeline-list so the other
+   .drivers-list instances on this page (Services That Power the Process)
+   keep their default layout. --- */
+.timeline-list {
+  position: relative;
+  display: block;
+  max-width: 1000px;
+}
+
+.timeline-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 22px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-orange) 0%, var(--color-orange) 88%, rgba(232, 83, 14, 0) 100%);
+}
+
+.timeline-list .drivers-list__item {
+  position: relative;
+  display: block;
+  padding-left: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.timeline-list .drivers-list__item:last-child {
+  padding-bottom: 0;
+}
+
+/* Overrides style.css's global `p { max-width: 65ch }` readability cap,
+   which otherwise shrinks this text narrower than the widened timeline
+   column instead of filling it. */
+.timeline-list .drivers-list__text {
+  max-width: none;
+}
+
+.timeline-list .drivers-list__number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border: 4px solid var(--color-surface);
+}
+
+/* "The Services That Power the Process" reuses the homepage's .value-card
+   grid as-is (same markup, same tilt hover), but that card's default
+   background is var(--color-surface) — identical to this section's own
+   .section--charcoal tone, so cards would blend into the section instead
+   of standing off it. Give them the section--dark tone instead for
+   contrast, without changing the section's own background. */
+#services-power .value-card {
+  background-color: var(--color-bg);
+}
+
 /* --- Adjust the split-panel visual size to match content height on desktop --- */
 @media (min-width: 769px) {
-  #framework .split-panel__visual {
+  #advisor-vs-process .split-panel__visual {
     align-self: stretch;
     height: 100%;
     aspect-ratio: auto;
-  }
-
-  /* Display the 3 points in a single line on desktop and match the section width */
-  #timeline .drivers-list {
-    grid-template-columns: 1fr 1fr 1fr;
-    max-width: none;
   }
 }
 
@@ -463,20 +582,40 @@
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
-  .comparison-grid {
-    grid-template-columns: 1fr;
-  }
-
   .gate-section__mark--number {
     font-size: 8rem;
   }
 
   .owner-profile-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
+  .timeline-list .drivers-list__item {
+    padding-bottom: var(--space-10);
+  }
+
+  .comparison-table__header {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table__header-label--before {
+    display: none;
+  }
+
+  .comparison-row {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-row__cell--before {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .comparison-row__cell--after {
+    border-left: none;
+  }
+
   .gate-section__mark {
     top: var(--space-6);
     right: var(--space-6);
@@ -505,18 +644,12 @@
     text-align: center;
   }
 
+  .owner-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
   .narrative-block__content p {
     text-align: left;
-  }
-
-  .not-for-callout {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .not-for-callout p {
-    text-align: center;
   }
 
   .quote-card {
