@@ -64,6 +64,61 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* --- Minimal stat style: no card chrome, centered text, thin divider
+   between columns (matches reference screenshot) --- */
+.exec-coaching-stats--minimal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-8);
+}
+
+.exec-coaching-stats--minimal .stat-card {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 0 0 var(--space-8);
+  text-align: center;
+  border-left: 1px solid var(--color-border);
+}
+
+.exec-coaching-stats--minimal .stat-card::after {
+  display: none;
+}
+
+.exec-coaching-stats--minimal .stat-card:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.exec-coaching-stats--minimal .stat-card__value {
+  color: var(--color-orange);
+  font-size: var(--fs-3xl);
+}
+
+.exec-coaching-stats--minimal .stat-card__description {
+  color: var(--color-text-2);
+}
+
+@media (max-width: 640px) {
+  .exec-coaching-stats--minimal {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .exec-coaching-stats--minimal .stat-card {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-6);
+  }
+
+  .exec-coaching-stats--minimal .stat-card:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
 /* --- Large faint corner icon — same visual idea as Services'/The 5 Ds'
    own corner-mark component (.services-mark / .d-panel__mark), reimplemented
    locally per the per-page-CSS convention so a text-heavy section (Who
