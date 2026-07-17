@@ -2697,25 +2697,6 @@ p {
   flex-wrap: wrap;
 }
 
-/* Scoped to .cta-section to out-specificity .cta-section p above — that
-   rule's `margin` shorthand would otherwise zero out this margin-top. */
-.cta-section .cta-section__email {
-  margin-top: var(--space-8);
-  font-size: var(--fs-sm);
-  color: var(--color-text-3);
-}
-
-.cta-section__email a {
-  color: var(--color-text);
-  font-weight: var(--fw-medium);
-  transition: color var(--transition-fast);
-}
-
-.cta-section__email a:hover {
-  color: var(--color-orange);
-}
-
-
 /* ==========================================================================
    17. FOOTER
    ========================================================================== */

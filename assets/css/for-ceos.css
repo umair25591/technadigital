@@ -76,11 +76,12 @@
   margin-bottom: var(--space-6);
 }
 
-/* --- The Solution — these 3 points carry uneven amounts of copy (1
-   paragraph vs. 2), so the 2-col/3-col grid track left one item stranded
-   next to empty space or squeezed into a narrow column. A single stacked
-   column lets each one take whatever height its own content needs. Also
-   widened to match the header above it, same reasoning as #the-5-ds. --- */
+/* --- The Solution — 3 points as a row of white cards (not the
+   orange-tinted .value-card variant), icon-over-title-over-text instead
+   of the shared .drivers-list's icon-left row layout, since that reads
+   better in a narrow 3-up column than it would in a stacked full-width
+   row. Widened to match the header above it, same reasoning as
+   #the-5-ds. --- */
 #the-solution .about-section__header {
   max-width: none;
   margin-left: 0;
@@ -89,11 +90,36 @@
 }
 
 #the-solution .drivers-list--stacked {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   max-width: none;
   margin-left: 0;
   margin-right: 0;
-  gap: var(--space-16);
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+/* Plain white card chrome (var(--color-surface), not the orange-tinted
+   .value-card variant) around each point, instead of the bare icon+text
+   row the shared .drivers-list uses everywhere else. Column layout
+   (icon above title above text) instead of the base row layout. */
+#the-solution .drivers-list--stacked .drivers-list__item {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-8);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+#the-solution .drivers-list--stacked .drivers-list__number {
+  margin-bottom: var(--space-4);
+}
+
+#the-solution .drivers-list--stacked .drivers-list__item:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-3px);
 }
 
 /* style.css's base `p { max-width: 65ch }` rule (its global readability
@@ -110,10 +136,15 @@
 }
 
 /* Bold lede line gets extra room on top of the shared paragraph spacing,
-   so it reads as a distinct beat between the heading and the body copy. */
-#the-5-ds .ceo-5ds-lede {
+   so it reads as a distinct beat between the heading and the risk-grid
+   below it. Selector matches the p:last-child rule above on specificity
+   exactly (id + 2 classes + element) so source order — this rule comes
+   later — decides the tie; the lede is now the sole paragraph in its own
+   header block, so it IS that last child. */
+#the-5-ds .about-section__header p.ceo-5ds-lede {
   margin-top: var(--space-6);
   margin-bottom: var(--space-8);
+  text-align: center;
 }
 
 /* --- Pillar flow — numbered vertical timeline for the "3 Pillars" section,
@@ -122,7 +153,7 @@
    card/list grid). Rebuilt here rather than shared since that component is
    page-local by design. --- */
 .pillar-flow {
-  max-width: 760px;
+  max-width: 860px;
   margin: 0 auto;
 }
 
@@ -138,7 +169,7 @@
 .pillar-flow__marker {
   position: relative;
   flex-shrink: 0;
-  width: 52px;
+  width: 64px;
 }
 
 /* Rail — spans from the bottom of this item's circle to the top of the
@@ -146,7 +177,7 @@
 .pillar-flow__item:not(:last-child) .pillar-flow__marker::after {
   content: '';
   position: absolute;
-  top: 52px;
+  top: 64px;
   bottom: calc(var(--space-10) * -1);
   left: 50%;
   width: 2px;
@@ -160,12 +191,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, var(--color-orange), var(--color-orange-hover));
   color: var(--color-white);
-  font-size: var(--fs-base);
+  font-size: var(--fs-lg);
   font-weight: var(--fw-black);
 }
 
@@ -175,7 +206,7 @@
 }
 
 .pillar-flow__title {
-  font-size: var(--fs-lg);
+  font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
   color: var(--color-text);
   margin-bottom: var(--space-3);
@@ -183,7 +214,7 @@
 
 .pillar-flow__text {
   max-width: none;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-md);
   color: var(--color-text-3);
   line-height: var(--lh-relaxed);
 }
@@ -202,6 +233,21 @@
   pointer-events: none;
   z-index: -1;
   user-select: none;
+}
+
+/* --- Centered CTA closing out "Who This Is For", so the section ends on
+   a next step instead of just the qualifying copy. --- */
+.who-this-is-for__cta {
+  text-align: center;
+  margin-top: var(--space-10);
+}
+
+/* --- "The Problem" — .about-section__header's own margin-bottom
+   (var(--space-16), 64px) is meant for the gap under a full section
+   header; here it sits directly above the .services-list checklist and
+   leaves a large empty gap between "And yet:" and the first bullet. --- */
+#the-problem .split-panel__content .about-section__header {
+  margin-bottom: var(--space-4);
 }
 
 /* --- Check-bullet list — global CSS resets <ul> to no markers, so the
@@ -283,6 +329,10 @@
 @media (max-width: 1024px) {
   .ceo-mark {
     font-size: 6rem;
+  }
+
+  #the-solution .drivers-list--stacked {
+    grid-template-columns: 1fr;
   }
 }
 
