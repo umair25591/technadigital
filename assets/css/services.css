@@ -7,16 +7,27 @@
 
    Reuses as-is (no rules needed here): .hero-decor (ambient glow orbs),
    .hero__cta-group, .services-section__header, .risk-section__header/
-   .risk-quote/.risk-section__lede, .about-section__header, .credentials/
-   .credential-tag, .value-card, .stats-grid, .cta-section, .btn.
+   .risk-section__lede, .risk-stats (the "50% / 80% / 80% / 10x" flat
+   stat row — same one used on the homepage's 5 Ds section),
+   .about-section__header, .credentials/.credential-tag, .value-card,
+   .stats-grid, .cta-section, .btn, and — for "Who This Is For" — the
+   full .process-grid/.process-step horizontal timeline (numbered
+   circles + connecting line), column count overridden to 5 further
+   down in this file via .who-timeline.
+
+   .quote-block below (orange-tinted-background pull-quote, used for the
+   "Real Cost" section's closing quote) is rebuilt locally per the
+   per-page-CSS convention — same visual design as the-5-ds.css's/
+   exit-planning.css's/operational-scaling-consulting.css's .quote-block
+   (not style.css's .risk-quote, which this page used before — that one
+   is just a left accent bar with no background fill).
    ========================================================================== */
 
 /* --- Hero — deliberately NOT the About page's photo+bio two-column
    layout (that pattern is reserved for person-centric content — see the
    Trust section below, which reuses it with the real founder photo).
-   Centered instead, with the homepage's ambient glow orbs plus a row of
-   small icon badges previewing the seven services covered further down
-   the page — a distinct visual signature for this hero. --- */
+   Centered instead, with the homepage's ambient glow orbs as its visual
+   signature for this hero. --- */
 .services-hero {
   padding-top: calc(var(--nav-height) + var(--space-12));
   position: relative;
@@ -42,29 +53,6 @@
 
 .services-hero__content .hero__cta-group {
   justify-content: center;
-}
-
-.services-hero__icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-10);
-}
-
-.services-hero__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-  color: var(--color-orange);
-  font-size: var(--fs-md);
 }
 
 /* --- Two-column media grid (image + content) — used for the Trust section
@@ -159,14 +147,6 @@
   color: var(--color-text-4);
 }
 
-/* --- Small helpers for content blocks reusing .about-section__header. --- */
-.services-closing-line {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-  font-weight: var(--fw-medium);
-  color: var(--color-text);
-}
 
 .services-followup {
   margin-top: var(--space-10);
@@ -190,66 +170,55 @@
   margin: var(--space-10) auto var(--space-10);
 }
 
-/* --- Left-aligned 5 D's cards on services page (3 per row on desktop) --- */
-.services-risk-grid {
-  justify-content: flex-start;
-  margin-top: var(--space-8);
-  margin-bottom: 0;
+/* .risk-stats sits inside the narrow left column of the "Problem"
+   section's .split-panel__grid here (homepage runs it full-width
+   instead), so its default 4-up/960px-max layout is too cramped —
+   drop to 2-up and left-align, matching how the rest of this column
+   reads. Scoped to a min-width query matching .split-panel__grid's own
+   1024px collapse-to-1-column breakpoint (style.css) — .risk-stats
+   already has its own ≤1024px single-column rules there, and since
+   services.css loads after style.css, an unscoped override here would
+   out-cascade those at any width and break the mobile stack. */
+@media (min-width: 1025px) {
+  .split-panel__content .risk-stats {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: none;
+    margin: var(--space-8) 0 0;
+    text-align: center;
+  }
+
+  .split-panel__content .risk-stats__item:nth-child(2n) {
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .split-panel__content .risk-stats__item:nth-child(2n+1) {
+    padding-left: 0;
+    border-left: none;
+  }
 }
 
-.services-risk-grid .risk-item {
-  flex: 0 1 calc(33.333% - (var(--space-6) * 2 / 3));
+/* --- "Who This Is For" — reuses the shared .process-grid/.process-step
+   horizontal timeline component as-is (numbered circles on a connecting
+   line, defined in style.css, scroll reveal handled by app.js). The
+   shared grid defaults to 3 columns (built for 3-gate processes); this
+   is the only page using it for 5, so the column count is overridden
+   here, scoped to a min-width media query matching the shared
+   component's own 1024px collapse-to-1-column breakpoint — this must
+   stay a media query (not a bare rule) since services.css loads after
+   style.css and would otherwise out-cascade that breakpoint at any
+   viewport width, breaking the mobile stack. --- */
+@media (min-width: 1025px) {
+  .who-timeline {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
-
-/* --- "Who This Is For" editorial list --- */
-.who-editorial-list {
-  max-width: 840px;
-  margin: 0 auto var(--space-12);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-.who-editorial-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-6);
-  padding: var(--space-5) var(--space-6);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.who-editorial-item:hover {
-  border-color: var(--color-orange);
-  box-shadow: 0 10px 30px rgba(232, 83, 14, 0.05);
-  transform: translateX(6px);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
-}
-
-.who-editorial-item__icon {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  background: rgba(232, 83, 14, 0.12);
-  color: var(--color-orange);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--fs-xs);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.who-editorial-item__text {
-  font-size: var(--fs-lg);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin: 0;
-  text-align: left;
-  font-weight: var(--fw-medium);
+/* Shared .process-step__text defaults to left-aligned (built for longer,
+   multi-line process descriptions); these five profiles are short
+   enough to read better centered under their titles. */
+.who-timeline .process-step__text {
+  text-align: center;
 }
 
 .who-closing-wrap {
@@ -257,20 +226,11 @@
   margin-top: var(--space-10);
 }
 
-.who-closing-wrap .services-closing-line {
-  color: var(--color-text);
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-xl);
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-
-/* --- "Real Cost of Having No Plan" cards --- */
+/* --- "Real Cost of Having No Plan" cards — one row of 4 on desktop --- */
 .cost-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
-  max-width: 1040px;
   margin: 0 auto var(--space-12);
 }
 
@@ -323,19 +283,44 @@
   margin-bottom: var(--space-1);
 }
 
+/* --- Quote block — orange-tinted-background pull-quote, same visual
+   design as every other page's .quote-block (see file header comment). --- */
+.quote-block {
+  position: relative;
+  max-width: 960px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
+  border: 1px solid rgba(232, 83, 14, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 3rem;
+  color: rgba(232, 83, 14, 0.15);
+  z-index: 0;
+}
+
+.quote-block blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--lh-relaxed);
+  text-align: center;
+}
+
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
-  .services-risk-grid {
-    justify-content: center;
-  }
-
-  .services-risk-grid .risk-item {
-    flex: 1 1 160px;
-  }
-
   .services-media-grid {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -346,8 +331,7 @@
   }
 
   .cost-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -358,20 +342,12 @@
     font-size: 4.5rem;
   }
 
-  .who-editorial-list {
+  .cost-grid {
+    grid-template-columns: 1fr;
     gap: var(--space-4);
   }
 
-  .who-editorial-item {
-    padding: var(--space-4) var(--space-4);
-    gap: var(--space-4);
-  }
-
-  .who-editorial-item__text {
-    font-size: var(--fs-base);
-  }
-
-  .who-closing-wrap .services-closing-line {
-    font-size: var(--fs-lg);
+  .quote-block {
+    padding: var(--space-6);
   }
 }
