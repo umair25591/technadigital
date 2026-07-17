@@ -15,6 +15,49 @@
    .testimonial-card, .section-decor, .cta-section, .btn.
    ========================================================================== */
 
+/* --- "Founder Coaching & Advisory Services" — this header has two
+   paragraphs instead of the single one .section-header--split's own CSS
+   assumes (that rule's `p { margin: 0 }` was written for exactly one),
+   so without this the second paragraph would sit flush against the
+   first with no gap. Wrapping div matches the pattern index.html's
+   risk-section__header already uses for a multi-paragraph split header. --- */
+.founder-coaching-services__lede p:first-child {
+  margin-bottom: var(--space-4);
+}
+
+/* --- 6 points as a row of white cards (not the orange-tinted .value-card
+   variant), 3 per row, icon-over-title-over-text instead of the shared
+   .drivers-list's icon-left row layout — same treatment as for-ceos.css's
+   #the-solution cards. --- */
+.founder-coaching-services__grid {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.founder-coaching-services__grid .drivers-list__item {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-8);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.founder-coaching-services__grid .drivers-list__number {
+  margin-bottom: var(--space-4);
+}
+
+.founder-coaching-services__grid .drivers-list__item:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-3px);
+}
+
 /* --- Hero — centered like The 5 Ds/Services, with the primary+outline CTA
    pair this page's md copy actually calls for. --- */
 .founder-hero {
@@ -64,6 +107,18 @@
   margin-right: 0;
 }
 
+/* The "What You Want vs. What You Need" lead-in stays centered, unlike
+   the rest of this section's left-aligned headers above. The shared
+   #this-is-for-you rule above zeroes out left/right margin (for the
+   left-aligned headers, which need max-width: none to run full width) —
+   restore auto centering here so the box itself sits on the same center
+   axis as the .reality-check grid below it, not just its own text. */
+#this-is-for-you .about-section__header.reality-check__heading {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* style.css's .about-section__header p carries no margin of its own (only
    the h2 above it does) — the closing paragraph after the quote-block
    needs room below the quote and, since it's alone in its own header div
@@ -111,6 +166,16 @@
   max-width: none;
 }
 
+/* "What You Want vs. What You Need" lead-in line, sitting above each
+   column's On Paper / In Reality label — heavier weight and darker color
+   than the body paragraph below it, so it reads as its own beat rather
+   than blending into the label + paragraph underneath. */
+.reality-check__intro {
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
 /* --- Quote block — this page's pull-quote treatment (used twice: the
    ceiling section and the 5 Ds section), same visual idea as
    the-5-ds.css's/executive-coaching.css's .quote-block, rebuilt locally
@@ -150,7 +215,17 @@
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
+@media (max-width: 1024px) {
+  .founder-coaching-services__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  .founder-coaching-services__grid {
+    grid-template-columns: 1fr;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }
