@@ -8,11 +8,13 @@
    Reuses as-is (no rules needed here): .founder-section__image-wrap/__image,
    .credentials/.credential-tag, .hero__cta-group, .about-section__header,
    .services-section__header, .risk-section__header/.risk-quote,
-   .achievement, .drivers-list/.drivers-list__item, .trades-tabs/.trade-panel
-   (drives the "Mike's Story" chapter tabs, same component as the
-   homepage's industries tabs), .fit-grid/.fit-card (the credentials cards —
-   same icon-card component the homepage's "Is This You" section uses),
-   .section-header--split, .btn — only the pieces below are new.
+   .achievement, .stats-grid/.stats-grid--outcomes/.value-card ("The Work
+   Mike Does" cards — same light-orange tinted card the homepage's outcomes
+   grid uses), .trades-tabs/.trade-panel (drives the "Mike's Story" chapter
+   tabs, same component as the homepage's industries tabs), .fit-grid/
+   .fit-card (the credentials cards — same icon-card component the
+   homepage's "Is This You" section uses), .section-header--split, .btn —
+   only the pieces below are new.
    ========================================================================== */
 
 /* --- Interior-page hero — lighter than the homepage's full-viewport photo
@@ -116,26 +118,44 @@
   margin-bottom: 0;
 }
 
-/* --- Advisory philosophy columns — sits right below the 5-card
-   .fit-grid credentials row, so this deliberately avoids more card
-   chrome (same reasoning as style.css's .risk-stats: flat, divider-
-   separated columns instead, since the page is already card-heavy). --- */
+/* --- Advisory philosophy cards — sits right below the 5-card .fit-grid
+   credentials row. Centered icon-card treatment (own component rather
+   than reusing .fit-card/.value-card, since it needs a centered icon +
+   label + copy stack and a bottom orange accent line those don't have). --- */
 .philosophy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-10);
+  gap: var(--space-6);
   max-width: 1040px;
   margin: 0 auto;
 }
 
 .philosophy-grid__item {
-  border-left: 1px solid var(--color-border);
-  padding-left: var(--space-6);
+  text-align: center;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(143, 139, 128, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-sm), 0 3px 0 var(--color-orange);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
-.philosophy-grid__item:first-child {
-  border-left: none;
-  padding-left: 0;
+.philosophy-grid__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md), 0 3px 0 var(--color-orange);
+}
+
+.philosophy-grid__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-5);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(232, 83, 14, 0.15), rgba(232, 83, 14, 0.05));
+  color: var(--color-orange);
+  font-size: var(--fs-lg);
 }
 
 .philosophy-grid__label {
@@ -178,24 +198,16 @@
   margin-right: 0;
 }
 
-/* --- Final CTA — style.css's .cta-section centers everything (text-align:
-   center, plus .cta-section h2/p carry their own max-width + margin: auto),
-   which would fight .section-header--split's left/right layout; override
-   those specifically for this page's CTA header. The buttons/email below
-   stay centered as before — only the heading/paragraph split. --- */
-.cta-section .section-header--split {
-  text-align: left;
+/* --- Final CTA — style.css's .cta-section h2/p cap out at 800px/600px,
+   which reads too narrow for this page's longer headline; widen just the
+   CTA header here (heading stays centered, paragraph stacks below it —
+   the shared default), rest of .cta-section untouched. --- */
+.cta-section__header h2 {
+  max-width: 1000px;
 }
 
-.cta-section .section-header--split h2 {
-  max-width: none;
-  margin: 0;
-}
-
-.cta-section .section-header--split p {
-  max-width: none;
-  margin: 0;
-  text-align: left;
+.cta-section__header p {
+  max-width: 760px;
 }
 
 /* Split header's h2/p above have margin: 0 (see rules above), so the gap
@@ -203,6 +215,13 @@
    is gone — restore it here instead. */
 .cta-section__buttons {
   margin-top: var(--space-10);
+}
+
+/* --- Credentials grid: shared .fit-card defaults to 4-per-row; this
+   section reads better at 3-per-row, so override the flex-basis here
+   rather than touching the shared component used elsewhere. --- */
+#credentials .fit-card {
+  flex-basis: calc(33.333% - var(--space-6));
 }
 
 
@@ -222,12 +241,20 @@
   .story-chapter__mark--icon {
     font-size: 6.5rem;
   }
+
+  #credentials .fit-card {
+    flex-basis: calc(50% - var(--space-6));
+  }
 }
 
 @media (max-width: 768px) {
   .story-chapter__mark {
     top: var(--space-6);
     right: var(--space-6);
+  }
+
+  #credentials .fit-card {
+    flex-basis: 100%;
   }
 
   .story-chapter__mark--number {
@@ -240,18 +267,6 @@
 
   .philosophy-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
-  }
-
-  .philosophy-grid__item {
-    border-left: none;
-    padding-left: 0;
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .philosophy-grid__item:first-child {
-    padding-top: 0;
-    border-top: none;
+    gap: var(--space-6);
   }
 }
