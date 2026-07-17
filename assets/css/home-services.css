@@ -6,11 +6,13 @@
    --transition-*) and shared components already defined there.
 
    Reuses as-is (no rules needed here): .hero-decor, .hero__cta-group,
-   .eyebrow, .about-section__header, .drivers-list/.drivers-list__item/
-   .drivers-list__number/.drivers-list__label/.drivers-list__text (every
-   drivers-list on this page has an even item count — 5 with links, 6
-   plain — so the shared 2-column layout works as-is, no column-count
-   override needed), .split-panel__grid/__content/__visual/__visual-icon,
+   .eyebrow, .about-section__header, .stats-grid/.value-card (the
+   homepage's service-card grid, reused with its .value-card__link slot
+   for "Home Services Consulting Built Around Your Operation"),
+   .trades-tabs/.trades-tab/.trade-panel (the homepage's industry-picker
+   tabs engine, reused for "What We See Inside Most Home Services
+   Businesses" — driven generically by initTradesTabs() in app.js, no JS
+   changes needed), .split-panel__grid/__content/__visual/__visual-icon,
    .process-grid/.process-step (base 3-col layout, used as-is),
    .founder-section__grid/__image-wrap/__image/__content,
    .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
@@ -62,25 +64,43 @@
   user-select: none;
 }
 
-/* --- Inline arrow link — each service item's own "Learn more" link in
-   "Home Services Consulting Built Around Your Operation". .drivers-list
-   doesn't carry a link slot in style.css since its other uses (site-wide
-   "what we offer" lists) don't need one — this page's version does. Same
-   component as professional-services.css's/construction.css's
-   .drivers-list__link, rebuilt locally per the per-page-CSS convention. --- */
-.drivers-list__link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  margin-top: var(--space-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-orange);
-  transition: gap var(--transition-fast);
+/* --- 3-per-row .value-card grid — the shared .stats-grid's default
+   flex-basis (25%) packs 4 across; this section's 5 cards read better at
+   3 across (2 + 3). Also overrides the base flex layout's
+   justify-content: center so the last row of 2 sits flush left under the
+   3 above instead of centering itself. --- */
+.hs-services-grid {
+  justify-content: flex-start;
 }
 
-.drivers-list__link:hover {
-  gap: var(--space-2);
+@media (min-width: 1025px) {
+  .hs-services-grid .value-card {
+    flex-basis: calc(33.333% - var(--space-6));
+  }
+}
+
+/* --- "What We See Inside Most Home Services Businesses" — same tabbed
+   engine as the homepage's industry-picker tabs (.trades-tabs/.trades-tab/
+   .trade-panel, driven generically by initTradesTabs() in app.js — no JS
+   changes needed) instead of a flat 6-item icon list, so each challenge
+   gets full attention one at a time. This page's version doesn't have the
+   homepage tabs' multi-paragraph + "What's at Risk" sidebar content, so
+   .trade-panel__grid isn't reused here — just a simple left-aligned
+   title + paragraph per panel. --- */
+.challenge-panel {
+  max-width: 760px;
+}
+
+.challenge-panel__title {
+  margin-bottom: var(--space-4);
+}
+
+.challenge-panel__text {
+  font-size: var(--fs-md);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+  margin-bottom: 0;
 }
 
 /* --- Accordion blocks — "What Home Services Business Coaching Looks Like
