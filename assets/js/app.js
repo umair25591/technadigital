@@ -401,21 +401,27 @@
   });
 
   // --- Process timeline line-draw ---
-  // Fills the orange progress bar over the static track as the three
-  // Discover/Prepare/Decide gates scroll through view.
-  const processProgress = document.querySelector('.process-grid__progress');
-  if (processProgress) {
-    gsap.to(processProgress, {
+  // Fills the orange progress bar over the static track as each grid's
+  // gates scroll through view. Looped per-grid (rather than a single
+  // document.querySelector) since some pages now have more than one
+  // .process-grid section — a bare querySelector would only ever wire
+  // up the first one on the page.
+  const processGrids = document.querySelectorAll('.process-grid');
+  processGrids.forEach((grid) => {
+    const gridProgress = grid.querySelector('.process-grid__progress');
+    if (!gridProgress) return;
+
+    gsap.to(gridProgress, {
       scaleX: 1,
       ease: 'none',
       scrollTrigger: {
-        trigger: '.process-grid',
+        trigger: grid,
         start: 'top 75%',
         end: 'bottom 60%',
         scrub: 0.5
       }
     });
-  }
+  });
 
   // --- Section blush parallax drift ---
   // Extends the hero's orb parallax to the ambient glows on other sections —

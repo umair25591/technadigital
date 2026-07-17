@@ -48,6 +48,14 @@
   margin: 0 auto var(--space-8);
 }
 
+/* "Who This Exit Planning Work Is For" reuses the same .process-grid as
+   the Discover/Prepare/Decide section further down, but its text reads
+   better centered — scoped to this section only so that one stays
+   left-aligned. */
+#who-this-is-for .process-step__text {
+  text-align: center;
+}
+
 .exit-hero__content .hero__cta-group {
   justify-content: center;
 }

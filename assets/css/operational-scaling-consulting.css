@@ -49,6 +49,14 @@
   justify-content: center;
 }
 
+/* "Who This Operations Consulting Work Is For" reuses the same
+   .process-grid as the Discover/Prepare/Decide section further down,
+   but its text reads better centered — scoped to this section only so
+   that one stays left-aligned. */
+#who-this-is-for .process-step__text {
+  text-align: center;
+}
+
 /* --- Quote block — this page's pull-quote treatment (used twice), same
    visual idea as every other service page's .quote-block, rebuilt locally
    per the per-page-CSS convention rather than shared across pages. --- */

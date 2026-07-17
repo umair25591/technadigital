@@ -9,12 +9,11 @@
    .eyebrow, .about-section__header, .risk-stats/.risk-stats__item,
    .drivers-list/.drivers-list__item/.drivers-list__number/.drivers-list__label/
    .drivers-list__text, .process-grid/.process-step (base 3-col layout —
-   see the 5-step override below), .founder-section__grid/__image-wrap/
+   see the 5-step override below, also now used for "Who This Executive
+   Coaching Is Built For"), .founder-section__grid/__image-wrap/
    __image/__content, .credentials/.credential-tag, .testimonials-section/
    .testimonials-slider/.testimonial-card, .section-decor, .cta-section,
-   .btn. NOTE: .services-list is NOT in style.css — it's page-local to
-   services.css (confirmed by grep), so it's rebuilt below rather than
-   assumed shared.
+   .btn.
    ========================================================================== */
 
 /* --- Hero — centered like Services/The 5 Ds, with a single primary CTA
@@ -63,48 +62,6 @@
 .exec-coaching-stats .stat-card--light {
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
-}
-
-/* --- Check-bullet list — global CSS resets <ul> to no markers, so the
-   "Who This Executive Coaching Is Built For" qualifying-criteria list
-   needs a real icon-bullet treatment instead of a flat unstyled block.
-   Same component as services.css's .services-list, rebuilt locally per
-   the per-page-CSS convention (that stylesheet isn't loaded here). --- */
-.services-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.services-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  font-size: var(--fs-base);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  text-align: left;
-}
-
-.services-list li i {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  background: rgba(232, 83, 14, 0.12);
-  color: var(--color-orange);
-  font-size: 0.65rem;
-}
-
-.section-header--split .services-list {
-  margin: 0;
-  max-width: none;
 }
 
 /* --- Large faint corner icon — same visual idea as Services'/The 5 Ds'
@@ -165,6 +122,14 @@
    regardless of this modifier's specificity at that breakpoint). --- */
 .process-grid--five {
   grid-template-columns: repeat(5, 1fr);
+}
+
+/* "Who This Executive Coaching Is Built For" reuses .process-grid--five
+   too, but its qualifying-criteria text reads better centered than the
+   "how-it-works" process steps' left-aligned paragraphs — scoped to
+   this section only so that one is untouched. */
+#who-this-is-for .process-step__text {
+  text-align: center;
 }
 
 /* --- Inline arrow link — each cross-sell item's own link in "Executive
@@ -320,31 +285,3 @@
   margin-bottom: var(--space-8);
 }
 
-/* --- Who This Is For Section Image --- */
-.section-header__image-wrap {
-  margin-top: var(--space-8);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  position: relative;
-}
-
-.section-header__image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  transition: transform var(--transition-smooth);
-}
-
-.section-header__image-wrap:hover .section-header__image {
-  transform: scale(1.03);
-}
-
-@media (max-width: 768px) {
-  .section-header__image-wrap {
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-6);
-  }
-}

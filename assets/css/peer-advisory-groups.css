@@ -10,7 +10,10 @@
    .hero-decor, .hero__cta-group, .about-section__header, .section-decor,
    .founder-section__grid/__image-wrap/__image/__content, .trade-panel__highlight,
    .credentials/.credential-tag, .testimonials-section/.testimonials-slider/
-   .testimonial-card, .cta-section, .btn.
+   .testimonial-card, .cta-section, .btn, and — for "Who Belongs in a CFO
+   Circle" — .process-grid/.process-step (3 gates, matches the grid's
+   built-in column count; text centered instead of the shared component's
+   default left-align, scoped to this page's one section below).
 
    Two components below (.mastermind-flow, .dynamics-accordion) are built
    new for this page rather than reused — see each block's own comment for
@@ -43,6 +46,14 @@
 
 .peer-hero__content .hero__cta-group {
   justify-content: center;
+}
+
+/* "Who Belongs in a CFO Circle" reuses .process-grid/.process-step, but
+   its text reads better centered than the shared component's default
+   left-align — scoped to this section since other pages' .process-grid
+   sections (Discover/Prepare/Decide, etc.) are meant to stay left-aligned. */
+#who-belongs .process-step__text {
+  text-align: center;
 }
 
 /* --- Quote block — this page's pull-quote treatment (used twice), same
