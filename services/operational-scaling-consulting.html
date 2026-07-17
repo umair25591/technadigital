@@ -418,104 +418,77 @@
           <h2 data-heading-wipe>What Business Operations Consulting Addresses at Every Level</h2>
         </div>
 
-        <div class="ops-accordion reveal-stagger" data-ops-accordion>
+        <!-- Tabs navigation — reuses the site's shared .trades-tabs/.trades-tab
+             component (same one used by the homepage's "What Home Services
+             Business Coaching Looks Like by Trade"); switching is handled by
+             app.js's initTradesTabs, so no page-specific JS is needed. -->
+        <div class="trades-tabs reveal" role="tablist" aria-label="What business operations consulting addresses">
+          <button class="trades-tab is-active" data-tab="addr-process-mapping" role="tab" aria-selected="true">Process Mapping</button>
+          <button class="trades-tab" data-tab="addr-systematization" role="tab">Systematization</button>
+          <button class="trades-tab" data-tab="addr-performance" role="tab">Performance Measurement</button>
+          <button class="trades-tab" data-tab="addr-resource-allocation" role="tab">Resource Allocation</button>
+          <button class="trades-tab" data-tab="addr-org-structure" role="tab">Org Structure and Talent</button>
+          <button class="trades-tab" data-tab="addr-culture" role="tab">Culture at Scale</button>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">01</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-map" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Process Mapping and Auditing</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>Before you can fix the operations of a growing business, you have to see them clearly. Most founders have a general sense of how their business runs — but the gap between how they think it runs and how it actually runs, at the team level, in the absence of constant owner oversight, is almost always larger than they expect.</p>
-                <p>Process mapping and auditing is the diagnostic work that makes everything else possible. We map the actual workflows — how work gets initiated, executed, reviewed, and delivered — and identify the points where quality breaks down, decisions bottleneck, or the process depends on a single person's knowledge or judgment. The output isn't a theoretical process map. It's a clear picture of what's working, what's not, and what needs to change — with a prioritized plan for addressing the gaps.</p>
-                <p>For most growing businesses, the audit reveals two categories of problems: processes that don't exist in any documented form and depend entirely on tribal knowledge, and processes that exist on paper but aren't followed consistently because they weren't built with the team in mind. A business operations consultant who starts with a thorough audit can address both — building the documentation that makes good processes replicable and redesigning the ones that aren't working.</p>
-              </div>
-            </div>
+        <div class="trade-panel is-active" id="addr-process-mapping" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-map" aria-hidden="true"></i></span>
+            <h3>Process Mapping and Auditing</h3>
           </div>
+          <p>Before you can fix the operations of a growing business, you have to see them clearly. Most founders have a general sense of how their business runs — but the gap between how they think it runs and how it actually runs, at the team level, in the absence of constant owner oversight, is almost always larger than they expect.</p>
+          <p>Process mapping and auditing is the diagnostic work that makes everything else possible. We map the actual workflows — how work gets initiated, executed, reviewed, and delivered — and identify the points where quality breaks down, decisions bottleneck, or the process depends on a single person's knowledge or judgment. The output isn't a theoretical process map. It's a clear picture of what's working, what's not, and what needs to change — with a prioritized plan for addressing the gaps.</p>
+          <p>For most growing businesses, the audit reveals two categories of problems: processes that don't exist in any documented form and depend entirely on tribal knowledge, and processes that exist on paper but aren't followed consistently because they weren't built with the team in mind. A business operations consultant who starts with a thorough audit can address both — building the documentation that makes good processes replicable and redesigning the ones that aren't working.</p>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">02</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Systematization and Automation</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>One of the most consistent findings in operations consulting work is the amount of manual, repetitive work that founder-led businesses are doing by hand that could be systematized, templated, or automated. Client onboarding. Reporting. Internal approvals. Scheduling. Billing. These are processes that consume significant team bandwidth without adding value — and they're often the source of the inconsistency and quality variation that shows up in client complaints and employee frustration.</p>
-                <p>Systematization doesn't mean buying expensive software. It often means building a template, creating a checklist, or establishing a sequence of steps that removes judgment from a process that shouldn't require it. Automation means identifying the tools — often the ones the business already has — that can remove manual steps from processes that are currently handled by hand.</p>
-                <p>Operations consulting services at Spearpoint focus on systematization and automation that is practical, immediately implementable, and connected to real operational problems — not technology for its own sake. The goal is a business that runs more consistently, with less owner involvement, using the resources the business already has.</p>
-              </div>
-            </div>
+        <div class="trade-panel" id="addr-systematization" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+            <h3>Systematization and Automation</h3>
           </div>
+          <p>One of the most consistent findings in operations consulting work is the amount of manual, repetitive work that founder-led businesses are doing by hand that could be systematized, templated, or automated. Client onboarding. Reporting. Internal approvals. Scheduling. Billing. These are processes that consume significant team bandwidth without adding value — and they're often the source of the inconsistency and quality variation that shows up in client complaints and employee frustration.</p>
+          <p>Systematization doesn't mean buying expensive software. It often means building a template, creating a checklist, or establishing a sequence of steps that removes judgment from a process that shouldn't require it. Automation means identifying the tools — often the ones the business already has — that can remove manual steps from processes that are currently handled by hand.</p>
+          <p>Operations consulting services at Spearpoint focus on systematization and automation that is practical, immediately implementable, and connected to real operational problems — not technology for its own sake. The goal is a business that runs more consistently, with less owner involvement, using the resources the business already has.</p>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">03</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Performance Measurement</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>A business that can't measure its operational performance can't improve it. Most growing founder-led businesses have financial reporting — they know revenue and they know expenses — but very few have the operational metrics that tell them whether the business is running well or just running.</p>
-                <p>Performance measurement at the operational level means identifying the leading indicators — the metrics that predict outcomes before they show up in the financials. Utilization rates. Cycle times. Defect rates. On-time delivery. Customer satisfaction scores. First-call resolution. These metrics vary by industry and business model, but the principle is consistent: the businesses that scale successfully are the ones that know what good looks like in their operations and can see when they're drifting from it before the drift becomes a crisis.</p>
-                <p>Business operations consulting at Spearpoint helps founders identify the right operational metrics for their business, build the reporting infrastructure to track them consistently, and install the review cadence that makes those metrics part of how the leadership team runs the business — not just numbers that exist somewhere in a spreadsheet nobody looks at.</p>
-              </div>
-            </div>
+        <div class="trade-panel" id="addr-performance" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+            <h3>Performance Measurement</h3>
           </div>
+          <p>A business that can't measure its operational performance can't improve it. Most growing founder-led businesses have financial reporting — they know revenue and they know expenses — but very few have the operational metrics that tell them whether the business is running well or just running.</p>
+          <p>Performance measurement at the operational level means identifying the leading indicators — the metrics that predict outcomes before they show up in the financials. Utilization rates. Cycle times. Defect rates. On-time delivery. Customer satisfaction scores. First-call resolution. These metrics vary by industry and business model, but the principle is consistent: the businesses that scale successfully are the ones that know what good looks like in their operations and can see when they're drifting from it before the drift becomes a crisis.</p>
+          <p>Business operations consulting at Spearpoint helps founders identify the right operational metrics for their business, build the reporting infrastructure to track them consistently, and install the review cadence that makes those metrics part of how the leadership team runs the business — not just numbers that exist somewhere in a spreadsheet nobody looks at.</p>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">04</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Resource Allocation and Financial Control</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>One of the most common operational problems in growing businesses is the mismatch between where resources are allocated and where value is actually being created. People are deployed on work that doesn't generate margin. Overhead grows faster than revenue. Investment decisions are made reactively rather than strategically — because the business doesn't have the financial visibility to make them any other way.</p>
-                <p>Operations consulting services address resource allocation by building the financial control infrastructure that gives founders and their leadership teams clear visibility into where the business is making money, where it isn't, and what the highest-return uses of the next dollar of investment are. This includes job costing, service line profitability analysis, overhead allocation, and the budgeting discipline that allows a growing business to make intentional decisions rather than reactive ones.</p>
-                <p>Financial control isn't just about cost management. It's about understanding the economics of the business well enough to grow it deliberately — and to present it credibly to buyers, lenders, or partners when the time comes. A business operations consultant who builds strong financial control infrastructure is building one of the most important value drivers in the business.</p>
-              </div>
-            </div>
+        <div class="trade-panel" id="addr-resource-allocation" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></span>
+            <h3>Resource Allocation and Financial Control</h3>
           </div>
+          <p>One of the most common operational problems in growing businesses is the mismatch between where resources are allocated and where value is actually being created. People are deployed on work that doesn't generate margin. Overhead grows faster than revenue. Investment decisions are made reactively rather than strategically — because the business doesn't have the financial visibility to make them any other way.</p>
+          <p>Operations consulting services address resource allocation by building the financial control infrastructure that gives founders and their leadership teams clear visibility into where the business is making money, where it isn't, and what the highest-return uses of the next dollar of investment are. This includes job costing, service line profitability analysis, overhead allocation, and the budgeting discipline that allows a growing business to make intentional decisions rather than reactive ones.</p>
+          <p>Financial control isn't just about cost management. It's about understanding the economics of the business well enough to grow it deliberately — and to present it credibly to buyers, lenders, or partners when the time comes. A business operations consultant who builds strong financial control infrastructure is building one of the most important value drivers in the business.</p>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">05</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Organizational Structure and Talent</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>The organizational structure of a growing business is often the last thing a founder deliberately designs — and the first thing that breaks when the business grows past a certain point. People accumulate responsibilities. Reporting lines become informal. Decision rights are unclear. And the leadership team that made sense at $3M starts showing its limits at $10M.</p>
-                <p>Operations consulting work at Spearpoint addresses organizational structure by helping founders design the org chart the business needs to operate at its next stage of growth — not the one that evolved organically from the business's history. This means defining roles clearly, establishing reporting relationships explicitly, identifying the gaps where the current team doesn't have the capability the business needs, and building the hiring and development plan that closes those gaps.</p>
-                <p>Talent is the most important operational variable in any service or knowledge-based business. Building the right organizational structure doesn't just improve operational performance — it improves talent retention, because good people stay in environments where their role is clear, their authority is defined, and their growth path is visible. Operations consulting that addresses organizational design is operations consulting that makes the business better at every level.</p>
-              </div>
-            </div>
+        <div class="trade-panel" id="addr-org-structure" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></span>
+            <h3>Organizational Structure and Talent</h3>
           </div>
+          <p>The organizational structure of a growing business is often the last thing a founder deliberately designs — and the first thing that breaks when the business grows past a certain point. People accumulate responsibilities. Reporting lines become informal. Decision rights are unclear. And the leadership team that made sense at $3M starts showing its limits at $10M.</p>
+          <p>Operations consulting work at Spearpoint addresses organizational structure by helping founders design the org chart the business needs to operate at its next stage of growth — not the one that evolved organically from the business's history. This means defining roles clearly, establishing reporting relationships explicitly, identifying the gaps where the current team doesn't have the capability the business needs, and building the hiring and development plan that closes those gaps.</p>
+          <p>Talent is the most important operational variable in any service or knowledge-based business. Building the right organizational structure doesn't just improve operational performance — it improves talent retention, because good people stay in environments where their role is clear, their authority is defined, and their growth path is visible. Operations consulting that addresses organizational design is operations consulting that makes the business better at every level.</p>
+        </div>
 
-          <div class="ops-accordion__item" data-ops-item>
-            <button class="ops-accordion__trigger" type="button" aria-expanded="false">
-              <span class="ops-accordion__number">06</span>
-              <span class="ops-accordion__icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
-              <span class="ops-accordion__title">Maintaining Culture at Scale</span>
-              <i class="fa-solid fa-chevron-down ops-accordion__caret" aria-hidden="true"></i>
-            </button>
-            <div class="ops-accordion__panel">
-              <div class="ops-accordion__panel-inner">
-                <p>One of the operational challenges that founders rarely anticipate is the difficulty of maintaining the culture that made the business successful as the team grows. In a 10-person business, culture is transmitted through daily personal interaction with the founder. In a 50-person business, it has to be transmitted through systems, management behavior, hiring criteria, onboarding processes, and the explicit choices leaders make about what gets rewarded and what gets addressed.</p>
-                <p>Business operations consulting at Spearpoint treats culture as an operational system — not a set of values on a wall, but a set of behaviors that are defined, modeled, and reinforced through the management practices and organizational structure of the business. This means building onboarding processes that transmit culture explicitly, management development that helps leaders understand their role in maintaining it, and accountability structures that make the expected behaviors concrete rather than aspirational.</p>
-                <p>Maintaining culture at scale matters for more than morale and retention. It matters for valuation. Buyers pay a premium for businesses with strong, distinctive cultures — because culture is one of the things that holds a business together through a transition, retains key employees after a sale, and sustains customer relationships that the founder can no longer maintain personally.</p>
-              </div>
-            </div>
+        <div class="trade-panel" id="addr-culture" role="tabpanel">
+          <div class="ops-panel-header">
+            <span class="ops-panel-header__icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
+            <h3>Maintaining Culture at Scale</h3>
           </div>
-
+          <p>One of the operational challenges that founders rarely anticipate is the difficulty of maintaining the culture that made the business successful as the team grows. In a 10-person business, culture is transmitted through daily personal interaction with the founder. In a 50-person business, it has to be transmitted through systems, management behavior, hiring criteria, onboarding processes, and the explicit choices leaders make about what gets rewarded and what gets addressed.</p>
+          <p>Business operations consulting at Spearpoint treats culture as an operational system — not a set of values on a wall, but a set of behaviors that are defined, modeled, and reinforced through the management practices and organizational structure of the business. This means building onboarding processes that transmit culture explicitly, management development that helps leaders understand their role in maintaining it, and accountability structures that make the expected behaviors concrete rather than aspirational.</p>
+          <p>Maintaining culture at scale matters for more than morale and retention. It matters for valuation. Buyers pay a premium for businesses with strong, distinctive cultures — because culture is one of the things that holds a business together through a transition, retains key employees after a sale, and sustains customer relationships that the founder can no longer maintain personally.</p>
         </div>
 
       </div>

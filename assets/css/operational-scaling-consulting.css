@@ -10,13 +10,15 @@
    .hero__cta-group, .about-section__header, .section-decor, .stats-grid/
    .value-card, .process-grid/.process-step, .founder-section__grid +
    children, .trade-panel__highlight, .credentials/.credential-tag,
-   .testimonials-section + children, .cta-section, .btn.
-
-   .ops-accordion below is ported from peer-advisory-groups.css's
-   .dynamics-accordion (same component, renamed for this page) — see that
-   block's comment history for why an accordion beats a card grid or plain
-   list for content this long (six items, three full paragraphs each, the
-   densest enumeration built across any of the seven service pages).
+   .testimonials-section + children, .cta-section, .btn, and — for the
+   "What Business Operations Consulting Addresses at Every Level" section
+   below — the full .trades-tabs/.trades-tab nav + .trade-panel content
+   component (switching handled globally by app.js's initTradesTabs;
+   this is the same tab bar as the homepage's "What Home Services
+   Business Coaching Looks Like by Trade"). Panels here skip
+   .trade-panel__grid (no highlight sidebar content for six items) and
+   go straight from .trade-panel to paragraphs; .ops-panel-header is
+   this page's only local addition — an icon+title row atop each panel.
    ========================================================================== */
 
 /* --- Hero — centered like every other service page, two CTAs. --- */
@@ -88,147 +90,54 @@
   text-align: center;
 }
 
-/* --- Ops accordion — "What Business Operations Consulting Addresses at
-   Every Level." Ported from .dynamics-accordion (Peer Advisory Groups):
-   panels expand via a grid-template-rows 0fr/1fr transition toggled by a
-   class from operational-scaling-consulting.js, so no JS height
-   measurement is needed. --- */
-.ops-accordion {
-  max-width: none;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
-  align-items: start;
-}
-
-.ops-accordion__item {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: border-color var(--transition-base);
-}
-
-.ops-accordion__item.is-active {
-  border-color: rgba(232, 83, 14, 0.3);
-}
-
-.ops-accordion__trigger {
-  width: 100%;
+/* --- Ops tabs panel header — icon+title row atop each .trade-panel
+   (see file header comment for why the shared trade-panel component is
+   used as-is here). --- */
+.ops-panel-header {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-family: inherit;
+  margin-bottom: var(--space-5);
 }
 
-.ops-accordion__number {
-  flex-shrink: 0;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-black);
-  color: rgba(232, 83, 14, 0.35);
-  font-family: var(--font-display);
-}
-
-.ops-accordion__icon {
+.ops-panel-header__icon {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-full);
   background: rgba(232, 83, 14, 0.1);
   color: var(--color-orange);
-  font-size: var(--fs-md);
+  font-size: var(--fs-lg);
 }
 
-.ops-accordion__title {
-  flex: 1;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
+.ops-panel-header h3 {
+  margin: 0;
 }
 
-.ops-accordion__caret {
-  flex-shrink: 0;
-  color: var(--color-text-3);
-  transition: transform var(--transition-base);
-}
-
-.ops-accordion__item.is-active .ops-accordion__caret {
-  transform: rotate(180deg);
-  color: var(--color-orange);
-}
-
-.ops-accordion__panel {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--transition-smooth);
-}
-
-.ops-accordion__item.is-active .ops-accordion__panel {
-  grid-template-rows: 1fr;
-}
-
-.ops-accordion__panel-inner {
-  width: 100%;
-  min-width: 0;
-  overflow: hidden;
-  min-height: 0;
-}
-
-.ops-accordion__panel-inner p {
+/* These panels skip .trade-panel__grid (no highlight sidebar content for
+   six items) and go straight from .trade-panel to paragraphs — so the
+   global `p { max-width: 65ch }` readability cap, which assumes a
+   narrow grid column, needs lifting here or the text sits pinned to the
+   left of the full-width panel. */
+.trade-panel p {
   max-width: none;
-  padding: 0 var(--space-6) var(--space-5);
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-}
-
-.ops-accordion__panel-inner p:first-child {
-  padding-top: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ops-accordion__panel,
-  .ops-accordion__caret {
-    transition: none;
-  }
 }
 
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-@media (max-width: 900px) {
-  .ops-accordion {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 768px) {
   .quote-block {
     padding: var(--space-6);
   }
 
-  .ops-accordion__trigger {
-    padding: var(--space-4);
-    gap: var(--space-3);
-  }
-
-  .ops-accordion__number {
-    display: none;
-  }
-
-  .ops-accordion__panel-inner p {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+  .ops-panel-header__icon {
+    width: 44px;
+    height: 44px;
+    font-size: var(--fs-md);
   }
 }
