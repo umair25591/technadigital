@@ -2010,12 +2010,14 @@ p {
 }
 
 /* --- Left text / right content layout — heading + copy on the left,
-   the 5 D's grid, pull quote, and stats stacked on the right. --- */
+   pull quote and stats stacked on the right. Right column is shorter
+   than the left, so center them as a block rather than pinning both
+   to the top. --- */
 .risk-section__layout {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: var(--space-12);
-  align-items: start;
+  align-items: center;
 }
 
 .risk-section__text .risk-section__header {
@@ -2043,6 +2045,13 @@ p {
   grid-template-columns: repeat(2, 1fr);
   max-width: none;
   margin: 0;
+}
+
+/* 2-column grid — :first-child alone only strips the border from item 1;
+   item 3 also starts a row and needs the same treatment. */
+.risk-section__content .risk-stats .risk-stats__item:nth-child(odd) {
+  border-left: none;
+  padding-left: 0;
 }
 
 
