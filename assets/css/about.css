@@ -248,6 +248,12 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rule above); left-aligned
+     on phones only. */
+  .philosophy-grid__item {
+    text-align: left;
+  }
+
   .story-chapter__mark {
     top: var(--space-6);
     right: var(--space-6);

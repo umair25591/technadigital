@@ -235,6 +235,13 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .mk-hero__content,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .mk-mark {
     font-size: 4.5rem;
   }

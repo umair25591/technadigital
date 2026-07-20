@@ -337,6 +337,15 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .ceo-hero__content,
+  #the-5-ds .about-section__header p.ceo-5ds-lede,
+  .who-this-is-for__cta,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .ceo-mark {
     font-size: 4.5rem;
   }

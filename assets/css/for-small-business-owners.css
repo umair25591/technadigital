@@ -223,6 +223,13 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .sb-hero__content,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .sb-mark {
     font-size: 4.5rem;
   }

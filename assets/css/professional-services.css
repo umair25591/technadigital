@@ -255,6 +255,13 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .ps-hero__content,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .ps-mark {
     font-size: 4.5rem;
   }

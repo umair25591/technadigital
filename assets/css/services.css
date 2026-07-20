@@ -387,6 +387,16 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules and the
+     max-width: 1024px rule above); left-aligned on phones only. */
+  .services-hero__content,
+  .split-panel__content .risk-stats,
+  .who-timeline .process-step__text,
+  .who-closing-wrap,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .services-mark {
     top: var(--space-6);
     right: var(--space-6);

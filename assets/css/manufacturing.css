@@ -109,6 +109,12 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rule above);
+     left-aligned on phones only. */
+  .mf-hero__content {
+    text-align: left;
+  }
+
   .mf-mark {
     font-size: 4.5rem;
   }

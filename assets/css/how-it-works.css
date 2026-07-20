@@ -592,6 +592,17 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .how-hero__content,
+  .gate-tabs-section .trades-tab,
+  .owner-profile-header,
+  .quote-card blockquote,
+  .gate-section__header,
+  .difference-section .about-section__header {
+    text-align: left;
+  }
+
   .timeline-list .drivers-list__item {
     padding-bottom: var(--space-10);
   }
@@ -641,7 +652,7 @@
   .narrative-block {
     grid-template-columns: 1fr;
     justify-items: center;
-    text-align: center;
+    text-align: left;
   }
 
   .owner-profile-grid {

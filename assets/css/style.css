@@ -2915,6 +2915,13 @@ p {
   transform: translateY(40px);
 }
 
+/* Centered on desktop/tablet; left-aligned on mobile only (see the
+   max-width: 768px override below) — used on inline-styled CTA wrappers
+   that otherwise hardcode text-align: center. */
+.center-cta {
+  text-align: center;
+}
+
 /* Fade-in keyframe for tab panels */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -3182,7 +3189,7 @@ p {
      applies to every large button, not just the hero's. */
   .btn--large {
     white-space: normal;
-    text-align: center;
+    text-align: left;
     width: 100%;
     justify-content: center;
   }
@@ -3288,7 +3295,7 @@ p {
   .footer__grid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    text-align: center;
+    text-align: left;
   }
 
   /* text-align only centers the text inside a box, not the box itself —
@@ -3320,7 +3327,27 @@ p {
     flex-direction: column;
     align-items: center;
     gap: var(--space-4);
-    text-align: center;
+    text-align: left;
+  }
+
+  /* Mobile-only left-align — these are centered by design on tablet/desktop
+     (see their base/1024px rules above); on phones the centered blocks of
+     text read better left-aligned. */
+  .center-cta,
+  .trust-logos__header,
+  .services-section__header,
+  .about-section__header,
+  .challenges-section__header,
+  .risk-section__header,
+  .risk-item,
+  .risk-quote,
+  .risk-stats,
+  .drivers-section__header,
+  .process-step,
+  .process-step__text,
+  .testimonials-section__header,
+  .cta-section {
+    text-align: left;
   }
 }
 

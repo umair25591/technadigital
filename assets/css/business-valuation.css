@@ -92,6 +92,14 @@
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .valuation-hero__content,
+  .quote-block blockquote,
+  .valuation-process-cta {
+    text-align: left;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }

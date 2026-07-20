@@ -120,6 +120,13 @@
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .cn-hero__content,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }

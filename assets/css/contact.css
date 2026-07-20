@@ -143,6 +143,12 @@
 }
 
 @media (max-width: 640px) {
+  /* Centered by design on tablet/desktop (see base rule above);
+     left-aligned on phones only. */
+  .contact-form-section__header {
+    text-align: left;
+  }
+
   .contact-card {
     padding: var(--space-6);
   }

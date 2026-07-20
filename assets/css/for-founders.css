@@ -222,6 +222,14 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .founder-hero__content,
+  #this-is-for-you .about-section__header.reality-check__heading,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .founder-coaching-services__grid {
     grid-template-columns: 1fr;
   }

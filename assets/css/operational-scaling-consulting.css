@@ -139,6 +139,15 @@
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .ops-hero__content,
+  #who-this-is-for .process-step__text,
+  .quote-block blockquote,
+  .ops-process-cta {
+    text-align: left;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }

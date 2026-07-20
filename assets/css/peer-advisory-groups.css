@@ -288,6 +288,14 @@
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .peer-hero__content,
+  #who-belongs .process-step__text,
+  .quote-block blockquote {
+    text-align: left;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }

@@ -320,6 +320,15 @@
 }
 
 @media (max-width: 768px) {
+  /* Centered by design on tablet/desktop (see base rules above);
+     left-aligned on phones only. */
+  .exec-hero__content,
+  .exec-coaching-stats--minimal .stat-card,
+  .quote-block blockquote,
+  #who-this-is-for .process-step__text {
+    text-align: left;
+  }
+
   .quote-block {
     padding: var(--space-6);
   }
