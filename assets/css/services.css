@@ -240,6 +240,15 @@
   }
 }
 
+/* Below 1024px .risk-stats collapses to the shared single-column, left-
+   aligned layout (style.css) — built for the homepage's full-width version,
+   but here it reads better kept centered like the desktop 2-up above. */
+@media (max-width: 1024px) {
+  .split-panel__content .risk-stats {
+    text-align: center;
+  }
+}
+
 /* --- "Who This Is For" — reuses the shared .process-grid/.process-step
    horizontal timeline component as-is (numbered circles on a connecting
    line, defined in style.css, scroll reveal handled by app.js). The

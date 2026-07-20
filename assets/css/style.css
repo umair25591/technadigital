@@ -717,7 +717,11 @@ p {
   color: var(--color-orange);
 }
 
-/* --- Mobile dropdown accordion (About / Services / Audience / Industries) --- */
+/* --- Mobile dropdown accordion (About / Services / Audience / Industries) ---
+   The label is a real link (tap it to navigate, matching the desktop click
+   behavior) and the caret is a separate button that only toggles the
+   submenu — on touch there's no hover state to preview the dropdown, so a
+   single combined control can't do both jobs unambiguously. */
 .mobile-nav__item {
   width: 100%;
   display: flex;
@@ -729,15 +733,24 @@ p {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+}
+
+.mobile-nav__caret-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   background: none;
   border: none;
   padding: 0;
   font-family: inherit;
+  color: var(--color-text);
   cursor: pointer;
 }
 
 .mobile-nav__caret {
-  font-size: 0.6em;
+  font-size: 0.85em;
   transition: transform var(--transition-fast);
 }
 
@@ -833,6 +846,7 @@ p {
 
 .hero__content {
   max-width: 640px;
+  min-width: 0;
 }
 
 /* --- Hero visual — founder photo, right column --- */
@@ -1496,6 +1510,78 @@ p {
 .value-card__link:hover {
   color: var(--color-orange);
   gap: var(--space-3);
+}
+
+
+/* ==========================================================================
+   7b. TRUST LOGOS / SOCIAL PROOF SECTION
+   ==========================================================================
+   Centered count-up headline over a row of credential/affiliation logos.
+   Logos sit desaturated at rest and bloom to full color on hover; each
+   floats on its own gentle, offset loop so the row never feels static.
+   ========================================================================== */
+.trust-logos-section {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.trust-logos__header {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto var(--space-16);
+}
+
+.trust-logos__heading {
+  font-size: clamp(1.75rem, 2.2vw + 1rem, 2.75rem);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.trust-logos__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16) var(--space-20);
+}
+
+.trust-logos__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-logos__item img {
+  height: 96px;
+  width: auto;
+  max-width: 250px;
+  object-fit: contain;
+  transition: transform var(--transition-base);
+}
+
+.trust-logos__item:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .trust-logos__heading {
+    white-space: normal;
+  }
+
+  .trust-logos__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .trust-logos__row {
+    gap: var(--space-10) var(--space-8);
+  }
+
+  .trust-logos__item img {
+    height: 64px;
+  }
 }
 
 
@@ -2943,11 +3029,19 @@ p {
   }
 
   .process-step {
-    text-align: left;
+    text-align: center;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-4);
     align-items: start;
+  }
+
+  /* .process-step__text carries its own explicit left-align above, so
+     centering the parent isn't enough to beat it. .process-step__outcomes
+     and .process-step__quote set their own left-align too — left alone,
+     since centering a bulleted card or a bordered pull-quote reads wrong. */
+  .process-step__text {
+    text-align: center;
   }
 
   .process-step__number {
@@ -3080,7 +3174,21 @@ p {
 
   .hero__visual {
     max-width: 320px;
-    margin-top: var(--space-8);
+    margin: var(--space-8) auto 0;
+  }
+
+  /* Long CTA copy (e.g. "Start with a Free Business Assessment") mustn't
+     force .btn's global white-space: nowrap width past the viewport —
+     applies to every large button, not just the hero's. */
+  .btn--large {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__cta-group .btn--large {
+    font-size: var(--fs-sm);
   }
 
   .hero__visual-badge {
@@ -3123,6 +3231,18 @@ p {
     flex-basis: 100%;
   }
 
+  /* Stack the gate number above the title/text instead of beside it —
+     the auto/1fr two-column layout from the tablet breakpoint eats too
+     much width on narrow phones and cramps the body copy. */
+  .process-step {
+    display: block;
+  }
+
+  .process-step__number {
+    grid-row: auto;
+    margin-bottom: var(--space-4);
+  }
+
   .challenges-grid {
     grid-template-columns: 1fr;
   }
@@ -3131,8 +3251,13 @@ p {
     gap: var(--space-3);
   }
 
+  /* Each card was sizing to its own label's width ("Death" vs.
+     "Disagreement"), so the two-per-row wrap came out visibly uneven.
+     An explicit equal flex-basis keeps every card — including the lone
+     5th one centered on its own row — the same width. */
   .risk-item {
-    min-width: 130px;
+    min-width: 0;
+    flex: 1 1 calc(50% - var(--space-3) / 2);
     padding: var(--space-4) var(--space-5);
   }
 
@@ -3163,10 +3288,37 @@ p {
   .footer__grid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
+    text-align: center;
+  }
+
+  /* text-align only centers the text inside a box, not the box itself —
+     and margin: auto alone doesn't center this one either, since a block-
+     level flex container defaults to filling the available width (no
+     leftover space for auto margins to distribute). Shrink it to its own
+     content first, then center it. */
+  .footer__brand .site-logo {
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .footer__brand p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Desktop's small tracked-out uppercase label reads fine as a subtle
+     eyebrow next to a full column of links, but alone on mobile it just
+     looks like body text — size it up and weight it like an actual
+     section heading. */
+  .footer__heading {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-normal);
   }
 
   .footer__bottom {
     flex-direction: column;
+    align-items: center;
     gap: var(--space-4);
     text-align: center;
   }
@@ -3177,10 +3329,5 @@ p {
 @media (max-width: 480px) {
   .hero__title {
     font-size: 2rem;
-  }
-
-  .btn--large {
-    width: 100%;
-    justify-content: center;
   }
 }

@@ -203,6 +203,8 @@
 .d-accordion__title {
   flex: 1;
   margin: 0;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
   transition: color var(--transition-fast);
 }
 
@@ -320,5 +322,9 @@
     width: 44px;
     height: 44px;
     font-size: var(--fs-base);
+  }
+
+  .d-accordion__title {
+    font-size: var(--fs-lg);
   }
 }

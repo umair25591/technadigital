@@ -596,11 +596,8 @@
   const header = document.querySelector('.site-header');
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileNav = document.querySelector('.mobile-nav');
-  // Real navigational links only — excludes the About/Services/Audience/
-  // Industries accordion triggers, which toggle a submenu rather than
-  // closing the whole mobile nav.
   const mobileLinks = mobileNav
-    ? mobileNav.querySelectorAll('.mobile-nav__link:not(.mobile-nav__trigger), .mobile-nav__sublink')
+    ? mobileNav.querySelectorAll('.mobile-nav__link, .mobile-nav__sublink')
     : [];
 
   // --- Add scrolled state to nav ---
@@ -626,9 +623,9 @@
   function resetMobileAccordions() {
     document.querySelectorAll('.mobile-nav__item').forEach((item) => {
       item.classList.remove('is-open');
-      const trigger = item.querySelector('.mobile-nav__trigger');
+      const caretBtn = item.querySelector('.mobile-nav__caret-btn');
       const submenu = item.querySelector('.mobile-nav__submenu');
-      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (caretBtn) caretBtn.setAttribute('aria-expanded', 'false');
       if (submenu) submenu.style.maxHeight = '';
     });
   }
@@ -688,28 +685,28 @@
   const mobileNavItems = document.querySelectorAll('.mobile-nav__item');
 
   mobileNavItems.forEach((item) => {
-    const trigger = item.querySelector('.mobile-nav__trigger');
+    const caretBtn = item.querySelector('.mobile-nav__caret-btn');
     const submenu = item.querySelector('.mobile-nav__submenu');
-    if (!trigger || !submenu) return;
+    if (!caretBtn || !submenu) return;
 
-    trigger.addEventListener('click', () => {
+    caretBtn.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
 
       mobileNavItems.forEach((other) => {
         if (other !== item) {
           other.classList.remove('is-open');
-          other.querySelector('.mobile-nav__trigger').setAttribute('aria-expanded', 'false');
+          other.querySelector('.mobile-nav__caret-btn').setAttribute('aria-expanded', 'false');
           other.querySelector('.mobile-nav__submenu').style.maxHeight = '';
         }
       });
 
       if (isOpen) {
         item.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
+        caretBtn.setAttribute('aria-expanded', 'false');
         submenu.style.maxHeight = '';
       } else {
         item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
+        caretBtn.setAttribute('aria-expanded', 'true');
         submenu.style.maxHeight = `${submenu.scrollHeight}px`;
       }
     });
@@ -874,13 +871,13 @@
           const eased = 1 - Math.pow(1 - progress, 3);
           const currentValue = Math.floor(eased * numericTarget);
 
-          el.textContent = prefix + currentValue + suffix;
+          el.textContent = prefix + currentValue.toLocaleString('en-US') + suffix;
 
           if (progress < 1) {
             requestAnimationFrame(updateCounter);
           } else {
-            // Set final value with original formatting
-            el.textContent = prefix + target + suffix;
+            // Set final value, comma-formatted to match the animated frames
+            el.textContent = prefix + numericTarget.toLocaleString('en-US') + suffix;
           }
         }
 
