@@ -298,6 +298,13 @@ p {
   background-color: var(--color-surface);
 }
 
+/* Slim CTA band inserted every 2 sections on every page — same .section
+   mechanics (container width, divider line) but far less vertical padding,
+   since it holds just a button, not a full header/copy block. */
+.mid-page-cta {
+  padding: var(--space-12) 0;
+}
+
 /* Subtle section divider line */
 .section + .section::before {
   content: '';
@@ -3298,19 +3305,9 @@ p {
     text-align: left;
   }
 
-  /* text-align only centers the text inside a box, not the box itself —
-     and margin: auto alone doesn't center this one either, since a block-
-     level flex container defaults to filling the available width (no
-     leftover space for auto margins to distribute). Shrink it to its own
-     content first, then center it. */
   .footer__brand .site-logo {
     width: max-content;
-    margin: 0 auto;
-  }
-
-  .footer__brand p {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
   }
 
   /* Desktop's small tracked-out uppercase label reads fine as a subtle
