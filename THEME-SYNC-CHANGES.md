@@ -263,6 +263,35 @@ the theme at once at the end — don't touch theme files in the meantime.
       `page-*.php` template in the WordPress theme once those exist, and the
       `images-for-sections` folder copied into the theme's assets.
 
+- [x] Sitewide: removed the merged "Schedule a Conversation" `.reveal.center-cta`
+      button wherever it sat as the very last thing in the section
+      immediately before the page's own Final CTA section — right below it
+      was another, near-identical "Schedule a Conversation" button in the
+      Final CTA itself, so it read as two CTAs stacked back to back.
+      Confirmed per-file (right before `<section class="section cta-section">`)
+      rather than trusting a single sitewide regex — a bulk `perl -0777`
+      pass silently matched 0 files despite reporting success (the pattern
+      was correct in isolation but failed against the full multi-KB file,
+      most likely backtracking-related), so this was done as verified,
+      individual edits instead. Removed from: `audience/for-ceos.html`,
+      `audience/for-small-business-owners.html`, `how-it-works.html`,
+      `industries/home-services.html`, `industries/manufacturing.html`,
+      `industries/marketing.html`, `services/executive-coaching.html`,
+      `services/exit-planning.html`, `services/peer-advisory-groups.html`,
+      `services.html`. Checked the other 10 pages with a Final CTA
+      (`about/the-5-ds.html`, `about.html`, `audience/for-founders.html`,
+      `index.html`, `industries/construction.html`,
+      `industries/professional-services.html`,
+      `services/business-growth-consulting.html`,
+      `services/business-valuation.html`,
+      `services/operational-scaling-consulting.html`,
+      `services/succession-planning.html`) — those already end their prior
+      section with something else ("Read Mike's Full Story," a stats/quote
+      block, etc.), not a duplicate Schedule-a-Conversation button, so
+      nothing needed removing there. Needs the same removal applied to the
+      corresponding `page-*.php` templates in the WordPress theme once those
+      exist.
+
 ## Applied to theme already
 
 - Footer Services column (details logged in an earlier version of this file).
