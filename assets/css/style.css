@@ -298,13 +298,6 @@ p {
   background-color: var(--color-surface);
 }
 
-/* Slim CTA band inserted every 2 sections on every page — same .section
-   mechanics (container width, divider line) but far less vertical padding,
-   since it holds just a button, not a full header/copy block. */
-.mid-page-cta {
-  padding: var(--space-12) 0;
-}
-
 /* Subtle section divider line */
 .section + .section::before {
   content: '';

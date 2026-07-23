@@ -127,42 +127,47 @@
   margin-top: var(--space-6);
 }
 
-/* --- Reality check — "On paper" vs. "in reality" as a two-column
-   contrast instead of two more stacked paragraphs, since that gap is
-   exactly what this content is describing. Divider-separated, no card
-   chrome, same idiom as style.css's .risk-stats / about.css's
-   .philosophy-grid elsewhere on the site. --- */
-.reality-check {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-10);
+/* --- Reality table — "What You Want" vs. "What You Need" as a real
+   <table>, not a div grid pretending to be one: a header row names each
+   column, then the "On paper" / "in reality" contrast reads down each
+   column. Divider-separated, no card chrome, same idiom as style.css's
+   .risk-stats / about.css's .philosophy-grid elsewhere on the site. --- */
+.reality-table {
+  width: 100%;
+  border-collapse: collapse;
   margin: var(--space-8) 0 var(--space-10);
 }
 
-.reality-check__item {
+.reality-table th {
+  text-align: left;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.reality-table td {
+  vertical-align: top;
+  padding-top: var(--space-6);
+  font-size: var(--fs-md);
+  color: var(--color-text-2);
+  line-height: var(--lh-relaxed);
+}
+
+.reality-table th + th,
+.reality-table td + td {
   border-left: 1px solid var(--color-border);
   padding-left: var(--space-6);
 }
 
-.reality-check__item:first-child {
-  border-left: none;
-  padding-left: 0;
+.reality-table th:first-child,
+.reality-table td:first-child {
+  padding-right: var(--space-6);
 }
 
-.reality-check__label {
-  display: block;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--ls-wider);
-  color: var(--color-orange);
-  margin-bottom: var(--space-3);
-}
-
-.reality-check__item p {
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
+.reality-table td p {
+  margin: 0;
   max-width: none;
 }
 
@@ -170,10 +175,20 @@
    column's On Paper / In Reality label — heavier weight and darker color
    than the body paragraph below it, so it reads as its own beat rather
    than blending into the label + paragraph underneath. */
-.reality-check__intro {
+.reality-table__intro {
   font-weight: var(--fw-semibold);
   color: var(--color-text);
-  margin-bottom: var(--space-5);
+}
+
+.reality-table__label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  color: var(--color-orange);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-3);
 }
 
 /* --- Quote block — this page's pull-quote treatment (used twice: the
@@ -238,20 +253,42 @@
     padding: var(--space-6);
   }
 
-  .reality-check {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
+  /* Table can't reflow into a single column on its own — force every
+     table element to behave like a block so the two columns stack instead
+     of squeezing side by side. Reads header/header, then row by row
+     (left cell, right cell), rather than grouping each side's full
+     column together — a reasonable trade-off for a real <table>
+     without duplicating every cell's label via JS/data-attrs. */
+  .reality-table,
+  .reality-table thead,
+  .reality-table tbody,
+  .reality-table tr,
+  .reality-table th,
+  .reality-table td {
+    display: block;
+    width: 100%;
   }
 
-  .reality-check__item {
+  .reality-table th + th,
+  .reality-table td + td {
     border-left: none;
     padding-left: 0;
-    padding-top: var(--space-6);
+  }
+
+  .reality-table th {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: none;
     border-top: 1px solid var(--color-border);
   }
 
-  .reality-check__item:first-child {
+  .reality-table thead tr th:first-child {
     padding-top: 0;
     border-top: none;
+  }
+
+  .reality-table td {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
   }
 }
