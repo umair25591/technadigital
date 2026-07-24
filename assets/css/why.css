@@ -4,145 +4,98 @@
    Page-specific rules only. Loaded after style.css, so it can rely on all
    design tokens (--color-*, --space-*, --fs-*, --radius-*, --shadow-*,
    --transition-*) and shared components already defined there.
+
+   Per the site owner's request, this page is plain text throughout (bold/
+   underline preserved exactly as in the source script) — the one exception
+   is the "I Help Owners Make the Best-Possible Exit Scenario Happen"
+   examples section, which keeps its original card design and uses the
+   shared .examples-grid/.example-card/.callout-banner rules below.
    ========================================================================== */
 
 /* --- Why Page Hero --- */
 .why-hero {
-  padding-top: calc(var(--nav-height) + var(--space-12));
-  padding-bottom: var(--space-16);
   position: relative;
   z-index: 1;
   background-color: var(--color-bg);
 }
 
-.why-hero__content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
+/* Shared .section padding (var(--space-24), 96px top+bottom) reads like a
+   real gap between every block of body copy — this page is meant to read
+   like the docx it's built from, one continuous document, not stacked
+   cards, so every section on this page gets a much tighter gap. Scoped to
+   #main-content since why.css only loads on this page; other pages keep
+   the full .section padding. .section.why-hero needs the higher-
+   specificity override below since it still needs extra top clearance
+   under the fixed nav (not just var(--space-8) like every other section). */
+#main-content .section {
+  padding: var(--space-8) 0;
+}
+
+#main-content .section.why-hero {
+  padding-top: calc(var(--nav-height) + var(--space-8));
+}
+
+/* --- Plain text content blocks (hero, story, blindsided, reasons, etc.) ---
+   1040px matches the Examples section's own header width (shared
+   .about-section__header in style.css) so every section on this page
+   reads at the same width. --- */
+.why-simple {
+  max-width: 1040px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
 }
 
-.why-hero__content .eyebrow {
-  margin-bottom: var(--space-6);
+/* No divider seams between the plain-text sections — reads as one
+   continuous page instead of stacked blocks. Scoped to this page only
+   (#main-content only exists here with why.css loaded), .section + .section
+   ::before is the shared sitewide rule other pages still rely on. */
+#main-content .section + .section::before {
+  display: none;
 }
 
-.why-hero__content h1 {
+.why-simple h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: var(--fw-black);
-  margin-bottom: var(--space-8);
   line-height: var(--lh-tight);
+  margin-bottom: var(--space-8);
 }
 
-.why-hero__intro {
+.why-simple p {
   font-size: var(--fs-lg);
   color: var(--color-text-2);
   line-height: var(--lh-relaxed);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
-.why-hero__intro p {
-  margin-bottom: var(--space-4);
-}
-
-.why-hero__intro p:last-child {
+.why-simple p:last-child {
   margin-bottom: 0;
 }
 
-.why-hero__highlight {
-  font-size: var(--fs-xl);
+.why-simple strong {
   font-weight: var(--fw-bold);
   color: var(--color-text);
-  margin-bottom: var(--space-10);
-  line-height: var(--lh-relaxed);
 }
 
-.why-hero__content .hero__cta-group {
-  justify-content: center;
+.why-simple ul {
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-6);
 }
 
-/* --- "Here's Why" stat intro --- */
-.why-exit__stat {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
-  color: var(--color-text);
-}
-
-.why-exit__lede {
+.why-simple ul li {
   font-size: var(--fs-lg);
-  color: var(--color-text-3);
-}
-
-/* --- 5 Ds row uses the shared .risk-grid/.risk-item cards from style.css
-   (same component as services/exit-planning.html etc.) — only the link
-   underneath needs page-specific styling. --- */
-.five-ds-cta {
-  margin-top: var(--space-10);
-  text-align: center;
-}
-
-/* --- Split Panel Layout for play-your-hand --- */
-.question-text {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
-  margin-bottom: var(--space-4);
-  line-height: var(--lh-tight);
-}
-
-.answer-text {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: var(--fw-black);
-  color: var(--color-orange);
-  margin-bottom: var(--space-6);
-  line-height: 1;
-}
-
-.warning-callout {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
-  margin-top: var(--space-6);
-}
-
-/* --- Quote block — pull-quote treatment used in the "play your hand"
-   section. Not a shared style.css component (each page that uses this
-   pattern rebuilds it locally), so it's defined here rather than assumed. --- */
-.quote-block {
-  position: relative;
-  padding: var(--space-6) var(--space-8);
-  background: linear-gradient(160deg, rgba(232, 83, 14, 0.07), transparent);
-  border: 1px solid rgba(232, 83, 14, 0.2);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.quote-block__mark {
-  position: absolute;
-  top: var(--space-4);
-  left: var(--space-6);
-  font-size: 2.5rem;
-  color: rgba(232, 83, 14, 0.15);
-  z-index: 0;
-}
-
-.quote-block blockquote {
-  position: relative;
-  z-index: 1;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-medium);
-  font-style: italic;
   color: var(--color-text-2);
   line-height: var(--lh-relaxed);
-  margin: 0;
+  margin-bottom: var(--space-3);
+}
+
+.why-simple ul li:last-child {
+  margin-bottom: 0;
 }
 
 /* --- Examples section --- */
 .examples-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
   margin-top: var(--space-10);
   margin-bottom: var(--space-10);
@@ -157,17 +110,6 @@
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
   overflow: hidden;
-}
-
-.example-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--color-orange), var(--color-orange-hover));
-  opacity: 0.7;
 }
 
 .example-card:hover {
@@ -221,202 +163,25 @@
   color: var(--color-text-2);
 }
 
-/* --- Highlight Text for Blindsided Section --- */
-.highlight-text {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  color: var(--color-orange);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-6);
-  line-height: var(--lh-relaxed);
-}
-
-/* --- Reasons List --- */
-.reasons-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-8);
-}
-
-.reason-item {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
-}
-
-.reason-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(232, 83, 14, 0.25);
-}
-
-.reason-item__icon {
-  color: var(--color-orange);
-  font-size: var(--fs-lg);
-  margin-bottom: var(--space-4);
-}
-
-.reason-item p {
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin-bottom: 0;
-}
-
-.reasons-footer {
-  text-align: center;
-  max-width: 800px;
-  margin: var(--space-8) auto 0;
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-}
-
-/* --- Offer Box ---
-   Redesigned from a flat centered text block into a card with a real
-   focal point: a large icon medallion up top, a two-up icon/feature row
-   spelling out exactly what the free assessment delivers (echoes
-   .example-card's icon-chip language elsewhere on this page), and the
-   "both are free" line demoted to a small badge instead of competing
-   with the CTA button for attention. --- */
-.offer-box {
-  position: relative;
-  max-width: 960px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, rgba(232, 83, 14, 0.12), rgba(232, 83, 14, 0.02));
-  border: 1px solid rgba(232, 83, 14, 0.25);
-  border-radius: var(--radius-lg);
-  padding: var(--space-12) var(--space-10);
-  text-align: center;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-}
-
-.offer-box h2 {
-  max-width: 720px;
-  margin: 0 auto var(--space-4);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  line-height: var(--lh-tight);
-}
-
-.offer-box > p {
-  max-width: 640px;
-  margin: 0 auto var(--space-10);
-  font-size: var(--fs-lg);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-}
-
-.offer-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  max-width: 720px;
-  margin: 0 auto var(--space-8);
-  text-align: left;
-}
-
-.offer-feature {
-  display: flex;
-  gap: var(--space-4);
-  align-items: flex-start;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-}
-
-.offer-feature__icon {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: rgba(232, 83, 14, 0.1);
-  color: var(--color-orange);
-  font-size: var(--fs-md);
-}
-
-.offer-feature h3 {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-2);
-}
-
-.offer-feature p {
-  font-size: var(--fs-sm);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin-bottom: 0;
-}
-
-.offer-note {
-  display: inline-block;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--color-orange);
-  background-color: rgba(232, 83, 14, 0.08);
-  border: 1px solid rgba(232, 83, 14, 0.2);
-  border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-5);
-  margin-bottom: var(--space-8);
-}
-
-.offer-box .hero__cta-group {
-  justify-content: center;
-  margin-bottom: 0;
-}
-
-/* --- Story chapter spacing overrides --- */
-.story-p {
-  font-size: var(--fs-md);
-  color: var(--color-text-2);
-  line-height: var(--lh-relaxed);
-  margin-bottom: var(--space-5);
-}
-
-/* --- Final CTA — style.css's .cta-section caps its heading/paragraph at
-   800px/600px (fine for shorter site-wide CTAs), but this page's closing
-   lines read cramped at that width — widen both just for this page (same
-   fix as the-5-ds.css's final CTA). --- */
-.cta-section h2 {
-  max-width: 1280px;
-}
-
+/* --- Final CTA — style.css's .cta-section caps its paragraphs at 600px
+   (fine for shorter site-wide CTAs), but this page's closing lines (both
+   plain <p>s, matching the docx — neither is a heading) read cramped at
+   that width. Widened to 1040px, same as .why-simple above, so the final
+   CTA lines up with the rest of the page. --- */
 .cta-section p {
-  max-width: 900px;
+  max-width: 1040px;
+  text-align: left;
 }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
   .examples-grid {
-    grid-template-columns: 1fr;
-  }
-  .reasons-list {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-  .offer-features {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 576px) {
-  .offer-box {
-    padding: var(--space-8) var(--space-6);
+  .examples-grid {
+    grid-template-columns: 1fr;
   }
 }

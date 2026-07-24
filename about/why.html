@@ -6,9 +6,10 @@
   WordPress Integration Notes:
   - Replace <header> with: <?php get_header(); ?>
   - Replace <footer> with: <?php get_footer(); ?>
-  - Content adapted from why.docx (Mike's GrowthScript) into web copy —
-    same story/facts/stats, edited for readable prose instead of a raw
-    spoken-script transcript, plus the site's shared visual components.
+  - Content adapted from why.docx (Mike's GrowthScript) into plain web
+    copy, per site owner's request — same wording/bold/underline as the
+    docx, no card/icon/photo components. The "I Help Owners..." examples
+    section is the one exception and keeps its original card design.
   - Nested one directory below the site root (about/) — every internal
     link and asset reference in this file is prefixed with ../
   ============================================================================
@@ -218,27 +219,19 @@
          HERO SECTION
          ====================================================================== -->
     <section class="section why-hero" id="why-hero">
-      <div class="hero-decor" aria-hidden="true">
-        <div class="hero-decor__orb hero-decor__orb--orange" data-scroll-speed="0.12"></div>
-        <div class="hero-decor__orb hero-decor__orb--blue" data-scroll-speed="-0.18"></div>
-        <div class="hero-decor__orb hero-decor__orb--dim" data-scroll-speed="0.08"></div>
-      </div>
-
       <div class="container">
-        <div class="why-hero__content reveal">
-          <span class="eyebrow">A Personal Note From Mike Wolfgang</span>
-
+        <div class="why-simple reveal">
           <h1>I'm Mike, a Certified Exit Planning &amp; Value Growth Advisor.</h1>
 
-          <div class="why-hero__intro">
-            <p>I help business owners prepare for exit. By preparing, you increase the value of your business along the way — and put yourself in position to make the best-possible exit scenario happen.</p>
-          </div>
+          <p>I help business owners prepare for exit.<br>
+          And by preparing, you increase the value of your business along the way.<br>
+          You can make the best-possible exit scenario happen.</p>
 
-          <p class="why-hero__highlight"><strong><u>Don't feel ready? Then today is exactly the right time to start.</u></strong></p>
+          <p><strong>Don't feel ready? Then today is exactly the right time to start.</strong></p>
 
-          <div class="hero__cta-group">
+          <div class="reveal" style="margin-top: var(--space-6);">
             <a href="../contact.html" class="btn btn--primary btn--large">
-              Start with a Free Assessment <span class="btn__arrow" aria-hidden="true">→</span>
+              Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -249,42 +242,12 @@
     <!-- ======================================================================
          HERE'S WHY SECTION — the 5 Ds, cross-linked to about/the-5-ds.html
          ====================================================================== -->
-    <section class="section section--charcoal" id="why-exit">
+    <section class="section" id="why-exit">
       <div class="container">
-        <div class="about-section__header reveal">
-          <span class="eyebrow">Here's Why</span>
-          <h2 data-heading-wipe>50% of Business Owners Are Forced to Exit</h2>
-          <p class="why-exit__stat">Not by choice.</p>
-          <p class="why-exit__lede">Through one of five forces that can end your ownership journey without warning:</p>
-        </div>
-
-        <div class="risk-grid reveal-stagger">
-          <div class="risk-item">
-            <span class="risk-item__icon"><i class="fa-solid fa-skull" aria-hidden="true"></i></span>
-            <span class="risk-item__title">Death</span>
-          </div>
-          <div class="risk-item">
-            <span class="risk-item__icon"><i class="fa-solid fa-heart-crack" aria-hidden="true"></i></span>
-            <span class="risk-item__title">Divorce</span>
-          </div>
-          <div class="risk-item">
-            <span class="risk-item__icon"><i class="fa-solid fa-crutch" aria-hidden="true"></i></span>
-            <span class="risk-item__title">Disability</span>
-          </div>
-          <div class="risk-item">
-            <span class="risk-item__icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
-            <span class="risk-item__title">Disagreement</span>
-          </div>
-          <div class="risk-item">
-            <span class="risk-item__icon"><i class="fa-solid fa-water" aria-hidden="true"></i></span>
-            <span class="risk-item__title">Disruption</span>
-          </div>
-        </div>
-
-        <div class="five-ds-cta reveal">
-          <a href="the-5-ds.html" class="btn btn--primary">
-            See How Each Force Plays Out <span class="btn__arrow" aria-hidden="true">→</span>
-          </a>
+        <div class="why-simple reveal">
+          <p><strong>Here's why:</strong><br>
+          50% of business owners are forced to exit.<br>
+          Through one of these: death, divorce, disability, disagreement, disruption.</p>
         </div>
       </div>
     </section>
@@ -295,21 +258,13 @@
          ====================================================================== -->
     <section class="section" id="play-your-hand">
       <div class="container">
-        <div class="split-panel__grid">
-          <div class="split-panel__content reveal">
-            <p class="question-text">But would you get an ideal exit scenario if you were forced to play your hand?</p>
-            <p class="answer-text">No.</p>
+        <div class="why-simple reveal">
+          <p>But would you get an ideal exit scenario if you are forced to play your hand?<br>
+          No.</p>
 
-            <div class="quote-block" style="margin-top: 0; margin-bottom: var(--space-8);">
-              <i class="fa-solid fa-quote-left quote-block__mark" aria-hidden="true"></i>
-              <blockquote>I know this firsthand. I navigated cancer and divorce while caring for my father through his battle with Parkinson's — all at the same time. It taught me this isn't a matter of if. It's a matter of when.</blockquote>
-            </div>
+          <p>I know firsthand how to navigate curveballs, because I went through it. Cancer and divorce, while caring for my father through Parkinson's. It taught me this isn't a matter of if. It's a matter of when.</p>
 
-            <p class="warning-callout"><strong><u>Don't be 1 in 2.</u></strong></p>
-          </div>
-          <div class="split-panel__visual split-panel__visual--photo reveal" aria-hidden="true">
-            <img src="../assets/images/images-for-sections/3.jpeg" alt="" loading="lazy">
-          </div>
+          <p><strong>Don't be 1 in 2.</strong></p>
         </div>
       </div>
     </section>
@@ -318,35 +273,12 @@
     <!-- ======================================================================
          FOUNDER STORY SECTION
          ====================================================================== -->
-    <section class="section section--charcoal" id="mike-story">
+    <section class="section" id="mike-story">
       <div class="container">
-        <div class="founder-section__grid">
+        <div class="why-simple reveal">
+          <p>Before this work, I flew President Clinton around the world as a Marine One crew chief, led two successful business turnarounds, and spent four years as a professional EOS Implementer helping owners build companies that run themselves.</p>
 
-          <div class="founder-section__image-wrap reveal">
-            <div class="founder-section__image" data-scroll-speed="0.06" data-scroll-scale="1.05">
-              <img src="../assets/images/founder-2.jpeg" alt="Mike Wolfgang" width="612" height="573" loading="lazy">
-            </div>
-          </div>
-
-          <div class="founder-section__content reveal">
-            <span class="eyebrow">My Experience</span>
-            <p class="story-p">Before this work, I flew President Clinton around the world as a Marine One crew chief, led two successful business turnarounds, and spent four years as a professional EOS Implementer helping owners build companies that run themselves.</p>
-            <p class="story-p">Then life intervened — twice. I rebuilt my business during Covid, then again while caring for my father and battling cancer. Those experiences clarified my purpose: help owners prepare for the forces they can't predict, before those forces make the decision for them.</p>
-
-            <div class="credentials" style="margin-top: var(--space-6);">
-              <span class="credential-tag">CEPA Certified</span>
-              <span class="credential-tag">EOS Implementer (4 yrs)</span>
-              <span class="credential-tag">Cancer Survivor</span>
-              <span class="credential-tag">2× Business Rebuild</span>
-              <span class="credential-tag">USMC Veteran</span>
-              <span class="credential-tag">Marine One Crew Chief</span>
-            </div>
-
-            <a href="../about.html" class="btn btn--primary" style="margin-top: var(--space-6);">
-              Read Mike's Full Story <span class="btn__arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-
+          <p>Then life intervened — twice. I rebuilt my business during Covid, then again while caring for my father and battling cancer. Those experiences clarified my purpose: help owners prepare for the forces they can't predict, before those forces make the decision for them.</p>
         </div>
       </div>
     </section>
@@ -392,6 +324,12 @@
         <div class="callout-banner reveal">
           <p>Today is the best time to start that exit plan and work towards it. <strong><u>Especially if you don't feel ready.</u></strong></p>
         </div>
+
+        <div class="reveal center-cta" style="margin-top: var(--space-6);">
+          <a href="../contact.html" class="btn btn--primary btn--large">
+            Schedule a Conversation <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -399,13 +337,14 @@
     <!-- ======================================================================
          BLINDSIDED SECTION
          ====================================================================== -->
-    <section class="section section--charcoal" id="blindsided">
+    <section class="section" id="blindsided">
       <div class="container">
-        <div class="about-section__header reveal">
-          <span class="eyebrow">The Hidden Risk</span>
-          <h2 data-heading-wipe>Here's Where Most Owners Get Blindsided</h2>
-          <p class="highlight-text"><strong><u>They overvalue their business by 20% to 100% or more, depending on its size and type.</u></strong></p>
-          <p style="font-size: var(--fs-lg); line-height: var(--lh-relaxed); color: var(--color-text-3);">That means by the time they're ready to sell, it's suddenly not such a great deal after all — and that's unexpectedly painful.</p>
+        <div class="why-simple reveal">
+          <p>Here's where most owners get blindsided: <br>
+          <strong>They overvalue their business by 20% to 100% or more depending on the size and type of business.</strong></p>
+
+          <p>That means by the time they're ready to sell, it's suddenly not such a great deal after all.<br>
+          That's unexpectedly painful.</p>
         </div>
       </div>
     </section>
@@ -416,30 +355,15 @@
          ====================================================================== -->
     <section class="section" id="reasons">
       <div class="container">
-        <div class="about-section__header reveal">
-          <span class="eyebrow">Some of the Main Reasons</span>
-          <h2 data-heading-wipe>Why Your Company's Value Is Lower Than You Think</h2>
-          <p>There's a long list of reasons, but three come up again and again:</p>
-        </div>
+        <div class="why-simple reveal">
+          <p>There are various reasons why your company's value is lower than you think, but some of the main ones are:</p>
 
-        <div class="reasons-list reveal-stagger">
-          <div class="reason-item">
-            <div class="reason-item__icon"><i class="fa-solid fa-user-tie"></i></div>
-            <p>You're currently the main salesperson</p>
-          </div>
+          <ul>
+            <li>You're currently the main salesperson</li>
+            <li>A few clients generate the majority of revenue</li>
+            <li>Carrying a majority of the decisions, no leadership team</li>
+          </ul>
 
-          <div class="reason-item">
-            <div class="reason-item__icon"><i class="fa-solid fa-users-viewfinder"></i></div>
-            <p>A few clients generate the majority of revenue</p>
-          </div>
-
-          <div class="reason-item">
-            <div class="reason-item__icon"><i class="fa-solid fa-network-wired"></i></div>
-            <p>Carrying a majority of the decisions, no leadership team</p>
-          </div>
-        </div>
-
-        <div class="reasons-footer reveal">
           <p>I can go on because it's a long list, but a lot goes into your company's actual value.</p>
         </div>
       </div>
@@ -449,37 +373,15 @@
     <!-- ======================================================================
          ASSESSMENT OFFER SECTION
          ====================================================================== -->
-    <section class="section section--charcoal" id="assessment-offer">
+    <section class="section" id="assessment-offer">
       <div class="container">
-        <div class="offer-box reveal">
-          <span class="eyebrow">Free Business Assessment</span>
-          <h2>Want to Know What Your Business Is Actually Worth — and How to Maximize It?</h2>
-          <p>I'll give you a free assessment that shows you exactly where your business stands today, and what needs to happen to make a best-scenario exit real.</p>
+        <div class="why-simple reveal">
+          <p>Want to know what your business is actually worth <strong>and</strong> how to maximize the value of your business?</p>
 
-          <div class="offer-features reveal-stagger">
-            <div class="offer-feature">
-              <span class="offer-feature__icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span>
-              <div>
-                <h3>What It's Worth Today</h3>
-                <p>A clear, honest valuation of your business as it stands right now.</p>
-              </div>
-            </div>
-            <div class="offer-feature">
-              <span class="offer-feature__icon"><i class="fa-solid fa-route" aria-hidden="true"></i></span>
-              <div>
-                <h3>What It Takes to Maximize It</h3>
-                <p>The specific moves that turn today's number into your best-possible exit.</p>
-              </div>
-            </div>
-          </div>
+          <p>I'll give you a free assessment that shows you exactly what your business is worth today, and what needs to happen to make a <strong>best-scenario exit real</strong>.</p>
 
-          <span class="offer-note">Both are free — we'll review the results together</span>
-
-          <div class="hero__cta-group">
-            <a href="../contact.html" class="btn btn--primary btn--large">
-              Schedule Your Free Assessment <span class="btn__arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
+          <p>We'll review the results together.<br>
+          Both are free.</p>
         </div>
       </div>
     </section>
@@ -489,14 +391,9 @@
          FINAL CALL TO ACTION
          ====================================================================== -->
     <section class="section cta-section" id="final-cta">
-      <div class="section-decor section-decor--a" aria-hidden="true">
-        <span class="section-decor__glow section-decor__glow--orange"></span>
-        <span class="section-decor__glow section-decor__glow--blue"></span>
-      </div>
-
       <div class="container">
         <div class="reveal">
-          <h2>An exit is never just money, multipliers, or math.<br>It's the plan for your employees, your family, and the life you want after. </h2>
+          <p>An exit is never just money, multipliers, or math.<br>It's the plan for your employees, your family, and the life you want after.</p>
           <p>All of that goes into exit planning.<br>Let's make your exit plan a reality. Let's hop on a call.</p>
 
           <div class="cta-section__buttons">

@@ -292,6 +292,198 @@ the theme at once at the end — don't touch theme files in the meantime.
       corresponding `page-*.php` templates in the WordPress theme once those
       exist.
 
+- [x] Trust logos section (`index.html`, `about.html`) — 10 new partner/client
+      logos were added to `assets/images/logos/` (`logo-5.jpeg` through
+      `logo-14.jpeg`: 3Q Digital, CGS ORIS, Choice Healthy Kitchen + Juice
+      Bar, Corporate Color Printing, HR On-Call, Maui Plumbing, Moxie, Out
+      West Buildings, Securian Financial, Thomson Reuters), bringing the
+      total to 14 alongside the original 4 (EOS, EPI, CEPA, USMC). Static
+      wrapped `.trust-logos__row` (flex-wrap grid) replaced with a
+      continuously scrolling marquee: `.trust-logos__marquee` (masked-edge
+      viewport, `overflow: hidden`) > `.trust-logos__track` (flex row,
+      `animation: trust-logos-scroll` translateX 0 → -50%) > one authored
+      `.trust-logos__group` holding all 14 logos. `initLogoMarquee()` in
+      `app.js` clones that group and appends it (`aria-hidden="true"`)
+      inside the track so the loop is seamless — CSS/JS changes are shared
+      (`assets/css/style.css`, `assets/js/app.js`), so both pages picked up
+      the marquee with no per-page CSS/JS needed. Pauses on hover
+      (`.trust-logos__marquee:hover .trust-logos__track`); respects
+      `prefers-reduced-motion` (JS skips the clone, CSS drops the animation
+      and makes the strip horizontally scrollable instead of looping).
+      Responsive: track animation duration and item/gap sizing both step
+      down at the existing 768px breakpoint (26s duration, 64px logos,
+      tighter gap) same as the old mobile rule. Needs the same 10 new logo
+      assets copied into the theme and the row→marquee markup/CSS/JS ported
+      to `page.php`/`page-about.php` (or wherever the theme's trust-logos
+      section lives) once that template work happens.
+
+- [x] `about/why.html` — "I Help Owners Make the Best-Possible Exit Scenario
+      Happen" section's 4 `.example-card` items (`.examples-grid`) were
+      wrapping 2-per-row on desktop; site owner wants all 4 in a single row,
+      matching a reference screenshot of a similar 4-across card row.
+      Changed `.examples-grid` in `assets/css/why.css` from
+      `grid-template-columns: repeat(2, 1fr)` to `repeat(4, 1fr)`, and
+      adjusted the responsive breakpoints so it steps down gracefully
+      instead of jumping straight to 1 column: 2-per-row at ≤992px
+      (new rule), 1-per-row at ≤576px (was the ≤992px behavior). No HTML
+      changes, no content changes. Needs the same `.examples-grid` column
+      change ported to `page-why.php`'s stylesheet in the WordPress theme
+      once that template exists.
+      **Follow-up, same section:** reference screenshot's cards are plain
+      (no accent bar), but `.example-card` still had its orange left-edge
+      `::before` gradient bar from before this change. Removed that
+      `::before` rule entirely from `assets/css/why.css` so the cards match
+      the reference exactly — flat white card, icon chip, heading, text,
+      no side border. Needs the same removal ported to the theme once
+      `page-why.php` exists.
+
+- [x] `about/why.html` — site owner wants the whole page to be simple text
+      (no card grids, icon chips, photos, gradient boxes, or decorative
+      orbs/glows), matching `why.docx` (Mike's original script) exactly —
+      **except** the "I Help Owners Make the Best-Possible Exit Scenario
+      Happen" examples section (`#examples`: eyebrow/heading/intro,
+      `.examples-grid` of 4 `.example-card`s, `.callout-banner`), which the
+      site owner explicitly said to leave exactly as currently designed —
+      that section was left byte-for-byte untouched. Re-read `why.docx`
+      (unzipped `word/document.xml`) run-by-run to confirm exactly which
+      phrases are bold/underlined vs. plain before touching anything, since
+      the docx has no Heading styles at all (Normal paragraphs only, with
+      bold/underline/italic run overrides) — bold/underline in the new copy
+      matches the docx's actual `<w:b/>`/`<w:u/>` runs verbatim, nothing
+      added or dropped (e.g. only "Here's why:" is bold in that paragraph,
+      not the two lines after it; only the word "and" is bold+underlined in
+      the "Want to know what your business is actually worth" line; etc.).
+      Rewrote every other section (`#why-hero`, `#why-exit`,
+      `#play-your-hand`, `#mike-story`, `#blindsided`, `#reasons`,
+      `#assessment-offer`) to plain `<p>`/`<strong>`/`<u>`/`<ul><li>` inside
+      a shared `.why-simple` prose wrapper (new class in `assets/css/
+      why.css`, replacing the page's old card/grid/photo components).
+      Dropped: the invented eyebrow labels and paraphrased marketing
+      headlines that weren't in the docx (e.g. "Here's Where Most Owners
+      Get Blindsided," "Why Your Company's Value Is Lower Than You Think")
+      in favor of the docx's own wording reformatted as plain paragraphs;
+      the 5 Ds icon grid (now one plain sentence: "death, divorce,
+      disability, disagreement, disruption"); the split-panel pull-quote +
+      stock photo; the founder photo + credential-tag pills (kept the two
+      story paragraphs, dropped the visual); the gradient "offer box" card
+      with icon-feature pairs (now three plain paragraphs); the `section--
+      charcoal` alternating background (page is now one consistent
+      background); the hero's decorative orbs and the final-CTA section's
+      glow decor. Also dropped the "Start with a Free Assessment" hero
+      button, the "See How Each Force Plays Out" 5-Ds cross-link button,
+      and the "Read Mike's Full Story" about.html link — none are in the
+      docx script, and each target page is still reachable from the main
+      nav, so only the single final "Schedule a Conversation" button
+      remains (matches the docx's own closing line, "Let's hop on a call,"
+      and every other page's final-CTA pattern). Trimmed `assets/css/
+      why.css` down to: `.why-hero` (top padding under the fixed nav),
+      the new `.why-simple` prose rules, and the untouched `.examples-grid
+      /.example-card/.callout-banner/.cta-section` rules the kept section
+      still needs — removed every now-orphaned rule (`.why-hero__content`,
+      `.why-exit__stat/__lede`, `.five-ds-cta`, `.question-text/.answer-
+      text/.warning-callout`, `.quote-block*`, `.highlight-text`,
+      `.reasons-list/.reason-item*`, `.offer-box` and its children,
+      `.story-p`). Confirmed the shared components this page used to
+      reference (`.risk-grid`, `.split-panel__grid`, `.founder-section__
+      grid`, `.hero-decor`) are untouched in `style.css` and still used by
+      21 other pages, so nothing else on the site was affected. Needs the
+      same plain-text rewrite applied to `page-why.php` in the WordPress
+      theme once that template exists.
+
+- [x] `about/why.html` follow-up refinements to the plain-text sections
+      added above: (1) removed `<u>` from every bold+underlined line in the
+      plain-text sections (kept `<strong>` only) — 5 occurrences across
+      `#why-hero`, `#play-your-hand`, `#blindsided`, `#assessment-offer`
+      (×2). Left the one remaining `<u>` alone: the callout-banner inside
+      the untouched `#examples` section, since that section keeps its
+      original design as-is. (2) Removed the sitewide `.section + .section
+      ::before` divider line between this page's sections so it reads as
+      one continuous page instead of stacked blocks — scoped to `#main-
+      content .section + .section::before { display: none; }` in
+      `assets/css/why.css` (only loads on this page) rather than touching
+      the shared rule in `style.css`, which every other page still uses.
+      (3) Left-aligned text to match the docx: added `text-align: left` to
+      `.why-simple` (was already left by default with no override, but made
+      explicit) and to `.cta-section h2`/`.cta-section p` for this page
+      only (both selectors live in why.css, so no other page's centered
+      final-CTA is affected) — the "Schedule a Conversation" button stays
+      centered (`.cta-section__buttons` flex `justify-content: center`),
+      since that's a functional CTA, not body text. `#examples`'s own
+      centered header/callout-banner left untouched per the "keep as
+      designed" instruction. Needs the same 3 fixes ported to `page-why.php`
+      in the WordPress theme once that template exists.
+
+- [x] `about/why.html` — site owner caught that the final-CTA's opening
+      line ("An exit is never just money, multipliers, or math. / It's the
+      plan for your employees, your family, and the life you want after.")
+      was still an `<h2>`, but the docx (`why.docx` P24) has it as a plain
+      paragraph — no bold, no heading style, same as the paragraph right
+      after it ("All of that goes into exit planning..."). Changed it from
+      `<h2>` to `<p>` so both lines render as equal plain paragraphs,
+      matching the docx. Removed the now-dead `.cta-section h2` rule from
+      `assets/css/why.css` (only that page-scoped selector — style.css's
+      shared `.cta-section h2` is untouched and still used by every other
+      page's final CTA); `.cta-section p`'s existing 900px max-width
+      override now applies to both paragraphs in this section. Needs the
+      same `<h2>`→`<p>` fix ported to `page-why.php` in the WordPress
+      theme once that template exists.
+
+- [x] `about/why.html` — widened the plain-text sections and made every
+      section's width consistent. `.why-simple` (hero, why-exit, play-your-
+      hand, mike-story, blindsided, reasons, assessment-offer) was 760px;
+      `.cta-section p` (final CTA) was 900px; the untouched `#examples`
+      section's own header uses the shared `.about-section__header` at
+      1040px. Set both `.why-simple` and this page's `.cta-section p`
+      override to 1040px in `assets/css/why.css` to match that existing
+      width, so every section on the page now lines up at the same column
+      width instead of each being a different size. Needs the same 1040px
+      width applied to `page-why.php`'s stylesheet in the WordPress theme
+      once that template exists.
+
+- [x] `about/why.html` — the shared `.section` padding (`var(--space-24)`,
+      96px top+bottom) meant ~192px of empty space between every section
+      on this page, which read as far too much gap for what's meant to be
+      one continuous document (matching `why.docx`), not a stack of
+      separated blocks. Added `#main-content .section { padding:
+      var(--space-8) 0; }` (32px) to `assets/css/why.css`, scoped so only
+      this page is affected — every other page keeps the full 96px
+      `.section` padding. The hero still needs extra top clearance under
+      the fixed nav, so that's a separate higher-specificity override
+      (`#main-content .section.why-hero { padding-top: calc(var(--nav-
+      height) + var(--space-8)); }`) rather than the old flat `.why-hero`
+      rule, which otherwise would have lost to the new general rule's
+      specificity. Applies uniformly to every section including the
+      untouched `#examples` block (tighter outer spacing only — its
+      internal card design/content is unchanged). Needs the same tighter
+      section padding applied to `page-why.php` in the WordPress theme
+      once that template exists.
+
+- [x] `about/why.html` — site owner asked to add a "Schedule a
+      Conversation" CTA button (same markup as the page's existing final
+      CTA: `.reveal.center-cta` wrapper, `.btn.btn--primary.btn--large`
+      linking to `../contact.html`) right after three specific lines: (1)
+      "Don't feel ready? Then today is exactly the right time to start."
+      in `#why-hero`, (2) "Don't be 1 in 2." in `#play-your-hand`, (3) the
+      callout-banner text in the untouched `#examples` section ("Today is
+      the best time to start that exit plan and work towards it.
+      Especially if you don't feel ready.") — this is the one exception to
+      that section's "leave completely as-is" rule from earlier, since the
+      site owner explicitly asked for it here. Each button sits in its own
+      `margin-top: var(--space-6)` wrapper right after the paragraph it
+      follows. Needs the same 3 buttons added to `page-why.php` in the
+      WordPress theme once that template exists.
+
+- [x] `about/why.html` follow-up on the 3 new CTA buttons above: removed
+      the one after "Don't be 1 in 2." (`#play-your-hand`) entirely per
+      site owner's direction. Left-aligned the one after "Don't feel ready?
+      Then today is exactly the right time to start." (`#why-hero`) by
+      dropping its `center-cta` class — the wrapper div now just inherits
+      `.why-simple`'s `text-align: left`, so the button sits at the left
+      edge like the surrounding text instead of centered. The third button
+      (Examples section callout-banner) is unchanged. Needs the same 2
+      fixes ported to `page-why.php` in the WordPress theme once that
+      template exists.
+
 ## Applied to theme already
 
 - Footer Services column (details logged in an earlier version of this file).

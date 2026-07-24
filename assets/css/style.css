@@ -1540,18 +1540,37 @@ p {
   white-space: nowrap;
 }
 
-.trust-logos__row {
+.trust-logos__marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.trust-logos__track {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-16) var(--space-20);
+  width: max-content;
+  animation: trust-logos-scroll 42s linear infinite;
+}
+
+.trust-logos__marquee:hover .trust-logos__track {
+  animation-play-state: paused;
+}
+
+.trust-logos__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--space-16);
+  padding-inline-end: var(--space-16);
 }
 
 .trust-logos__item {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .trust-logos__item img {
@@ -1566,6 +1585,15 @@ p {
   transform: scale(1.1);
 }
 
+@keyframes trust-logos-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 768px) {
   .trust-logos__heading {
     white-space: normal;
@@ -1575,12 +1603,27 @@ p {
     margin-bottom: var(--space-10);
   }
 
-  .trust-logos__row {
-    gap: var(--space-10) var(--space-8);
+  .trust-logos__track {
+    animation-duration: 26s;
+  }
+
+  .trust-logos__group {
+    gap: var(--space-8);
+    padding-inline-end: var(--space-8);
   }
 
   .trust-logos__item img {
     height: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-logos__track {
+    animation: none;
+  }
+
+  .trust-logos__marquee {
+    overflow-x: auto;
   }
 }
 

@@ -893,6 +893,31 @@
 
 
 /* ==========================================================================
+   6b. TRUST LOGOS MARQUEE
+   ==========================================================================
+   Duplicates the logo group so the CSS scroll animation (translateX -50%)
+   loops seamlessly, then hands off to the animation entirely — reduced
+   motion just leaves the duplicate out and lets the row wrap normally.
+   ========================================================================== */
+(function initLogoMarquee() {
+  'use strict';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  document.querySelectorAll('[data-marquee]').forEach((marquee) => {
+    const track = marquee.querySelector('.trust-logos__track');
+    const group = marquee.querySelector('.trust-logos__group');
+    if (!track || !group) return;
+
+    const clone = group.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+})();
+
+
+/* ==========================================================================
    7. SMOOTH SCROLL FOR ANCHOR LINKS
    ========================================================================== */
 (function initSmoothScroll() {
