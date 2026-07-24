@@ -484,6 +484,100 @@ the theme at once at the end — don't touch theme files in the meantime.
       fixes ported to `page-why.php` in the WordPress theme once that
       template exists.
 
+- [x] `about/why.html` — re-added the "Schedule a Conversation" CTA button
+      after "Don't be 1 in 2." (`#play-your-hand`), reversing the removal
+      logged directly above. Same markup/pattern as the `#why-hero` button:
+      `.reveal` wrapper (no `center-cta`) so it inherits `.why-simple`'s
+      left alignment, `.btn.btn--primary.btn--large` linking to
+      `../contact.html`. Needs the same button added to `page-why.php` in
+      the WordPress theme once that template exists.
+
+- [x] `about/why.html` — added a photo of Mike to the right side of
+      `#why-hero`. Wrapped the existing hero text in the shared
+      `.split-panel__grid` > `.split-panel__content`/`.split-panel__visual`
+      component (same one already used for real photos on 16 other pages,
+      per an earlier entry above) rather than building new one-off CSS —
+      text stays as `.split-panel__content.why-simple` on the left, photo
+      sits in `.split-panel__visual.split-panel__visual--photo` (the photo
+      variant, so no gradient/icon placeholder shows) on the right using
+      `assets/images/founder.jpg` (the same real bio photo already used in
+      `index.html`'s hero). No new CSS needed — `.split-panel__grid`
+      already collapses to a single stacked column on mobile/tablet. Needs
+      the same two-column hero markup ported to `page-why.php` in the
+      WordPress theme once that template exists.
+      **Follow-up:** site owner flagged (via screenshot) that the hero was
+      visibly wider than every other section — `.split-panel__grid` has no
+      max-width of its own, so it filled the full `.container` (wider than
+      1040px) while every other section is capped at 1040px via
+      `.why-simple`. Added `.why-hero .split-panel__grid { max-width:
+      1040px; margin: 0 auto; }` in `assets/css/why.css` so the hero now
+      lines up at the same width as the rest of the page. Needs the same
+      width cap ported to `page-why.php` in the WordPress theme once that
+      template exists.
+
+- [x] `about/why.html` — the "reasons" section's 3 `<li>` items (main
+      salesperson / client concentration / no leadership team) were
+      already markup as a real `<ul><li>` list, but rendered with no
+      visible bullet marker — the sitewide reset in `assets/css/style.css`
+      (`ul, ol { list-style: none; }`) killed it. Added `list-style: disc`
+      on `.why-simple ul` and `display: list-item` on `.why-simple ul li`
+      in `assets/css/why.css`, scoped to this page only. Needs the same
+      bullet-restore ported to `page-why.php` in the WordPress theme once
+      that template exists.
+      **Follow-up:** site owner asked for more width overall. Widened all
+      3 of this page's width caps together (still kept in sync so nothing
+      goes back out of alignment): `.why-hero .split-panel__grid`,
+      `.why-simple`, and `.cta-section p` all went from 1040px → 1200px in
+      `assets/css/why.css`. Needs the same 1200px width ported to
+      `page-why.php` in the WordPress theme once that template exists.
+
+- [x] Sitewide (`index.html`, `about.html`) — trust-logos section heading
+      replaced. Was "2,500+ Awesome Company Growing With Us" (with an
+      animated `[data-count]` counter on the "2,500+" — the shared
+      `initCounters()` in `app.js` queries all `[data-count]` elements
+      globally, so removing this one doesn't affect any other counter on
+      the site), now plain text "Trusted by Business Owners and Certified
+      Excellence" per site owner's direction — no number in the new copy,
+      so the counter span was dropped entirely. Kept the same
+      `.text-accent` orange-highlight pattern the old copy used (was on
+      "Growing", now on "Certified Excellence") for visual consistency.
+      Needs the same heading swap applied to `page.php`/`page-about.php`
+      (or wherever the theme's trust-logos section lives) once that
+      template work happens.
+
+- [x] Sitewide: added a small "Don't be 1 of 2" hint line directly above
+      every "Schedule a Conversation" CTA button, per site owner's
+      direction — except each page's own bottom/final CTA section (the
+      one wrapped in `.cta-section__buttons`), which was explicitly
+      excluded. New shared `.cta-hint` class in `assets/css/style.css`
+      (orange, small, semibold — inherits text-align from whichever
+      wrapper it's in, so it centers under `.center-cta` buttons and
+      stays left-aligned under hero/left-aligned ones). 100 insertions
+      across 21 pages: `index.html`, `about.html`, `about/why.html`,
+      `about/the-5-ds.html`, `how-it-works.html`, `services.html`, all 7
+      `services/*.html`, all 5 `industries/*.html`, all 3
+      `audience/*.html`. Left untouched: any button whose text isn't
+      literally "Schedule a Conversation" (`index.html`'s hero "Start
+      with a Free Business Assessment", `services/executive-coaching.html`'s
+      hero "Schedule a Coaching Conversation", `services/peer-advisory-
+      groups.html`'s final "Apply for CFO Circles") — none of those are
+      the button referred to. Needs the same `.cta-hint` insertions
+      applied to every corresponding `page-*.php` template in the
+      WordPress theme once those exist.
+      **Follow-up:** site owner flagged the hint wasn't actually following
+      the button's alignment (centered under center-cta buttons, left
+      under hero ones). Root cause: the sitewide `p { max-width: 65ch }`
+      rule capped `.cta-hint`'s own box narrower than its container with
+      no `margin: auto`, so the box stayed pinned to the left edge
+      regardless of `text-align` (text-align only centers the text inside
+      a box, not the box itself). Added `max-width: none` to `.cta-hint`
+      to fix it. Also bumped it up per request: `var(--fs-sm)` →
+      `var(--fs-md)` (bigger), `var(--fw-semibold)` → `var(--fw-bold)`,
+      and `var(--color-orange)` → `var(--color-text)` (black, matches
+      heading color). All in `assets/css/style.css`. Needs the same
+      `.cta-hint` fix ported to the theme once the templates from the
+      entry above exist.
+
 ## Applied to theme already
 
 - Footer Services column (details logged in an earlier version of this file).

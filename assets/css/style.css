@@ -2965,6 +2965,22 @@ p {
   text-align: center;
 }
 
+/* Small hint line placed directly above "Schedule a Conversation" CTA
+   buttons sitewide (not the final/bottom CTA section on each page).
+   Inherits text-align from its wrapper (.center-cta centers it, hero
+   CTA groups/left-aligned wrappers keep it left) rather than hardcoding
+   alignment here — max-width: none overrides the sitewide `p { max-width:
+   65ch }` rule, since a narrower-than-container box with no margin: auto
+   stays pinned to the left edge regardless of text-align, which was
+   silently defeating the centering. */
+.cta-hint {
+  max-width: none;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
 /* Fade-in keyframe for tab panels */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }

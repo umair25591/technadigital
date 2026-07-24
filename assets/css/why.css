@@ -35,12 +35,23 @@
   padding-top: calc(var(--nav-height) + var(--space-8));
 }
 
+/* .split-panel__grid has no max-width of its own (fills .container, which
+   is wider than this) — without this it renders noticeably wider than
+   every other section on this page, which is capped below via
+   .why-simple. Matches that same width so the hero lines up with the
+   rest of the page instead of bleeding wider. */
+.why-hero .split-panel__grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* --- Plain text content blocks (hero, story, blindsided, reasons, etc.) ---
-   1040px matches the Examples section's own header width (shared
-   .about-section__header in style.css) so every section on this page
-   reads at the same width. --- */
+   Widened from the Examples section's 1040px header width per site
+   owner's request for more breathing room; kept in sync with the hero
+   grid and final-CTA width above/below so every section on this page
+   still reads at the same width. --- */
 .why-simple {
-  max-width: 1040px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: left;
 }
@@ -79,6 +90,7 @@
 .why-simple ul {
   margin: 0 0 var(--space-6);
   padding-left: var(--space-6);
+  list-style: disc;
 }
 
 .why-simple ul li {
@@ -86,6 +98,7 @@
   color: var(--color-text-2);
   line-height: var(--lh-relaxed);
   margin-bottom: var(--space-3);
+  display: list-item;
 }
 
 .why-simple ul li:last-child {
@@ -169,7 +182,7 @@
    that width. Widened to 1040px, same as .why-simple above, so the final
    CTA lines up with the rest of the page. --- */
 .cta-section p {
-  max-width: 1040px;
+  max-width: 1200px;
   text-align: left;
 }
 
